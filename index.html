@@ -934,6 +934,130 @@
   </div>
 </div>
 
+<!-- ================== DESKTOP PET DETAIL / EDIT ================== -->
+<div>
+  <p class="page-label">Desktop · Pet Detail / Edit</p>
+  <div class="frame frame-desktop">
+    <div class="dt">
+      <aside class="dt-nav">
+        <div class="logo">PawMatch<span class="dot">.</span></div>
+        <div class="nav-group-label">Main</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12 12 4l9 8v8a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg>Home</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>My Account</div>
+        <div class="nav-item active"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v10H4z"/><path d="M8 20h8M12 15v5"/></svg>Pet Data</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h10l4 4v12H5z"/></svg>Applications<span style="margin-left:auto;background:var(--terracotta);color:var(--ivory);font-size:11px;padding:2px 7px;border-radius:10px">6</span></div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v12H7l-3 3z"/></svg>Messages</div>
+        <div class="nav-group-label">Growth</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 14v6h6M20 10V4h-6M4 14l7-7M13 17l7-7"/></svg>Boost / Ads</div>
+        <div class="nav-profile"><div class="avatar">M</div><div class="nav-profile-text"><div class="nav-profile-name">Meadow Shelter</div><div class="nav-profile-sub">Shelter · Portland</div></div></div>
+      </aside>
+      <main class="dt-main" style="overflow-y:auto">
+        <div class="topbar">
+          <div class="greeting">
+            <div style="font-size:12px;color:var(--olive);margin-bottom:4px"><a href="#" style="color:var(--olive);text-decoration:none">Pet Data</a> / Biscuit</div>
+            <h1 style="display:flex;align-items:center;gap:12px">Biscuit <span class="pill live" style="font-size:12px;padding:4px 10px">Live</span></h1>
+            <p>Golden Retriever · 2 years</p>
+          </div>
+          <div class="topbar-actions">
+            <button class="btn btn-secondary">Preview</button>
+            <button class="btn btn-primary">Save</button>
+          </div>
+        </div>
+
+        <!-- Pause toggle -->
+        <div class="pause-toggle">
+          <span class="pause-dot"></span>
+          <div class="pause-text"><div class="pause-label">Listing live</div><div class="pause-sub">Pause to hide from swipers</div></div>
+          <span class="switch on"><span class="knob"></span></span>
+        </div>
+
+        <!-- Row 1: Photos + Basics -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+          <!-- Photos -->
+          <div class="card">
+            <div class="card-head"><h3 class="card-title" style="font-size:18px">Photos & videos</h3><span style="font-size:12px;color:var(--olive)">JPG, PNG, MP4 · max 10 MB each</span></div>
+            <div class="media-grid">
+              <div class="media-tile">🐕</div>
+              <div class="media-tile">🦴</div>
+              <div class="media-tile">🌿</div>
+              <div class="media-tile">▶️</div>
+              <div class="media-tile">📷</div>
+              <div class="media-tile">🏡</div>
+              <div class="media-tile">🐾</div>
+              <div class="media-tile add">＋</div>
+            </div>
+          </div>
+
+          <!-- Basics -->
+          <div class="card">
+            <h3 class="card-title" style="font-size:18px;margin-bottom:16px">Basics</h3>
+            <div class="field"><label>Name</label><input class="input" value="Biscuit"/></div>
+            <div class="field-row">
+              <div class="field"><label>Type</label><select class="select"><option selected>Dog</option><option>Cat</option><option>Rabbit</option><option>Other</option></select></div>
+              <div class="field"><label>Breed</label><input class="input" value="Golden Retriever"/></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label>Age</label><input class="input" value="2 years"/></div>
+              <div class="field"><label>Sex</label><select class="select"><option selected>Male</option><option>Female</option></select></div>
+            </div>
+            <div class="field"><label>Weight</label><input class="input" value="32 kg"/></div>
+            <div class="field"><label>About</label><textarea class="textarea">Friendly, energetic boy who loves long walks and soft beds. Great with kids and other dogs. Knows basic commands — sit, stay, shake. Loves water.</textarea></div>
+          </div>
+        </div>
+
+        <!-- Row 2: Health + Requirements -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+          <!-- Health record -->
+          <div class="card">
+            <h3 class="card-title" style="font-size:18px;margin-bottom:16px">Health record</h3>
+            <div class="field">
+              <label>Vaccinations</label>
+              <div class="chip-row"><span class="chip">DHPP</span><span class="chip">Rabies</span><span class="chip">Bordetella</span><span class="chip" style="border-style:dashed;color:var(--stone);cursor:pointer">+ Add</span></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label>Spay / Neuter</label><select class="select"><option selected>Neutered</option><option>Spayed</option><option>Intact</option></select></div>
+              <div class="field"><label>Microchipped</label><select class="select"><option selected>Yes</option><option>No</option></select></div>
+            </div>
+            <div class="field">
+              <label>Known conditions</label>
+              <input class="input" value="None"/>
+            </div>
+            <div class="field">
+              <label>Vet records</label>
+              <div style="border:1px dashed var(--ring);border-radius:10px;padding:16px;text-align:center;background:var(--ivory);font-size:13px;color:var(--olive)">
+                Drop files here or <a href="#" style="color:var(--coral);text-decoration:none;font-weight:500">browse</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Adoption requirements -->
+          <div class="card">
+            <h3 class="card-title" style="font-size:18px;margin-bottom:16px">Adoption requirements</h3>
+            <div class="field">
+              <label>Household fit</label>
+              <div class="chip-row"><span class="chip accent">Kids OK</span><span class="chip accent">Dogs OK</span><span class="chip">Cats OK</span><span class="chip">Fenced yard</span><span class="chip" style="border-style:dashed;color:var(--stone);cursor:pointer">+ Add</span></div>
+            </div>
+            <div class="field"><label>Adoption fee</label><input class="input" value="$350"/></div>
+            <div class="field">
+              <label>Additional requirements</label>
+              <textarea class="textarea">Adopter must agree to a home visit. Previous dog ownership strongly preferred. Must have a securely fenced yard or regular access to off-leash areas.</textarea>
+            </div>
+            <div class="field">
+              <label>Application form</label>
+              <select class="select">
+                <option selected>Standard pre-screener (3 questions)</option>
+                <option>Full application (10 questions)</option>
+                <option>Custom form</option>
+              </select>
+              <span class="hint">This determines what adopters fill out when they apply.</span>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
 <!-- ================== DESKTOP APPLICATIONS LIST ================== -->
 <div>
   <p class="page-label">Desktop · Applications</p>
@@ -1119,6 +1243,149 @@
             <button class="btn btn-secondary" style="width:100%;justify-content:center;padding:10px;margin-top:12px">Approve · adopter picks time</button>
             <div style="font-size:11px;color:var(--stone);text-align:center;margin-top:4px">They open your calendar and pick.</div>
             <a href="#" style="display:block;text-align:center;margin-top:14px;font-size:12px;color:var(--olive);text-decoration:none;padding-top:10px;border-top:1px solid var(--cream)">Skip — we've already met →</a>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ================== DESKTOP APPLICATION REVIEW — STAGE 3 (Form Verified) ================== -->
+<div>
+  <p class="page-label">Desktop · Application Review · Stage 3 Form Verified</p>
+  <div class="frame frame-desktop">
+    <div class="dt">
+      <aside class="dt-nav">
+        <div class="logo">PawMatch<span class="dot">.</span></div>
+        <div class="nav-group-label">Main</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12 12 4l9 8v8a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg>Home</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>My Account</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v10H4z"/><path d="M8 20h8M12 15v5"/></svg>Pet Data</div>
+        <div class="nav-item active"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h10l4 4v12H5z"/></svg>Applications<span style="margin-left:auto;background:var(--terracotta);color:var(--ivory);font-size:11px;padding:2px 7px;border-radius:10px">6</span></div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v12H7l-3 3z"/></svg>Messages</div>
+        <div class="nav-group-label">Growth</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 14v6h6M20 10V4h-6M4 14l7-7M13 17l7-7"/></svg>Boost / Ads</div>
+        <div class="nav-profile"><div class="avatar">M</div><div class="nav-profile-text"><div class="nav-profile-name">Meadow Shelter</div><div class="nav-profile-sub">Shelter · Portland</div></div></div>
+      </aside>
+      <main class="dt-main">
+        <div class="topbar">
+          <div class="greeting">
+            <div style="font-size:12px;color:var(--olive);margin-bottom:4px"><a href="#" style="color:var(--olive);text-decoration:none">Applications</a> / Sarah Chen</div>
+            <h1>Sarah Chen's application</h1>
+            <p>For <strong>Biscuit</strong> · <span style="color:var(--muted-green);font-weight:500">Form verified ✓</span></p>
+          </div>
+          <div class="topbar-actions">
+            <button class="btn btn-secondary">Message</button>
+            <button class="btn btn-secondary" style="background:#f1d6d1;box-shadow:0 0 0 1px #e0b8b1;color:#8a2d2d">Decline</button>
+            <button class="btn btn-primary">Approve adoption →</button>
+          </div>
+        </div>
+
+        <!-- Stepper -->
+        <div class="stepper">
+          <div class="step done"><span class="num">1</span>Pre-application ✓</div>
+          <span class="step-arrow">→</span>
+          <div class="step done"><span class="num">2</span>In-person meeting ✓</div>
+          <span class="step-arrow">→</span>
+          <div class="step current"><span class="num">3</span>Full form · verified ✓</div>
+          <span class="step-arrow">→</span>
+          <div class="step"><span class="num">4</span>Final decision</div>
+        </div>
+
+        <div class="rev-split">
+          <div class="applicant-card">
+            <div class="applicant-head">
+              <div class="applicant-avatar">S</div>
+              <div>
+                <h3>Sarah Chen</h3>
+                <div class="meta">Family · 2 kids (7, 10) · Portland, OR · applying for Biscuit</div>
+              </div>
+            </div>
+
+            <!-- Verification badge -->
+            <div style="background:#f4f6ef;border:1px solid #dce3d2;border-radius:10px;padding:16px;margin-bottom:16px">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+                <span style="display:inline-flex;width:28px;height:28px;border-radius:50%;background:#dfe8db;align-items:center;justify-content:center;font-size:14px;color:#4a6b40;font-weight:700">✓</span>
+                <div>
+                  <div style="font-family:var(--serif);font-weight:500;font-size:18px;color:var(--near-black)">Form verified</div>
+                  <div style="font-size:12px;color:var(--olive);margin-top:1px">Lemonade AI verified this form · Apr 19, 2026 · 3 checks passed</div>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;color:#4a6b40;font-weight:500;padding-left:36px">
+                <div>✓ Shelter registered on PawMatch</div>
+                <div>✓ Form matches Willow Creek's template</div>
+                <div>✓ Application record found (Biscuit → Sarah Chen)</div>
+              </div>
+            </div>
+
+            <div style="font-size:11px;letter-spacing:0.3px;text-transform:uppercase;color:var(--coral);margin-bottom:12px">Full adoption form · signed & verified</div>
+
+            <div class="qa">
+              <div class="q">Why are you interested in adopting now?</div>
+              <div class="a">Our old golden passed last year and the house has felt quiet ever since. The kids are finally asking every weekend — we feel ready.</div>
+            </div>
+            <div class="qa">
+              <div class="q">What do you like most about Biscuit?</div>
+              <div class="a">His eyes, honestly. And the note about him being gentle with kids — our 7-year-old has been nervous around bigger dogs.</div>
+            </div>
+            <div class="qa">
+              <div class="q">Why is Biscuit a good fit for your family/lifestyle?</div>
+              <div class="a">Daily walks at Forest Park, fenced back yard (~400 sqft), someone home most weekdays. We've raised two goldens before.</div>
+            </div>
+            <div class="qa">
+              <div class="q">Household members</div>
+              <div class="a">2 adults (36, 38), 2 kids (7, 10). No one with pet allergies.</div>
+            </div>
+            <div class="qa">
+              <div class="q">Vet clinic</div>
+              <div class="a">Forest Park Veterinary · Dr. Patel · (503) 555-0199</div>
+            </div>
+            <div class="qa">
+              <div class="q">Planned daily routine</div>
+              <div class="a">Morning walk 7am, yard play after school, evening walk 6pm, fed 2x daily. Alone ~3h on weekdays.</div>
+            </div>
+
+            <!-- Insurance note -->
+            <div style="margin-top:16px;padding:12px 14px;background:#f4f6ef;border:1px solid #dce3d2;border-radius:10px;font-size:13px;color:var(--charcoal);line-height:1.5">
+              🏥 Adopter has selected <strong>Forest Park Veterinary</strong> (in-network) and activated Lemonade insurance discount.
+            </div>
+          </div>
+
+          <div class="card">
+            <h2 class="card-title" style="margin:0 0 16px">At a glance</h2>
+            <div style="display:flex;flex-direction:column;gap:10px;font-size:13px">
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Household</span><span>Family · 2 kids</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Location</span><span>Portland, OR (6 mi)</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Home</span><span>Owned · fenced yard</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Other pets</span><span>1 dog (neutered)</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Hours alone</span><span>~3h/weekday</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Experience</span><span>Owned goldens before</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Insurance</span><span style="color:var(--muted-green);font-weight:500">Lemonade Active</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Vet</span><span>Forest Park (in-network)</span></div>
+            </div>
+
+            <div class="persona-divider"></div>
+
+            <h2 class="card-title" style="margin:0 0 10px;font-size:17px">Requirement match</h2>
+            <div style="font-size:13px;color:var(--charcoal);display:flex;flex-direction:column;gap:6px">
+              <div>✓ Fenced yard preferred</div>
+              <div>✓ Kids OK household</div>
+              <div>✓ Dogs OK household</div>
+              <div>✓ Age 21+</div>
+              <div>✓ Home visit completed</div>
+            </div>
+
+            <div class="persona-divider"></div>
+
+            <h2 class="card-title" style="margin:0 0 10px;font-size:17px">Notes (internal)</h2>
+            <textarea class="textarea" style="min-height:70px">Met in person Apr 19 — great family, Biscuit loved the kids. Form verified by AI. Ready for final decision.</textarea>
+
+            <div class="persona-divider"></div>
+
+            <h2 class="card-title" style="margin:0 0 10px;font-size:17px">Final decision</h2>
+            <p style="font-size:13px;color:var(--olive);margin:0 0 12px;line-height:1.5">Approving finalizes the adoption. The adopter will be notified and the listing will be archived.</p>
+            <button class="btn btn-primary" style="width:100%;justify-content:center;padding:11px">Approve adoption</button>
+            <button class="btn btn-secondary" style="width:100%;justify-content:center;padding:10px;margin-top:10px;background:#f1d6d1;box-shadow:0 0 0 1px #e0b8b1;color:#8a2d2d">Decline</button>
           </div>
         </div>
       </main>
@@ -1747,6 +2014,84 @@
         <button class="btn btn-secondary" style="justify-content:center;padding:11px">Skip to final</button>
       </div>
       <p style="font-size:11px;color:var(--stone);text-align:center;margin:0">Each step is optional — skip to final if you've already met in person.</p>
+
+      <div class="mb-tab-bar">
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12 12 4l9 8v8a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg>Home</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v10H4z"/><path d="M8 20h8"/></svg>Pets</div>
+        <div class="mb-tab active"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h10l4 4v12H5z"/></svg>Forms</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE APPLICATION REVIEW — STAGE 3 (Form Verified) -->
+<div>
+  <p class="page-label">Mobile · Application Review · Stage 3 Form Verified</p>
+  <div class="frame frame-mobile">
+    <div class="mb">
+      <div class="mb-top"><a href="#" style="color:var(--olive);text-decoration:none;font-size:14px">‹ Forms</a><a href="#" style="color:var(--olive);font-size:13px;text-decoration:none">Message</a></div>
+
+      <div style="display:flex;gap:12px;align-items:center">
+        <div class="applicant-avatar" style="width:48px;height:48px;font-size:18px">S</div>
+        <div>
+          <div style="font-family:var(--serif);font-size:20px;font-weight:500">Sarah Chen</div>
+          <div style="font-size:12px;color:var(--muted-green);font-weight:500">Form verified ✓ · Biscuit 🐕</div>
+        </div>
+      </div>
+
+      <!-- Stepper -->
+      <div style="display:flex;gap:6px;align-items:center;font-size:11px;color:var(--olive);flex-wrap:wrap">
+        <span class="step done" style="padding:5px 10px;font-size:11px"><span class="num" style="width:16px;height:16px;font-size:9px">1</span>Pre-app ✓</span>
+        <span>→</span>
+        <span class="step done" style="padding:5px 10px;font-size:11px"><span class="num" style="width:16px;height:16px;font-size:9px">2</span>Meeting ✓</span>
+        <span>→</span>
+        <span class="step current" style="padding:5px 10px;font-size:11px"><span class="num" style="width:16px;height:16px;font-size:9px">3</span>Form ✓</span>
+        <span>→</span>
+        <span class="step" style="padding:5px 10px;font-size:11px"><span class="num" style="width:16px;height:16px;font-size:9px">4</span>Decision</span>
+      </div>
+
+      <!-- Verification badge -->
+      <div class="mb-card" style="background:#f4f6ef;border-color:#dce3d2;padding:14px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+          <span style="display:inline-flex;width:24px;height:24px;border-radius:50%;background:#dfe8db;align-items:center;justify-content:center;font-size:12px;color:#4a6b40;font-weight:700">✓</span>
+          <div style="font-family:var(--serif);font-weight:500;font-size:16px">Form verified</div>
+        </div>
+        <div style="font-size:11px;color:var(--olive);margin-bottom:8px;padding-left:32px">Lemonade AI · Apr 19, 2026 · 3 checks passed</div>
+        <div style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#4a6b40;font-weight:500;padding-left:32px">
+          <div>✓ Shelter registered</div>
+          <div>✓ Template match</div>
+          <div>✓ Record found</div>
+        </div>
+      </div>
+
+      <!-- At a glance -->
+      <div class="mb-card" style="padding:4px 16px">
+        <div style="display:flex;flex-direction:column;gap:10px;padding:12px 0;font-size:13px">
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Household</span><span>Family · 2 kids</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Location</span><span>Portland</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Home</span><span>Owned · fenced</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Insurance</span><span style="color:var(--muted-green);font-weight:500">Lemonade Active</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Vet</span><span>Forest Park (in-network)</span></div>
+        </div>
+      </div>
+
+      <!-- Insurance note -->
+      <div style="padding:10px 14px;background:#f4f6ef;border:1px solid #dce3d2;border-radius:10px;font-size:12px;color:var(--charcoal);line-height:1.5">
+        🏥 Adopter selected <strong>Forest Park Veterinary</strong> (in-network) and activated Lemonade insurance discount.
+      </div>
+
+      <!-- Requirement match -->
+      <div class="mb-card" style="background:#f4f6ef;border-color:#dce3d2">
+        <div style="font-size:13px;color:var(--charcoal);display:flex;flex-direction:column;gap:6px">
+          <div>✓ Fenced yard · ✓ Kids OK · ✓ Dogs OK · ✓ 21+</div>
+          <div>✓ Home visit completed</div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" style="width:100%;justify-content:center;padding:13px">Approve adoption →</button>
+      <button class="btn btn-secondary" style="width:100%;justify-content:center;padding:11px;background:#f1d6d1;box-shadow:0 0 0 1px #e0b8b1;color:#8a2d2d">Decline</button>
 
       <div class="mb-tab-bar">
         <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12 12 4l9 8v8a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg>Home</div>

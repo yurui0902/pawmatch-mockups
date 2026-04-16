@@ -1302,6 +1302,115 @@
   </div>
 </div>
 
+<!-- ================= DESKTOP UPLOAD FORM ================= -->
+<div>
+  <p class="page-label">Desktop · Upload signed form</p>
+  <div class="frame frame-desktop">
+    <div class="d">
+      <aside class="d-nav">
+        <div class="d-logo">PawMatch<span class="dot">.</span></div>
+        <div class="d-mode"><button class="on">Swipe</button><button>Search</button></div>
+        <div class="d-navlabel">Discover</div>
+        <div class="d-navitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg>For you</div>
+        <div class="d-navitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-8-5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-8 11-8 11H12z"/></svg>Matches <span class="count">3</span></div>
+        <div class="d-navitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="d-navlabel">You</div>
+        <div class="d-navitem active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h10l4 4v12H5z"/></svg>My applications</div>
+        <div class="d-navitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18"/></svg>Find a vet</div>
+        <div class="d-navitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10l8-6 8 6v10H4z"/></svg>Insurance</div>
+        <div class="d-navitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Profile</div>
+      </aside>
+
+      <main style="padding:40px 56px;overflow-y:auto;display:flex;flex-direction:column;gap:24px;max-width:720px">
+        <div style="font-size:12px;color:var(--gray);font-weight:600"><a href="#" style="color:var(--gray);text-decoration:none">My applications</a> / <a href="#" style="color:var(--gray);text-decoration:none">Biscuit</a> / Upload form</div>
+        <div>
+          <h1 style="font-family:var(--display);font-weight:700;font-size:36px;line-height:0.95;letter-spacing:-0.9px;margin:0 0 8px">Upload your signed adoption form</h1>
+          <p style="font-size:15px;color:var(--charcoal);font-weight:500;margin:0">Take a photo of the completed form from Willow Creek Rescue. Lemonade AI will verify it in seconds.</p>
+        </div>
+
+        <!-- Upload area -->
+        <div style="border:2px dashed var(--sand);border-radius:8px;padding:48px 32px;text-align:center;background:var(--off)">
+          <div style="font-size:40px;margin-bottom:12px">📷</div>
+          <div style="font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-0.3px;margin-bottom:6px">Take a photo or choose from gallery</div>
+          <div style="font-size:13px;color:var(--gray);font-weight:500">JPG, PNG, or PDF · max 10 MB</div>
+        </div>
+
+        <!-- Preview -->
+        <div style="border:1px solid var(--sand);border-radius:8px;padding:16px;background:var(--cream);display:flex;gap:14px;align-items:center">
+          <div style="width:64px;height:64px;border-radius:6px;background:var(--lsand);border:1px solid var(--sand);display:flex;align-items:center;justify-content:center;font-size:28px">📄</div>
+          <div style="flex:1">
+            <div style="font-weight:600;font-size:14px">adoption-form-biscuit.jpg</div>
+            <div style="font-size:12px;color:var(--gray);font-weight:500;margin-top:2px">2.4 MB · uploaded just now</div>
+          </div>
+          <button class="btn btn-ghost" style="font-size:13px;padding:6px 10px">Remove</button>
+        </div>
+
+        <!-- AI Verification progress -->
+        <div style="border:1px solid var(--sand);border-radius:8px;padding:22px;background:var(--off)">
+          <div style="font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-0.3px;margin-bottom:14px">Validating with AI...</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:#3c5e17"><span style="font-weight:700">✓</span> Shelter registered on PawMatch</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:#3c5e17"><span style="font-weight:700">✓</span> Form matches Willow Creek's template</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:var(--charcoal)"><span style="color:var(--orange);font-weight:700">⟳</span> Application record found (Biscuit → Sarah Chen)</div>
+          </div>
+          <div style="margin-top:14px;font-size:13px;color:var(--orange);font-weight:600">Verifying...</div>
+        </div>
+
+        <button class="btn btn-orange" style="width:100%;justify-content:center;padding:14px;font-size:15px">Submit for verification</button>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ================= DESKTOP FORM VERIFIED ================= -->
+<div>
+  <p class="page-label">Desktop · Form verified + select vet</p>
+  <div class="frame frame-desktop">
+    <div class="d">
+      <aside class="d-nav">
+        <div class="d-logo">PawMatch<span class="dot">.</span></div>
+        <div class="d-mode"><button class="on">Swipe</button><button>Search</button></div>
+        <div class="d-navlabel">Discover</div>
+        <div class="d-navitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg>For you</div>
+        <div class="d-navitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-8-5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-8 11-8 11H12z"/></svg>Matches <span class="count">3</span></div>
+        <div class="d-navitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="d-navlabel">You</div>
+        <div class="d-navitem active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h10l4 4v12H5z"/></svg>My applications</div>
+        <div class="d-navitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18"/></svg>Find a vet</div>
+        <div class="d-navitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10l8-6 8 6v10H4z"/></svg>Insurance</div>
+        <div class="d-navitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Profile</div>
+      </aside>
+
+      <main style="padding:40px 56px;overflow-y:auto;display:flex;flex-direction:column;gap:24px;max-width:720px;align-items:center;text-align:center">
+        <div style="width:80px;height:80px;border-radius:50%;background:#e7f0d8;border:2px solid #b9cf95;display:flex;align-items:center;justify-content:center;font-size:36px;margin-top:40px">✓</div>
+        <div>
+          <h1 style="font-family:var(--display);font-weight:700;font-size:40px;line-height:0.95;letter-spacing:-1px;margin:0 0 10px">Form verified!</h1>
+          <p style="font-size:16px;color:var(--charcoal);font-weight:500;margin:0;max-width:480px">Lemonade AI confirmed your adoption form from Willow Creek Rescue.</p>
+        </div>
+
+        <!-- 3 verification results -->
+        <div style="display:flex;flex-direction:column;gap:8px;text-align:left;width:100%;max-width:440px">
+          <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:#3c5e17"><span style="font-weight:700">✓</span> Shelter registered on PawMatch</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:#3c5e17"><span style="font-weight:700">✓</span> Form matches Willow Creek's template</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:#3c5e17"><span style="font-weight:700">✓</span> Application record found (Biscuit → Sarah Chen)</div>
+        </div>
+
+        <!-- Highlight box -->
+        <div style="border:1px solid var(--sand);border-radius:8px;padding:20px;background:var(--off);width:100%;max-width:480px">
+          <div style="font-size:20px;margin-bottom:6px">🎉</div>
+          <div style="font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-0.4px;margin-bottom:6px">Lemonade insurance discount unlocked!</div>
+          <p style="font-size:14px;color:var(--charcoal);font-weight:500;margin:0;line-height:1.5">Select an in-network vet clinic to activate your discount. You'll save on every visit.</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px;width:100%;max-width:380px">
+          <button class="btn btn-orange" style="width:100%;justify-content:center;padding:14px;font-size:15px">Select an in-network vet →</button>
+          <button class="btn btn-ghost" style="width:100%;justify-content:center;padding:12px;font-size:14px">I'll do this later</button>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
 <!-- ================= DESKTOP FIND A VET ================= -->
 <div>
   <p class="page-label">Desktop · Find a vet</p>
@@ -1835,6 +1944,123 @@
     </div>
   </div>
 </div>
+</div>
+
+<!-- ================= DESKTOP PROFILE ================= -->
+<div>
+  <p class="page-label">Desktop · Profile</p>
+  <div class="frame frame-desktop">
+    <div class="d">
+      <aside class="d-nav">
+        <div class="d-logo">PawMatch<span class="dot">.</span></div>
+        <div class="d-mode"><button class="on">Swipe</button><button>Search</button></div>
+        <div class="d-navlabel">Discover</div>
+        <div class="d-navitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg>For you</div>
+        <div class="d-navitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-8-5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-8 11-8 11H12z"/></svg>Matches <span class="count">3</span></div>
+        <div class="d-navitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="d-navlabel">You</div>
+        <div class="d-navitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h10l4 4v12H5z"/></svg>My applications</div>
+        <div class="d-navitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18"/></svg>Find a vet</div>
+        <div class="d-navitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10l8-6 8 6v10H4z"/></svg>Insurance</div>
+        <div class="d-navitem active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Profile</div>
+      </aside>
+
+      <main style="padding:40px 56px;overflow-y:auto;display:flex;flex-direction:column;gap:24px">
+        <h1 style="font-family:var(--display);font-weight:700;font-size:36px;line-height:0.95;letter-spacing:-0.9px;margin:0">Profile</h1>
+
+        <!-- Profile card -->
+        <div class="pf-card" style="margin:0;padding:22px;display:flex;gap:18px;align-items:center">
+          <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#ff8a4f,#ff4f00);display:flex;align-items:center;justify-content:center;color:var(--cream);font-family:var(--display);font-weight:700;font-size:28px">SC</div>
+          <div>
+            <div style="font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-0.4px">Sarah Chen</div>
+            <div style="font-size:13px;color:var(--gray);font-weight:500;margin-top:2px">sarah@example.com · Member since Mar 2026</div>
+          </div>
+          <button class="btn btn-ghost" style="margin-left:auto;font-size:13px">Edit</button>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+          <!-- Personal info -->
+          <div class="pf-card" style="margin:0;padding:22px">
+            <h3 style="font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-0.3px;margin:0 0 14px">Personal info</h3>
+            <div style="display:flex;flex-direction:column;gap:10px;font-size:14px">
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Name</span><span>Sarah Chen</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Email</span><span>sarah@example.com</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Phone</span><span>(503) 555-0143</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Location</span><span>Portland, OR</span></div>
+            </div>
+          </div>
+
+          <!-- Household -->
+          <div class="pf-card" style="margin:0;padding:22px">
+            <h3 style="font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-0.3px;margin:0 0 14px">Household</h3>
+            <div style="display:flex;flex-direction:column;gap:10px;font-size:14px">
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Type</span><span>Family w/ kids</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Adults</span><span>2</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Children</span><span>2 (ages 7, 10)</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Housing</span><span>Own · fenced yard</span></div>
+            </div>
+          </div>
+
+          <!-- Pet experience -->
+          <div class="pf-card" style="margin:0;padding:22px">
+            <h3 style="font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-0.3px;margin:0 0 14px">Pet experience</h3>
+            <div style="display:flex;flex-direction:column;gap:10px;font-size:14px">
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Current pets</span><span>Murphy · Golden · 6y</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Experience</span><span>Raised 2 goldens</span></div>
+            </div>
+          </div>
+
+          <!-- Saved form data -->
+          <div class="pf-card" style="margin:0;padding:22px">
+            <h3 style="font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-0.3px;margin:0 0 6px">Saved form data</h3>
+            <p style="font-size:12px;color:var(--gray);font-weight:500;margin:0 0 12px">Your answers are reused across applications.</p>
+            <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;color:#3c5e17;font-weight:500">
+              <div>✓ Vet reference</div>
+              <div>✓ Daily routine</div>
+              <div>✓ Household details</div>
+              <div>✓ Housing info</div>
+              <div>✓ Pet history</div>
+            </div>
+          </div>
+
+          <!-- Insurance -->
+          <div class="pf-card" style="margin:0;padding:22px">
+            <h3 style="font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-0.3px;margin:0 0 14px">Insurance</h3>
+            <div style="display:flex;flex-direction:column;gap:10px;font-size:14px">
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Status</span><span style="color:#3c5e17;font-weight:600">Active</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Plan</span><span>Lemonade · Plus</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Monthly</span><span>$67.74/mo</span></div>
+            </div>
+            <a href="#" style="display:block;margin-top:12px;font-size:13px;color:var(--orange);font-weight:600;text-decoration:none">Manage policy →</a>
+          </div>
+
+          <!-- Saved vets -->
+          <div class="pf-card" style="margin:0;padding:22px">
+            <h3 style="font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-0.3px;margin:0 0 14px">Saved vets</h3>
+            <div style="border:1px solid var(--sand);border-radius:6px;padding:12px;display:flex;gap:10px;align-items:center">
+              <div style="width:36px;height:36px;border-radius:6px;background:var(--lsand);border:1px solid var(--sand);display:flex;align-items:center;justify-content:center;font-size:16px">🏥</div>
+              <div style="flex:1">
+                <div style="font-weight:600;font-size:14px">Forest Park Veterinary</div>
+                <div style="font-size:11px;color:#3c5e17;font-weight:600;margin-top:1px">In-network</div>
+              </div>
+              <a href="#" style="font-size:12px;color:var(--orange);text-decoration:none;font-weight:600">View →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings -->
+        <div class="pf-card" style="margin:0;padding:22px">
+          <h3 style="font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-0.3px;margin:0 0 14px">Settings</h3>
+          <div style="display:flex;flex-direction:column;gap:12px;font-size:14px">
+            <div style="display:flex;justify-content:space-between;align-items:center"><span>Push notifications</span><span style="color:#3c5e17;font-weight:600">On</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--sand);padding-top:12px"><span>Email notifications</span><span style="color:#3c5e17;font-weight:600">On</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--sand);padding-top:12px"><span>Privacy</span><a href="#" style="color:var(--orange);text-decoration:none;font-weight:600;font-size:13px">Manage →</a></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--sand);padding-top:12px"><span style="color:#8a3d0f">Delete account</span><a href="#" style="color:#8a3d0f;text-decoration:none;font-weight:600;font-size:13px">Request →</a></div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
 </div>
 
 <!-- MOBILE REGISTER -->
@@ -2393,6 +2619,108 @@
   </div>
 </div>
 
+<!-- MOBILE UPLOAD FORM -->
+<div>
+  <p class="page-label">Mobile · Upload signed form</p>
+  <div class="frame frame-mobile">
+    <div class="mp">
+      <div class="mp-header">
+        <button class="mp-back">‹</button>
+        <div class="mp-title">Upload form</div>
+        <div></div>
+      </div>
+      <div class="mp-body">
+        <div>
+          <h1 class="mp-h1">Upload your signed adoption form</h1>
+          <p class="mp-sub">Take a photo of the completed form from Willow Creek Rescue. Lemonade AI will verify it in seconds.</p>
+        </div>
+
+        <!-- Upload area -->
+        <div style="border:2px dashed var(--sand);border-radius:8px;padding:32px 20px;text-align:center;background:var(--off)">
+          <div style="font-size:32px;margin-bottom:8px">📷</div>
+          <div style="font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-0.2px;margin-bottom:4px">Take a photo or choose from gallery</div>
+          <div style="font-size:12px;color:var(--gray);font-weight:500">JPG, PNG, or PDF · max 10 MB</div>
+        </div>
+
+        <!-- Preview -->
+        <div style="border:1px solid var(--sand);border-radius:8px;padding:12px;display:flex;gap:10px;align-items:center;background:var(--cream)">
+          <div style="width:44px;height:44px;border-radius:6px;background:var(--lsand);border:1px solid var(--sand);display:flex;align-items:center;justify-content:center;font-size:20px">📄</div>
+          <div style="flex:1;min-width:0">
+            <div style="font-weight:600;font-size:13px">adoption-form-biscuit.jpg</div>
+            <div style="font-size:11px;color:var(--gray);font-weight:500">2.4 MB</div>
+          </div>
+          <button style="font-size:12px;color:var(--gray);background:none;border:none;font-weight:600">✕</button>
+        </div>
+
+        <!-- AI verification -->
+        <div style="border:1px solid var(--sand);border-radius:8px;padding:16px;background:var(--off)">
+          <div style="font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-0.2px;margin-bottom:10px">Validating with AI...</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#3c5e17"><span style="font-weight:700">✓</span> Shelter registered on PawMatch</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#3c5e17"><span style="font-weight:700">✓</span> Form matches Willow Creek's template</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--charcoal)"><span style="color:var(--orange);font-weight:700">⟳</span> Record found (Biscuit → Sarah Chen)</div>
+          </div>
+          <div style="margin-top:10px;font-size:12px;color:var(--orange);font-weight:600">Verifying...</div>
+        </div>
+
+        <button class="btn btn-orange" style="width:100%;justify-content:center;padding:14px;font-size:15px;margin-top:auto">Submit for verification</button>
+      </div>
+
+      <div class="m-tab">
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg>Pets</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-8-5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-8 11-8 11H12z"/></svg>Matches</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18"/></svg>Vet</div>
+        <div class="t active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE FORM VERIFIED -->
+<div>
+  <p class="page-label">Mobile · Form verified + select vet</p>
+  <div class="frame frame-mobile">
+    <div class="mp">
+      <div class="mp-header">
+        <button class="mp-back">‹</button>
+        <div class="mp-title">Form verified</div>
+        <div></div>
+      </div>
+      <div class="mp-body" style="align-items:center;text-align:center">
+        <div style="width:64px;height:64px;border-radius:50%;background:#e7f0d8;border:2px solid #b9cf95;display:flex;align-items:center;justify-content:center;font-size:28px;margin-top:16px">✓</div>
+        <div>
+          <h1 class="mp-h1" style="font-size:28px">Form verified!</h1>
+          <p class="mp-sub">Lemonade AI confirmed your adoption form from Willow Creek Rescue.</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:6px;text-align:left;width:100%">
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#3c5e17"><span style="font-weight:700">✓</span> Shelter registered</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#3c5e17"><span style="font-weight:700">✓</span> Template match</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#3c5e17"><span style="font-weight:700">✓</span> Record found</div>
+        </div>
+
+        <div style="border:1px solid var(--sand);border-radius:8px;padding:16px;background:var(--off);width:100%;text-align:center">
+          <div style="font-size:18px;margin-bottom:4px">🎉</div>
+          <div style="font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:-0.3px;margin-bottom:4px">Lemonade insurance discount unlocked!</div>
+          <p style="font-size:13px;color:var(--charcoal);font-weight:500;margin:0;line-height:1.4">Select an in-network vet clinic to activate your discount. You'll save on every visit.</p>
+        </div>
+
+        <button class="btn btn-orange" style="width:100%;justify-content:center;padding:14px;font-size:15px">Select an in-network vet →</button>
+        <button class="btn btn-ghost" style="width:100%;justify-content:center;padding:12px;font-size:14px">I'll do this later</button>
+      </div>
+
+      <div class="m-tab">
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg>Pets</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-8-5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-8 11-8 11H12z"/></svg>Matches</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18"/></svg>Vet</div>
+        <div class="t active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- MOBILE FIND A VET -->
 <div>
   <p class="page-label">Mobile · Find a vet</p>
@@ -2681,6 +3009,108 @@
         <div class="t active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
       </div>
 </div>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE PROFILE -->
+<div>
+  <p class="page-label">Mobile · Profile</p>
+  <div class="frame frame-mobile">
+    <div class="mp">
+      <div class="mp-header">
+        <button class="mp-back">‹</button>
+        <div class="mp-title">Profile</div>
+        <div></div>
+      </div>
+      <div class="mp-body">
+        <!-- Profile card -->
+        <div style="text-align:center;padding:8px 0">
+          <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#ff8a4f,#ff4f00);display:flex;align-items:center;justify-content:center;color:var(--cream);font-family:var(--display);font-weight:700;font-size:24px;margin:0 auto 10px">SC</div>
+          <div style="font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-0.4px">Sarah Chen</div>
+          <div style="font-size:12px;color:var(--gray);font-weight:500;margin-top:2px">sarah@example.com · Since Mar 2026</div>
+        </div>
+
+        <!-- Personal info -->
+        <div class="pf-card" style="margin:0;padding:14px">
+          <div style="font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-0.2px;margin-bottom:10px">Personal info</div>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Name</span><span>Sarah Chen</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Email</span><span>sarah@example.com</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Phone</span><span>(503) 555-0143</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Location</span><span>Portland, OR</span></div>
+          </div>
+        </div>
+
+        <!-- Household -->
+        <div class="pf-card" style="margin:0;padding:14px">
+          <div style="font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-0.2px;margin-bottom:10px">Household</div>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Type</span><span>Family w/ kids</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Adults / Kids</span><span>2 / 2 (7, 10)</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Housing</span><span>Own · fenced yard</span></div>
+          </div>
+        </div>
+
+        <!-- Pet experience -->
+        <div class="pf-card" style="margin:0;padding:14px">
+          <div style="font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-0.2px;margin-bottom:10px">Pet experience</div>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Current pets</span><span>Murphy · Golden · 6y</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Experience</span><span>Raised 2 goldens</span></div>
+          </div>
+        </div>
+
+        <!-- Saved form data -->
+        <div class="pf-card" style="margin:0;padding:14px">
+          <div style="font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-0.2px;margin-bottom:4px">Saved form data</div>
+          <div style="font-size:11px;color:var(--gray);font-weight:500;margin-bottom:8px">Reused across applications</div>
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:#3c5e17;font-weight:500">
+            <div>✓ Vet reference</div>
+            <div>✓ Daily routine</div>
+            <div>✓ Household details</div>
+            <div>✓ Housing info</div>
+            <div>✓ Pet history</div>
+          </div>
+        </div>
+
+        <!-- Insurance -->
+        <div class="pf-card" style="margin:0;padding:14px">
+          <div style="font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-0.2px;margin-bottom:10px">Insurance</div>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Status</span><span style="color:#3c5e17;font-weight:600">Active</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Plan</span><span>Lemonade Plus · $67.74/mo</span></div>
+          </div>
+          <a href="#" style="display:block;margin-top:8px;font-size:12px;color:var(--orange);font-weight:600;text-decoration:none">Manage policy →</a>
+        </div>
+
+        <!-- Saved vets -->
+        <div class="pf-card" style="margin:0;padding:14px">
+          <div style="font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-0.2px;margin-bottom:10px">Saved vets</div>
+          <div style="border:1px solid var(--sand);border-radius:6px;padding:10px;display:flex;gap:8px;align-items:center">
+            <div style="width:32px;height:32px;border-radius:6px;background:var(--lsand);border:1px solid var(--sand);display:flex;align-items:center;justify-content:center;font-size:14px">🏥</div>
+            <div style="flex:1"><div style="font-weight:600;font-size:13px">Forest Park Veterinary</div><div style="font-size:10px;color:#3c5e17;font-weight:600">In-network</div></div>
+          </div>
+        </div>
+
+        <!-- Settings -->
+        <div class="pf-card" style="margin:0;padding:14px">
+          <div style="font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-0.2px;margin-bottom:10px">Settings</div>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:13px">
+            <div style="display:flex;justify-content:space-between"><span>Notifications</span><span style="color:#3c5e17;font-weight:600">On</span></div>
+            <div style="display:flex;justify-content:space-between;border-top:1px solid var(--sand);padding-top:10px"><span>Privacy</span><a href="#" style="color:var(--orange);text-decoration:none;font-weight:600;font-size:12px">Manage →</a></div>
+            <div style="display:flex;justify-content:space-between;border-top:1px solid var(--sand);padding-top:10px"><span style="color:#8a3d0f">Delete account</span><a href="#" style="color:#8a3d0f;text-decoration:none;font-weight:600;font-size:12px">Request →</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-tab">
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg>Pets</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-8-5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-8 11-8 11H12z"/></svg>Matches</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18"/></svg>Vet</div>
+        <div class="t active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
     </div>
   </div>
 </div>
