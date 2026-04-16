@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PawMatch — Adopter (Airbnb style)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#fff; --near-black:#222; --focused:#3f3f3f; --sec:#6a6a6a; --disabled:rgba(0,0,0,0.24); --border:#c1c1c1;
+    --surface:#f2f2f2; --off:#f7f7f7;
+    --rausch:#ff385c; --deep:#e00b41;
+    --sans:'Nunito','Airbnb Cereal VF','Circular','-apple-system',sans-serif;
+    --shadow-card:rgba(0,0,0,0.02) 0 0 0 1px, rgba(0,0,0,0.04) 0 2px 6px, rgba(0,0,0,0.1) 0 4px 8px;
+    --shadow-hover:rgba(0,0,0,0.08) 0 4px 12px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--off);color:var(--near-black);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  body{padding:48px 32px 120px}
+  .page-label{font-size:12px;font-weight:600;color:var(--sec);margin:0 0 12px 4px;letter-spacing:-0.1px}
+  .stack{display:flex;gap:48px;flex-wrap:wrap;justify-content:center;align-items:flex-start}
+  .frame{border-radius:32px;overflow:hidden;margin:0 auto 48px;background:var(--white);box-shadow:var(--shadow-card)}
+  .frame-desktop{width:1440px;height:900px}
+  .frame-mobile{width:390px;height:844px}
+
+  /* ============================ */
+  /* MOBILE — Airbnb style        */
+  /* ============================ */
+  .m{width:100%;height:100%;background:var(--white);display:flex;flex-direction:column;position:relative}
+  .m-top{padding:14px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(0,0,0,0.06)}
+  .m-logo{font-weight:800;font-size:22px;letter-spacing:-0.6px;color:var(--rausch);display:flex;align-items:center;gap:4px}
+  .m-logo svg{width:22px;height:22px}
+  .m-top-right{display:flex;gap:8px;align-items:center}
+  .m-icon{width:36px;height:36px;border-radius:50%;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--near-black);border:none;cursor:pointer}
+  .m-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#ff7a9c,#ff385c);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;box-shadow:var(--shadow-card)}
+
+  .m-cats{display:flex;gap:18px;padding:14px 18px 12px;overflow-x:auto;border-bottom:1px solid rgba(0,0,0,0.06)}
+  .m-cats::-webkit-scrollbar{display:none}
+  .m-cat{display:flex;flex-direction:column;align-items:center;gap:6px;flex:none;padding:4px 0;color:var(--sec);font-size:12px;font-weight:600;min-width:54px}
+  .m-cat.active{color:var(--near-black);border-bottom:2px solid var(--near-black);padding-bottom:6px}
+  .m-cat .ic{width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:20px;opacity:0.85}
+
+  .m-card-wrap{flex:1;padding:16px 16px 0;overflow-y:auto}
+  .m-card{background:var(--white);border-radius:20px;box-shadow:var(--shadow-card);overflow:hidden;margin-bottom:14px}
+
+  .m-photo{position:relative;background:linear-gradient(180deg,#ffd5b8 0%,#ff9a6b 60%,#e8794a 100%);aspect-ratio:1/1;width:100%}
+  .m-photo svg{position:absolute;inset:0;width:100%;height:100%}
+  .m-photo-heart{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:none;display:flex;align-items:center;justify-content:center;color:var(--rausch);font-size:20px;cursor:pointer}
+  .m-photo-heart.liked{background:var(--white);color:var(--rausch)}
+  .m-photo-badge{position:absolute;top:14px;left:14px;background:var(--white);padding:5px 10px;border-radius:14px;font-size:11px;font-weight:700;color:var(--near-black);box-shadow:var(--shadow-card)}
+  .m-photo-dots{position:absolute;bottom:14px;left:0;right:0;display:flex;justify-content:center;gap:5px}
+  .m-photo-dots div{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.55)}
+  .m-photo-dots div.active{background:var(--white)}
+
+  .m-info{padding:14px 16px 16px}
+  .m-info-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .m-name{font-size:16px;font-weight:700;color:var(--near-black);letter-spacing:-0.2px;line-height:1.2}
+  .m-rating{font-size:13px;font-weight:600;color:var(--near-black);display:flex;align-items:center;gap:3px;white-space:nowrap}
+  .m-meta{font-size:14px;color:var(--sec);font-weight:400;margin-top:2px;line-height:1.4}
+  .m-meta strong{color:var(--near-black);font-weight:600}
+  .m-bio{font-size:14px;color:var(--sec);margin-top:6px;line-height:1.4}
+  .m-price{font-size:14px;color:var(--near-black);margin-top:6px;font-weight:400}
+  .m-price strong{font-weight:700}
+
+  .m-tags{display:flex;gap:6px;padding:0 16px 14px;flex-wrap:wrap}
+  .m-tag{font-size:12px;font-weight:600;padding:4px 10px;border-radius:14px;background:var(--surface);color:var(--near-black)}
+  .m-tag.accent{background:#ffe9ee;color:var(--deep)}
+
+  .m-shelter{display:flex;gap:10px;align-items:center;padding:12px 16px;border-top:1px solid rgba(0,0,0,0.06)}
+  .m-shelter-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#ff7a9c,#ff385c);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+  .m-shelter-name{font-size:13px;font-weight:700;color:var(--near-black);line-height:1.2}
+  .m-shelter-sub{font-size:12px;color:var(--sec);font-weight:500}
+  .m-shelter .ver{margin-left:auto;font-size:11px;font-weight:700;color:var(--rausch);display:flex;align-items:center;gap:3px}
+
+  .m-actions{padding:12px 16px 18px;display:flex;justify-content:space-between;align-items:center;gap:14px;border-top:1px solid rgba(0,0,0,0.06);background:var(--white)}
+  .m-circ{width:50px;height:50px;border-radius:50%;background:var(--white);border:1px solid rgba(0,0,0,0.08);box-shadow:var(--shadow-card);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;color:var(--near-black)}
+  .m-circ.sm{width:42px;height:42px;font-size:16px}
+  .m-primary{flex:1;height:50px;border-radius:25px;background:var(--rausch);color:#fff;border:none;font-family:var(--sans);font-weight:700;font-size:15px;letter-spacing:-0.1px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;box-shadow:var(--shadow-card)}
+
+  .m-tab{position:absolute;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid rgba(0,0,0,0.06);display:flex;padding:8px 0 22px;z-index:5}
+  .m-tab .t{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;font-weight:600;color:var(--sec)}
+  .m-tab .t.active{color:var(--rausch)}
+  .m-tab .t svg{width:22px;height:22px}
+
+  /* ============================ */
+  /* DESKTOP — Airbnb style       */
+  /* ============================ */
+  .d{width:100%;height:100%;background:var(--white);display:flex;flex-direction:column;overflow:hidden}
+
+  .d-header{padding:18px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid rgba(0,0,0,0.06)}
+  .d-logo{font-weight:800;font-size:26px;letter-spacing:-0.6px;color:var(--rausch);display:flex;align-items:center;gap:6px}
+  .d-logo svg{width:26px;height:26px}
+
+  .d-search{display:flex;align-items:center;background:var(--white);border-radius:40px;box-shadow:var(--shadow-card);padding:6px 8px 6px 22px;min-width:520px}
+  .d-search-field{padding:8px 16px;border-right:1px solid rgba(0,0,0,0.08);display:flex;flex-direction:column;min-width:120px}
+  .d-search-field:last-of-type{border-right:none}
+  .d-search-field .k{font-size:11px;font-weight:700;color:var(--near-black);letter-spacing:-0.1px}
+  .d-search-field .v{font-size:13px;color:var(--sec);font-weight:400}
+  .d-search-btn{margin-left:auto;width:40px;height:40px;border-radius:50%;background:var(--rausch);color:#fff;border:none;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer}
+
+  .d-head-right{display:flex;align-items:center;gap:14px;font-size:14px;font-weight:600}
+  .d-head-link{padding:10px 14px;border-radius:20px;cursor:pointer}
+  .d-head-link:hover{background:var(--surface)}
+  .d-head-avatar{display:flex;align-items:center;gap:10px;padding:6px 8px 6px 14px;border:1px solid rgba(0,0,0,0.1);border-radius:30px;cursor:pointer;box-shadow:var(--shadow-card)}
+  .d-head-avatar .av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#ff7a9c,#ff385c);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+
+  .d-cats{display:flex;gap:34px;padding:16px 40px 12px;border-bottom:1px solid rgba(0,0,0,0.06);overflow-x:auto;align-items:center}
+  .d-cats::-webkit-scrollbar{display:none}
+  .d-cat{display:flex;flex-direction:column;align-items:center;gap:6px;flex:none;color:var(--sec);font-size:12px;font-weight:600;padding:4px 0;cursor:pointer;min-width:60px}
+  .d-cat.active{color:var(--near-black);border-bottom:2px solid var(--near-black);padding-bottom:8px}
+  .d-cat .ic{font-size:22px;opacity:0.85}
+  .d-cat-tools{margin-left:auto;display:flex;gap:10px;align-items:center;flex:none}
+  .d-cat-tool{padding:10px 16px;border-radius:12px;border:1px solid rgba(0,0,0,0.12);font-size:13px;font-weight:600;background:var(--white);cursor:pointer;display:flex;gap:6px;align-items:center}
+
+  .d-main{flex:1;display:grid;grid-template-columns:1.2fr 1fr;overflow:hidden}
+  .d-center{padding:28px 40px;overflow-y:auto;display:flex;flex-direction:column;gap:22px}
+  .d-title-row{display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .d-title-row h1{font-size:28px;font-weight:700;letter-spacing:-0.44px;margin:0;color:var(--near-black);line-height:1.2}
+  .d-title-row .sub{font-size:14px;color:var(--sec);margin-top:4px;font-weight:400}
+  .d-mode{display:flex;background:var(--surface);border-radius:30px;padding:4px}
+  .d-mode button{padding:8px 18px;border:none;background:transparent;font-family:var(--sans);font-weight:700;font-size:13px;border-radius:26px;cursor:pointer;color:var(--sec)}
+  .d-mode button.on{background:var(--white);color:var(--near-black);box-shadow:var(--shadow-card)}
+
+  .d-featured{background:var(--white);border-radius:20px;box-shadow:var(--shadow-card);overflow:hidden}
+  .d-feat-photo{position:relative;aspect-ratio:16/11;background:linear-gradient(180deg,#ffd5b8 0%,#ff9a6b 60%,#e8794a 100%);overflow:hidden}
+  .d-feat-photo svg{position:absolute;inset:0;width:100%;height:100%}
+  .d-feat-heart{position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:50%;background:var(--white);border:none;display:flex;align-items:center;justify-content:center;color:var(--rausch);font-size:18px;cursor:pointer;box-shadow:var(--shadow-card)}
+  .d-feat-badge{position:absolute;top:16px;left:16px;background:var(--white);padding:6px 12px;border-radius:14px;font-size:12px;font-weight:700;box-shadow:var(--shadow-card)}
+  .d-feat-nav{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;background:var(--white);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--shadow-card)}
+  .d-feat-nav.l{left:16px}
+  .d-feat-nav.r{right:16px}
+  .d-feat-dots{position:absolute;bottom:16px;left:0;right:0;display:flex;justify-content:center;gap:5px}
+  .d-feat-dots div{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.55)}
+  .d-feat-dots div.active{background:var(--white)}
+
+  .d-feat-info{padding:18px 22px 20px}
+  .d-feat-row1{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+  .d-feat-name{font-size:22px;font-weight:700;letter-spacing:-0.44px;color:var(--near-black);line-height:1.18}
+  .d-feat-rating{font-size:14px;font-weight:600;display:flex;gap:4px;align-items:center;white-space:nowrap}
+  .d-feat-meta{font-size:14px;color:var(--sec);margin-top:2px;font-weight:400}
+  .d-feat-meta strong{color:var(--near-black);font-weight:600}
+  .d-feat-bio{font-size:14px;color:var(--sec);margin-top:8px;line-height:1.43}
+  .d-feat-tags{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+  .d-feat-tag{font-size:12px;font-weight:600;padding:5px 10px;border-radius:14px;background:var(--surface);color:var(--near-black)}
+  .d-feat-tag.accent{background:#ffe9ee;color:var(--deep)}
+  .d-feat-actions{display:flex;gap:10px;margin-top:18px;align-items:center}
+  .d-pass{width:50px;height:50px;border-radius:50%;background:var(--white);border:1px solid rgba(0,0,0,0.08);box-shadow:var(--shadow-card);font-size:18px;cursor:pointer;color:var(--near-black)}
+  .d-like{flex:1;height:50px;border-radius:25px;background:var(--rausch);color:#fff;border:none;font-weight:700;font-size:15px;letter-spacing:-0.1px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:var(--shadow-card)}
+  .d-super{width:50px;height:50px;border-radius:50%;background:var(--near-black);color:#fff;border:none;font-size:18px;cursor:pointer;box-shadow:var(--shadow-card)}
+
+  .d-right{padding:28px 32px;border-left:1px solid rgba(0,0,0,0.06);overflow-y:auto;background:var(--off)}
+  .d-right-section{background:var(--white);border-radius:20px;box-shadow:var(--shadow-card);padding:22px;margin-bottom:18px}
+  .d-right-section h3{font-size:18px;font-weight:700;letter-spacing:-0.2px;margin:0 0 12px}
+  .d-sh-row{display:flex;gap:12px;align-items:center}
+  .d-sh-av{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#ff7a9c,#ff385c);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;flex:none}
+  .d-sh-n{font-size:16px;font-weight:700}
+  .d-sh-n .ver{color:var(--rausch);font-size:12px;margin-left:4px}
+  .d-sh-s{font-size:13px;color:var(--sec);margin-top:2px;font-weight:500}
+
+  .d-sh-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px}
+  .d-sh-stat{background:var(--surface);border-radius:14px;padding:10px;text-align:center}
+  .d-sh-stat .n{font-size:18px;font-weight:700;letter-spacing:-0.2px}
+  .d-sh-stat .l{font-size:11px;color:var(--sec);font-weight:600;margin-top:2px}
+
+  .d-sim{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .d-sim-card{background:var(--white);border-radius:16px;overflow:hidden;cursor:pointer;box-shadow:rgba(0,0,0,0.02) 0 0 0 1px, rgba(0,0,0,0.03) 0 1px 4px}
+  .d-sim-photo{aspect-ratio:4/3;background:linear-gradient(180deg,#ffd5b8,#e8794a);position:relative}
+  .d-sim-photo .h{position:absolute;top:8px;right:8px;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px}
+  .d-sim-info{padding:10px 12px 12px}
+  .d-sim-n{font-size:14px;font-weight:700;letter-spacing:-0.1px}
+  .d-sim-s{font-size:12px;color:var(--sec);margin-top:2px;font-weight:500}
+  .d-sim-p{font-size:12px;color:var(--near-black);margin-top:4px;font-weight:500}
+
+  .d-flow-note{padding:14px;background:var(--surface);border-radius:14px;font-size:13px;color:var(--focused);line-height:1.5}
+  .d-flow-note strong{color:var(--near-black);font-weight:700}
+
+</style>
+</head>
+<body>
+
+<div class="stack">
+
+<!-- ============ MOBILE ============ -->
+<div>
+  <p class="page-label">Mobile · Adopter · Airbnb style</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+      <div class="m-top">
+        <div class="m-logo">
+          <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 1c5 0 8 4 11 10 3 6 4 11 2 15-2 3-6 4-9 1l-4-4-4 4c-3 3-7 2-9-1-2-4-1-9 2-15C8 5 11 1 16 1z"/></svg>
+          pawmatch
+        </div>
+        <div class="m-top-right">
+          <button class="m-icon">⚙</button>
+          <div class="m-avatar">M</div>
+        </div>
+      </div>
+
+      <div class="m-cats">
+        <div class="m-cat active"><div class="ic">🐾</div>All</div>
+        <div class="m-cat"><div class="ic">🐕</div>Dogs</div>
+        <div class="m-cat"><div class="ic">🐈</div>Cats</div>
+        <div class="m-cat"><div class="ic">🐶</div>Puppies</div>
+        <div class="m-cat"><div class="ic">🐇</div>Small</div>
+        <div class="m-cat"><div class="ic">❤️</div>Senior</div>
+        <div class="m-cat"><div class="ic">⭐</div>Featured</div>
+      </div>
+
+      <div class="m-card-wrap">
+        <div class="m-card">
+          <div class="m-photo">
+            <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet">
+              <circle cx="330" cy="70" r="32" fill="#fff" opacity="0.5"/>
+              <g transform="translate(60,110)">
+                <ellipse cx="160" cy="195" rx="150" ry="78" fill="#e8a27a"/>
+                <path stroke="#222" stroke-width="2.2" fill="none" d="M10 195 C 10 125, 80 95, 160 95 C 240 95, 310 125, 310 195"/>
+                <path fill="#f4c494" stroke="#222" stroke-width="2.2" d="M60 155 C 45 95, 70 40, 125 33 C 175 27, 215 63, 220 110 C 222 145, 195 175, 155 178 Z"/>
+                <path fill="#c96442" stroke="#222" stroke-width="2.2" d="M68 75 C 42 63, 30 105, 62 135 Z"/>
+                <path fill="#c96442" stroke="#222" stroke-width="2.2" d="M208 57 C 232 45, 244 85, 212 113 Z"/>
+                <circle cx="108" cy="93" r="5" fill="#222"/>
+                <circle cx="165" cy="90" r="5" fill="#222"/>
+                <circle cx="110" cy="91" r="1.8" fill="#fff"/>
+                <circle cx="167" cy="88" r="1.8" fill="#fff"/>
+                <ellipse cx="135" cy="123" rx="10" ry="7" fill="#222"/>
+                <path stroke="#222" stroke-width="2.2" fill="none" d="M135 131 L 135 141 M135 141 Q 127 147 122 143 M135 141 Q 143 147 148 143"/>
+                <path fill="#ff385c" stroke="#222" stroke-width="1.4" d="M130 143 Q 135 155 140 143"/>
+                <path stroke="#222" stroke-width="2.2" fill="#e8a27a" d="M310 175 C 345 155, 360 185, 340 215"/>
+              </g>
+            </svg>
+            <span class="m-photo-badge">Featured · New today</span>
+            <button class="m-photo-heart liked">❤</button>
+            <div class="m-photo-dots"><div class="active"></div><div></div><div></div><div></div></div>
+          </div>
+
+          <div class="m-info">
+            <div class="m-info-row">
+              <div class="m-name">Biscuit · Golden Retriever</div>
+              <div class="m-rating">★ 4.92 <span style="color:var(--sec);font-weight:500">(38)</span></div>
+            </div>
+            <div class="m-meta"><strong>Portland, OR</strong> · 2.4 miles away</div>
+            <div class="m-meta">2 years old · Male · 32 kg</div>
+            <div class="m-bio">Friendly, energetic boy who loves long walks and soft beds. Great with kids and other dogs.</div>
+            <div class="m-price"><strong>$350</strong> adoption fee · includes neuter &amp; vaccinations</div>
+          </div>
+
+          <div class="m-tags">
+            <span class="m-tag accent">Kids OK</span>
+            <span class="m-tag">Dogs OK</span>
+            <span class="m-tag">Fenced yard</span>
+            <span class="m-tag">Neutered</span>
+          </div>
+
+          <div class="m-shelter">
+            <div class="m-shelter-av">W</div>
+            <div>
+              <div class="m-shelter-name">Willow Creek Rescue</div>
+              <div class="m-shelter-sub">Portland · since 2014 · 1,200+ placed</div>
+            </div>
+            <div class="ver">✓ Verified</div>
+          </div>
+        </div>
+
+        <div style="padding:6px 4px 14px;font-size:13px;color:var(--sec);font-weight:500">Tap ❤ to save · swipe or press <strong style="color:var(--near-black)">Apply</strong> to start a pre-application.</div>
+      </div>
+
+      <div class="m-actions">
+        <button class="m-circ">✕</button>
+        <button class="m-primary">❤ Apply to adopt</button>
+        <button class="m-circ sm">✦</button>
+        <button class="m-circ sm">i</button>
+      </div>
+
+      <div class="m-tab">
+        <div class="t active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+          Explore
+        </div>
+        <div class="t">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-8-5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-8 11-8 11H12z"/></svg>
+          Wishlists
+        </div>
+        <div class="t">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v12H7l-3 3z"/></svg>
+          Messages
+        </div>
+        <div class="t">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h10l4 4v12H5z"/></svg>
+          Applications
+        </div>
+        <div class="t">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          Profile
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DESKTOP ============ -->
+<div>
+  <p class="page-label">Desktop · Adopter · Airbnb style</p>
+  <div class="frame frame-desktop">
+    <div class="d">
+
+      <!-- Header with search -->
+      <div class="d-header">
+        <div class="d-logo">
+          <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 1c5 0 8 4 11 10 3 6 4 11 2 15-2 3-6 4-9 1l-4-4-4 4c-3 3-7 2-9-1-2-4-1-9 2-15C8 5 11 1 16 1z"/></svg>
+          pawmatch
+        </div>
+
+        <div class="d-search">
+          <div class="d-search-field"><div class="k">Pet type</div><div class="v">Dogs</div></div>
+          <div class="d-search-field"><div class="k">Near</div><div class="v">Portland, OR · 15 mi</div></div>
+          <div class="d-search-field"><div class="k">Good with</div><div class="v">Kids, other dogs</div></div>
+          <button class="d-search-btn">⚲</button>
+        </div>
+
+        <div class="d-head-right">
+          <div class="d-head-link">List a pet for adoption</div>
+          <div class="d-head-avatar">
+            <span>☰</span>
+            <div class="av">M</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category pill row -->
+      <div class="d-cats">
+        <div class="d-cat active"><div class="ic">🐾</div>All</div>
+        <div class="d-cat"><div class="ic">🐕</div>Dogs</div>
+        <div class="d-cat"><div class="ic">🐈</div>Cats</div>
+        <div class="d-cat"><div class="ic">🐶</div>Puppies</div>
+        <div class="d-cat"><div class="ic">🐩</div>Senior</div>
+        <div class="d-cat"><div class="ic">🐇</div>Small pets</div>
+        <div class="d-cat"><div class="ic">⭐</div>Featured</div>
+        <div class="d-cat"><div class="ic">🏥</div>Special needs</div>
+        <div class="d-cat"><div class="ic">✓</div>Verified</div>
+        <div class="d-cat-tools">
+          <button class="d-cat-tool">⚲ Filters</button>
+          <button class="d-cat-tool">Display: Swipe ⌄</button>
+        </div>
+      </div>
+
+      <!-- Main -->
+      <div class="d-main">
+        <section class="d-center">
+          <div class="d-title-row">
+            <div>
+              <h1>Pets near Portland, OR</h1>
+              <div class="sub">12 new today · tap ❤ to save, or Apply to start a pre-application</div>
+            </div>
+            <div class="d-mode"><button class="on">Swipe</button><button>Search</button></div>
+          </div>
+
+          <div class="d-featured">
+            <div class="d-feat-photo">
+              <svg viewBox="0 0 400 270" preserveAspectRatio="xMidYMid meet">
+                <circle cx="340" cy="55" r="28" fill="#fff" opacity="0.5"/>
+                <g transform="translate(60,60)">
+                  <ellipse cx="160" cy="155" rx="150" ry="72" fill="#e8a27a"/>
+                  <path stroke="#222" stroke-width="2.2" fill="none" d="M10 155 C 10 90, 80 65, 160 65 C 240 65, 310 90, 310 155"/>
+                  <path fill="#f4c494" stroke="#222" stroke-width="2.2" d="M60 130 C 45 75, 70 25, 125 18 C 175 12, 215 45, 220 88 C 222 120, 195 148, 155 151 Z"/>
+                  <path fill="#c96442" stroke="#222" stroke-width="2.2" d="M68 58 C 42 48, 30 85, 62 115 Z"/>
+                  <path fill="#c96442" stroke="#222" stroke-width="2.2" d="M208 42 C 232 32, 244 70, 212 96 Z"/>
+                  <circle cx="108" cy="78" r="5" fill="#222"/>
+                  <circle cx="165" cy="75" r="5" fill="#222"/>
+                  <circle cx="110" cy="76" r="1.8" fill="#fff"/>
+                  <circle cx="167" cy="73" r="1.8" fill="#fff"/>
+                  <ellipse cx="135" cy="105" rx="10" ry="7" fill="#222"/>
+                  <path stroke="#222" stroke-width="2.2" fill="none" d="M135 113 L 135 123 M135 123 Q 127 129 122 125 M135 123 Q 143 129 148 125"/>
+                  <path fill="#ff385c" stroke="#222" stroke-width="1.4" d="M130 125 Q 135 137 140 125"/>
+                  <path stroke="#222" stroke-width="2.2" fill="#e8a27a" d="M310 140 C 345 120, 360 150, 340 180"/>
+                </g>
+              </svg>
+              <span class="d-feat-badge">★ Featured · New today</span>
+              <button class="d-feat-heart">❤</button>
+              <button class="d-feat-nav l">‹</button>
+              <button class="d-feat-nav r">›</button>
+              <div class="d-feat-dots"><div class="active"></div><div></div><div></div><div></div></div>
+            </div>
+
+            <div class="d-feat-info">
+              <div class="d-feat-row1">
+                <div class="d-feat-name">Biscuit · Golden Retriever</div>
+                <div class="d-feat-rating">★ 4.92 <span style="color:var(--sec);font-weight:500">(38 reviews)</span></div>
+              </div>
+              <div class="d-feat-meta"><strong>Portland, OR</strong> · 2.4 miles away · 2 years · male · 32 kg</div>
+              <div class="d-feat-bio">Friendly, energetic boy who loves long walks and soft beds. Great with kids and other dogs. Neutered and fully vaccinated.</div>
+              <div class="d-feat-tags">
+                <span class="d-feat-tag accent">Kids OK</span>
+                <span class="d-feat-tag">Dogs OK</span>
+                <span class="d-feat-tag">Fenced yard preferred</span>
+                <span class="d-feat-tag">21+ adopter</span>
+                <span class="d-feat-tag">Neutered</span>
+                <span class="d-feat-tag">DHPP · Rabies · Bordetella</span>
+              </div>
+              <div style="margin-top:12px;font-size:14px;color:var(--near-black)"><strong style="font-weight:700">$350</strong> adoption fee · includes neuter &amp; vaccinations</div>
+
+              <div class="d-feat-actions">
+                <button class="d-pass">✕</button>
+                <button class="d-like">❤ Apply to adopt</button>
+                <button class="d-super">✦</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- right panel -->
+        <aside class="d-right">
+          <div class="d-right-section">
+            <h3>Hosted by Willow Creek</h3>
+            <div class="d-sh-row">
+              <div class="d-sh-av">W</div>
+              <div>
+                <div class="d-sh-n">Willow Creek Rescue <span class="ver">✓ Verified</span></div>
+                <div class="d-sh-s">Portland, OR · shelter since 2014</div>
+              </div>
+            </div>
+            <div class="d-sh-stats">
+              <div class="d-sh-stat"><div class="n">1.2k</div><div class="l">Placed</div></div>
+              <div class="d-sh-stat"><div class="n">38</div><div class="l">Available</div></div>
+              <div class="d-sh-stat"><div class="n">4.9★</div><div class="l">Rating</div></div>
+            </div>
+            <button style="width:100%;margin-top:14px;padding:12px;border-radius:12px;background:var(--white);border:1px solid rgba(0,0,0,0.15);font-family:var(--sans);font-weight:700;font-size:14px;cursor:pointer">Visit shelter page</button>
+          </div>
+
+          <div class="d-right-section">
+            <h3>Similar pets near you</h3>
+            <div class="d-sim">
+              <div class="d-sim-card">
+                <div class="d-sim-photo"><div class="h">♡</div></div>
+                <div class="d-sim-info">
+                  <div class="d-sim-n">Olive · 1y</div>
+                  <div class="d-sim-s">Beagle mix · 3.1 mi</div>
+                  <div class="d-sim-p">$250 · ★ 4.8</div>
+                </div>
+              </div>
+              <div class="d-sim-card">
+                <div class="d-sim-photo" style="background:linear-gradient(180deg,#f4d6c4,#c96442)"><div class="h">♡</div></div>
+                <div class="d-sim-info">
+                  <div class="d-sim-n">Pepper · 7y</div>
+                  <div class="d-sim-s">Mixed · 4.8 mi</div>
+                  <div class="d-sim-p">$150 · ★ 4.9</div>
+                </div>
+              </div>
+              <div class="d-sim-card">
+                <div class="d-sim-photo" style="background:linear-gradient(180deg,#e0cdb0,#8a7e5f)"><div class="h">♡</div></div>
+                <div class="d-sim-info">
+                  <div class="d-sim-n">Max · 3y</div>
+                  <div class="d-sim-s">Labrador · 5.2 mi</div>
+                  <div class="d-sim-p">$400 · ★ 4.9</div>
+                </div>
+              </div>
+              <div class="d-sim-card">
+                <div class="d-sim-photo" style="background:linear-gradient(180deg,#f5e3c8,#d9a76b)"><div class="h">♡</div></div>
+                <div class="d-sim-info">
+                  <div class="d-sim-n">Miso · 4y</div>
+                  <div class="d-sim-s">Shorthair · 1.9 mi</div>
+                  <div class="d-sim-p">$180 · ★ 4.7</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flow-note">
+            <strong>How adoption works:</strong> Apply to submit a short <strong>pre-application</strong>. The shelter reviews, approves you for an in-person meeting, and takes it from there. Each step is optional.
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

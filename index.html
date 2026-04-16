@@ -1,0 +1,1846 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PawMatch — Mockups</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parchment:#f5f4ed;
+    --ivory:#faf9f5;
+    --white:#ffffff;
+    --sand:#e8e6dc;
+    --cream:#f0eee6;
+    --ring:#d1cfc5;
+    --near-black:#141413;
+    --dark-surface:#30302e;
+    --charcoal:#4d4c48;
+    --olive:#5e5d59;
+    --stone:#87867f;
+    --silver:#b0aea5;
+    --terracotta:#c96442;
+    --coral:#d97757;
+    --error:#b53333;
+    --focus:#3898ec;
+    --muted-green:#6b8a63;
+    --serif:'Fraunces','Anthropic Serif','Georgia',serif;
+    --sans:'Inter','Anthropic Sans','Arial',sans-serif;
+    --mono:'JetBrains Mono','Anthropic Mono',monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--parchment);color:var(--near-black);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  body{padding:48px 32px 120px}
+  .page-label{font-family:var(--sans);font-size:10px;letter-spacing:0.5px;text-transform:uppercase;color:var(--stone);margin:0 0 12px 4px}
+  .frame{background:var(--parchment);border:1px solid var(--cream);border-radius:16px;box-shadow:rgba(0,0,0,0.05) 0 4px 24px;overflow:hidden;margin:0 auto 64px}
+  .frame-desktop{width:1440px;min-height:900px}
+  .frame-mobile{width:390px;min-height:844px}
+  .stack{display:flex;gap:48px;flex-wrap:wrap;justify-content:center;align-items:flex-start}
+
+  /* =========== DESKTOP =========== */
+  .dt{display:grid;grid-template-columns:260px 1fr;min-height:900px}
+  .dt-nav{background:var(--ivory);border-right:1px solid var(--cream);padding:28px 20px;display:flex;flex-direction:column;gap:8px}
+  .logo{font-family:var(--serif);font-weight:500;font-size:24px;letter-spacing:-0.02em;color:var(--near-black);padding:4px 8px 24px}
+  .logo .dot{color:var(--terracotta)}
+  .nav-group-label{font-size:10px;letter-spacing:0.5px;text-transform:uppercase;color:var(--stone);padding:16px 12px 8px}
+  .nav-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:8px;font-size:15px;color:var(--charcoal);cursor:pointer;line-height:1}
+  .nav-item svg{flex:none}
+  .nav-item:hover{background:var(--sand)}
+  .nav-item.active{background:var(--sand);box-shadow:0 0 0 1px var(--ring) inset;color:var(--near-black);font-weight:500}
+  .nav-profile{margin-top:auto;display:flex;align-items:center;gap:10px;padding:12px;border-radius:12px;background:var(--ivory);border:1px solid var(--cream)}
+  .avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#d97757,#c96442);display:flex;align-items:center;justify-content:center;color:var(--ivory);font-family:var(--serif);font-weight:500;font-size:15px}
+  .nav-profile-text{line-height:1.2}
+  .nav-profile-name{font-size:14px;font-weight:500;color:var(--near-black)}
+  .nav-profile-sub{font-size:12px;color:var(--olive)}
+
+  .dt-main{padding:40px 56px;display:flex;flex-direction:column;gap:32px;min-width:0}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .greeting h1{font-family:var(--serif);font-weight:500;font-size:36px;line-height:1.2;margin:0 0 6px;letter-spacing:-0.01em}
+  .greeting p{margin:0;color:var(--olive);font-size:15px;line-height:1.6}
+  .topbar-actions{display:flex;gap:12px;align-items:center}
+  .btn{font-family:var(--sans);font-size:14px;font-weight:500;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;line-height:1}
+  .btn-secondary{background:var(--sand);color:var(--charcoal);padding:10px 14px;border-radius:8px;box-shadow:0 0 0 1px var(--ring)}
+  .btn-primary{background:var(--terracotta);color:var(--ivory);padding:11px 18px;border-radius:10px;box-shadow:0 0 0 1px var(--terracotta)}
+  .btn-ghost{background:transparent;color:var(--charcoal);padding:8px 10px;border-radius:8px}
+  .btn-ghost:hover{background:var(--sand)}
+
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .kpi{background:var(--ivory);border:1px solid var(--cream);border-radius:12px;padding:20px}
+  .kpi-label{font-size:12px;letter-spacing:0.2px;color:var(--olive);text-transform:uppercase}
+  .kpi-value{font-family:var(--serif);font-weight:500;font-size:32px;line-height:1.1;margin-top:10px;color:var(--near-black)}
+  .kpi-delta{margin-top:8px;font-size:13px;color:var(--muted-green);display:flex;align-items:center;gap:4px}
+  .kpi-delta.neg{color:var(--error)}
+
+  .row2{display:grid;grid-template-columns:1.6fr 1fr;gap:20px}
+  .card{background:var(--ivory);border:1px solid var(--cream);border-radius:16px;padding:24px}
+  .card-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
+  .card-title{font-family:var(--serif);font-weight:500;font-size:22px;margin:0;letter-spacing:-0.01em}
+  .card-link{font-size:13px;color:var(--coral);text-decoration:none}
+
+  /* Chart */
+  .chart{height:200px;position:relative}
+  .chart svg{width:100%;height:100%}
+  .chart-legend{display:flex;gap:16px;margin-top:12px;font-size:12px;color:var(--olive)}
+  .legend-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle}
+
+  /* Applications list */
+  .app-item{display:flex;align-items:center;gap:14px;padding:14px 0;border-top:1px solid var(--cream)}
+  .app-item:first-child{border-top:none;padding-top:4px}
+  .pet-thumb{width:44px;height:44px;border-radius:10px;background:var(--sand);flex:none;display:flex;align-items:center;justify-content:center;font-size:22px}
+  .app-text{flex:1;min-width:0}
+  .app-name{font-size:14px;font-weight:500;color:var(--near-black);line-height:1.3}
+  .app-sub{font-size:12px;color:var(--olive);margin-top:2px}
+  .badge{font-size:11px;letter-spacing:0.2px;text-transform:uppercase;padding:4px 8px;border-radius:20px;font-weight:500}
+  .badge-pending{background:#f3ead6;color:#8a6a1f}
+  .badge-review{background:#eadfd7;color:#8a4a2d}
+  .badge-approved{background:#dfe8db;color:#4a6b40}
+
+  /* Ads card */
+  .ads-card{background:var(--near-black);color:var(--ivory);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:12px;min-height:200px;justify-content:space-between}
+  .ads-card h3{font-family:var(--serif);font-weight:500;font-size:22px;margin:0;line-height:1.2}
+  .ads-card p{color:var(--silver);font-size:14px;line-height:1.6;margin:0}
+  .btn-on-dark{background:var(--ivory);color:var(--near-black);padding:10px 14px;border-radius:10px;font-size:14px;font-weight:500;align-self:flex-start;border:none;cursor:pointer}
+
+  /* Pets mini table */
+  .pets-row{display:grid;grid-template-columns:1.5fr 1fr 1fr auto;gap:16px;padding:12px 0;border-top:1px solid var(--cream);align-items:center;font-size:14px}
+  .pets-row:first-of-type{border-top:none}
+  .pets-row .name{display:flex;gap:12px;align-items:center;color:var(--near-black)}
+  .pets-row .muted{color:var(--olive)}
+  .status-dot{width:8px;height:8px;border-radius:50%;background:var(--muted-green);display:inline-block;margin-right:6px}
+  .status-dot.off{background:var(--stone)}
+
+  /* =========== MOBILE =========== */
+  .mb{padding:16px 20px 100px;display:flex;flex-direction:column;gap:20px;min-height:844px}
+  .mb-top{display:flex;align-items:center;justify-content:space-between}
+  .mb-top .logo{font-size:20px;padding:0}
+  .mb-greeting h1{font-family:var(--serif);font-weight:500;font-size:28px;margin:0 0 4px;line-height:1.2;letter-spacing:-0.01em}
+  .mb-greeting p{margin:0;color:var(--olive);font-size:14px;line-height:1.5}
+
+  .mb-kpis{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .mb-kpis .kpi{padding:16px}
+  .mb-kpis .kpi-value{font-size:24px}
+
+  .mb-section-head{display:flex;justify-content:space-between;align-items:baseline;margin-top:4px}
+  .mb-section-head h2{font-family:var(--serif);font-weight:500;font-size:20px;margin:0}
+
+  .mb-card{background:var(--ivory);border:1px solid var(--cream);border-radius:14px;padding:16px}
+  .mb-chart{height:120px}
+
+  .mb-tab-bar{position:absolute;bottom:0;left:0;right:0;background:var(--ivory);border-top:1px solid var(--cream);padding:10px 8px 24px;display:flex;justify-content:space-around}
+  .mb-tab{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;color:var(--stone);padding:4px 10px;border-radius:10px}
+  .mb-tab.active{color:var(--terracotta)}
+  .mb-tab.active svg{color:var(--terracotta)}
+
+  .frame-mobile{position:relative}
+
+  /* small icon helper */
+  .i{width:18px;height:18px;color:currentColor}
+  .i-sm{width:14px;height:14px}
+
+  /* Pause toggle (topbar) */
+  .pause-toggle{display:flex;align-items:center;gap:12px;background:var(--ivory);border:1px solid var(--cream);border-radius:12px;padding:8px 14px 8px 12px}
+  .pause-dot{width:8px;height:8px;border-radius:50%;background:var(--muted-green);box-shadow:0 0 0 3px rgba(107,138,99,0.18)}
+  .pause-text{line-height:1.2}
+  .pause-label{font-size:13px;font-weight:500;color:var(--near-black)}
+  .pause-sub{font-size:11px;color:var(--olive);margin-top:1px}
+  .switch{width:36px;height:20px;border-radius:20px;background:var(--sand);position:relative;flex:none;box-shadow:inset 0 0 0 1px var(--ring)}
+  .switch.on{background:var(--muted-green);box-shadow:inset 0 0 0 1px var(--muted-green)}
+  .switch .knob{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:var(--ivory);box-shadow:0 1px 2px rgba(0,0,0,0.15)}
+  .switch.on .knob{left:18px}
+
+  /* Persona card */
+  .persona-block h4{font-size:11px;letter-spacing:0.3px;text-transform:uppercase;color:var(--olive);margin:0 0 10px;font-weight:500}
+  .bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:13px;color:var(--charcoal)}
+  .bar-row .lbl{width:78px;flex:none}
+  .bar-track{flex:1;height:8px;background:var(--sand);border-radius:6px;overflow:hidden}
+  .bar-fill{height:100%;background:var(--terracotta);border-radius:6px}
+  .bar-fill.alt{background:var(--muted-green)}
+  .bar-fill.neutral{background:var(--charcoal)}
+  .bar-row .pct{width:38px;text-align:right;color:var(--olive);font-variant-numeric:tabular-nums;font-size:12px}
+  .chip-row{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{font-size:12px;padding:5px 10px;border-radius:20px;background:var(--sand);color:var(--charcoal);border:1px solid var(--cream)}
+  .chip.accent{background:#f4e1d7;border-color:#eacbb9;color:#8a4a2d}
+  .persona-divider{height:1px;background:var(--cream);margin:14px 0}
+
+  /* Top pets */
+  .top-pet-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--cream)}
+  .top-pet-row:first-of-type{border-top:none;padding-top:4px}
+  .top-pet-rank{font-family:var(--serif);font-size:18px;color:var(--stone);width:20px;text-align:center}
+  .top-pet-meta{flex:1;line-height:1.3;min-width:0}
+  .top-pet-name{font-size:14px;font-weight:500;color:var(--near-black)}
+  .top-pet-sub{font-size:12px;color:var(--olive);margin-top:1px}
+  .top-pet-stat{text-align:right}
+  .top-pet-stat .n{font-family:var(--serif);font-size:18px;color:var(--near-black);line-height:1}
+  .top-pet-stat .u{font-size:10px;color:var(--olive);letter-spacing:0.3px;text-transform:uppercase;margin-top:2px}
+
+  /* Slim ads banner */
+  .ads-banner{background:var(--near-black);color:var(--ivory);border-radius:12px;padding:14px 20px;display:flex;align-items:center;gap:16px}
+  .ads-banner h3{font-family:var(--serif);font-weight:500;font-size:17px;margin:0;line-height:1.2}
+  .ads-banner p{color:var(--silver);font-size:13px;margin:2px 0 0}
+  .ads-banner .btn-on-dark{margin-left:auto;padding:8px 14px;font-size:13px}
+
+  /* Mobile pause card */
+  .mb-pause{display:flex;align-items:center;gap:12px;background:var(--ivory);border:1px solid var(--cream);border-radius:14px;padding:12px 14px}
+  .mb-pause .pause-text{flex:1}
+
+  /* Generic form/input */
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+  .field label{font-size:12px;font-weight:500;color:var(--charcoal);letter-spacing:0.1px}
+  .field .hint{font-size:11px;color:var(--stone)}
+  .input,.textarea,.select{font-family:var(--sans);font-size:14px;color:var(--near-black);background:var(--white);border:1px solid var(--cream);border-radius:10px;padding:10px 12px;outline:none;width:100%}
+  .input:focus,.textarea:focus,.select:focus{border-color:var(--focus);box-shadow:0 0 0 3px rgba(56,152,236,0.15)}
+  .textarea{min-height:88px;resize:vertical;line-height:1.5}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .radio-group{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .radio-card{border:1px solid var(--cream);border-radius:12px;padding:14px;background:var(--white);cursor:pointer;display:flex;gap:10px;align-items:flex-start}
+  .radio-card.selected{border-color:var(--terracotta);box-shadow:0 0 0 1px var(--terracotta)}
+  .radio-dot{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--ring);flex:none;margin-top:2px}
+  .radio-card.selected .radio-dot{border-color:var(--terracotta);background:radial-gradient(circle,var(--terracotta) 0 5px,var(--white) 6px)}
+  .radio-card .t{font-size:14px;font-weight:500;color:var(--near-black);line-height:1.3}
+  .radio-card .d{font-size:12px;color:var(--olive);margin-top:2px;line-height:1.4}
+  .divider-or{display:flex;align-items:center;gap:12px;color:var(--stone);font-size:12px;margin:18px 0;letter-spacing:0.2px}
+  .divider-or::before,.divider-or::after{content:"";flex:1;height:1px;background:var(--cream)}
+  .sso-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .sso-btn{background:var(--white);border:1px solid var(--cream);border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:14px;color:var(--near-black);cursor:pointer}
+  .sso-btn:hover{background:var(--ivory)}
+
+  /* Auth split layout */
+  .auth-split{display:grid;grid-template-columns:1fr 1fr;min-height:900px}
+  .auth-hero{background:var(--near-black);color:var(--ivory);padding:72px 64px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+  .auth-hero h1{font-family:var(--serif);font-weight:500;font-size:48px;line-height:1.15;letter-spacing:-0.01em;margin:0 0 18px;max-width:420px}
+  .auth-hero p{color:var(--silver);font-size:17px;line-height:1.6;max-width:400px;margin:0}
+  .auth-hero blockquote{max-width:420px}
+  .auth-hero blockquote{font-family:var(--serif);font-size:22px;line-height:1.5;color:var(--ivory);border-left:2px solid var(--terracotta);padding-left:18px;margin:0}
+  .auth-hero blockquote cite{display:block;margin-top:10px;font-family:var(--sans);font-size:13px;color:var(--silver);font-style:normal}
+  .auth-hero .hero-illu{position:absolute;right:-40px;bottom:-40px;opacity:0.15;font-size:340px;line-height:1}
+  .auth-form-wrap{padding:72px 72px;display:flex;flex-direction:column;justify-content:center;background:var(--parchment)}
+  .auth-form{max-width:420px;width:100%;margin:0 auto}
+  .auth-form h2{font-family:var(--serif);font-weight:500;font-size:32px;margin:0 0 6px;letter-spacing:-0.01em}
+  .auth-form .sub{font-size:15px;color:var(--olive);margin:0 0 28px;line-height:1.6}
+  .auth-form .btn-primary{width:100%;justify-content:center;padding:13px}
+  .auth-footnote{text-align:center;margin-top:22px;font-size:14px;color:var(--olive)}
+  .auth-footnote a{color:var(--terracotta);text-decoration:none;font-weight:500}
+
+  /* Section layout for sub-pages */
+  .page-tabs{display:flex;gap:4px;border-bottom:1px solid var(--cream);margin-bottom:24px}
+  .page-tab{padding:10px 16px;font-size:14px;color:var(--olive);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+  .page-tab.active{color:var(--near-black);border-bottom-color:var(--terracotta);font-weight:500}
+
+  /* Pet Data */
+  .data-sources{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+  .src-card{background:var(--ivory);border:1px solid var(--cream);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:8px;cursor:pointer}
+  .src-card:hover{box-shadow:0 0 0 1px var(--ring)}
+  .src-card .src-ic{width:32px;height:32px;border-radius:8px;background:var(--sand);display:flex;align-items:center;justify-content:center;color:var(--charcoal)}
+  .src-card.accent .src-ic{background:#f4e1d7;color:var(--terracotta)}
+  .src-card h4{font-family:var(--serif);font-weight:500;font-size:17px;margin:4px 0 0}
+  .src-card p{font-size:12px;color:var(--olive);margin:0;line-height:1.5}
+  .src-card .src-tag{font-size:10px;letter-spacing:0.3px;text-transform:uppercase;color:var(--coral)}
+
+  .filter-row{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+  .filter-pill{padding:6px 12px;border-radius:20px;background:transparent;border:1px solid var(--cream);color:var(--olive);font-size:13px;cursor:pointer}
+  .filter-pill.active{background:var(--near-black);color:var(--ivory);border-color:var(--near-black)}
+  .search-input{margin-left:auto;min-width:240px}
+
+  .data-table{width:100%;border-collapse:collapse;font-size:14px}
+  .data-table th{text-align:left;font-size:11px;letter-spacing:0.3px;text-transform:uppercase;color:var(--stone);font-weight:500;padding:10px 12px;border-bottom:1px solid var(--cream)}
+  .data-table td{padding:14px 12px;border-bottom:1px solid var(--cream);color:var(--charcoal);vertical-align:middle}
+  .data-table tr:hover td{background:var(--ivory)}
+  .name-cell{display:flex;gap:10px;align-items:center;color:var(--near-black)}
+  .pill{font-size:11px;padding:3px 8px;border-radius:12px;background:var(--sand);color:var(--charcoal)}
+  .pill.live{background:#dfe8db;color:#4a6b40}
+  .pill.draft{background:var(--sand);color:var(--olive)}
+  .pill.adopted{background:#eadfd7;color:#8a4a2d}
+  .pill.paused{background:#f3ead6;color:#8a6a1f}
+
+  /* Pet detail edit */
+  .media-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .media-tile{aspect-ratio:1;border-radius:10px;background:var(--sand);display:flex;align-items:center;justify-content:center;font-size:34px;border:1px solid var(--cream);overflow:hidden}
+  .media-tile.add{background:var(--ivory);color:var(--stone);font-size:22px;border:1px dashed var(--ring);cursor:pointer}
+
+  /* Applications / review */
+  .rev-split{display:grid;grid-template-columns:1.2fr 1fr;gap:20px}
+  .applicant-card{background:var(--ivory);border:1px solid var(--cream);border-radius:16px;padding:24px}
+  .applicant-head{display:flex;gap:16px;align-items:center;margin-bottom:18px}
+  .applicant-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#d97757,#c96442);color:var(--ivory);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:24px}
+  .applicant-head h3{font-family:var(--serif);font-weight:500;font-size:22px;margin:0 0 4px}
+  .applicant-head .meta{font-size:13px;color:var(--olive)}
+  .qa{padding:12px 0;border-top:1px solid var(--cream)}
+  .qa:first-of-type{border-top:none}
+  .qa .q{font-size:12px;color:var(--olive);letter-spacing:0.2px;text-transform:uppercase;margin-bottom:4px}
+  .qa .a{font-size:14px;color:var(--near-black);line-height:1.6}
+
+  /* Chat */
+  .chat-split{display:grid;grid-template-columns:320px 1fr;height:760px;background:var(--ivory);border:1px solid var(--cream);border-radius:16px;overflow:hidden}
+  .conv-list{border-right:1px solid var(--cream);overflow-y:auto}
+  .conv-search{padding:14px;border-bottom:1px solid var(--cream)}
+  .conv-item{display:flex;gap:12px;padding:14px;border-bottom:1px solid var(--cream);cursor:pointer}
+  .conv-item:hover,.conv-item.active{background:var(--parchment)}
+  .conv-item .t{flex:1;min-width:0}
+  .conv-item .n{font-size:14px;font-weight:500;color:var(--near-black);display:flex;justify-content:space-between;align-items:center}
+  .conv-item .n .time{font-size:11px;color:var(--stone);font-weight:400}
+  .conv-item .preview{font-size:12px;color:var(--olive);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .conv-unread{width:8px;height:8px;border-radius:50%;background:var(--terracotta);margin-left:6px}
+
+  .chat-main{display:flex;flex-direction:column;background:var(--parchment)}
+  .chat-header{padding:16px 20px;border-bottom:1px solid var(--cream);display:flex;gap:12px;align-items:center;background:var(--ivory)}
+  .chat-header .pet-ctx{flex:1}
+  .chat-header .pet-ctx .n{font-size:15px;font-weight:500;color:var(--near-black)}
+  .chat-header .pet-ctx .s{font-size:12px;color:var(--olive)}
+  .chat-body{flex:1;padding:20px;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
+  .bubble{max-width:70%;padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.5}
+  .bubble.them{background:var(--ivory);color:var(--near-black);align-self:flex-start;border:1px solid var(--cream);border-bottom-left-radius:4px}
+  .bubble.me{background:var(--terracotta);color:var(--ivory);align-self:flex-end;border-bottom-right-radius:4px}
+  .bubble .time{font-size:10px;opacity:0.7;margin-top:4px}
+  .chat-date{text-align:center;font-size:11px;color:var(--stone);letter-spacing:0.3px;text-transform:uppercase;margin:8px 0}
+  .chat-input{padding:12px 16px;border-top:1px solid var(--cream);background:var(--ivory);display:flex;gap:10px;align-items:center}
+  .chat-input .input{flex:1}
+
+  /* Boost */
+  .plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .plan-card{background:var(--ivory);border:1px solid var(--cream);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:12px}
+  .plan-card.featured{background:var(--near-black);color:var(--ivory);border-color:var(--near-black)}
+  .plan-card.featured h3,.plan-card.featured .price{color:var(--ivory)}
+  .plan-card.featured ul li{color:var(--silver)}
+  .plan-card h3{font-family:var(--serif);font-weight:500;font-size:22px;margin:0}
+  .plan-card .price{font-family:var(--serif);font-size:36px;margin:6px 0 0;color:var(--near-black)}
+  .plan-card .price small{font-family:var(--sans);font-size:13px;color:var(--olive);font-weight:400}
+  .plan-card.featured .price small{color:var(--silver)}
+  .plan-card ul{margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--charcoal)}
+  .plan-card ul li::before{content:"✓ ";color:var(--terracotta);margin-right:4px}
+  .plan-card .btn{margin-top:auto}
+
+  /* preview card for boost */
+  .boost-preview{background:var(--ivory);border:1px solid var(--cream);border-radius:16px;padding:20px;display:flex;gap:18px;align-items:center}
+  .boost-thumb{width:96px;height:96px;border-radius:12px;background:var(--sand);display:flex;align-items:center;justify-content:center;font-size:44px;flex:none;position:relative}
+  .featured-badge{position:absolute;top:-6px;left:-6px;background:var(--terracotta);color:var(--ivory);font-size:10px;padding:3px 8px;border-radius:10px;letter-spacing:0.3px;text-transform:uppercase}
+
+  /* Stepper */
+  .stepper{display:flex;align-items:center;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+  .step{display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:20px;background:var(--ivory);border:1px solid var(--cream);font-size:13px;color:var(--olive)}
+  .step .num{width:20px;height:20px;border-radius:50%;background:var(--sand);color:var(--olive);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500}
+  .step.done{background:#f4e1d7;border-color:#eacbb9;color:#8a4a2d}
+  .step.done .num{background:var(--terracotta);color:var(--ivory)}
+  .step.current{background:var(--near-black);border-color:var(--near-black);color:var(--ivory)}
+  .step.current .num{background:var(--terracotta);color:var(--ivory)}
+  .step-arrow{color:var(--stone)}
+
+  /* Hand-drawn SVG illustrations */
+  .illu-hero{position:absolute;right:16px;bottom:24px;width:280px;height:280px;opacity:0.95;pointer-events:none}
+  .auth-hero blockquote{position:relative;z-index:2}
+  .illu-corner{position:absolute;right:18px;top:18px;width:120px;height:120px;opacity:0.9;pointer-events:none}
+  .illu-inline{width:100%;height:auto}
+  .illu path, .illu circle, .illu line, .illu rect, .illu ellipse{fill:none}
+  .illu .stroke{stroke:#141413;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+  .illu .stroke-thin{stroke:#141413;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
+  .illu .fill-terra{fill:#c96442}
+  .illu .fill-coral{fill:#d97757}
+  .illu .fill-green{fill:#6b8a63}
+  .illu .fill-cream{fill:#f5f4ed}
+  .illu .fill-sand{fill:#e8e6dc}
+</style>
+</head>
+<body>
+
+<div class="stack">
+
+<!-- ================== DESKTOP REGISTER ================== -->
+<div>
+  <p class="page-label">Desktop · Register</p>
+  <div class="frame frame-desktop">
+    <div class="auth-split">
+      <div class="auth-hero">
+        <div class="logo" style="padding:0;color:var(--ivory)">PawMatch<span style="color:var(--terracotta)">.</span></div>
+        <div>
+          <h1>Help pets find the homes they deserve.</h1>
+          <p>PawMatch connects shelters and breeders with thoughtful adopters. Create an account to start — add locations and details whenever you're ready.</p>
+        </div>
+        <blockquote>
+          "We placed 43 dogs in our first month. The matching quality is a world apart from listing sites."
+          <cite>— Robin K., Willow Creek Rescue</cite>
+        </blockquote>
+        <svg class="illu illu-hero" viewBox="0 0 520 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- warm background blob -->
+          <path class="fill-terra" opacity="0.18" d="M80 300 C 40 220, 120 90, 240 100 C 360 110, 470 180, 460 310 C 450 430, 310 470, 200 460 C 110 452, 120 380, 80 300 Z"/>
+          <!-- muted green ground -->
+          <path class="fill-green" opacity="0.22" d="M40 430 C 140 400, 260 420, 380 400 C 460 388, 500 410, 510 440 L 510 520 L 40 520 Z"/>
+
+          <!-- cat (left) -->
+          <g transform="translate(90,300)">
+            <path class="fill-cream stroke" d="M20 90 C 10 60, 20 30, 50 22 L 55 5 L 72 22 L 110 22 L 128 5 L 132 22 C 160 30, 172 60, 160 90 C 168 110, 162 135, 145 140 L 40 140 C 22 135, 14 110, 20 90 Z"/>
+            <circle class="fill-terra" cx="65" cy="75" r="5"/>
+            <circle class="fill-terra" cx="115" cy="75" r="5"/>
+            <path class="stroke" d="M85 95 Q 90 102 95 95"/>
+            <path class="stroke-thin" d="M40 85 L 25 82 M40 90 L 25 92 M145 85 L 160 82 M145 90 L 160 92"/>
+            <!-- tail curling -->
+            <path class="stroke" d="M165 130 C 200 115, 215 140, 200 165"/>
+          </g>
+
+          <!-- dog (right) -->
+          <g transform="translate(260,250)">
+            <!-- body -->
+            <ellipse class="fill-terra" cx="100" cy="150" rx="100" ry="60"/>
+            <path class="stroke" d="M8 150 C 8 105, 55 85, 100 85 C 150 85, 195 105, 195 150"/>
+            <!-- head -->
+            <path class="fill-coral stroke" d="M40 120 C 30 80, 45 35, 85 30 C 115 26, 140 45, 145 75 C 148 100, 130 125, 100 128 Z"/>
+            <!-- ear flop -->
+            <path class="fill-terra stroke" d="M50 65 C 30 55, 18 80, 38 105 Z"/>
+            <path class="fill-terra stroke" d="M135 50 C 152 42, 162 70, 142 85 Z"/>
+            <!-- face -->
+            <circle class="stroke" cx="72" cy="82" r="3.5" style="fill:#141413"/>
+            <circle class="stroke" cx="108" cy="78" r="3.5" style="fill:#141413"/>
+            <path class="stroke" d="M85 100 L 92 108 L 98 100"/>
+            <path class="stroke" d="M92 108 L 92 115"/>
+            <!-- legs -->
+            <path class="stroke" d="M45 200 L 45 225 M75 210 L 75 232 M130 210 L 130 232 M165 200 L 165 225"/>
+            <!-- tail wag -->
+            <path class="stroke" d="M195 135 C 220 120, 235 140, 225 160"/>
+          </g>
+
+          <!-- hearts floating -->
+          <path class="fill-terra" d="M225 170 C 215 158, 225 145, 235 152 C 245 145, 255 158, 245 170 L 235 182 Z"/>
+          <path class="fill-coral" opacity="0.8" d="M180 100 C 172 92, 180 82, 188 88 C 196 82, 204 92, 196 100 L 188 108 Z"/>
+          <path class="fill-terra" opacity="0.7" d="M400 140 C 392 132, 400 122, 408 128 C 416 122, 424 132, 416 140 L 408 148 Z"/>
+
+          <!-- paw prints -->
+          <g class="fill-green" opacity="0.7">
+            <circle cx="70" cy="470" r="4"/><circle cx="62" cy="460" r="3"/><circle cx="78" cy="460" r="3"/><circle cx="66" cy="453" r="2.5"/><circle cx="74" cy="453" r="2.5"/>
+            <circle cx="140" cy="485" r="4"/><circle cx="132" cy="475" r="3"/><circle cx="148" cy="475" r="3"/>
+          </g>
+        </svg>
+      </div>
+      <div class="auth-form-wrap">
+        <div class="auth-form">
+          <h2>Create your account.</h2>
+          <p class="sub">Keep it simple — you can add locations and details after.</p>
+
+          <div class="field">
+            <label>I'm registering as</label>
+            <div class="radio-group">
+              <div class="radio-card selected">
+                <div class="radio-dot"></div>
+                <div><div class="t">Shelter</div><div class="d">Non-profit or rescue</div></div>
+              </div>
+              <div class="radio-card">
+                <div class="radio-dot"></div>
+                <div><div class="t">Breeder</div><div class="d">Licensed breeder</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Email</label>
+            <input class="input" value="hello@willowcreek.org"/>
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input class="input" type="password" value="••••••••••"/>
+            <span class="hint">At least 10 characters.</span>
+          </div>
+
+          <button class="btn btn-primary">Create account</button>
+
+          <div class="divider-or">or continue with</div>
+          <div class="sso-row">
+            <button class="sso-btn">🔵 Google</button>
+            <button class="sso-btn"> Apple</button>
+          </div>
+
+          <div class="auth-footnote">Already have an account? <a href="#">Sign in</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================== DESKTOP LOGIN ================== -->
+<div>
+  <p class="page-label">Desktop · Login</p>
+  <div class="frame frame-desktop">
+    <div class="auth-split">
+      <div class="auth-hero">
+        <div class="logo" style="padding:0;color:var(--ivory)">PawMatch<span style="color:var(--terracotta)">.</span></div>
+        <div>
+          <h1>Welcome back.</h1>
+          <p>Review the adopters who swiped on your pets since you last checked in.</p>
+        </div>
+        <div></div>
+        <div class="hero-illu">🏡</div>
+      </div>
+      <div class="auth-form-wrap">
+        <div class="auth-form">
+          <h2>Sign in.</h2>
+          <p class="sub">Use your email or username to continue.</p>
+          <div class="field"><label>Email or username</label><input class="input" value="willowcreek"/></div>
+          <div class="field">
+            <label style="display:flex;justify-content:space-between">Password <a href="#" style="color:var(--coral);text-decoration:none;font-weight:400">Forgot?</a></label>
+            <input class="input" type="password" value="••••••••••"/>
+          </div>
+          <button class="btn btn-primary">Sign in</button>
+          <div class="divider-or">or continue with</div>
+          <div class="sso-row">
+            <button class="sso-btn">🔵 Google</button>
+            <button class="sso-btn"> Apple</button>
+          </div>
+          <div class="auth-footnote">New to PawMatch? <a href="#">Create an account</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================== DESKTOP HOME ================== -->
+<div>
+  <p class="page-label">Desktop · 1440 × 900 · Home / Dashboard</p>
+  <div class="frame frame-desktop">
+    <div class="dt">
+
+      <!-- Sidebar -->
+      <aside class="dt-nav">
+        <div class="logo">PawMatch<span class="dot">.</span></div>
+
+        <div class="nav-group-label">Main</div>
+        <div class="nav-item active">
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12 12 4l9 8v8a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg>
+          Home
+        </div>
+        <div class="nav-item">
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          My Account
+        </div>
+        <div class="nav-item">
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v10H4z"/><path d="M8 20h8M12 15v5"/></svg>
+          Pet Data
+        </div>
+        <div class="nav-item">
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h10l4 4v12H5z"/><path d="M9 12h6M9 16h6"/></svg>
+          Applications
+          <span style="margin-left:auto;background:var(--terracotta);color:var(--ivory);font-size:11px;padding:2px 7px;border-radius:10px">6</span>
+        </div>
+        <div class="nav-item">
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v12H7l-3 3z"/></svg>
+          Messages
+        </div>
+
+        <div class="nav-group-label">Growth</div>
+        <div class="nav-item">
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 14v6h6M20 10V4h-6M4 14l7-7M13 17l7-7"/></svg>
+          Boost / Ads
+        </div>
+
+        <div class="nav-profile">
+          <div class="avatar">M</div>
+          <div class="nav-profile-text">
+            <div class="nav-profile-name">Meadow Shelter</div>
+            <div class="nav-profile-sub">Shelter · Portland</div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main -->
+      <main class="dt-main">
+        <div class="topbar">
+          <div class="greeting" style="display:flex;gap:16px;align-items:center">
+            <svg class="illu" viewBox="0 0 120 120" width="90" height="90" style="flex:none">
+              <path class="fill-terra" opacity="0.18" d="M10 60 C 10 25, 45 10, 70 15 C 105 22, 115 55, 108 80 C 100 108, 60 118, 35 105 C 15 95, 10 80, 10 60 Z"/>
+              <!-- small cat peek -->
+              <g transform="translate(25,30)">
+                <path class="fill-cream stroke-thin" d="M10 50 C 5 30, 12 12, 30 8 L 32 0 L 42 10 L 50 10 L 58 0 L 60 8 C 78 12, 85 30, 78 50 C 70 60, 20 60, 10 50 Z"/>
+                <circle cx="28" cy="35" r="2.5" style="fill:#141413"/>
+                <circle cx="55" cy="35" r="2.5" style="fill:#141413"/>
+                <path class="stroke-thin" d="M40 42 Q 44 46 48 42"/>
+              </g>
+              <!-- hearts -->
+              <path class="fill-terra" opacity="0.8" d="M90 30 C 85 25, 90 18, 95 22 C 100 18, 105 25, 100 30 L 95 36 Z"/>
+            </svg>
+            <div>
+              <h1>Good afternoon, Meadow.</h1>
+              <p>Here's what's happening with your pets and adopters today.</p>
+            </div>
+          </div>
+          <div class="topbar-actions">
+            <div class="pause-toggle" title="Pause incoming applications if you're overwhelmed">
+              <span class="pause-dot"></span>
+              <div class="pause-text">
+                <div class="pause-label">Accepting applications</div>
+                <div class="pause-sub">Toggle off when you're overwhelmed</div>
+              </div>
+              <span class="switch on"><span class="knob"></span></span>
+            </div>
+            <button class="btn btn-primary">
+              <svg class="i-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg>
+              Add a pet
+            </button>
+          </div>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi">
+            <div class="kpi-label">Pets adopted · last month</div>
+            <div class="kpi-value">100</div>
+            <div class="kpi-delta">▲ 12% vs. prior month</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Applications under review</div>
+            <div class="kpi-value">24</div>
+            <div class="kpi-delta">6 new today</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Active listings</div>
+            <div class="kpi-value">38</div>
+            <div class="kpi-delta">5 going live soon</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Unread messages</div>
+            <div class="kpi-value">9</div>
+            <div class="kpi-delta neg">3 awaiting &gt;24h</div>
+          </div>
+        </div>
+
+        <div class="row2">
+          <!-- Chart -->
+          <div class="card">
+            <div class="card-head">
+              <h2 class="card-title">Adoptions over time</h2>
+              <a class="card-link" href="#">View report →</a>
+            </div>
+            <div class="chart">
+              <svg viewBox="0 0 600 200" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0%" stop-color="#c96442" stop-opacity="0.22"/>
+                    <stop offset="100%" stop-color="#c96442" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <g stroke="#f0eee6" stroke-width="1">
+                  <line x1="0" y1="40" x2="600" y2="40"/>
+                  <line x1="0" y1="90" x2="600" y2="90"/>
+                  <line x1="0" y1="140" x2="600" y2="140"/>
+                  <line x1="0" y1="190" x2="600" y2="190"/>
+                </g>
+                <path d="M0,150 C60,140 90,120 150,110 C210,100 240,135 300,115 C360,95 390,70 450,60 C510,50 550,40 600,30 L600,200 L0,200 Z" fill="url(#g)"/>
+                <path d="M0,150 C60,140 90,120 150,110 C210,100 240,135 300,115 C360,95 390,70 450,60 C510,50 550,40 600,30" fill="none" stroke="#c96442" stroke-width="2.2"/>
+                <circle cx="450" cy="60" r="4" fill="#c96442"/>
+              </svg>
+            </div>
+            <div class="chart-legend">
+              <span><span class="legend-dot" style="background:#c96442"></span>Adopted</span>
+              <span style="color:var(--stone)">Jan — Apr 2026</span>
+            </div>
+          </div>
+
+          <!-- Who's swiping -->
+          <div class="card">
+            <div class="card-head">
+              <h2 class="card-title">Who's swiping your pets</h2>
+              <a class="card-link" href="#">Audience report →</a>
+            </div>
+
+            <div class="persona-block">
+              <h4>Household</h4>
+              <div class="bar-row"><span class="lbl">Family</span><div class="bar-track"><div class="bar-fill" style="width:58%"></div></div><span class="pct">58%</span></div>
+              <div class="bar-row"><span class="lbl">Couple</span><div class="bar-track"><div class="bar-fill alt" style="width:27%"></div></div><span class="pct">27%</span></div>
+              <div class="bar-row"><span class="lbl">Single</span><div class="bar-track"><div class="bar-fill neutral" style="width:15%"></div></div><span class="pct">15%</span></div>
+            </div>
+
+            <div class="persona-divider"></div>
+
+            <div class="persona-block">
+              <h4>Top locations</h4>
+              <div class="chip-row">
+                <span class="chip accent">Portland · 34%</span>
+                <span class="chip">Seattle · 19%</span>
+                <span class="chip">Vancouver · 11%</span>
+                <span class="chip">Eugene · 8%</span>
+              </div>
+            </div>
+
+            <div class="persona-divider"></div>
+
+            <div class="persona-block">
+              <h4>Prefers</h4>
+              <div class="chip-row">
+                <span class="chip">Dogs 62%</span>
+                <span class="chip">Cats 28%</span>
+                <span class="chip">Small pets 10%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row2" style="grid-template-columns:1fr 1fr">
+          <!-- Applications -->
+          <div class="card">
+            <div class="card-head">
+              <h2 class="card-title">Applications needing review</h2>
+              <a class="card-link" href="#">See all 24 →</a>
+            </div>
+            <div class="app-item">
+              <div class="pet-thumb">🐕</div>
+              <div class="app-text">
+                <div class="app-name">Biscuit · Golden Retriever</div>
+                <div class="app-sub">Applicant: Sarah Chen · submitted 2h ago</div>
+              </div>
+              <span class="badge badge-pending">New</span>
+            </div>
+            <div class="app-item">
+              <div class="pet-thumb">🐈</div>
+              <div class="app-text">
+                <div class="app-name">Miso · Domestic Shorthair</div>
+                <div class="app-sub">Applicant: Daniel Park · submitted yesterday</div>
+              </div>
+              <span class="badge badge-review">Reviewing</span>
+            </div>
+            <div class="app-item">
+              <div class="pet-thumb">🐕</div>
+              <div class="app-text">
+                <div class="app-name">Olive · Beagle mix</div>
+                <div class="app-sub">Applicant: The Alvarez family · 3 days ago</div>
+              </div>
+              <span class="badge badge-review">Reviewing</span>
+            </div>
+            <div class="app-item">
+              <div class="pet-thumb">🐇</div>
+              <div class="app-text">
+                <div class="app-name">Clover · Holland Lop</div>
+                <div class="app-sub">Applicant: Priya Shah · 4 days ago</div>
+              </div>
+              <span class="badge badge-approved">Approved</span>
+            </div>
+          </div>
+
+          <!-- Top swiped pets -->
+          <div class="card">
+            <div class="card-head">
+              <h2 class="card-title">Top pets this week</h2>
+              <a class="card-link" href="#">See all →</a>
+            </div>
+            <div class="top-pet-row">
+              <div class="top-pet-rank">1</div>
+              <div class="pet-thumb">🐕</div>
+              <div class="top-pet-meta">
+                <div class="top-pet-name">Biscuit · Golden Retriever</div>
+                <div class="top-pet-sub">284 swipes · 42 likes · 6 applications</div>
+              </div>
+              <div class="top-pet-stat"><div class="n">14.8%</div><div class="u">like rate</div></div>
+            </div>
+            <div class="top-pet-row">
+              <div class="top-pet-rank">2</div>
+              <div class="pet-thumb">🐈</div>
+              <div class="top-pet-meta">
+                <div class="top-pet-name">Miso · Domestic Shorthair</div>
+                <div class="top-pet-sub">201 swipes · 31 likes · 4 applications</div>
+              </div>
+              <div class="top-pet-stat"><div class="n">15.4%</div><div class="u">like rate</div></div>
+            </div>
+            <div class="top-pet-row">
+              <div class="top-pet-rank">3</div>
+              <div class="pet-thumb">🐇</div>
+              <div class="top-pet-meta">
+                <div class="top-pet-name">Clover · Holland Lop</div>
+                <div class="top-pet-sub">176 swipes · 22 likes · 3 applications</div>
+              </div>
+              <div class="top-pet-stat"><div class="n">12.5%</div><div class="u">like rate</div></div>
+            </div>
+            <div class="top-pet-row">
+              <div class="top-pet-rank">4</div>
+              <div class="pet-thumb">🐕</div>
+              <div class="top-pet-meta">
+                <div class="top-pet-name">Olive · Beagle mix</div>
+                <div class="top-pet-sub">142 swipes · 14 likes · 2 applications</div>
+              </div>
+              <div class="top-pet-stat"><div class="n">9.8%</div><div class="u">like rate</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slim ads banner -->
+        <div class="ads-banner">
+          <div>
+            <h3>Reach more adopters.</h3>
+            <p>Boost featured pets to the top of the swipe feed — pay per week, no contracts.</p>
+          </div>
+          <button class="btn-on-dark">Explore Boost →</button>
+        </div>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ================== DESKTOP MY ACCOUNT ================== -->
+<div>
+  <p class="page-label">Desktop · My Account</p>
+  <div class="frame frame-desktop">
+    <div class="dt">
+      <aside class="dt-nav">
+        <div class="logo">PawMatch<span class="dot">.</span></div>
+        <div class="nav-group-label">Main</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12 12 4l9 8v8a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg>Home</div>
+        <div class="nav-item active"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>My Account</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v10H4z"/><path d="M8 20h8M12 15v5"/></svg>Pet Data</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h10l4 4v12H5z"/></svg>Applications<span style="margin-left:auto;background:var(--terracotta);color:var(--ivory);font-size:11px;padding:2px 7px;border-radius:10px">6</span></div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v12H7l-3 3z"/></svg>Messages</div>
+        <div class="nav-group-label">Growth</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 14v6h6M20 10V4h-6M4 14l7-7M13 17l7-7"/></svg>Boost / Ads</div>
+        <div class="nav-profile"><div class="avatar">M</div><div class="nav-profile-text"><div class="nav-profile-name">Meadow Shelter</div><div class="nav-profile-sub">Shelter · Portland</div></div></div>
+      </aside>
+      <main class="dt-main">
+        <div class="topbar">
+          <div class="greeting"><h1>My Account</h1><p>How you show up to adopters on PawMatch.</p></div>
+          <div class="topbar-actions">
+            <button class="btn btn-secondary">Preview public page</button>
+            <button class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+
+        <div class="page-tabs">
+          <div class="page-tab active">Profile</div>
+          <div class="page-tab">Application form</div>
+          <div class="page-tab">Team & vets</div>
+          <div class="page-tab">Billing</div>
+          <div class="page-tab">Security</div>
+        </div>
+
+        <div class="row2" style="grid-template-columns:1fr 320px">
+          <div class="card">
+            <h2 class="card-title" style="margin:0 0 20px">Organization profile</h2>
+            <div class="field-row">
+              <div class="field"><label>Organization name</label><input class="input" value="Willow Creek Rescue"/></div>
+              <div class="field">
+                <label>Type</label>
+                <select class="select"><option>Shelter</option><option>Breeder</option></select>
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label>City</label><input class="input" value="Portland"/></div>
+              <div class="field"><label>State / Region</label><input class="input" value="Oregon"/></div>
+            </div>
+            <div class="field"><label>Pet types you care for</label>
+              <div class="chip-row">
+                <span class="chip accent">Dogs</span><span class="chip accent">Cats</span><span class="chip">Rabbits</span><span class="chip">+ Add</span>
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label>Contact email</label><input class="input" value="hello@willowcreek.org"/></div>
+              <div class="field"><label>Phone</label><input class="input" value="(503) 555-0143"/></div>
+            </div>
+            <div class="field"><label>Website</label><input class="input" value="willowcreek.org"/></div>
+            <div class="field"><label>About</label><textarea class="textarea">We're a small volunteer-run rescue in Portland. Since 2014 we've placed 1,200+ animals in loving homes.</textarea></div>
+          </div>
+
+          <div class="card">
+            <h2 class="card-title" style="margin:0 0 16px">Profile photo</h2>
+            <div style="display:flex;gap:16px;align-items:center;margin-bottom:16px">
+              <div class="avatar" style="width:72px;height:72px;font-size:28px">M</div>
+              <div>
+                <button class="btn btn-secondary" style="margin-bottom:6px">Upload</button><br/>
+                <a href="#" style="font-size:12px;color:var(--olive)">Remove</a>
+              </div>
+            </div>
+            <h2 class="card-title" style="margin:24px 0 10px;font-size:17px">Verification</h2>
+            <div style="display:flex;gap:8px;align-items:center;font-size:13px;color:var(--charcoal);margin-bottom:8px"><span class="status-dot"></span>Email verified</div>
+            <div style="display:flex;gap:8px;align-items:center;font-size:13px;color:var(--charcoal);margin-bottom:8px"><span class="status-dot"></span>Phone verified</div>
+            <div style="display:flex;gap:8px;align-items:center;font-size:13px;color:var(--olive)"><span class="status-dot off"></span>501(c)(3) docs pending — <a href="#" style="color:var(--coral);text-decoration:none;margin-left:4px">upload</a></div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ================== DESKTOP PET DATA ================== -->
+<div>
+  <p class="page-label">Desktop · Pet Data (Upload & Manage)</p>
+  <div class="frame frame-desktop">
+    <div class="dt">
+      <aside class="dt-nav">
+        <div class="logo">PawMatch<span class="dot">.</span></div>
+        <div class="nav-group-label">Main</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12 12 4l9 8v8a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg>Home</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>My Account</div>
+        <div class="nav-item active"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v10H4z"/><path d="M8 20h8M12 15v5"/></svg>Pet Data</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h10l4 4v12H5z"/></svg>Applications<span style="margin-left:auto;background:var(--terracotta);color:var(--ivory);font-size:11px;padding:2px 7px;border-radius:10px">6</span></div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v12H7l-3 3z"/></svg>Messages</div>
+        <div class="nav-group-label">Growth</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 14v6h6M20 10V4h-6M4 14l7-7M13 17l7-7"/></svg>Boost / Ads</div>
+        <div class="nav-profile"><div class="avatar">M</div><div class="nav-profile-text"><div class="nav-profile-name">Meadow Shelter</div><div class="nav-profile-sub">Shelter · Portland</div></div></div>
+      </aside>
+      <main class="dt-main">
+        <div class="topbar">
+          <div class="greeting"><h1>Pet Data</h1><p>Upload, review, and keep every listing current. Auto-removal runs nightly for adopted pets.</p></div>
+          <div class="topbar-actions">
+            <button class="btn btn-secondary">Import file</button>
+            <button class="btn btn-primary">+ Add a pet</button>
+          </div>
+        </div>
+
+        <!-- Import sources -->
+        <div class="data-sources">
+          <div class="src-card accent">
+            <div class="src-ic">📄</div>
+            <div class="src-tag">Free</div>
+            <h4>Structured import</h4>
+            <p>CSV, TSV, JSON, or Excel. Up to 500 pets at a time.</p>
+          </div>
+          <div class="src-card">
+            <div class="src-ic">{ }</div>
+            <div class="src-tag">Developer</div>
+            <h4>API sync</h4>
+            <p>Connect a live feed. Read the <a href="#" style="color:var(--coral);text-decoration:none">API guide</a>.</p>
+          </div>
+          <div class="src-card">
+            <div class="src-ic">🔗</div>
+            <div class="src-tag">Connectors</div>
+            <h4>Data connector</h4>
+            <p>PetStablished, ShelterLuv, RescueGroups.</p>
+          </div>
+          <div class="src-card">
+            <div class="src-ic">📮</div>
+            <div class="src-tag">Paid service</div>
+            <h4>Paper records</h4>
+            <p>We'll digitize your paper records. <a href="#" style="color:var(--coral);text-decoration:none">Contact us</a>.</p>
+          </div>
+        </div>
+
+        <!-- Filters + table -->
+        <div class="filter-row">
+          <button class="filter-pill active">All · 38</button>
+          <button class="filter-pill">Live · 30</button>
+          <button class="filter-pill">Draft · 5</button>
+          <button class="filter-pill">Paused · 2</button>
+          <button class="filter-pill">Adopted · 1</button>
+          <input class="input search-input" placeholder="Search pets..."/>
+        </div>
+
+        <div class="card" style="padding:8px 16px">
+          <table class="data-table">
+            <thead><tr><th>Pet</th><th>Type</th><th>Age</th><th>Status</th><th>Applications</th><th>Updated</th><th></th></tr></thead>
+            <tbody>
+              <tr><td><div class="name-cell"><div class="pet-thumb" style="width:36px;height:36px;font-size:18px">🐕</div>Biscuit</div></td><td>Dog · Golden Retriever</td><td>2y</td><td><span class="pill live">Live</span></td><td>6</td><td>2h ago</td><td style="color:var(--olive)">Edit ›</td></tr>
+              <tr><td><div class="name-cell"><div class="pet-thumb" style="width:36px;height:36px;font-size:18px">🐈</div>Miso</div></td><td>Cat · Domestic Shorthair</td><td>4y</td><td><span class="pill live">Live</span></td><td>4</td><td>Yesterday</td><td style="color:var(--olive)">Edit ›</td></tr>
+              <tr><td><div class="name-cell"><div class="pet-thumb" style="width:36px;height:36px;font-size:18px">🐕</div>Olive</div></td><td>Dog · Beagle mix</td><td>1y</td><td><span class="pill draft">Draft</span></td><td>—</td><td>3 days ago</td><td style="color:var(--olive)">Edit ›</td></tr>
+              <tr><td><div class="name-cell"><div class="pet-thumb" style="width:36px;height:36px;font-size:18px">🐇</div>Clover</div></td><td>Rabbit · Holland Lop</td><td>6m</td><td><span class="pill live">Live</span></td><td>3</td><td>5 days ago</td><td style="color:var(--olive)">Edit ›</td></tr>
+              <tr><td><div class="name-cell"><div class="pet-thumb" style="width:36px;height:36px;font-size:18px">🐕</div>Pepper</div></td><td>Dog · Mixed</td><td>7y</td><td><span class="pill paused">Paused</span></td><td>1</td><td>1 week ago</td><td style="color:var(--olive)">Edit ›</td></tr>
+              <tr><td><div class="name-cell"><div class="pet-thumb" style="width:36px;height:36px;font-size:18px">🐈</div>Juniper</div></td><td>Cat · Maine Coon</td><td>3y</td><td><span class="pill adopted">Adopted</span></td><td>—</td><td>Auto-archived 2d ago</td><td style="color:var(--olive)">View ›</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="font-size:12px;color:var(--olive);margin-top:-8px">💡 The system auto-detects and archives adopted pets. You can manually revise any detail at any time.</div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ================== DESKTOP APPLICATIONS LIST ================== -->
+<div>
+  <p class="page-label">Desktop · Applications</p>
+  <div class="frame frame-desktop">
+    <div class="dt">
+      <aside class="dt-nav">
+        <div class="logo">PawMatch<span class="dot">.</span></div>
+        <div class="nav-group-label">Main</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12 12 4l9 8v8a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg>Home</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>My Account</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v10H4z"/><path d="M8 20h8M12 15v5"/></svg>Pet Data</div>
+        <div class="nav-item active"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h10l4 4v12H5z"/></svg>Applications<span style="margin-left:auto;background:var(--terracotta);color:var(--ivory);font-size:11px;padding:2px 7px;border-radius:10px">6</span></div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v12H7l-3 3z"/></svg>Messages</div>
+        <div class="nav-group-label">Growth</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 14v6h6M20 10V4h-6M4 14l7-7M13 17l7-7"/></svg>Boost / Ads</div>
+        <div class="nav-profile"><div class="avatar">M</div><div class="nav-profile-text"><div class="nav-profile-name">Meadow Shelter</div><div class="nav-profile-sub">Shelter · Portland</div></div></div>
+      </aside>
+      <main class="dt-main">
+        <div class="topbar">
+          <div class="greeting"><h1>Applications</h1><p>24 under review · 6 new today</p></div>
+          <div class="topbar-actions">
+            <div class="pause-toggle"><span class="pause-dot"></span><div class="pause-text"><div class="pause-label">Accepting applications</div><div class="pause-sub">Toggle off if overwhelmed</div></div><span class="switch on"><span class="knob"></span></span></div>
+            <button class="btn btn-secondary">Edit form</button>
+          </div>
+        </div>
+
+        <div class="filter-row">
+          <button class="filter-pill active">All · 24</button>
+          <button class="filter-pill">Pre-app · 6</button>
+          <button class="filter-pill">Meeting · 5</button>
+          <button class="filter-pill">Met · 7</button>
+          <button class="filter-pill">Approved · 4</button>
+          <button class="filter-pill">Declined · 2</button>
+          <input class="input search-input" placeholder="Search applicants or pets..."/>
+        </div>
+
+        <div class="card" style="padding:8px 16px">
+          <table class="data-table">
+            <thead><tr><th>Applicant</th><th>Pet</th><th>Household</th><th>Location</th><th>Submitted</th><th>Stage</th><th></th></tr></thead>
+            <tbody>
+              <tr><td><div class="name-cell"><div class="avatar" style="width:32px;height:32px;font-size:13px">S</div>Sarah Chen</div></td><td>Biscuit 🐕</td><td>Family · 2 kids</td><td>Portland</td><td>2h ago</td><td><span class="badge badge-pending">Pre-app</span></td><td style="color:var(--olive)">Review ›</td></tr>
+              <tr><td><div class="name-cell"><div class="avatar" style="width:32px;height:32px;font-size:13px">D</div>Daniel Park</div></td><td>Miso 🐈</td><td>Couple</td><td>Seattle</td><td>Yesterday</td><td><span class="badge badge-review">Meeting Fri 3pm</span></td><td style="color:var(--olive)">Review ›</td></tr>
+              <tr><td><div class="name-cell"><div class="avatar" style="width:32px;height:32px;font-size:13px">A</div>The Alvarez family</div></td><td>Olive 🐕</td><td>Family · 3 kids</td><td>Portland</td><td>3 days ago</td><td><span class="badge badge-review">Met · reviewing</span></td><td style="color:var(--olive)">Review ›</td></tr>
+              <tr><td><div class="name-cell"><div class="avatar" style="width:32px;height:32px;font-size:13px">P</div>Priya Shah</div></td><td>Clover 🐇</td><td>Single</td><td>Vancouver</td><td>4 days ago</td><td><span class="badge badge-approved">Approved</span></td><td style="color:var(--olive)">View ›</td></tr>
+              <tr><td><div class="name-cell"><div class="avatar" style="width:32px;height:32px;font-size:13px">J</div>Jamie Rhodes</div></td><td>Biscuit 🐕</td><td>Couple</td><td>Eugene</td><td>5 days ago</td><td><span class="badge badge-pending">Pre-app</span></td><td style="color:var(--olive)">Review ›</td></tr>
+              <tr><td><div class="name-cell"><div class="avatar" style="width:32px;height:32px;font-size:13px">R</div>Robin L.</div></td><td>Pepper 🐕</td><td>Single</td><td>Portland</td><td>1 week ago</td><td><span class="badge badge-review">Awaiting adopter</span></td><td style="color:var(--olive)">Review ›</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="font-size:12px;color:var(--olive);margin-top:-8px">💡 Every stage is optional. If you've already met in person, you can jump straight to a final decision.</div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ================== DESKTOP APPLICATION REVIEW ================== -->
+<div>
+  <p class="page-label">Desktop · Application Review</p>
+  <div class="frame frame-desktop">
+    <div class="dt">
+      <aside class="dt-nav">
+        <div class="logo">PawMatch<span class="dot">.</span></div>
+        <div class="nav-group-label">Main</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12 12 4l9 8v8a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg>Home</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>My Account</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v10H4z"/><path d="M8 20h8M12 15v5"/></svg>Pet Data</div>
+        <div class="nav-item active"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h10l4 4v12H5z"/></svg>Applications<span style="margin-left:auto;background:var(--terracotta);color:var(--ivory);font-size:11px;padding:2px 7px;border-radius:10px">6</span></div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v12H7l-3 3z"/></svg>Messages</div>
+        <div class="nav-group-label">Growth</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 14v6h6M20 10V4h-6M4 14l7-7M13 17l7-7"/></svg>Boost / Ads</div>
+        <div class="nav-profile"><div class="avatar">M</div><div class="nav-profile-text"><div class="nav-profile-name">Meadow Shelter</div><div class="nav-profile-sub">Shelter · Portland</div></div></div>
+      </aside>
+      <main class="dt-main">
+        <div class="topbar">
+          <div class="greeting">
+            <div style="font-size:12px;color:var(--olive);margin-bottom:4px"><a href="#" style="color:var(--olive);text-decoration:none">Applications</a> / Sarah Chen</div>
+            <h1>Sarah Chen's application</h1>
+            <p>Submitted 2h ago for <strong>Biscuit</strong> · pre-application received</p>
+          </div>
+          <div class="topbar-actions">
+            <button class="btn btn-secondary">Message</button>
+            <button class="btn btn-secondary" style="background:#f1d6d1;box-shadow:0 0 0 1px #e0b8b1;color:#8a2d2d">Decline</button>
+            <button class="btn btn-primary">Approve for in-person meeting →</button>
+          </div>
+        </div>
+
+        <!-- Stepper -->
+        <div class="stepper">
+          <div class="step current"><span class="num">1</span>Pre-application</div>
+          <span class="step-arrow">→</span>
+          <div class="step"><span class="num">2</span>In-person meeting</div>
+          <span class="step-arrow">→</span>
+          <div class="step"><span class="num">3</span>Full form & review</div>
+          <span class="step-arrow">→</span>
+          <div class="step"><span class="num">4</span>Final decision</div>
+          <span style="margin-left:auto;font-size:12px;color:var(--stone)">Each step is optional — you can jump straight to a final decision.</span>
+        </div>
+
+        <div class="rev-split">
+          <div class="applicant-card">
+            <div class="applicant-head">
+              <div class="applicant-avatar">S</div>
+              <div>
+                <h3>Sarah Chen</h3>
+                <div class="meta">Family · 2 kids (7, 10) · Portland, OR · applying for Biscuit</div>
+              </div>
+            </div>
+
+            <div style="font-size:11px;letter-spacing:0.3px;text-transform:uppercase;color:var(--coral);margin-bottom:12px">Pre-application · short screener</div>
+
+            <div class="qa">
+              <div class="q">Why are you interested in adopting now?</div>
+              <div class="a">Our old golden passed last year and the house has felt quiet ever since. The kids are finally asking every weekend — we feel ready.</div>
+            </div>
+            <div class="qa">
+              <div class="q">What do you like most about Biscuit?</div>
+              <div class="a">His eyes, honestly. And the note about him being gentle with kids — our 7-year-old has been nervous around bigger dogs.</div>
+            </div>
+            <div class="qa">
+              <div class="q">Why is Biscuit a good fit for your family/lifestyle?</div>
+              <div class="a">Daily walks at Forest Park, fenced back yard (~400 sqft), someone home most weekdays. We've raised two goldens before.</div>
+            </div>
+            <div class="qa">
+              <div class="q">Do you own or rent? Any building restrictions?</div>
+              <div class="a">Own · single-family home · no restrictions.</div>
+            </div>
+            <div class="qa">
+              <div class="q">Household members</div>
+              <div class="a">2 adults (36, 38), 2 kids (7, 10). No one with pet allergies.</div>
+            </div>
+            <div class="qa">
+              <div class="q">Other pets in the household</div>
+              <div class="a">Murphy — M, 6y, Golden Retriever · neutered · fully vaccinated · last vet visit Jan 2026 for annual.</div>
+            </div>
+            <div class="qa">
+              <div class="q">Vet clinic you use</div>
+              <div class="a">Forest Park Veterinary · Dr. Patel · (503) 555-0199</div>
+            </div>
+            <div class="qa">
+              <div class="q">Planned daily routine for Biscuit</div>
+              <div class="a">Morning walk 7am, yard play after school, evening walk 6pm, fed 2× daily. Alone ~3h on weekdays, never more than 5.</div>
+            </div>
+
+            <div style="margin-top:16px;padding:12px 14px;background:var(--parchment);border:1px dashed var(--ring);border-radius:10px;font-size:12px;color:var(--olive);line-height:1.5">
+              📋 <strong>Full form</strong> will be completed at the in-person meeting (or uploaded as a signed PDF). It covers pets no longer with them, medical history, daily routine details, tip-sheet interests, and signature/certification.
+            </div>
+          </div>
+
+          <div class="card">
+            <h2 class="card-title" style="margin:0 0 16px">At a glance</h2>
+            <div style="display:flex;flex-direction:column;gap:10px;font-size:13px">
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Household</span><span>Family · 2 kids</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Location</span><span>Portland, OR (6 mi)</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Home</span><span>Owned · fenced yard</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Other pets</span><span>1 dog (neutered)</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Hours alone</span><span>~3h/weekday</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Experience</span><span>Owned goldens before</span></div>
+            </div>
+
+            <div class="persona-divider"></div>
+
+            <h2 class="card-title" style="margin:0 0 10px;font-size:17px">Requirement match</h2>
+            <div style="font-size:13px;color:var(--charcoal);display:flex;flex-direction:column;gap:6px">
+              <div>✓ Fenced yard preferred</div>
+              <div>✓ Kids OK household</div>
+              <div>✓ Dogs OK household</div>
+              <div>✓ Age 21+</div>
+              <div style="color:var(--olive)">• Home visit: not yet scheduled</div>
+            </div>
+
+            <div class="persona-divider"></div>
+
+            <h2 class="card-title" style="margin:0 0 10px;font-size:17px">Notes (internal)</h2>
+            <textarea class="textarea" style="min-height:70px">Looks like a strong match. Schedule home visit.</textarea>
+
+            <div class="persona-divider"></div>
+
+            <h2 class="card-title" style="margin:0 0 10px;font-size:17px">Next step</h2>
+            <p style="font-size:13px;color:var(--olive);margin:0 0 12px;line-height:1.5">Approving moves this applicant to <strong>In-person meeting</strong>.</p>
+            <button class="btn btn-primary" style="width:100%;justify-content:center;padding:11px">Approve · propose times</button>
+            <div style="font-size:11px;color:var(--stone);text-align:center;margin-top:4px">You pick 2–3 slots, adopter confirms one.</div>
+            <button class="btn btn-secondary" style="width:100%;justify-content:center;padding:10px;margin-top:12px">Approve · adopter picks time</button>
+            <div style="font-size:11px;color:var(--stone);text-align:center;margin-top:4px">They open your calendar and pick.</div>
+            <a href="#" style="display:block;text-align:center;margin-top:14px;font-size:12px;color:var(--olive);text-decoration:none;padding-top:10px;border-top:1px solid var(--cream)">Skip — we've already met →</a>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ================== DESKTOP MESSAGES ================== -->
+<div>
+  <p class="page-label">Desktop · Messages</p>
+  <div class="frame frame-desktop">
+    <div class="dt">
+      <aside class="dt-nav">
+        <div class="logo">PawMatch<span class="dot">.</span></div>
+        <div class="nav-group-label">Main</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12 12 4l9 8v8a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg>Home</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>My Account</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v10H4z"/><path d="M8 20h8M12 15v5"/></svg>Pet Data</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h10l4 4v12H5z"/></svg>Applications<span style="margin-left:auto;background:var(--terracotta);color:var(--ivory);font-size:11px;padding:2px 7px;border-radius:10px">6</span></div>
+        <div class="nav-item active"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v12H7l-3 3z"/></svg>Messages<span style="margin-left:auto;background:var(--terracotta);color:var(--ivory);font-size:11px;padding:2px 7px;border-radius:10px">3</span></div>
+        <div class="nav-group-label">Growth</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 14v6h6M20 10V4h-6M4 14l7-7M13 17l7-7"/></svg>Boost / Ads</div>
+        <div class="nav-profile"><div class="avatar">M</div><div class="nav-profile-text"><div class="nav-profile-name">Meadow Shelter</div><div class="nav-profile-sub">Shelter · Portland</div></div></div>
+      </aside>
+      <main class="dt-main">
+        <div class="topbar">
+          <div class="greeting"><h1>Messages</h1><p>Chat with potential adopters about specific pets.</p></div>
+        </div>
+
+        <div class="chat-split">
+          <div class="conv-list">
+            <div class="conv-search"><input class="input" placeholder="Search conversations..."/></div>
+            <div class="conv-item active">
+              <div class="avatar" style="width:40px;height:40px;font-size:15px">S</div>
+              <div class="t"><div class="n">Sarah Chen <span class="time">2h</span></div><div class="preview">About Biscuit — can we schedule a home visit?</div></div>
+              <div class="conv-unread"></div>
+            </div>
+            <div class="conv-item">
+              <div class="avatar" style="width:40px;height:40px;font-size:15px">D</div>
+              <div class="t"><div class="n">Daniel Park <span class="time">1d</span></div><div class="preview">Thanks, I'll send over Miso's vet reference…</div></div>
+            </div>
+            <div class="conv-item">
+              <div class="avatar" style="width:40px;height:40px;font-size:15px">A</div>
+              <div class="t"><div class="n">Alvarez family <span class="time">3d</span></div><div class="preview">We're available this Saturday afternoon.</div></div>
+              <div class="conv-unread"></div>
+            </div>
+            <div class="conv-item">
+              <div class="avatar" style="width:40px;height:40px;font-size:15px">P</div>
+              <div class="t"><div class="n">Priya Shah <span class="time">4d</span></div><div class="preview">Clover is settling in beautifully 🐇💕</div></div>
+            </div>
+            <div class="conv-item">
+              <div class="avatar" style="width:40px;height:40px;font-size:15px">J</div>
+              <div class="t"><div class="n">Jamie Rhodes <span class="time">5d</span></div><div class="preview">Just submitted an application for Biscuit.</div></div>
+              <div class="conv-unread"></div>
+            </div>
+          </div>
+          <div class="chat-main">
+            <div class="chat-header">
+              <div class="avatar" style="width:36px;height:36px;font-size:14px">S</div>
+              <div class="pet-ctx"><div class="n">Sarah Chen</div><div class="s">About <strong>Biscuit</strong> · Application <span class="badge badge-review">Reviewing</span></div></div>
+              <button class="btn btn-secondary" style="padding:8px 12px;font-size:13px">View application</button>
+            </div>
+            <div class="chat-body">
+              <div class="chat-date">Today</div>
+              <div class="bubble them">Hi! I just submitted an application for Biscuit — my family and I are so excited. Would love to set up a time to meet him. <div class="time">10:14</div></div>
+              <div class="bubble me">Hi Sarah — thanks for applying! Your application looks great. Could we schedule a home visit this weekend? <div class="time">11:02</div></div>
+              <div class="bubble them">Absolutely. Saturday afternoon works — say 2pm? I can share our address. <div class="time">11:18</div></div>
+              <div class="bubble them">Also, here's a quick video of our yard and Murphy (our current golden) meeting the neighbor's dog last week: 🎥 yard-and-murphy.mp4 <div class="time">11:19</div></div>
+              <div class="bubble me">Perfect, Saturday 2pm works. I'll bring Biscuit along for a short intro. <div class="time">11:24</div></div>
+            </div>
+            <div class="chat-input">
+              <button class="btn-ghost btn" style="padding:8px">📎</button>
+              <input class="input" placeholder="Write a message..."/>
+              <button class="btn btn-primary" style="padding:10px 14px">Send</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ================== DESKTOP BOOST ================== -->
+<div>
+  <p class="page-label">Desktop · Boost / Ads</p>
+  <div class="frame frame-desktop">
+    <div class="dt">
+      <aside class="dt-nav">
+        <div class="logo">PawMatch<span class="dot">.</span></div>
+        <div class="nav-group-label">Main</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12 12 4l9 8v8a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg>Home</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>My Account</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v10H4z"/><path d="M8 20h8M12 15v5"/></svg>Pet Data</div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h10l4 4v12H5z"/></svg>Applications<span style="margin-left:auto;background:var(--terracotta);color:var(--ivory);font-size:11px;padding:2px 7px;border-radius:10px">6</span></div>
+        <div class="nav-item"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v12H7l-3 3z"/></svg>Messages</div>
+        <div class="nav-group-label">Growth</div>
+        <div class="nav-item active"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 14v6h6M20 10V4h-6M4 14l7-7M13 17l7-7"/></svg>Boost / Ads</div>
+        <div class="nav-profile"><div class="avatar">M</div><div class="nav-profile-text"><div class="nav-profile-name">Meadow Shelter</div><div class="nav-profile-sub">Shelter · Portland</div></div></div>
+      </aside>
+      <main class="dt-main">
+        <div class="topbar">
+          <div class="greeting"><h1>Boost a pet</h1><p>Feature a listing at the top of the swipe feed for adopters in your area.</p></div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title" style="margin:0 0 14px">Which pet?</h2>
+          <div class="boost-preview">
+            <div class="boost-thumb">🐕<span class="featured-badge">Featured</span></div>
+            <div style="flex:1">
+              <div style="font-family:var(--serif);font-size:22px;font-weight:500">Biscuit</div>
+              <div style="font-size:13px;color:var(--olive);margin:2px 0 8px">Golden Retriever · 2y · Portland</div>
+              <div class="chip-row"><span class="chip accent">Kids OK</span><span class="chip accent">Dogs OK</span><span class="chip">Fenced yard</span></div>
+            </div>
+            <button class="btn btn-secondary">Change</button>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="card-title" style="font-size:22px;margin:0 0 14px">Choose a plan</h2>
+          <div class="plan-grid">
+            <div class="plan-card">
+              <h3>Weekly</h3>
+              <div class="price">—<small>&nbsp;pricing TBD</small></div>
+              <ul><li>Top of feed in your city</li><li>"Featured" badge</li><li>Cancel anytime</li></ul>
+              <button class="btn btn-secondary" style="justify-content:center">Select</button>
+            </div>
+            <div class="plan-card featured">
+              <h3>Monthly</h3>
+              <div class="price">—<small>&nbsp;pricing TBD</small></div>
+              <ul><li>Top of feed in your region</li><li>"Featured" badge + spotlight</li><li>Weekly performance report</li></ul>
+              <button class="btn btn-primary" style="justify-content:center">Select Monthly</button>
+            </div>
+            <div class="plan-card">
+              <h3>Regional burst</h3>
+              <div class="price">—<small>&nbsp;pricing TBD</small></div>
+              <ul><li>Top of feed across 3 cities</li><li>Spotlight + email inclusion</li><li>Priority support</li></ul>
+              <button class="btn btn-secondary" style="justify-content:center">Select</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title" style="margin:0 0 12px">Estimated reach (Monthly)</h2>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;font-size:13px;color:var(--charcoal)">
+            <div><div style="font-family:var(--serif);font-size:28px">3.2k</div><div style="color:var(--olive)">extra swipes / week</div></div>
+            <div><div style="font-family:var(--serif);font-size:28px">~48</div><div style="color:var(--olive)">extra likes / week</div></div>
+            <div><div style="font-family:var(--serif);font-size:28px">~9</div><div style="color:var(--olive)">extra applications / week</div></div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE REGISTER -->
+<div>
+  <p class="page-label">Mobile · Register</p>
+  <div class="frame frame-mobile">
+    <div class="mb" style="padding:32px 22px">
+      <div class="logo" style="padding:0">PawMatch<span style="color:var(--terracotta)">.</span></div>
+      <div>
+        <h1 style="font-family:var(--serif);font-weight:500;font-size:28px;margin:16px 0 8px;line-height:1.2">Create your account.</h1>
+        <p style="font-size:14px;color:var(--olive);margin:0;line-height:1.6">Keep it simple — add the rest later.</p>
+      </div>
+
+      <div class="field" style="margin-top:12px">
+        <label>I'm registering as</label>
+        <div class="radio-group">
+          <div class="radio-card selected"><div class="radio-dot"></div><div><div class="t">Shelter</div></div></div>
+          <div class="radio-card"><div class="radio-dot"></div><div><div class="t">Breeder</div></div></div>
+        </div>
+      </div>
+      <div class="field"><label>Email</label><input class="input" value="hello@willowcreek.org"/></div>
+      <div class="field"><label>Password</label><input class="input" type="password" value="••••••••••"/></div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;padding:13px">Create account</button>
+
+      <div class="divider-or">or</div>
+      <button class="sso-btn" style="width:100%">🔵 Continue with Google</button>
+      <button class="sso-btn" style="width:100%;margin-top:8px"> Continue with Apple</button>
+
+      <div class="auth-footnote">Already have an account? <a href="#">Sign in</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE LOGIN -->
+<div>
+  <p class="page-label">Mobile · Login</p>
+  <div class="frame frame-mobile">
+    <div class="mb" style="padding:48px 22px;justify-content:center">
+      <div class="logo" style="padding:0">PawMatch<span style="color:var(--terracotta)">.</span></div>
+      <h1 style="font-family:var(--serif);font-weight:500;font-size:30px;margin:24px 0 6px;line-height:1.2">Welcome back.</h1>
+      <p style="font-size:14px;color:var(--olive);margin:0 0 8px">Sign in to continue.</p>
+      <div class="field"><label>Email or username</label><input class="input" value="willowcreek"/></div>
+      <div class="field"><label style="display:flex;justify-content:space-between">Password <a href="#" style="color:var(--coral);text-decoration:none">Forgot?</a></label><input class="input" type="password" value="••••••••••"/></div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;padding:13px">Sign in</button>
+      <div class="divider-or">or</div>
+      <button class="sso-btn" style="width:100%">🔵 Continue with Google</button>
+      <button class="sso-btn" style="width:100%;margin-top:8px"> Continue with Apple</button>
+      <div class="auth-footnote">New here? <a href="#">Create an account</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================== MOBILE HOME ================== -->
+<div>
+  <p class="page-label">Mobile · 390 × 844 · Home / Dashboard</p>
+  <div class="frame frame-mobile">
+    <div class="mb">
+      <div class="mb-top">
+        <div class="logo">PawMatch<span style="color:var(--terracotta)">.</span></div>
+        <div class="avatar" style="width:32px;height:32px;font-size:13px">M</div>
+      </div>
+
+      <div class="mb-greeting">
+        <h1>Good afternoon, Meadow.</h1>
+        <p>6 new applications waiting for you.</p>
+      </div>
+
+      <div class="mb-pause">
+        <span class="pause-dot"></span>
+        <div class="pause-text">
+          <div class="pause-label">Accepting applications</div>
+          <div class="pause-sub">Pause when overwhelmed</div>
+        </div>
+        <span class="switch on"><span class="knob"></span></span>
+      </div>
+
+      <div class="mb-kpis">
+        <div class="kpi">
+          <div class="kpi-label">Adopted · last mo.</div>
+          <div class="kpi-value">100</div>
+          <div class="kpi-delta">▲ 12%</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">In review</div>
+          <div class="kpi-value">24</div>
+          <div class="kpi-delta">6 new today</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Active listings</div>
+          <div class="kpi-value">38</div>
+          <div class="kpi-delta">5 going live</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Unread msgs</div>
+          <div class="kpi-value">9</div>
+          <div class="kpi-delta neg">3 &gt;24h</div>
+        </div>
+      </div>
+
+      <div class="mb-section-head">
+        <h2>Adoptions</h2>
+        <a class="card-link" href="#">Report →</a>
+      </div>
+      <div class="mb-card">
+        <div class="chart mb-chart">
+          <svg viewBox="0 0 600 200" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="g2" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#c96442" stop-opacity="0.22"/>
+                <stop offset="100%" stop-color="#c96442" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,150 C60,140 90,120 150,110 C210,100 240,135 300,115 C360,95 390,70 450,60 C510,50 550,40 600,30 L600,200 L0,200 Z" fill="url(#g2)"/>
+            <path d="M0,150 C60,140 90,120 150,110 C210,100 240,135 300,115 C360,95 390,70 450,60 C510,50 550,40 600,30" fill="none" stroke="#c96442" stroke-width="2.4"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="mb-section-head">
+        <h2>Applications</h2>
+        <a class="card-link" href="#">All 24 →</a>
+      </div>
+      <div class="mb-card" style="padding:4px 16px">
+        <div class="app-item">
+          <div class="pet-thumb">🐕</div>
+          <div class="app-text">
+            <div class="app-name">Biscuit · Golden Retriever</div>
+            <div class="app-sub">Sarah Chen · 2h ago</div>
+          </div>
+          <span class="badge badge-pending">New</span>
+        </div>
+        <div class="app-item">
+          <div class="pet-thumb">🐈</div>
+          <div class="app-text">
+            <div class="app-name">Miso · Shorthair</div>
+            <div class="app-sub">Daniel Park · yesterday</div>
+          </div>
+          <span class="badge badge-review">Reviewing</span>
+        </div>
+        <div class="app-item">
+          <div class="pet-thumb">🐇</div>
+          <div class="app-text">
+            <div class="app-name">Clover · Holland Lop</div>
+            <div class="app-sub">Priya Shah · 4d ago</div>
+          </div>
+          <span class="badge badge-approved">Approved</span>
+        </div>
+      </div>
+
+      <div class="mb-section-head">
+        <h2>Who's swiping</h2>
+        <a class="card-link" href="#">Report →</a>
+      </div>
+      <div class="mb-card">
+        <div class="persona-block">
+          <h4>Household</h4>
+          <div class="bar-row"><span class="lbl">Family</span><div class="bar-track"><div class="bar-fill" style="width:58%"></div></div><span class="pct">58%</span></div>
+          <div class="bar-row"><span class="lbl">Couple</span><div class="bar-track"><div class="bar-fill alt" style="width:27%"></div></div><span class="pct">27%</span></div>
+          <div class="bar-row"><span class="lbl">Single</span><div class="bar-track"><div class="bar-fill neutral" style="width:15%"></div></div><span class="pct">15%</span></div>
+        </div>
+        <div class="persona-divider"></div>
+        <div class="persona-block">
+          <h4>Top locations</h4>
+          <div class="chip-row">
+            <span class="chip accent">Portland 34%</span>
+            <span class="chip">Seattle 19%</span>
+            <span class="chip">Vancouver 11%</span>
+          </div>
+        </div>
+        <div class="persona-divider"></div>
+        <div class="persona-block">
+          <h4>Prefers</h4>
+          <div class="chip-row">
+            <span class="chip">Dogs 62%</span>
+            <span class="chip">Cats 28%</span>
+            <span class="chip">Small 10%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-section-head">
+        <h2>Top pets this week</h2>
+        <a class="card-link" href="#">All →</a>
+      </div>
+      <div class="mb-card" style="padding:4px 16px">
+        <div class="top-pet-row">
+          <div class="top-pet-rank">1</div>
+          <div class="pet-thumb">🐕</div>
+          <div class="top-pet-meta">
+            <div class="top-pet-name">Biscuit</div>
+            <div class="top-pet-sub">284 swipes · 42 likes</div>
+          </div>
+          <div class="top-pet-stat"><div class="n">14.8%</div><div class="u">like</div></div>
+        </div>
+        <div class="top-pet-row">
+          <div class="top-pet-rank">2</div>
+          <div class="pet-thumb">🐈</div>
+          <div class="top-pet-meta">
+            <div class="top-pet-name">Miso</div>
+            <div class="top-pet-sub">201 swipes · 31 likes</div>
+          </div>
+          <div class="top-pet-stat"><div class="n">15.4%</div><div class="u">like</div></div>
+        </div>
+        <div class="top-pet-row">
+          <div class="top-pet-rank">3</div>
+          <div class="pet-thumb">🐇</div>
+          <div class="top-pet-meta">
+            <div class="top-pet-name">Clover</div>
+            <div class="top-pet-sub">176 swipes · 22 likes</div>
+          </div>
+          <div class="top-pet-stat"><div class="n">12.5%</div><div class="u">like</div></div>
+        </div>
+      </div>
+
+      <div class="ads-banner" style="flex-direction:column;align-items:flex-start;gap:10px;padding:16px 18px">
+        <div>
+          <h3>Reach more adopters.</h3>
+          <p>Boost pets to the top of the swipe feed.</p>
+        </div>
+        <button class="btn-on-dark">Explore Boost →</button>
+      </div>
+
+      <div class="mb-tab-bar">
+        <div class="mb-tab active">
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12 12 4l9 8v8a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg>
+          Home
+        </div>
+        <div class="mb-tab">
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v10H4z"/><path d="M8 20h8"/></svg>
+          Pets
+        </div>
+        <div class="mb-tab">
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h10l4 4v12H5z"/></svg>
+          Forms
+        </div>
+        <div class="mb-tab">
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v12H7l-3 3z"/></svg>
+          Chat
+        </div>
+        <div class="mb-tab">
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          Me
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- MOBILE MY ACCOUNT -->
+<div>
+  <p class="page-label">Mobile · My Account</p>
+  <div class="frame frame-mobile">
+    <div class="mb">
+      <div class="mb-top"><div class="logo">PawMatch<span style="color:var(--terracotta)">.</span></div><div class="avatar" style="width:32px;height:32px;font-size:13px">M</div></div>
+      <div class="mb-greeting"><h1>My Account</h1><p>How adopters see you.</p></div>
+
+      <div class="mb-card" style="display:flex;align-items:center;gap:14px">
+        <div class="avatar" style="width:54px;height:54px;font-size:20px">M</div>
+        <div style="flex:1"><div style="font-family:var(--serif);font-size:18px;font-weight:500">Willow Creek Rescue</div><div style="font-size:12px;color:var(--olive)">Shelter · Portland, OR</div></div>
+        <button class="btn btn-secondary" style="padding:7px 10px;font-size:12px">Edit</button>
+      </div>
+
+      <div class="mb-card">
+        <div class="field"><label>Organization name</label><input class="input" value="Willow Creek Rescue"/></div>
+        <div class="field"><label>City</label><input class="input" value="Portland"/></div>
+        <div class="field"><label>Contact email</label><input class="input" value="hello@willowcreek.org"/></div>
+        <div class="field"><label>Pet types</label>
+          <div class="chip-row"><span class="chip accent">Dogs</span><span class="chip accent">Cats</span><span class="chip">Rabbits</span></div>
+        </div>
+      </div>
+
+      <div class="mb-card" style="padding:0">
+        <div style="padding:14px 16px;border-bottom:1px solid var(--cream);display:flex;justify-content:space-between;align-items:center;font-size:14px"><span>Application form</span><span style="color:var(--stone)">›</span></div>
+        <div style="padding:14px 16px;border-bottom:1px solid var(--cream);display:flex;justify-content:space-between;align-items:center;font-size:14px"><span>Team & vets</span><span style="color:var(--stone)">›</span></div>
+        <div style="padding:14px 16px;border-bottom:1px solid var(--cream);display:flex;justify-content:space-between;align-items:center;font-size:14px"><span>Billing</span><span style="color:var(--stone)">›</span></div>
+        <div style="padding:14px 16px;display:flex;justify-content:space-between;align-items:center;font-size:14px"><span>Security</span><span style="color:var(--stone)">›</span></div>
+      </div>
+
+      <button class="btn btn-primary" style="width:100%;justify-content:center;padding:12px">Save changes</button>
+
+      <div class="mb-tab-bar">
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12 12 4l9 8v8a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg>Home</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v10H4z"/><path d="M8 20h8"/></svg>Pets</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h10l4 4v12H5z"/></svg>Forms</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="mb-tab active"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE PET DATA -->
+<div>
+  <p class="page-label">Mobile · Pet Data</p>
+  <div class="frame frame-mobile">
+    <div class="mb">
+      <div class="mb-top"><div class="logo">PawMatch<span style="color:var(--terracotta)">.</span></div><button class="btn btn-primary" style="padding:8px 12px;font-size:13px">+ Pet</button></div>
+      <div class="mb-greeting"><h1>Pet Data</h1><p>38 pets · 30 live</p></div>
+
+      <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:4px">
+        <button class="filter-pill active">All 38</button>
+        <button class="filter-pill">Live 30</button>
+        <button class="filter-pill">Draft 5</button>
+        <button class="filter-pill">Paused 2</button>
+      </div>
+
+      <div class="mb-card" style="padding:4px 14px">
+        <div class="app-item"><div class="pet-thumb">🐕</div><div class="app-text"><div class="app-name">Biscuit · Golden Retriever</div><div class="app-sub">2y · 6 applications</div></div><span class="pill live">Live</span></div>
+        <div class="app-item"><div class="pet-thumb">🐈</div><div class="app-text"><div class="app-name">Miso · Shorthair</div><div class="app-sub">4y · 4 applications</div></div><span class="pill live">Live</span></div>
+        <div class="app-item"><div class="pet-thumb">🐕</div><div class="app-text"><div class="app-name">Olive · Beagle mix</div><div class="app-sub">1y · draft</div></div><span class="pill draft">Draft</span></div>
+        <div class="app-item"><div class="pet-thumb">🐇</div><div class="app-text"><div class="app-name">Clover · Holland Lop</div><div class="app-sub">6m · 3 applications</div></div><span class="pill live">Live</span></div>
+        <div class="app-item"><div class="pet-thumb">🐕</div><div class="app-text"><div class="app-name">Pepper · Mixed</div><div class="app-sub">7y · paused</div></div><span class="pill paused">Paused</span></div>
+      </div>
+
+      <div style="font-size:11px;color:var(--olive);padding:0 4px">💡 Adopted pets auto-archive nightly.</div>
+
+      <div class="mb-tab-bar">
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12 12 4l9 8v8a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg>Home</div>
+        <div class="mb-tab active"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v10H4z"/><path d="M8 20h8"/></svg>Pets</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h10l4 4v12H5z"/></svg>Forms</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE PET DETAIL -->
+<div>
+  <p class="page-label">Mobile · Pet Detail / Edit</p>
+  <div class="frame frame-mobile">
+    <div class="mb">
+      <div class="mb-top"><a href="#" style="color:var(--olive);text-decoration:none;font-size:14px">‹ Pets</a><button class="btn btn-primary" style="padding:7px 12px;font-size:13px">Save</button></div>
+
+      <div>
+        <h1 style="font-family:var(--serif);font-weight:500;font-size:26px;margin:0;line-height:1.2">Biscuit</h1>
+        <p style="margin:4px 0 0;font-size:13px;color:var(--olive)">Golden Retriever · 2y · <span class="pill live">Live</span></p>
+      </div>
+
+      <div class="mb-pause"><span class="pause-dot"></span><div class="pause-text"><div class="pause-label">Listing live</div><div class="pause-sub">Pause to hide from swipers</div></div><span class="switch on"><span class="knob"></span></span></div>
+
+      <div class="mb-card">
+        <h3 style="font-family:var(--serif);font-weight:500;font-size:17px;margin:0 0 10px">Photos & videos</h3>
+        <div class="media-grid" style="grid-template-columns:repeat(3,1fr)">
+          <div class="media-tile">🐕</div><div class="media-tile">🦴</div><div class="media-tile">🌿</div>
+          <div class="media-tile">▶️</div><div class="media-tile">📷</div><div class="media-tile add">＋</div>
+        </div>
+      </div>
+
+      <div class="mb-card">
+        <h3 style="font-family:var(--serif);font-weight:500;font-size:17px;margin:0 0 10px">Basics</h3>
+        <div class="field"><label>Name</label><input class="input" value="Biscuit"/></div>
+        <div class="field"><label>Breed</label><input class="input" value="Golden Retriever"/></div>
+        <div class="field"><label>Age</label><input class="input" value="2 years"/></div>
+        <div class="field"><label>About</label><textarea class="textarea">Friendly, energetic boy. Loves walks and soft beds.</textarea></div>
+      </div>
+
+      <div class="mb-card">
+        <h3 style="font-family:var(--serif);font-weight:500;font-size:17px;margin:0 0 10px">Requirements</h3>
+        <div class="chip-row"><span class="chip accent">Kids OK</span><span class="chip accent">Dogs OK</span><span class="chip">Fenced yard</span></div>
+        <div class="field" style="margin-top:12px"><label>Adoption fee</label><input class="input" value="$350"/></div>
+      </div>
+
+      <div class="mb-tab-bar">
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12 12 4l9 8v8a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg>Home</div>
+        <div class="mb-tab active"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v10H4z"/><path d="M8 20h8"/></svg>Pets</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h10l4 4v12H5z"/></svg>Forms</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE FORMS (Applications list) -->
+<div>
+  <p class="page-label">Mobile · Forms</p>
+  <div class="frame frame-mobile">
+    <div class="mb">
+      <div class="mb-top"><div class="logo">PawMatch<span style="color:var(--terracotta)">.</span></div><div class="avatar" style="width:32px;height:32px;font-size:13px">M</div></div>
+      <div class="mb-greeting"><h1>Forms</h1><p>24 under review · 6 new</p></div>
+
+      <div class="mb-pause"><span class="pause-dot"></span><div class="pause-text"><div class="pause-label">Accepting applications</div><div class="pause-sub">Pause when overwhelmed</div></div><span class="switch on"><span class="knob"></span></span></div>
+
+      <div style="display:flex;gap:8px;overflow-x:auto">
+        <button class="filter-pill active">All 24</button>
+        <button class="filter-pill">Pre-app 6</button>
+        <button class="filter-pill">Meeting 5</button>
+        <button class="filter-pill">Met 7</button>
+        <button class="filter-pill">Approved 4</button>
+      </div>
+
+      <div class="mb-card" style="padding:4px 14px">
+        <div class="app-item"><div class="avatar" style="width:40px;height:40px;font-size:15px">S</div><div class="app-text"><div class="app-name">Sarah Chen → Biscuit 🐕</div><div class="app-sub">Family · Portland · 2h ago</div></div><span class="badge badge-pending">Pre-app</span></div>
+        <div class="app-item"><div class="avatar" style="width:40px;height:40px;font-size:15px">D</div><div class="app-text"><div class="app-name">Daniel Park → Miso 🐈</div><div class="app-sub">Meeting Fri 3pm</div></div><span class="badge badge-review">Meeting</span></div>
+        <div class="app-item"><div class="avatar" style="width:40px;height:40px;font-size:15px">A</div><div class="app-text"><div class="app-name">Alvarez family → Olive 🐕</div><div class="app-sub">Met · awaiting decision</div></div><span class="badge badge-review">Met</span></div>
+        <div class="app-item"><div class="avatar" style="width:40px;height:40px;font-size:15px">P</div><div class="app-text"><div class="app-name">Priya Shah → Clover 🐇</div><div class="app-sub">Single · Vancouver · 4d</div></div><span class="badge badge-approved">Approved</span></div>
+        <div class="app-item"><div class="avatar" style="width:40px;height:40px;font-size:15px">J</div><div class="app-text"><div class="app-name">Jamie Rhodes → Biscuit 🐕</div><div class="app-sub">Couple · Eugene · 5d</div></div><span class="badge badge-pending">Pre-app</span></div>
+      </div>
+
+      <p style="font-size:11px;color:var(--stone);padding:0 4px;margin:0">💡 Every stage is optional. Jump to final decision anytime.</p>
+
+      <div class="mb-tab-bar">
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12 12 4l9 8v8a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg>Home</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v10H4z"/><path d="M8 20h8"/></svg>Pets</div>
+        <div class="mb-tab active"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h10l4 4v12H5z"/></svg>Forms</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE APPLICATION REVIEW -->
+<div>
+  <p class="page-label">Mobile · Application Review</p>
+  <div class="frame frame-mobile">
+    <div class="mb">
+      <div class="mb-top"><a href="#" style="color:var(--olive);text-decoration:none;font-size:14px">‹ Forms</a><a href="#" style="color:var(--olive);font-size:13px;text-decoration:none">Message</a></div>
+
+      <div style="display:flex;gap:12px;align-items:center">
+        <div class="applicant-avatar" style="width:48px;height:48px;font-size:18px">S</div>
+        <div>
+          <div style="font-family:var(--serif);font-size:20px;font-weight:500">Sarah Chen</div>
+          <div style="font-size:12px;color:var(--olive)">Pre-application for Biscuit 🐕 · 2h ago</div>
+        </div>
+      </div>
+
+      <!-- mini stepper -->
+      <div style="display:flex;gap:6px;align-items:center;font-size:11px;color:var(--olive);flex-wrap:wrap">
+        <span class="step current" style="padding:5px 10px;font-size:11px"><span class="num" style="width:16px;height:16px;font-size:9px">1</span>Pre-app</span>
+        <span>→</span>
+        <span class="step" style="padding:5px 10px;font-size:11px"><span class="num" style="width:16px;height:16px;font-size:9px">2</span>Meeting</span>
+        <span>→</span>
+        <span class="step" style="padding:5px 10px;font-size:11px"><span class="num" style="width:16px;height:16px;font-size:9px">3</span>Final</span>
+      </div>
+
+      <div class="mb-card" style="padding:4px 16px">
+        <div style="display:flex;flex-direction:column;gap:10px;padding:12px 0;font-size:13px">
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Household</span><span>Family · 2 kids</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Location</span><span>Portland</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Home</span><span>Owned · fenced</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--olive)">Other pets</span><span>1 dog</span></div>
+        </div>
+      </div>
+
+      <div class="mb-card">
+        <div style="font-size:10px;letter-spacing:0.3px;text-transform:uppercase;color:var(--coral);margin-bottom:8px">Pre-application · short screener</div>
+        <div class="qa"><div class="q">Why adopt now?</div><div class="a">Our old golden passed last year. The kids have been asking every weekend — we feel ready.</div></div>
+        <div class="qa"><div class="q">What you like most about Biscuit</div><div class="a">His eyes, and the note about him being gentle with kids.</div></div>
+        <div class="qa"><div class="q">Why a good fit?</div><div class="a">Forest Park walks, fenced yard, home most weekdays. Raised 2 goldens before.</div></div>
+        <div class="qa"><div class="q">Home</div><div class="a">Own · single-family · no restrictions.</div></div>
+        <div class="qa"><div class="q">Household</div><div class="a">2 adults, 2 kids (7, 10). No allergies.</div></div>
+        <div class="qa"><div class="q">Other pets</div><div class="a">Murphy · M · 6y golden · neutered · fully vaccinated.</div></div>
+        <div class="qa"><div class="q">Vet clinic</div><div class="a">Forest Park Vet · Dr. Patel · (503) 555-0199</div></div>
+        <div class="qa"><div class="q">Planned routine</div><div class="a">7am walk · yard play · 6pm walk · alone ≤3h/day.</div></div>
+      </div>
+
+      <div style="padding:12px 14px;background:var(--ivory);border:1px dashed var(--ring);border-radius:10px;font-size:12px;color:var(--olive);line-height:1.5">
+        📋 Full form completed at the in-person meeting (or uploaded as signed PDF).
+      </div>
+
+      <div class="mb-card" style="background:#f4f6ef;border-color:#dce3d2">
+        <div style="font-size:13px;color:var(--charcoal);display:flex;flex-direction:column;gap:6px">
+          <div>✓ Fenced yard · ✓ Kids OK · ✓ Dogs OK · ✓ 21+</div>
+          <div style="color:var(--olive)">• Home visit not scheduled</div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" style="width:100%;justify-content:center;padding:13px">Approve for in-person meeting →</button>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <button class="btn btn-secondary" style="justify-content:center;padding:11px;background:#f1d6d1;box-shadow:0 0 0 1px #e0b8b1;color:#8a2d2d">Decline</button>
+        <button class="btn btn-secondary" style="justify-content:center;padding:11px">Skip to final</button>
+      </div>
+      <p style="font-size:11px;color:var(--stone);text-align:center;margin:0">Each step is optional — skip to final if you've already met in person.</p>
+
+      <div class="mb-tab-bar">
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12 12 4l9 8v8a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg>Home</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v10H4z"/><path d="M8 20h8"/></svg>Pets</div>
+        <div class="mb-tab active"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h10l4 4v12H5z"/></svg>Forms</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE MESSAGES -->
+<div>
+  <p class="page-label">Mobile · Chat</p>
+  <div class="frame frame-mobile">
+    <div class="mb" style="padding:0 0 80px">
+      <div style="padding:14px 16px;border-bottom:1px solid var(--cream);display:flex;gap:10px;align-items:center;background:var(--ivory)">
+        <a href="#" style="color:var(--olive);text-decoration:none;font-size:14px">‹</a>
+        <div class="avatar" style="width:34px;height:34px;font-size:13px">S</div>
+        <div style="flex:1"><div style="font-size:14px;font-weight:500">Sarah Chen</div><div style="font-size:11px;color:var(--olive)">About Biscuit · <span class="badge badge-review">Reviewing</span></div></div>
+      </div>
+
+      <div style="padding:16px;display:flex;flex-direction:column;gap:10px">
+        <div class="chat-date">Today</div>
+        <div class="bubble them" style="max-width:85%">Hi! I just submitted an application for Biscuit. Would love to meet him. <div class="time">10:14</div></div>
+        <div class="bubble me" style="max-width:85%">Thanks Sarah! Your application looks great. Home visit this weekend? <div class="time">11:02</div></div>
+        <div class="bubble them" style="max-width:85%">Saturday 2pm works — I'll share our address. <div class="time">11:18</div></div>
+        <div class="bubble them" style="max-width:85%">🎥 yard-and-murphy.mp4 <div class="time">11:19</div></div>
+        <div class="bubble me" style="max-width:85%">Perfect, Saturday 2pm. I'll bring Biscuit. <div class="time">11:24</div></div>
+      </div>
+
+      <div style="position:absolute;bottom:60px;left:0;right:0;background:var(--ivory);border-top:1px solid var(--cream);padding:10px 12px;display:flex;gap:8px;align-items:center">
+        <button class="btn-ghost btn" style="padding:6px">📎</button>
+        <input class="input" placeholder="Write a message..."/>
+        <button class="btn btn-primary" style="padding:9px 12px;font-size:13px">Send</button>
+      </div>
+
+      <div class="mb-tab-bar">
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12 12 4l9 8v8a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg>Home</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v10H4z"/><path d="M8 20h8"/></svg>Pets</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h10l4 4v12H5z"/></svg>Forms</div>
+        <div class="mb-tab active"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE BOOST -->
+<div>
+  <p class="page-label">Mobile · Boost</p>
+  <div class="frame frame-mobile">
+    <div class="mb">
+      <div class="mb-top"><a href="#" style="color:var(--olive);text-decoration:none;font-size:14px">‹</a><div style="font-size:14px;font-weight:500">Boost</div><div></div></div>
+
+      <div class="mb-greeting"><h1>Boost a pet</h1><p>Get to the top of the swipe feed.</p></div>
+
+      <div class="mb-card" style="display:flex;gap:12px;align-items:center">
+        <div class="boost-thumb" style="width:64px;height:64px;font-size:30px">🐕<span class="featured-badge">Featured</span></div>
+        <div style="flex:1"><div style="font-family:var(--serif);font-size:18px;font-weight:500">Biscuit</div><div style="font-size:12px;color:var(--olive)">Golden Retriever · 2y</div></div>
+        <a href="#" style="color:var(--coral);font-size:12px;text-decoration:none">Change</a>
+      </div>
+
+      <div class="plan-card">
+        <h3>Weekly</h3>
+        <div class="price">—<small>&nbsp;pricing TBD</small></div>
+        <ul><li>Top of feed in your city</li><li>Cancel anytime</li></ul>
+        <button class="btn btn-secondary" style="justify-content:center">Select</button>
+      </div>
+      <div class="plan-card featured">
+        <h3>Monthly · Most popular</h3>
+        <div class="price">—<small>&nbsp;pricing TBD</small></div>
+        <ul><li>Top of feed — regional</li><li>"Featured" + spotlight</li><li>Weekly report · save 22%</li></ul>
+        <button class="btn btn-primary" style="justify-content:center">Select Monthly</button>
+      </div>
+      <div class="plan-card">
+        <h3>Regional burst</h3>
+        <div class="price">—<small>&nbsp;pricing TBD</small></div>
+        <ul><li>3 cities · spotlight + email</li></ul>
+        <button class="btn btn-secondary" style="justify-content:center">Select</button>
+      </div>
+
+      <div class="mb-tab-bar">
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12 12 4l9 8v8a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg>Home</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v10H4z"/><path d="M8 20h8"/></svg>Pets</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h10l4 4v12H5z"/></svg>Forms</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="mb-tab"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
