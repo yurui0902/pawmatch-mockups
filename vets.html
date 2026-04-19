@@ -1,0 +1,2967 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PawMatch Vet — low-fi wireframe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#111;
+    --ink2:#666;
+    --ink3:#999;
+    --line:#e0e0e0;
+    --surface:#f5f5f5;
+    --page:#fafafa;
+    --white:#fff;
+    --sans:'Inter','Helvetica','Arial',sans-serif;
+    --mono:'JetBrains Mono','Menlo','Consolas',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#d9d9d9;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;font-size:13px;line-height:1.4}
+  body{padding:48px 24px 120px}
+
+  .page-label{font-size:11px;font-weight:600;letter-spacing:0.6px;text-transform:uppercase;color:var(--ink2);margin:0 0 10px 4px}
+  .stack{display:flex;gap:40px;flex-wrap:wrap;justify-content:center;align-items:flex-start}
+
+  .frame{background:var(--page);border:1px solid var(--ink3);overflow:hidden;margin:0 auto 40px}
+  .frame-desktop{width:1440px;height:900px}
+  .frame-mobile{width:390px;height:844px}
+
+  /* ============ TYPOGRAPHY ============ */
+  h1,h2,h3,h4,h5{font-weight:600;color:var(--ink);letter-spacing:-0.2px}
+  .mono{font-family:var(--mono)}
+  .upper{text-transform:uppercase;letter-spacing:0.6px;font-size:10px;font-weight:600;color:var(--ink2)}
+  .muted{color:var(--ink2)}
+  .tertiary{color:var(--ink3)}
+
+  /* ============ BUTTONS ============ */
+  .btn{font-family:var(--sans);font-weight:500;font-size:13px;border:1px solid var(--ink);border-radius:4px;padding:7px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;line-height:1.2;text-decoration:none;background:var(--white);color:var(--ink)}
+  .btn-primary{background:var(--ink);color:var(--white);border-color:var(--ink)}
+  .btn-ghost{border-color:var(--line);color:var(--ink2);background:var(--white)}
+  .btn-sm{padding:5px 10px;font-size:12px}
+  .btn-lg{padding:12px 22px;font-size:14px;border-radius:4px}
+  .btn-block{width:100%;justify-content:center}
+
+  /* ============ BADGES ============ */
+  .badge{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--ink);background:var(--white);color:var(--ink);font-family:var(--mono);font-size:10px;font-weight:500;padding:2px 7px;text-transform:uppercase;letter-spacing:0.4px}
+  .badge.fill{background:var(--ink);color:var(--white)}
+  .badge.ghost{border-color:var(--line);color:var(--ink2)}
+
+  /* ============ FIELDS ============ */
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+  .field label{font-size:11px;font-weight:600;color:var(--ink);text-transform:uppercase;letter-spacing:0.5px}
+  .input{font-family:var(--sans);font-size:13px;color:var(--ink);background:var(--white);border:1px solid var(--line);border-radius:4px;padding:10px 12px;outline:none;width:100%}
+  .input-placeholder{color:var(--ink3)}
+
+  /* ============ SIDEBAR NAV ============ */
+  .app{display:grid;grid-template-columns:280px 1fr;height:100%;background:var(--page)}
+  .sidebar{border-right:1px solid var(--line);padding:20px 16px;display:flex;flex-direction:column;gap:4px;background:var(--white)}
+  .brand{border:1px solid var(--line);border-radius:4px;padding:10px 12px;background:var(--white);margin-bottom:14px;font-size:13px;font-weight:600;letter-spacing:-0.2px;display:flex;align-items:center;gap:8px}
+  .brand .tag{font-size:10px;font-weight:500;color:var(--ink2);text-transform:uppercase;letter-spacing:0.5px;border-left:1px solid var(--line);padding-left:8px;margin-left:2px}
+  .nav-label{font-size:10px;font-weight:600;color:var(--ink2);padding:14px 10px 6px;text-transform:uppercase;letter-spacing:0.6px}
+  .nav-item{padding:8px 10px;font-size:13px;color:var(--ink);display:flex;align-items:center;gap:8px;cursor:pointer;border-radius:4px;font-weight:500}
+  .nav-item:hover{background:var(--surface)}
+  .nav-item.active{background:var(--ink);color:var(--white)}
+  .nav-item .count{margin-left:auto;border:1px solid var(--ink);padding:0 5px;font-family:var(--mono);font-size:10px;font-weight:500;min-width:18px;text-align:center;background:var(--white);color:var(--ink);border-radius:2px}
+  .nav-item.active .count{background:var(--white);color:var(--ink);border-color:var(--white)}
+  .profile-box{margin-top:auto;border:1px solid var(--line);border-radius:4px;background:var(--white);padding:10px;display:flex;gap:10px;align-items:center}
+  .avatar-sq{width:32px;height:32px;border:1px solid var(--line);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--ink3);flex:none;border-radius:4px}
+  .avatar-sq.lg{width:80px;height:80px;font-size:11px}
+  .avatar-sq.xl{width:120px;height:120px;font-size:12px}
+  .profile-box .n{font-size:12px;font-weight:600}
+  .profile-box .s{font-size:11px;color:var(--ink2);margin-top:1px}
+
+  /* ============ MAIN ============ */
+  .main{display:flex;flex-direction:column;overflow:hidden;background:var(--page)}
+  .topbar{padding:18px 28px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px;background:var(--white)}
+  .topbar h1{font-size:20px;font-weight:600;letter-spacing:-0.3px}
+  .topbar .sub{font-size:12px;color:var(--ink2);margin-top:2px}
+  .topbar-actions{display:flex;gap:8px;align-items:center}
+  .icon-btn{width:34px;height:34px;border:1px solid var(--line);border-radius:4px;background:var(--white);display:inline-flex;align-items:center;justify-content:center;color:var(--ink2);cursor:pointer;font-size:12px}
+  .search-bar{border:1px solid var(--line);border-radius:4px;padding:7px 12px;font-size:12px;color:var(--ink3);background:var(--white);min-width:220px;display:inline-flex;align-items:center;gap:8px}
+
+  .content{flex:1;overflow-y:auto;padding:24px 28px;display:flex;flex-direction:column;gap:20px}
+
+  /* ============ KPI ============ */
+  .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .kpi{border:1px solid var(--line);border-radius:4px;padding:18px 20px;background:var(--white)}
+  .kpi .l{font-size:10px;font-weight:600;color:var(--ink2);text-transform:uppercase;letter-spacing:0.6px}
+  .kpi .v{font-size:48px;font-weight:500;margin:6px 0 4px;font-family:var(--mono);letter-spacing:-1px;line-height:1}
+  .kpi .d{font-size:11px;color:var(--ink2)}
+
+  /* ============ CARD ============ */
+  .card{border:1px solid var(--line);border-radius:4px;background:var(--white);overflow:hidden}
+  .card-head{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+  .card-head h2{font-size:14px;font-weight:600;letter-spacing:-0.2px}
+  .card-head .sub{font-size:11px;color:var(--ink2);margin-top:2px}
+  .card-head .link{font-size:12px;color:var(--ink);text-decoration:underline;font-family:var(--mono)}
+
+  .grid-2{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
+
+  /* ============ APPT ROWS ============ */
+  .appt-row{display:grid;grid-template-columns:68px 42px 1fr auto;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line);align-items:center}
+  .appt-row:last-child{border-bottom:none}
+  .appt-row.now{background:var(--surface)}
+  .appt-time{font-family:var(--mono);font-size:13px;font-weight:500}
+  .appt-time .dur{display:block;font-size:10px;color:var(--ink2);margin-top:2px;font-weight:400}
+  .appt-thumb{width:36px;height:36px;border:1px solid var(--line);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--ink3);border-radius:4px}
+  .appt-info .n{font-size:13px;font-weight:600}
+  .appt-info .meta{font-size:12px;color:var(--ink2);margin-top:2px}
+  .appt-right{display:flex;gap:8px;align-items:center}
+
+  /* ============ TABS ============ */
+  .tab-bar{display:flex;gap:0;border-bottom:1px solid var(--line)}
+  .tab-bar button{background:transparent;border:none;padding:10px 14px;font-family:var(--sans);font-weight:500;font-size:13px;color:var(--ink2);cursor:pointer;margin-bottom:-1px;border-bottom:2px solid transparent}
+  .tab-bar button.on{color:var(--ink);font-weight:600;border-bottom-color:var(--ink)}
+
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+  .seg button{background:var(--white);border:none;padding:6px 12px;font-family:var(--sans);font-size:12px;color:var(--ink);cursor:pointer;border-right:1px solid var(--line)}
+  .seg button:last-child{border-right:none}
+  .seg button.on{background:var(--ink);color:var(--white)}
+
+  /* ============ ACTIVITY ============ */
+  .act-item{padding:12px 18px;border-bottom:1px solid var(--line);font-size:12px;display:flex;gap:10px;align-items:flex-start}
+  .act-item:last-child{border-bottom:none}
+  .act-item strong{font-weight:600}
+  .act-item .t{display:block;font-size:10px;color:var(--ink3);margin-top:3px;font-family:var(--mono)}
+  .act-bullet{width:7px;height:7px;border:1px solid var(--ink);background:var(--ink);margin-top:6px;flex:none;border-radius:50%}
+  .act-bullet.hollow{background:var(--white)}
+
+  .stat-row{padding:16px 18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-end;background:var(--page)}
+  .stat-row .l{font-size:10px;color:var(--ink2);text-transform:uppercase;letter-spacing:0.6px;font-weight:600}
+  .stat-row .v{font-size:32px;font-weight:500;font-family:var(--mono);letter-spacing:-0.6px;line-height:1}
+
+  /* ============ TIMELINE (APPTS) ============ */
+  .tl-row{display:grid;grid-template-columns:72px 1fr;border-bottom:1px solid var(--line);min-height:48px}
+  .tl-row:last-child{border-bottom:none}
+  .tl-time{padding:10px 12px;border-right:1px solid var(--line);font-family:var(--mono);font-size:11px;color:var(--ink2);text-align:right;background:var(--page)}
+  .tl-slot{padding:8px 12px;display:flex;align-items:center;gap:10px}
+  .tl-slot.empty{color:var(--ink3);font-size:11px;font-style:italic}
+  .tl-slot.now{background:var(--surface);position:relative}
+  .tl-slot.now::before{content:"NOW →";font-family:var(--mono);font-size:10px;font-weight:700;margin-right:6px;color:var(--ink)}
+  .tl-card{flex:1;display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;padding:6px 10px;border:1px solid var(--line);background:var(--white);border-radius:4px}
+  .tl-card.now{border-width:2px;border-color:var(--ink)}
+  .tl-card .thumb{width:36px;height:36px;border:1px solid var(--line);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--ink3);border-radius:4px}
+  .tl-card .n{font-size:13px;font-weight:600}
+  .tl-card .meta{font-size:11px;color:var(--ink2);margin-top:2px;font-family:var(--mono)}
+
+  /* ============ TABLE ============ */
+  .tbl{width:100%;border-collapse:collapse;background:var(--white);font-size:13px}
+  .tbl th{text-align:left;padding:10px 14px;font-size:10px;font-weight:600;color:var(--ink2);text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--line);background:var(--page)}
+  .tbl td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
+  .tbl tr:last-child td{border-bottom:none}
+  .tbl .pet-cell{display:flex;align-items:center;gap:10px}
+  .tbl .pet-cell .thumb{width:32px;height:32px;border:1px solid var(--line);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--ink3);border-radius:4px;flex:none}
+  .tbl .pet-cell .n{font-weight:600;font-size:13px}
+  .tbl .pet-cell .s{font-size:11px;color:var(--ink2)}
+  .tbl a.row-act{font-size:12px;color:var(--ink);text-decoration:underline;font-family:var(--mono)}
+
+  /* ============ AUTH ============ */
+  .auth{display:grid;grid-template-columns:1fr 1fr;height:100%}
+  .auth-left{background:var(--ink);color:var(--white);padding:64px 56px;display:flex;flex-direction:column;justify-content:space-between}
+  .auth-left h1{font-size:44px;font-weight:600;letter-spacing:-1px;line-height:1;margin-bottom:16px;color:var(--white)}
+  .auth-left p{color:#ccc;font-size:15px;line-height:1.5;max-width:440px}
+  .auth-left ul{list-style:none;margin-top:28px;display:flex;flex-direction:column;gap:14px}
+  .auth-left ul li{display:flex;gap:12px;align-items:flex-start;color:#ddd;font-size:14px;line-height:1.4}
+  .auth-left ul li::before{content:"▸";color:var(--white);font-family:var(--mono);font-size:13px;margin-top:1px}
+  .auth-left .foot{font-size:11px;color:#999;font-family:var(--mono);text-transform:uppercase;letter-spacing:0.4px}
+  .auth-right{padding:64px 72px;display:flex;flex-direction:column;justify-content:center;background:var(--white)}
+  .auth-form{max-width:420px;width:100%;margin:0 auto}
+  .auth-form h2{font-size:28px;font-weight:600;letter-spacing:-0.5px;margin-bottom:6px}
+  .auth-form .sub{font-size:13px;color:var(--ink2);margin-bottom:24px}
+  .divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:var(--ink3);font-size:11px;text-transform:uppercase;letter-spacing:0.6px}
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+  .radio-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+  .radio-card{border:1px solid var(--line);border-radius:4px;padding:12px 14px;background:var(--white);cursor:pointer;display:flex;gap:10px;align-items:flex-start}
+  .radio-card.sel{border-color:var(--ink);border-width:2px;padding:11px 13px}
+  .radio-card .dot{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--line);flex:none;margin-top:1px}
+  .radio-card.sel .dot{border-color:var(--ink);background:radial-gradient(circle, var(--ink) 0 4px, var(--white) 5px)}
+  .radio-card .t{font-size:13px;font-weight:600;line-height:1.2}
+  .radio-card .s{font-size:11px;color:var(--ink2);margin-top:3px}
+  .sso-btn{border:1px solid var(--line);border-radius:4px;padding:10px 14px;background:var(--white);color:var(--ink);font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-bottom:8px}
+
+  /* ============ BREADCRUMB / HEADER ============ */
+  .breadcrumb{font-size:11px;color:var(--ink2);font-family:var(--mono);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.4px}
+  .breadcrumb a{color:var(--ink2);text-decoration:none}
+  .title-row{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+  .title-row h1{font-size:24px;font-weight:600;letter-spacing:-0.4px}
+
+  /* ============ PATIENT DETAIL ============ */
+  .pd-grid{display:grid;grid-template-columns:320px 1fr;gap:18px}
+  .pd-card{border:1px solid var(--line);border-radius:4px;background:var(--white);padding:0;overflow:hidden}
+  .pd-card-head{padding:14px 16px;border-bottom:1px solid var(--line);font-size:12px;font-weight:600}
+  .pd-card-body{padding:14px 16px}
+  .kv-list{display:flex;flex-direction:column;gap:0}
+  .kv-list > div{display:grid;grid-template-columns:90px 1fr;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:12px}
+  .kv-list > div:last-child{border-bottom:none}
+  .kv-list .k{color:var(--ink2);text-transform:uppercase;font-size:10px;font-weight:600;letter-spacing:0.5px;align-self:center}
+  .kv-list .v{color:var(--ink);font-weight:500}
+
+  .timeline-block{padding:0}
+  .tb-item{padding:14px 16px;border-bottom:1px solid var(--line)}
+  .tb-item:last-child{border-bottom:none}
+  .tb-meta{font-family:var(--mono);font-size:10px;color:var(--ink2);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:4px}
+  .tb-title{font-size:13px;font-weight:600}
+  .tb-body{font-size:12px;color:var(--ink2);margin-top:4px;line-height:1.5}
+
+  .pill{display:inline-flex;align-items:center;padding:3px 9px;border:1px solid var(--line);border-radius:20px;font-size:11px;color:var(--ink);background:var(--white);font-weight:500}
+  .pill.dark{background:var(--ink);color:var(--white);border-color:var(--ink)}
+
+  /* ============ SOAP / NOTES ============ */
+  .soap-block{border:1px solid var(--line);border-radius:4px;background:var(--white);padding:18px 20px;margin-bottom:12px}
+  .soap-block h3{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--ink);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .soap-block h3 .tag{font-size:10px;font-weight:500;color:var(--ink2);font-family:var(--mono);text-transform:none;letter-spacing:0}
+  .soap-block p,.soap-block ul{font-size:13px;line-height:1.6;color:var(--ink)}
+  .soap-block ul{list-style:none;padding-left:0}
+  .soap-block ul li{padding-left:18px;position:relative;margin-bottom:6px}
+  .soap-block ul li::before{content:"—";position:absolute;left:0;color:var(--ink2)}
+  .soap-kv{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+  .soap-kv > div{padding:10px 14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .soap-kv > div:nth-child(3n){border-right:none}
+  .soap-kv > div:nth-last-child(-n+3){border-bottom:none}
+  .soap-kv .k{font-size:10px;font-weight:600;color:var(--ink2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px}
+  .soap-kv .v{font-size:12px;color:var(--ink);font-weight:500;font-family:var(--mono)}
+  .flag-box{border:2px solid var(--ink);background:var(--surface);padding:12px 14px;margin-top:10px;font-size:12px;line-height:1.5}
+  .flag-box strong{font-weight:700}
+
+  /* ============ CLAIM ============ */
+  .legend-bar{border:1px solid var(--line);border-radius:4px;padding:12px 16px;background:var(--white);display:flex;gap:24px;flex-wrap:wrap;font-size:12px;margin-bottom:14px}
+  .legend-bar span{color:var(--ink2)}
+  .legend-bar span .sym{font-family:var(--mono);color:var(--ink);font-weight:700;margin-right:6px}
+  .src{font-family:var(--mono);font-size:11px;color:var(--ink2);margin-left:6px;font-weight:500}
+  .form-row{display:grid;grid-template-columns:180px 1fr;gap:14px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:12px;align-items:flex-start}
+  .form-row:last-child{border-bottom:none}
+  .form-row .k{color:var(--ink2);font-weight:600;text-transform:uppercase;font-size:10px;letter-spacing:0.5px;padding-top:3px}
+  .form-row .v{color:var(--ink);font-weight:500;line-height:1.5}
+
+  /* ============ DOCS ============ */
+  .doc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .doc-card{border:1px solid var(--line);border-radius:4px;background:var(--white);padding:16px;display:flex;flex-direction:column;gap:10px;min-height:140px}
+  .doc-icon{width:40px;height:48px;border:1px solid var(--line);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:14px;border-radius:2px}
+  .doc-card .name{font-size:12px;font-weight:600;word-break:break-word;line-height:1.4}
+  .doc-card .meta{font-size:10px;color:var(--ink2);font-family:var(--mono);margin-top:auto}
+  .doc-card.upload{border-style:dashed;align-items:center;justify-content:center;color:var(--ink2);font-size:12px;text-align:center}
+
+  /* ============ RECORDING ============ */
+  .record-main{display:grid;grid-template-columns:1fr 340px;gap:18px;height:100%}
+  .record-box{border:1px solid var(--line);border-radius:4px;background:var(--white);padding:28px 32px;display:flex;flex-direction:column;gap:20px;align-items:center}
+  .big-timer{font-family:var(--mono);font-size:84px;font-weight:500;letter-spacing:-2px;color:var(--ink);line-height:1}
+  .rec-dot{width:14px;height:14px;border-radius:50%;background:var(--ink);display:inline-block;margin-right:8px;vertical-align:middle}
+  .waveform{width:100%;height:80px;display:flex;gap:3px;align-items:center;justify-content:center;padding:0 20px}
+  .waveform .bar{flex:1;background:var(--ink);opacity:0.85;border-radius:1px;min-width:2px}
+
+  /* ============ MOBILE ============ */
+  .m{display:flex;flex-direction:column;height:100%;background:var(--page);position:relative;overflow:hidden}
+  .m-top{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);background:var(--white);flex:none}
+  .m-top .brand{border:none;padding:0;margin:0;font-size:13px}
+  .m-top .greet h1{font-size:18px;font-weight:600;letter-spacing:-0.3px}
+  .m-top .greet .sub{font-size:11px;color:var(--ink2);margin-top:1px}
+  .m-content{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:14px}
+  .m-kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .m-kpi{border:1px solid var(--line);border-radius:4px;background:var(--white);padding:14px}
+  .m-kpi .l{font-size:9px;font-weight:600;color:var(--ink2);text-transform:uppercase;letter-spacing:0.5px}
+  .m-kpi .v{font-size:30px;font-family:var(--mono);font-weight:500;margin:4px 0 2px;letter-spacing:-0.5px;line-height:1}
+  .m-kpi .d{font-size:10px;color:var(--ink2)}
+  .m-tab-bar{display:flex;border-top:1px solid var(--line);background:var(--white);flex:none;padding-bottom:18px}
+  .m-tab-bar .t{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 4px;font-size:10px;font-weight:500;color:var(--ink2)}
+  .m-tab-bar .t.active{color:var(--ink);font-weight:600}
+  .m-tab-bar .t .ic{font-size:16px;font-family:var(--mono)}
+
+  .m-card{border:1px solid var(--line);border-radius:4px;background:var(--white);overflow:hidden}
+  .m-card-head{padding:12px 14px;border-bottom:1px solid var(--line);font-size:12px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+  .m-appt{padding:12px 14px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:48px 34px 1fr auto;gap:10px;align-items:center}
+  .m-appt:last-child{border-bottom:none}
+  .m-appt .time{font-family:var(--mono);font-size:11px;font-weight:500}
+  .m-appt .thumb{width:30px;height:30px;border:1px solid var(--line);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:8px;color:var(--ink3);border-radius:4px}
+  .m-appt .n{font-size:12px;font-weight:600}
+  .m-appt .s{font-size:10px;color:var(--ink2)}
+
+  .m-back{border:1px solid var(--line);border-radius:4px;padding:6px 10px;font-size:11px;font-family:var(--mono);color:var(--ink2);background:var(--white);display:inline-flex;align-items:center;gap:6px}
+
+  .m-section{border-top:1px solid var(--line);padding:16px;display:flex;justify-content:space-between;align-items:center;background:var(--white);font-size:13px;font-weight:500;cursor:pointer}
+  .m-section .ch{color:var(--ink3);font-family:var(--mono)}
+
+  .m-sticky-cta{padding:14px 16px;border-top:1px solid var(--line);background:var(--white);flex:none}
+
+  /* Utility */
+  .row{display:flex;gap:10px;align-items:center}
+  .row.wrap{flex-wrap:wrap}
+  .row.end{justify-content:flex-end}
+  .row.between{justify-content:space-between}
+  .col{display:flex;flex-direction:column;gap:12px}
+  .gap-sm{gap:8px}
+  .gap-lg{gap:18px}
+  .mt-sm{margin-top:8px}
+  .mt-md{margin-top:14px}
+  .mt-lg{margin-top:20px}
+
+  .chips{display:flex;gap:6px;flex-wrap:wrap}
+
+  .status-banner{border:1px solid var(--ink);background:var(--surface);padding:14px 18px;border-radius:4px;font-size:12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+  .status-banner strong{font-family:var(--mono);font-weight:700;text-transform:uppercase;letter-spacing:0.4px}
+
+  .timeline-v{display:flex;flex-direction:column;gap:0;padding:4px 0}
+  .timeline-v .ti{display:flex;gap:12px;align-items:flex-start;padding:10px 0;position:relative}
+  .timeline-v .ti .dot{width:10px;height:10px;border:1.5px solid var(--ink);background:var(--white);border-radius:50%;margin-top:3px;flex:none;position:relative;z-index:1}
+  .timeline-v .ti.done .dot{background:var(--ink)}
+  .timeline-v .ti.current .dot{background:var(--ink);box-shadow:0 0 0 3px var(--surface)}
+  .timeline-v .ti .body{font-size:12px}
+  .timeline-v .ti .body .n{font-weight:600}
+  .timeline-v .ti .body .s{color:var(--ink2);font-size:11px;font-family:var(--mono);margin-top:2px}
+
+</style>
+</head>
+<body>
+<div class="stack">
+
+<!-- ============================================================
+     1. DESKTOP · REGISTER
+     ============================================================ -->
+<div>
+  <p class="page-label">Desktop · Register</p>
+  <div class="frame frame-desktop">
+    <div class="auth">
+      <div class="auth-left">
+        <div>
+          <h1>PawMatch<br>for clinics.</h1>
+          <p>Run visits with AI-drafted SOAP notes, auto-filed insurance claims, and adopter records that flow in from the PawMatch ecosystem.</p>
+          <ul>
+            <li>AI-drafted SOAP notes from a live recording — ready to sign in minutes, not hours.</li>
+            <li>Auto-filed claims with Lemonade, Trupanion, and Healthy Paws. You sign, we submit.</li>
+            <li>Link adopter insurance pulled straight from the PawMatch ecosystem — zero re-keying.</li>
+          </ul>
+        </div>
+        <div class="foot">[LOGO] · PawMatch Vet · v0.4 preview</div>
+      </div>
+      <div class="auth-right">
+        <div class="auth-form">
+          <h2>Create your clinic account</h2>
+          <div class="sub">Get started in under 2 minutes. Add locations, vet sub-accounts, and licenses later.</div>
+
+          <div class="upper" style="margin-bottom:10px">Account type</div>
+          <div class="radio-row">
+            <div class="radio-card sel">
+              <div class="dot"></div>
+              <div>
+                <div class="t">Clinic admin</div>
+                <div class="s">Invite vets, manage licenses</div>
+              </div>
+            </div>
+            <div class="radio-card">
+              <div class="dot"></div>
+              <div>
+                <div class="t">Individual vet</div>
+                <div class="s">Solo practice or mobile vet</div>
+              </div>
+            </div>
+          </div>
+
+          <button class="sso-btn">[ ] Continue with Google</button>
+          <button class="sso-btn">[ ] Continue with Apple</button>
+
+          <div class="divider">or</div>
+
+          <div class="field">
+            <label>Work email</label>
+            <input class="input" placeholder="name@clinic.com" />
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input class="input" type="password" placeholder="At least 10 characters" />
+          </div>
+
+          <p style="font-size:11px;color:var(--ink2);margin:14px 0 18px;line-height:1.5">Keep it simple — add clinic locations, vet sub-accounts, and license info after.</p>
+
+          <button class="btn btn-primary btn-lg btn-block">Create account</button>
+
+          <p style="font-size:12px;color:var(--ink2);margin-top:20px;text-align:center">Already have one? <a href="#" style="color:var(--ink);text-decoration:underline">Sign in</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     2. DESKTOP · LOGIN
+     ============================================================ -->
+<div>
+  <p class="page-label">Desktop · Login</p>
+  <div class="frame frame-desktop">
+    <div class="auth">
+      <div class="auth-left">
+        <div>
+          <h1>Welcome<br>back.</h1>
+          <p>Pick up where you left off — your drafts, claims, and today's schedule are all here.</p>
+          <ul>
+            <li>3 SOAP drafts waiting for your review.</li>
+            <li>2 claims need your signature to send to Lemonade.</li>
+            <li>8 appointments on the books today.</li>
+          </ul>
+        </div>
+        <div class="foot">[LOGO] · PawMatch Vet · v0.4 preview</div>
+      </div>
+      <div class="auth-right">
+        <div class="auth-form">
+          <h2>Sign in</h2>
+          <div class="sub">Use your clinic account or your personal vet credentials.</div>
+
+          <div class="field">
+            <label>Email or username</label>
+            <input class="input" placeholder="ari.patel@forestparkvet.com" />
+          </div>
+          <div class="field">
+            <label style="display:flex;justify-content:space-between;align-items:center">
+              <span>Password</span>
+              <a href="#" style="font-size:11px;color:var(--ink2);text-decoration:underline;text-transform:none;letter-spacing:0">Forgot?</a>
+            </label>
+            <input class="input" type="password" placeholder="••••••••••" />
+          </div>
+
+          <button class="btn btn-primary btn-lg btn-block" style="margin-top:6px">Sign in</button>
+
+          <div class="divider">or</div>
+
+          <button class="sso-btn">[ ] Continue with Google</button>
+          <button class="sso-btn">[ ] Continue with Apple</button>
+
+          <p style="font-size:12px;color:var(--ink2);margin-top:24px;text-align:center">New clinic? <a href="#" style="color:var(--ink);text-decoration:underline">Create account</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     3. DESKTOP · DASHBOARD
+     ============================================================ -->
+<div>
+  <p class="page-label">Desktop · Dashboard</p>
+  <div class="frame frame-desktop">
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">[LOGO] PawMatch <span class="tag">Vet</span></div>
+
+        <div class="nav-label">Clinic</div>
+        <div class="nav-item active">Dashboard</div>
+        <div class="nav-item">Appointments <span class="count">8</span></div>
+        <div class="nav-item">Patients</div>
+
+        <div class="nav-label">Records</div>
+        <div class="nav-item">AI Notes <span class="count">3</span></div>
+        <div class="nav-item">Documents</div>
+
+        <div class="nav-label">Finance</div>
+        <div class="nav-item">Claims <span class="count">2</span></div>
+
+        <div class="nav-label">Settings</div>
+        <div class="nav-item">My Account</div>
+
+        <div class="profile-box">
+          <div class="avatar-sq">[ph]</div>
+          <div>
+            <div class="n">Dr. Ari Patel</div>
+            <div class="s">Forest Park Vet</div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="topbar">
+          <div>
+            <h1>Good morning, Dr. Patel</h1>
+            <div class="sub">Wednesday, April 16, 2026 · 8 appointments today</div>
+          </div>
+          <div class="topbar-actions">
+            <div class="search-bar">[Search] patients, visits, claims…</div>
+            <button class="icon-btn">[🔔]</button>
+            <button class="btn btn-primary">+ New appointment</button>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="kpi-row">
+            <div class="kpi">
+              <div class="l">Today's appts</div>
+              <div class="v">8</div>
+              <div class="d">+2 vs yesterday · 3 new</div>
+            </div>
+            <div class="kpi">
+              <div class="l">Notes to finalize</div>
+              <div class="v">3</div>
+              <div class="d">2 in review · 1 ready</div>
+            </div>
+            <div class="kpi">
+              <div class="l">Pending claims</div>
+              <div class="v">2</div>
+              <div class="d">$485 total</div>
+            </div>
+            <div class="kpi">
+              <div class="l">Active patients</div>
+              <div class="v">412</div>
+              <div class="d">+7 this month</div>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-head">
+                <div>
+                  <h2>Up next today</h2>
+                  <div class="sub">8 scheduled · 0 completed</div>
+                </div>
+                <a href="#" class="link">[View all →]</a>
+              </div>
+
+              <div class="appt-row now">
+                <div class="appt-time">09:30<span class="dur">45 min</span></div>
+                <div class="appt-thumb">[photo]</div>
+                <div class="appt-info">
+                  <div class="n">Biscuit — Golden Retriever, 2y</div>
+                  <div class="meta">New-patient wellness · Sarah Chen</div>
+                </div>
+                <div class="appt-right">
+                  <span class="badge fill">NEW</span>
+                  <button class="btn btn-primary btn-sm">Start visit →</button>
+                </div>
+              </div>
+
+              <div class="appt-row">
+                <div class="appt-time">10:30<span class="dur">30 min</span></div>
+                <div class="appt-thumb">[photo]</div>
+                <div class="appt-info">
+                  <div class="n">Miso — Domestic Shorthair, 4y</div>
+                  <div class="meta">Annual checkup · Daniel Park</div>
+                </div>
+                <div class="appt-right">
+                  <span class="badge">RETURNING</span>
+                  <button class="btn btn-sm">Open chart</button>
+                </div>
+              </div>
+
+              <div class="appt-row">
+                <div class="appt-time">11:15<span class="dur">30 min</span></div>
+                <div class="appt-thumb">[photo]</div>
+                <div class="appt-info">
+                  <div class="n">Olive — Beagle mix, 1y</div>
+                  <div class="meta">DHPP booster · Alvarez family</div>
+                </div>
+                <div class="appt-right">
+                  <span class="badge">RETURNING</span>
+                  <button class="btn btn-sm">Open chart</button>
+                </div>
+              </div>
+
+              <div class="appt-row">
+                <div class="appt-time">13:00<span class="dur">45 min</span></div>
+                <div class="appt-thumb">[photo]</div>
+                <div class="appt-info">
+                  <div class="n">Clover — Holland Lop, 6m</div>
+                  <div class="meta">New-patient exam · Priya Shah</div>
+                </div>
+                <div class="appt-right">
+                  <span class="badge fill">NEW</span>
+                  <button class="btn btn-sm">Open chart</button>
+                </div>
+              </div>
+
+              <div class="appt-row">
+                <div class="appt-time">14:00<span class="dur">60 min</span></div>
+                <div class="appt-thumb">[photo]</div>
+                <div class="appt-info">
+                  <div class="n">Pepper — Mixed, 7y</div>
+                  <div class="meta">Dental cleaning · Robin L.</div>
+                </div>
+                <div class="appt-right">
+                  <span class="badge">RETURNING</span>
+                  <button class="btn btn-sm">Open chart</button>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <div class="card">
+                <div class="card-head"><h2>Notes to finalize</h2><a href="#" class="link">[All]</a></div>
+                <div class="act-item">
+                  <div class="act-bullet"></div>
+                  <div><strong>Miso</strong> · AI note ready for review<span class="t">Categorized · 2m ago</span></div>
+                </div>
+                <div class="act-item">
+                  <div class="act-bullet"></div>
+                  <div><strong>Luna</strong> · AI note ready for review<span class="t">Brief summary · 1h ago</span></div>
+                </div>
+                <div class="act-item">
+                  <div class="act-bullet hollow"></div>
+                  <div><strong>Clover</strong> · Ready to send to owner<span class="t">Yesterday · $150 visit</span></div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-head"><h2>Pending claims</h2><a href="#" class="link">[All]</a></div>
+                <div class="act-item">
+                  <div class="act-bullet hollow"></div>
+                  <div><strong>Max — $285</strong> · Lemonade in-network<span class="t">Auto-filed 3h ago</span></div>
+                </div>
+                <div class="act-item">
+                  <div class="act-bullet hollow"></div>
+                  <div><strong>Miso — $200</strong> · Trupanion<span class="t">Needs your signature</span></div>
+                </div>
+                <div class="stat-row">
+                  <div class="l">This week so far</div>
+                  <div class="v">34 visits</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     4. DESKTOP · APPOINTMENTS
+     ============================================================ -->
+<div>
+  <p class="page-label">Desktop · Appointments · Today</p>
+  <div class="frame frame-desktop">
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">[LOGO] PawMatch <span class="tag">Vet</span></div>
+        <div class="nav-label">Clinic</div>
+        <div class="nav-item">Dashboard</div>
+        <div class="nav-item active">Appointments <span class="count">8</span></div>
+        <div class="nav-item">Patients</div>
+        <div class="nav-label">Records</div>
+        <div class="nav-item">AI Notes <span class="count">3</span></div>
+        <div class="nav-item">Documents</div>
+        <div class="nav-label">Finance</div>
+        <div class="nav-item">Claims <span class="count">2</span></div>
+        <div class="nav-label">Settings</div>
+        <div class="nav-item">My Account</div>
+        <div class="profile-box">
+          <div class="avatar-sq">[ph]</div>
+          <div><div class="n">Dr. Ari Patel</div><div class="s">Forest Park Vet</div></div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="topbar">
+          <div>
+            <h1>Appointments</h1>
+            <div class="sub">Wednesday · April 16, 2026</div>
+          </div>
+          <div class="topbar-actions">
+            <div class="seg">
+              <button class="on">Day</button>
+              <button>Week</button>
+              <button>Month</button>
+            </div>
+            <button class="icon-btn">◀</button>
+            <button class="btn btn-sm">Today</button>
+            <button class="icon-btn">▶</button>
+            <button class="btn btn-primary">+ New</button>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="row between">
+            <div class="tab-bar" style="border-bottom:none">
+              <button class="on">All · 8</button>
+              <button>New · 3</button>
+              <button>Returning · 5</button>
+            </div>
+            <div class="row gap-sm">
+              <button class="btn btn-sm">Filter by vet ▾</button>
+              <button class="btn btn-sm">Filter by type ▾</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="tl-row"><div class="tl-time">09:00</div><div class="tl-slot empty">—</div></div>
+            <div class="tl-row">
+              <div class="tl-time">09:30</div>
+              <div class="tl-slot now">
+                <div class="tl-card now">
+                  <div class="thumb">[photo]</div>
+                  <div>
+                    <div class="n">Biscuit — Golden Retriever, 2y</div>
+                    <div class="meta">New-patient wellness · Sarah Chen · 45 min</div>
+                  </div>
+                  <div class="row gap-sm">
+                    <span class="badge fill">NEW</span>
+                    <button class="btn btn-primary btn-sm">Start visit →</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tl-row"><div class="tl-time">10:00</div><div class="tl-slot empty">—</div></div>
+            <div class="tl-row">
+              <div class="tl-time">10:30</div>
+              <div class="tl-slot">
+                <div class="tl-card">
+                  <div class="thumb">[photo]</div>
+                  <div>
+                    <div class="n">Miso — Domestic Shorthair, 4y</div>
+                    <div class="meta">Annual checkup · Daniel Park · 30 min</div>
+                  </div>
+                  <div class="row gap-sm">
+                    <span class="badge">RETURNING · 3RD</span>
+                    <button class="btn btn-sm">Open chart</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-time">11:15</div>
+              <div class="tl-slot">
+                <div class="tl-card">
+                  <div class="thumb">[photo]</div>
+                  <div>
+                    <div class="n">Olive — Beagle mix, 1y</div>
+                    <div class="meta">DHPP booster · Alvarez family · 30 min</div>
+                  </div>
+                  <div class="row gap-sm">
+                    <span class="badge">RETURNING</span>
+                    <button class="btn btn-sm">Open chart</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tl-row"><div class="tl-time">12:00</div><div class="tl-slot empty">Lunch</div></div>
+            <div class="tl-row"><div class="tl-time">12:30</div><div class="tl-slot empty">Lunch</div></div>
+            <div class="tl-row">
+              <div class="tl-time">13:00</div>
+              <div class="tl-slot">
+                <div class="tl-card">
+                  <div class="thumb">[photo]</div>
+                  <div>
+                    <div class="n">Clover — Holland Lop, 6m</div>
+                    <div class="meta">New-patient exam · Priya Shah · 45 min</div>
+                  </div>
+                  <div class="row gap-sm">
+                    <span class="badge fill">NEW</span>
+                    <button class="btn btn-sm">Open chart</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-time">14:00</div>
+              <div class="tl-slot">
+                <div class="tl-card">
+                  <div class="thumb">[photo]</div>
+                  <div>
+                    <div class="n">Pepper — Mixed, 7y</div>
+                    <div class="meta">Dental cleaning · Robin L. · 60 min</div>
+                  </div>
+                  <div class="row gap-sm">
+                    <span class="badge">RETURNING · 8TH</span>
+                    <button class="btn btn-sm">Open chart</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tl-row"><div class="tl-time">14:30</div><div class="tl-slot empty">—</div></div>
+            <div class="tl-row">
+              <div class="tl-time">15:00</div>
+              <div class="tl-slot">
+                <div class="tl-card">
+                  <div class="thumb">[photo]</div>
+                  <div>
+                    <div class="n">Max — Labrador, 3y</div>
+                    <div class="meta">Post-surgery follow-up · Jamie Rhodes · 20 min</div>
+                  </div>
+                  <div class="row gap-sm">
+                    <span class="badge">RETURNING</span>
+                    <button class="btn btn-sm">Open chart</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-time">15:30</div>
+              <div class="tl-slot">
+                <div class="tl-card">
+                  <div class="thumb">[photo]</div>
+                  <div>
+                    <div class="n">Luna — Maine Coon, 3y</div>
+                    <div class="meta">New-patient wellness · Mike Tran · 30 min</div>
+                  </div>
+                  <div class="row gap-sm">
+                    <span class="badge fill">NEW</span>
+                    <button class="btn btn-sm">Open chart</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-time">16:00</div>
+              <div class="tl-slot">
+                <div class="tl-card">
+                  <div class="thumb">[photo]</div>
+                  <div>
+                    <div class="n">Juno — Corgi, 5y</div>
+                    <div class="meta">Vaccines · Chen family · 30 min</div>
+                  </div>
+                  <div class="row gap-sm">
+                    <span class="badge">RETURNING</span>
+                    <button class="btn btn-sm">Open chart</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     5. DESKTOP · PATIENTS
+     ============================================================ -->
+<div>
+  <p class="page-label">Desktop · Patients</p>
+  <div class="frame frame-desktop">
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">[LOGO] PawMatch <span class="tag">Vet</span></div>
+        <div class="nav-label">Clinic</div>
+        <div class="nav-item">Dashboard</div>
+        <div class="nav-item">Appointments <span class="count">8</span></div>
+        <div class="nav-item active">Patients</div>
+        <div class="nav-label">Records</div>
+        <div class="nav-item">AI Notes <span class="count">3</span></div>
+        <div class="nav-item">Documents</div>
+        <div class="nav-label">Finance</div>
+        <div class="nav-item">Claims <span class="count">2</span></div>
+        <div class="nav-label">Settings</div>
+        <div class="nav-item">My Account</div>
+        <div class="profile-box">
+          <div class="avatar-sq">[ph]</div>
+          <div><div class="n">Dr. Ari Patel</div><div class="s">Forest Park Vet</div></div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="topbar">
+          <div>
+            <h1>Patients</h1>
+            <div class="sub">412 active patients</div>
+          </div>
+          <div class="topbar-actions">
+            <div class="search-bar">[Search] patients…</div>
+            <button class="btn btn-primary">+ Add patient</button>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="row between">
+            <div class="tab-bar" style="border-bottom:none">
+              <button class="on">All · 412</button>
+              <button>Dogs · 218</button>
+              <button>Cats · 156</button>
+              <button>Small pets · 38</button>
+            </div>
+            <div class="row gap-sm">
+              <button class="btn btn-sm">Sort: Last visit ▾</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <table class="tbl">
+              <thead>
+                <tr>
+                  <th>Pet</th>
+                  <th>Owner</th>
+                  <th>Species / Breed</th>
+                  <th>Age</th>
+                  <th>Sex</th>
+                  <th>Last visit</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div class="pet-cell"><div class="thumb">[ph]</div><div><div class="n">Biscuit</div><div class="s">#PM-2143</div></div></div></td>
+                  <td>Sarah Chen</td>
+                  <td>Dog · Golden Retriever</td>
+                  <td>2y</td>
+                  <td>M / Neutered</td>
+                  <td class="mono" style="font-size:12px">Tomorrow 9:30am</td>
+                  <td><span class="badge fill">NEW PATIENT</span></td>
+                  <td><a href="#" class="row-act">Open chart →</a></td>
+                </tr>
+                <tr>
+                  <td><div class="pet-cell"><div class="thumb">[ph]</div><div><div class="n">Miso</div><div class="s">#PM-0892</div></div></div></td>
+                  <td>Daniel Park</td>
+                  <td>Cat · Domestic Shorthair</td>
+                  <td>4y</td>
+                  <td>F / Spayed</td>
+                  <td class="mono" style="font-size:12px">Today 10:30am</td>
+                  <td><span class="badge">ACTIVE</span></td>
+                  <td><a href="#" class="row-act">Open chart →</a></td>
+                </tr>
+                <tr>
+                  <td><div class="pet-cell"><div class="thumb">[ph]</div><div><div class="n">Olive</div><div class="s">#PM-1304</div></div></div></td>
+                  <td>Alvarez family</td>
+                  <td>Dog · Beagle mix</td>
+                  <td>1y</td>
+                  <td>F / Spayed</td>
+                  <td class="mono" style="font-size:12px">Today 11:15am</td>
+                  <td><span class="badge">ACTIVE</span></td>
+                  <td><a href="#" class="row-act">Open chart →</a></td>
+                </tr>
+                <tr>
+                  <td><div class="pet-cell"><div class="thumb">[ph]</div><div><div class="n">Clover</div><div class="s">#PM-2147</div></div></div></td>
+                  <td>Priya Shah</td>
+                  <td>Rabbit · Holland Lop</td>
+                  <td>6m</td>
+                  <td>F / Intact</td>
+                  <td class="mono" style="font-size:12px">Today 13:00</td>
+                  <td><span class="badge fill">NEW PATIENT</span></td>
+                  <td><a href="#" class="row-act">Open chart →</a></td>
+                </tr>
+                <tr>
+                  <td><div class="pet-cell"><div class="thumb">[ph]</div><div><div class="n">Pepper</div><div class="s">#PM-0411</div></div></div></td>
+                  <td>Robin L.</td>
+                  <td>Dog · Mixed</td>
+                  <td>7y</td>
+                  <td>M / Neutered</td>
+                  <td class="mono" style="font-size:12px">Today 14:00</td>
+                  <td><span class="badge">ACTIVE</span></td>
+                  <td><a href="#" class="row-act">Open chart →</a></td>
+                </tr>
+                <tr>
+                  <td><div class="pet-cell"><div class="thumb">[ph]</div><div><div class="n">Max</div><div class="s">#PM-0989</div></div></div></td>
+                  <td>Jamie Rhodes</td>
+                  <td>Dog · Labrador</td>
+                  <td>3y</td>
+                  <td>M / Neutered</td>
+                  <td class="mono" style="font-size:12px">Today 15:00</td>
+                  <td><span class="badge">ACTIVE</span></td>
+                  <td><a href="#" class="row-act">Open chart →</a></td>
+                </tr>
+                <tr>
+                  <td><div class="pet-cell"><div class="thumb">[ph]</div><div><div class="n">Luna</div><div class="s">#PM-2148</div></div></div></td>
+                  <td>Mike Tran</td>
+                  <td>Cat · Maine Coon</td>
+                  <td>3y</td>
+                  <td>F / Spayed</td>
+                  <td class="mono" style="font-size:12px">Today 15:30</td>
+                  <td><span class="badge fill">NEW PATIENT</span></td>
+                  <td><a href="#" class="row-act">Open chart →</a></td>
+                </tr>
+                <tr>
+                  <td><div class="pet-cell"><div class="thumb">[ph]</div><div><div class="n">Juno</div><div class="s">#PM-1567</div></div></div></td>
+                  <td>Chen family</td>
+                  <td>Dog · Corgi</td>
+                  <td>5y</td>
+                  <td>M / Neutered</td>
+                  <td class="mono" style="font-size:12px">Today 16:00</td>
+                  <td><span class="badge">ACTIVE</span></td>
+                  <td><a href="#" class="row-act">Open chart →</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     6. DESKTOP · PATIENT DETAIL
+     ============================================================ -->
+<div>
+  <p class="page-label">Desktop · Patient detail · Biscuit</p>
+  <div class="frame frame-desktop">
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">[LOGO] PawMatch <span class="tag">Vet</span></div>
+        <div class="nav-label">Clinic</div>
+        <div class="nav-item">Dashboard</div>
+        <div class="nav-item">Appointments <span class="count">8</span></div>
+        <div class="nav-item active">Patients</div>
+        <div class="nav-label">Records</div>
+        <div class="nav-item">AI Notes <span class="count">3</span></div>
+        <div class="nav-item">Documents</div>
+        <div class="nav-label">Finance</div>
+        <div class="nav-item">Claims <span class="count">2</span></div>
+        <div class="nav-label">Settings</div>
+        <div class="nav-item">My Account</div>
+        <div class="profile-box">
+          <div class="avatar-sq">[ph]</div>
+          <div><div class="n">Dr. Ari Patel</div><div class="s">Forest Park Vet</div></div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="topbar">
+          <div>
+            <div class="breadcrumb"><a href="#">Patients</a> / Biscuit</div>
+            <div class="title-row">
+              <h1>Biscuit</h1>
+              <span class="badge fill">NEW PATIENT</span>
+            </div>
+            <div class="sub">Golden Retriever · Male (Neutered) · 2 years · First visit tomorrow 9:30am</div>
+          </div>
+          <div class="topbar-actions">
+            <button class="btn btn-sm">Message owner</button>
+            <button class="btn btn-sm">+ Add note</button>
+            <button class="btn btn-primary">Start visit</button>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="pd-grid">
+            <div class="col">
+              <div class="pd-card">
+                <div style="padding:18px 16px;display:flex;justify-content:center">
+                  <div class="avatar-sq xl">[photo]</div>
+                </div>
+                <div class="pd-card-body">
+                  <div class="kv-list">
+                    <div><span class="k">Weight</span><span class="v mono">32 kg</span></div>
+                    <div><span class="k">DOB</span><span class="v mono">Mar 3, 2024</span></div>
+                    <div><span class="k">Microchip</span><span class="v mono">985112004893221</span></div>
+                    <div><span class="k">Owner</span><span class="v">Sarah Chen</span></div>
+                    <div><span class="k">Phone</span><span class="v mono">(503) 555-0143</span></div>
+                    <div><span class="k">Email</span><span class="v">sarah@example.com</span></div>
+                    <div><span class="k">Address</span><span class="v">1408 NW Raleigh St, Portland OR 97209</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pd-card">
+                <div class="pd-card-head row between">
+                  <span>PawMatch insurance</span>
+                  <span class="badge">FROM PAWMATCH</span>
+                </div>
+                <div class="pd-card-body">
+                  <div style="font-size:14px;font-weight:600;margin-bottom:4px">Lemonade Plus</div>
+                  <div style="font-size:12px;color:var(--ink2);margin-bottom:10px">$67.74/mo · <span class="badge fill" style="font-size:9px">ACTIVE</span></div>
+                  <div class="kv-list">
+                    <div><span class="k">Policy #</span><span class="v mono">LEM-8892341</span></div>
+                    <div><span class="k">Effective</span><span class="v mono">Apr 1, 2026</span></div>
+                    <div><span class="k">Copay</span><span class="v">In-network $25</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pd-card">
+                <div class="pd-card-head row between">
+                  <span>Allergies & notes</span>
+                  <a href="#" class="link" style="font-family:var(--mono);font-size:11px">+ Add</a>
+                </div>
+                <div class="pd-card-body">
+                  <div style="font-size:12px;color:var(--ink3);font-style:italic">None on file.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="pd-card">
+                <div class="tab-bar" style="padding:0 16px">
+                  <button class="on">Visit history</button>
+                  <button>Medications</button>
+                  <button>Vaccinations</button>
+                  <button>Documents</button>
+                  <button>AI notes</button>
+                </div>
+
+                <div class="timeline-block">
+                  <div class="tb-item" style="background:var(--surface)">
+                    <div class="tb-meta">UPCOMING · Tomorrow · 9:30am · 45 min</div>
+                    <div class="tb-title">New-patient wellness · Dr. Ari Patel</div>
+                    <div class="tb-body">Chief complaint: general wellness check + vaccinations since adopted from Willow Creek Rescue. Owner filed pre-visit form Apr 14.</div>
+                    <div class="row gap-sm mt-sm">
+                      <button class="btn btn-sm">Open pre-visit form</button>
+                      <button class="btn btn-primary btn-sm">Start visit</button>
+                    </div>
+                  </div>
+
+                  <div class="tb-item">
+                    <div class="tb-meta">NO PAST VISITS</div>
+                    <div class="tb-title">First visit with Forest Park Vet</div>
+                    <div class="tb-body">Biscuit is a new patient. Shelter records and vaccination history are attached below under <em>Linked from PawMatch</em>.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pd-card">
+                <div class="pd-card-head row between">
+                  <span>Linked from PawMatch</span>
+                  <span class="pill dark">ecosystem</span>
+                </div>
+                <div class="pd-card-body">
+                  <div class="row gap-sm" style="align-items:flex-start">
+                    <div class="avatar-sq">[ph]</div>
+                    <div style="flex:1">
+                      <div style="font-size:13px;font-weight:600">Adopted from Willow Creek Rescue</div>
+                      <div style="font-size:11px;color:var(--ink2);font-family:var(--mono)">April 12, 2026 · 4 days ago</div>
+                      <div style="font-size:12px;color:var(--ink2);margin-top:6px;line-height:1.5">Shelter uploaded vet records, shelter intake notes, and adoption contract. All imported to Biscuit's chart automatically.</div>
+                    </div>
+                    <a href="#" class="link" style="font-family:var(--mono);font-size:11px">Full adoption record →</a>
+                  </div>
+                  <div class="row gap-sm mt-md">
+                    <span class="pill">Shelter transfer form</span>
+                    <span class="pill">Vaccination card (DHPP, Rabies, Bordetella)</span>
+                    <span class="pill">Intake vet notes · Feb 2026</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     7. DESKTOP · START VISIT
+     ============================================================ -->
+<div>
+  <p class="page-label">Desktop · Start visit · Biscuit</p>
+  <div class="frame frame-desktop">
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">[LOGO] PawMatch <span class="tag">Vet</span></div>
+        <div class="nav-label">Clinic</div>
+        <div class="nav-item">Dashboard</div>
+        <div class="nav-item active">Appointments <span class="count">8</span></div>
+        <div class="nav-item">Patients</div>
+        <div class="nav-label">Records</div>
+        <div class="nav-item">AI Notes <span class="count">3</span></div>
+        <div class="nav-item">Documents</div>
+        <div class="nav-label">Finance</div>
+        <div class="nav-item">Claims <span class="count">2</span></div>
+        <div class="nav-label">Settings</div>
+        <div class="nav-item">My Account</div>
+        <div class="profile-box">
+          <div class="avatar-sq">[ph]</div>
+          <div><div class="n">Dr. Ari Patel</div><div class="s">Forest Park Vet</div></div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="topbar">
+          <div>
+            <div class="breadcrumb"><a href="#">Appointments</a> / Biscuit · 9:30am</div>
+            <div class="title-row">
+              <h1>Visit in progress — Biscuit</h1>
+              <span class="badge fill">NEW PATIENT</span>
+            </div>
+            <div class="sub">Wed Apr 16, 9:30am · Room 2 · Dr. Ari Patel</div>
+          </div>
+          <div class="topbar-actions">
+            <button class="btn btn-sm">Reschedule</button>
+            <button class="btn btn-sm">Cancel visit</button>
+          </div>
+        </div>
+
+        <div class="content">
+          <div style="display:grid;grid-template-columns:320px 1fr 340px;gap:16px">
+            <!-- LEFT: Pet card -->
+            <div class="pd-card">
+              <div class="pd-card-head">Patient</div>
+              <div style="padding:14px 16px;display:flex;justify-content:center">
+                <div class="avatar-sq lg">[photo]</div>
+              </div>
+              <div class="pd-card-body" style="padding-top:0">
+                <div style="text-align:center;font-size:14px;font-weight:600">Biscuit</div>
+                <div style="text-align:center;font-size:12px;color:var(--ink2);margin-bottom:14px">Golden Retriever, 2y · M, Neutered · 32 kg</div>
+                <div class="kv-list">
+                  <div><span class="k">Microchip</span><span class="v mono">985112004893221</span></div>
+                  <div><span class="k">Insurance</span><span class="v">Lemonade Plus</span></div>
+                  <div><span class="k">In-network</span><span class="v">$25 copay</span></div>
+                  <div><span class="k">Allergies</span><span class="v">None on file</span></div>
+                  <div><span class="k">Owner</span><span class="v">Sarah Chen</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- MIDDLE: today's visit -->
+            <div class="pd-card">
+              <div class="pd-card-head">Today's visit</div>
+              <div class="pd-card-body">
+                <div class="upper" style="margin-bottom:4px">Reason for visit</div>
+                <div style="font-size:14px;font-weight:600;margin-bottom:14px">New-patient wellness</div>
+
+                <div class="upper" style="margin-bottom:4px">Chief complaint (from owner)</div>
+                <div style="font-size:13px;line-height:1.6;margin-bottom:16px">"General wellness check + vaccinations since adopted from Willow Creek Rescue. He's eating well and very energetic, but I want to make sure everything looks good before our first full week together."</div>
+
+                <div class="upper" style="margin-bottom:6px">Pre-visit form · from PawMatch app</div>
+                <div class="card" style="border-radius:4px">
+                  <div class="form-row" style="padding:10px 14px">
+                    <span class="k">Appetite</span>
+                    <span class="v">Strong — eating Royal Canin Medium Adult 2×/day</span>
+                  </div>
+                  <div class="form-row" style="padding:10px 14px">
+                    <span class="k">Energy</span>
+                    <span class="v">High, age-appropriate. Long walks, plays with resident dog Murphy.</span>
+                  </div>
+                  <div class="form-row" style="padding:10px 14px;border-bottom:none">
+                    <span class="k">Concerns</span>
+                    <span class="v">Scratches left ear occasionally. Otherwise nothing noticed.</span>
+                  </div>
+                </div>
+
+                <div class="row gap-sm mt-md">
+                  <span class="pill">Shelter vaccine records</span>
+                  <span class="pill">Adoption contract</span>
+                  <span class="pill">Intake vet notes · Feb 2026</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT: Start button + quick actions -->
+            <div class="col">
+              <div class="pd-card" style="padding:0">
+                <div class="pd-card-body" style="display:flex;flex-direction:column;gap:14px">
+                  <div class="upper">AI Notetaker</div>
+                  <button class="btn btn-primary btn-lg btn-block" style="padding:18px;font-size:15px;justify-content:center">● Start recording</button>
+                  <div style="font-size:11px;color:var(--ink2);text-align:center;line-height:1.5">Your mic will capture the conversation. We draft the SOAP note and never share audio.</div>
+                </div>
+              </div>
+
+              <div class="pd-card">
+                <div class="pd-card-head">Quick actions</div>
+                <div class="pd-card-body" style="display:flex;flex-direction:column;gap:8px">
+                  <button class="btn btn-block" style="justify-content:flex-start">[🎤] Voice note only</button>
+                  <button class="btn btn-block" style="justify-content:flex-start">[📷] Attach photo</button>
+                  <button class="btn btn-block" style="justify-content:flex-start">[📄] Attach x-ray or lab</button>
+                  <button class="btn btn-block" style="justify-content:flex-start">[✎] Type notes manually</button>
+                </div>
+              </div>
+
+              <div class="pd-card">
+                <div class="pd-card-head">Recent notes</div>
+                <div class="pd-card-body">
+                  <div style="font-size:12px;color:var(--ink3);font-style:italic">New patient — no prior notes at this clinic.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     8. DESKTOP · ACTIVE RECORDING
+     ============================================================ -->
+<div>
+  <p class="page-label">Desktop · Active recording</p>
+  <div class="frame frame-desktop">
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">[LOGO] PawMatch <span class="tag">Vet</span></div>
+        <div class="nav-label">Clinic</div>
+        <div class="nav-item">Dashboard</div>
+        <div class="nav-item active">Appointments <span class="count">8</span></div>
+        <div class="nav-item">Patients</div>
+        <div class="nav-label">Records</div>
+        <div class="nav-item">AI Notes <span class="count">3</span></div>
+        <div class="nav-item">Documents</div>
+        <div class="nav-label">Finance</div>
+        <div class="nav-item">Claims <span class="count">2</span></div>
+        <div class="nav-label">Settings</div>
+        <div class="nav-item">My Account</div>
+        <div class="profile-box">
+          <div class="avatar-sq">[ph]</div>
+          <div><div class="n">Dr. Ari Patel</div><div class="s">Forest Park Vet</div></div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="topbar">
+          <div>
+            <div class="breadcrumb"><a href="#">Appointments</a> / Biscuit · Recording</div>
+            <div class="title-row">
+              <h1>Biscuit — Golden Retriever, 2y</h1>
+              <span class="badge fill">● REC</span>
+            </div>
+            <div class="sub">Wed Apr 16, 9:30am · Room 2 · Dr. Ari Patel</div>
+          </div>
+          <div class="topbar-actions">
+            <button class="btn btn-sm">Pet details</button>
+            <button class="btn btn-sm">Owner: Sarah Chen</button>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="record-main">
+            <div class="record-box">
+              <div class="upper"><span class="rec-dot"></span>Recording · Transcribing live…</div>
+              <div class="big-timer">00:12:47</div>
+
+              <div class="waveform">
+                <div class="bar" style="height:20%"></div>
+                <div class="bar" style="height:40%"></div>
+                <div class="bar" style="height:70%"></div>
+                <div class="bar" style="height:55%"></div>
+                <div class="bar" style="height:35%"></div>
+                <div class="bar" style="height:60%"></div>
+                <div class="bar" style="height:90%"></div>
+                <div class="bar" style="height:45%"></div>
+                <div class="bar" style="height:30%"></div>
+                <div class="bar" style="height:65%"></div>
+                <div class="bar" style="height:80%"></div>
+                <div class="bar" style="height:50%"></div>
+                <div class="bar" style="height:25%"></div>
+                <div class="bar" style="height:70%"></div>
+                <div class="bar" style="height:55%"></div>
+                <div class="bar" style="height:90%"></div>
+                <div class="bar" style="height:35%"></div>
+                <div class="bar" style="height:60%"></div>
+                <div class="bar" style="height:45%"></div>
+                <div class="bar" style="height:75%"></div>
+                <div class="bar" style="height:50%"></div>
+                <div class="bar" style="height:30%"></div>
+                <div class="bar" style="height:85%"></div>
+                <div class="bar" style="height:40%"></div>
+                <div class="bar" style="height:60%"></div>
+                <div class="bar" style="height:55%"></div>
+                <div class="bar" style="height:25%"></div>
+                <div class="bar" style="height:75%"></div>
+                <div class="bar" style="height:45%"></div>
+                <div class="bar" style="height:35%"></div>
+                <div class="bar" style="height:70%"></div>
+                <div class="bar" style="height:50%"></div>
+                <div class="bar" style="height:20%"></div>
+                <div class="bar" style="height:65%"></div>
+                <div class="bar" style="height:80%"></div>
+                <div class="bar" style="height:40%"></div>
+                <div class="bar" style="height:55%"></div>
+                <div class="bar" style="height:30%"></div>
+                <div class="bar" style="height:70%"></div>
+                <div class="bar" style="height:45%"></div>
+              </div>
+
+              <div class="row gap-sm">
+                <button class="btn btn-lg">⏸ Pause</button>
+                <button class="btn btn-primary btn-lg">◼ Stop & review</button>
+                <button class="btn btn-lg">[📷] Add photo</button>
+                <button class="btn btn-lg">[📄] Add x-ray</button>
+              </div>
+
+              <div class="card" style="width:100%;margin-top:8px">
+                <div class="card-head"><h2>Live transcript</h2><span class="upper">auto-updating</span></div>
+                <div style="padding:18px 22px;font-size:13px;line-height:1.7;color:var(--ink2);max-height:220px;overflow-y:auto">
+                  <p><strong style="color:var(--ink)">Dr:</strong> Good morning, Sarah. Thanks for bringing Biscuit in. Let me check his weight first...</p>
+                  <p style="margin-top:10px"><strong style="color:var(--ink)">Dr:</strong> He's 32.1 kilos, looking healthy. Heart rate 72, temperature 38.4 Celsius, all within normal range. Let me listen to his chest...</p>
+                  <p style="margin-top:10px"><strong style="color:var(--ink)">Dr:</strong> Lungs clear bilaterally. No murmur. Let me check ears now.</p>
+                  <p style="margin-top:10px"><strong style="color:var(--ink)">Owner:</strong> He scratches that left one sometimes. Is it bad?</p>
+                  <p style="margin-top:10px;color:var(--ink3);font-style:italic">… transcribing …</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT side panel -->
+            <div class="col">
+              <div class="pd-card">
+                <div class="pd-card-head">Attached this visit</div>
+                <div style="padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                  <div>
+                    <div class="avatar-sq" style="width:100%;height:90px;border-radius:4px">[photo]</div>
+                    <div style="font-size:11px;font-family:var(--mono);color:var(--ink2);margin-top:6px">Ear exam · 09:35</div>
+                  </div>
+                  <div>
+                    <div class="avatar-sq" style="width:100%;height:90px;border-radius:4px">[photo]</div>
+                    <div style="font-size:11px;font-family:var(--mono);color:var(--ink2);margin-top:6px">General · 09:31</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pd-card">
+                <div class="pd-card-head">AI assists</div>
+                <div class="pd-card-body" style="font-size:12px;color:var(--ink2);line-height:1.6">
+                  <div style="margin-bottom:10px"><strong style="color:var(--ink)">Detected so far:</strong></div>
+                  <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:6px">
+                    <li>▸ Vitals: HR 72, RR 24, Temp 38.4°C</li>
+                    <li>▸ Weight: 32.1 kg (BCS 5/9)</li>
+                    <li>▸ Possible finding: left ear concern</li>
+                    <li>▸ Vaccine history pulled from shelter</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="pd-card">
+                <div class="pd-card-head">Visit timer</div>
+                <div class="pd-card-body">
+                  <div class="kv-list">
+                    <div><span class="k">Scheduled</span><span class="v mono">45 min</span></div>
+                    <div><span class="k">Elapsed</span><span class="v mono">12:47</span></div>
+                    <div><span class="k">Room</span><span class="v">Exam 2</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     9. DESKTOP · POST-VISIT REVIEW (SOAP)
+     ============================================================ -->
+<div>
+  <p class="page-label">Desktop · Post-visit review · SOAP</p>
+  <div class="frame frame-desktop">
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">[LOGO] PawMatch <span class="tag">Vet</span></div>
+        <div class="nav-label">Clinic</div>
+        <div class="nav-item">Dashboard</div>
+        <div class="nav-item">Appointments <span class="count">8</span></div>
+        <div class="nav-item">Patients</div>
+        <div class="nav-label">Records</div>
+        <div class="nav-item active">AI Notes <span class="count">3</span></div>
+        <div class="nav-item">Documents</div>
+        <div class="nav-label">Finance</div>
+        <div class="nav-item">Claims <span class="count">2</span></div>
+        <div class="nav-label">Settings</div>
+        <div class="nav-item">My Account</div>
+        <div class="profile-box">
+          <div class="avatar-sq">[ph]</div>
+          <div><div class="n">Dr. Ari Patel</div><div class="s">Forest Park Vet</div></div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="topbar">
+          <div>
+            <div class="breadcrumb"><a href="#">AI Notes</a> / Biscuit · Apr 16</div>
+            <div class="title-row"><h1>Post-visit review — Biscuit</h1><span class="badge">DRAFT</span></div>
+            <div class="sub">Visit ended 10:15am · duration 45 min · Dr. Ari Patel</div>
+          </div>
+          <div class="topbar-actions">
+            <button class="btn btn-sm">[Edit notes]</button>
+            <button class="btn btn-sm">Re-run AI</button>
+            <button class="btn btn-primary">Approve & sign</button>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="tab-bar">
+            <button>Brief summary</button>
+            <button class="on">Categorized notes</button>
+            <button>Full transcript</button>
+          </div>
+
+          <!-- Visit Metadata -->
+          <div class="soap-block">
+            <h3>Visit Metadata <span class="tag">auto-captured</span></h3>
+            <div class="soap-kv">
+              <div><div class="k">Date</div><div class="v">Apr 16, 2026</div></div>
+              <div><div class="k">Time</div><div class="v">09:30</div></div>
+              <div><div class="k">Clinic</div><div class="v">Forest Park Vet</div></div>
+              <div><div class="k">Vet</div><div class="v">Dr. Ari Patel</div></div>
+              <div><div class="k">Pet</div><div class="v">Biscuit</div></div>
+              <div><div class="k">Owner</div><div class="v">Sarah Chen</div></div>
+            </div>
+          </div>
+
+          <!-- Chief Complaint -->
+          <div class="soap-block">
+            <h3>Chief Complaint <span class="tag">Subjective</span></h3>
+            <p>New-patient wellness exam following adoption from Willow Creek Rescue. Owner reports no concerns; pet is eating, drinking, urinating, and defecating normally. Energy level described as high and age-appropriate.</p>
+          </div>
+
+          <!-- History -->
+          <div class="soap-block">
+            <h3>History & Context <span class="tag">Subjective</span></h3>
+            <ul>
+              <li>Vaccinations on record: DHPP, Rabies, Bordetella (all current from shelter records).</li>
+              <li>Spayed/Neutered: Neutered at shelter, Feb 2026.</li>
+              <li>Diet: Royal Canin Medium Adult, 2 cups twice daily.</li>
+              <li>Other pets: 1 resident dog (Murphy, golden, 6y, neutered).</li>
+              <li>No known allergies or chronic conditions.</li>
+            </ul>
+          </div>
+
+          <!-- Physical Exam -->
+          <div class="soap-block">
+            <h3>Physical Exam Findings <span class="tag">Objective</span></h3>
+            <div class="soap-kv" style="grid-template-columns:repeat(4,1fr);margin-bottom:12px">
+              <div><div class="k">Weight</div><div class="v">32.1 kg · BCS 5/9</div></div>
+              <div><div class="k">Temp</div><div class="v">38.4 °C</div></div>
+              <div><div class="k">HR</div><div class="v">72 bpm</div></div>
+              <div><div class="k">RR</div><div class="v">24 /min</div></div>
+            </div>
+            <ul>
+              <li>Mucous membranes pink and moist. CRT &lt;2s.</li>
+              <li>Lungs clear bilaterally. No cardiac murmur.</li>
+              <li>Abdomen soft, non-painful on palpation.</li>
+              <li>Ears: mild erythema in left ear canal, no debris.</li>
+              <li>Eyes: clear, no discharge.</li>
+              <li>Oral: mild tartar on premolars, gingiva slightly inflamed.</li>
+              <li>Skin/coat: glossy, no lesions.</li>
+            </ul>
+          </div>
+
+          <!-- Diagnostic Results -->
+          <div class="soap-block">
+            <h3>Diagnostic Results <span class="tag">Objective</span></h3>
+            <p>None this visit. Baseline CBC and chem panel recommended at next wellness check.</p>
+          </div>
+
+          <!-- Diagnosis -->
+          <div class="soap-block">
+            <h3>Diagnosis / Assessment</h3>
+            <p>Healthy 2-year-old male neutered Golden Retriever. Mild left otitis externa (early). Grade 1 dental tartar. Differential for otitis: seasonal allergies vs. superficial bacterial. No immediate concern.</p>
+          </div>
+
+          <!-- Treatment Plan -->
+          <div class="soap-block">
+            <h3>Treatment Plan <span class="tag">Plan</span></h3>
+            <ul>
+              <li>Otic cleaner (Epi-Otic Advanced), 5 mL each ear daily × 7 days. Recheck in 14 days if not resolved.</li>
+              <li>Dental prophylaxis recommended within 6 months.</li>
+              <li>Next wellness: April 2027 (annual).</li>
+              <li>Heartworm prevention: start Heartgard Plus monthly, 51-100 lb dose.</li>
+              <li>Flea/tick prevention: NexGard monthly, 24-60 lb dose.</li>
+            </ul>
+          </div>
+
+          <!-- Insurance-Ready -->
+          <div class="soap-block">
+            <h3>Insurance-Ready Fields <span class="tag">derived + structured</span></h3>
+            <div class="upper" style="margin-bottom:6px">Itemized charges</div>
+            <div class="soap-kv" style="grid-template-columns:repeat(5,1fr);margin-bottom:14px">
+              <div><div class="k">New-pt exam</div><div class="v">$95</div></div>
+              <div><div class="k">Otic cleaner</div><div class="v">$28</div></div>
+              <div><div class="k">Heartgard 6mo</div><div class="v">$72</div></div>
+              <div><div class="k">NexGard 6mo</div><div class="v">$115</div></div>
+              <div><div class="k">Total</div><div class="v">$310</div></div>
+            </div>
+            <div class="upper" style="margin-bottom:6px">CPT codes</div>
+            <p style="margin-bottom:14px">99201 (new patient exam), J9999 (Rx dispensed)</p>
+
+            <div class="upper" style="margin-bottom:6px">Pre-existing condition check</div>
+            <div class="flag-box">
+              <strong>⚠ Flagged:</strong> "Otitis externa noted in shelter intake record Feb 2026. May be excluded as pre-existing by Lemonade. Recommend noting as 'new occurrence' if recurrent within 180 days."
+            </div>
+
+            <div class="upper" style="margin:14px 0 6px">Diagnostic justification</div>
+            <p>Physical exam findings support otitis dx. No imaging/labs needed at this visit.</p>
+          </div>
+
+          <!-- Sign-off -->
+          <div class="soap-block">
+            <h3>Vet Sign-Off</h3>
+            <div class="row between">
+              <div>
+                <div style="font-size:12px"><strong>Status:</strong> Draft</div>
+                <div style="font-size:12px;color:var(--ink2);margin-top:4px">Signature: Not yet signed.</div>
+              </div>
+              <div class="row gap-sm">
+                <button class="btn">[Edit notes]</button>
+                <button class="btn btn-primary">Approve & sign</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row end">
+            <a href="#" class="link mono" style="font-size:12px;text-decoration:underline">Next: Review auto-filed insurance claim →</a>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     10. DESKTOP · CLAIM PREVIEW
+     ============================================================ -->
+<div>
+  <p class="page-label">Desktop · Claim preview · Biscuit</p>
+  <div class="frame frame-desktop">
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">[LOGO] PawMatch <span class="tag">Vet</span></div>
+        <div class="nav-label">Clinic</div>
+        <div class="nav-item">Dashboard</div>
+        <div class="nav-item">Appointments <span class="count">8</span></div>
+        <div class="nav-item">Patients</div>
+        <div class="nav-label">Records</div>
+        <div class="nav-item">AI Notes <span class="count">3</span></div>
+        <div class="nav-item">Documents</div>
+        <div class="nav-label">Finance</div>
+        <div class="nav-item active">Claims <span class="count">2</span></div>
+        <div class="nav-label">Settings</div>
+        <div class="nav-item">My Account</div>
+        <div class="profile-box">
+          <div class="avatar-sq">[ph]</div>
+          <div><div class="n">Dr. Ari Patel</div><div class="s">Forest Park Vet</div></div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="topbar">
+          <div>
+            <div class="breadcrumb"><a href="#">Claims</a> / LEM-2026-04-16-001</div>
+            <div class="title-row"><h1>Claim #LEM-2026-04-16-001 — Biscuit</h1><span class="badge">DRAFT</span></div>
+            <div class="sub">New-patient wellness · Apr 16, 2026 · Lemonade</div>
+          </div>
+          <div class="topbar-actions">
+            <button class="btn btn-sm">Save draft</button>
+            <button class="btn btn-primary">Sign & submit to Lemonade</button>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="legend-bar">
+            <span><span class="sym">◆</span>Auto — from PawMatch account</span>
+            <span><span class="sym">◉</span>Clinic — from clinic profile</span>
+            <span><span class="sym">▲</span>AI — extracted from AI Notetaker</span>
+            <span><span class="sym">✎</span>Manual — vet entered</span>
+          </div>
+
+          <!-- Policyholder -->
+          <div class="soap-block">
+            <h3>Policyholder Info <span class="tag">all ◆ Auto</span></h3>
+            <div class="form-row"><span class="k">Policy #</span><span class="v">LEM-8892341 <span class="src">◆</span></span></div>
+            <div class="form-row"><span class="k">Policyholder</span><span class="v">Sarah Chen <span class="src">◆</span></span></div>
+            <div class="form-row"><span class="k">Address</span><span class="v">1408 NW Raleigh St, Portland OR 97209 <span class="src">◆</span></span></div>
+            <div class="form-row"><span class="k">Phone</span><span class="v">(503) 555-0143 <span class="src">◆</span></span></div>
+            <div class="form-row"><span class="k">Email</span><span class="v">sarah@example.com <span class="src">◆</span></span></div>
+          </div>
+
+          <!-- Pet Info -->
+          <div class="soap-block">
+            <h3>Pet Info <span class="tag">all ◆ Auto</span></h3>
+            <div class="form-row"><span class="k">Pet name</span><span class="v">Biscuit <span class="src">◆</span></span></div>
+            <div class="form-row"><span class="k">Species / Breed</span><span class="v">Dog · Golden Retriever <span class="src">◆</span></span></div>
+            <div class="form-row"><span class="k">DOB</span><span class="v">March 3, 2024 <span class="src">◆</span></span></div>
+            <div class="form-row"><span class="k">Sex</span><span class="v">Male (Neutered) <span class="src">◆</span></span></div>
+            <div class="form-row"><span class="k">Microchip</span><span class="v">985112004893221 <span class="src">◆</span></span></div>
+          </div>
+
+          <!-- Visit & Treatment -->
+          <div class="soap-block">
+            <h3>Visit & Treatment <span class="tag">◉ Clinic · ▲ AI</span></h3>
+            <div class="form-row"><span class="k">Date of service</span><span class="v">April 16, 2026 <span class="src">▲</span></span></div>
+            <div class="form-row"><span class="k">Clinic name & address</span><span class="v">Forest Park Veterinary, 2250 NW Thurman St, Portland OR 97210 <span class="src">◉</span></span></div>
+            <div class="form-row"><span class="k">Vet name & license #</span><span class="v">Dr. Ari Patel, DVM · OR #VET-2014-5612 <span class="src">◉</span></span></div>
+            <div class="form-row"><span class="k">Reason for visit</span><span class="v">New-patient wellness exam (adopter follow-up) <span class="src">▲</span></span></div>
+            <div class="form-row"><span class="k">Diagnosis / condition</span><span class="v">Healthy adult. Mild left otitis externa (L01.10). Grade 1 dental tartar. <span class="src">▲</span></span></div>
+            <div class="form-row"><span class="k">Symptoms</span><span class="v">Mild left ear erythema, no debris. Otherwise asymptomatic. <span class="src">▲</span></span></div>
+            <div class="form-row"><span class="k">Procedures performed</span><span class="v">Comprehensive new-patient exam, ear canal inspection, oral cavity assessment <span class="src">▲</span></span></div>
+            <div class="form-row"><span class="k">Medications prescribed</span><span class="v">Epi-Otic Advanced otic cleaner — 5 mL each ear daily × 7 days. Heartgard Plus 51-100 lb monthly (6-mo). NexGard 24-60 lb monthly (6-mo). <span class="src">▲</span></span></div>
+            <div class="form-row"><span class="k">Follow-up required</span><span class="v">Otitis recheck in 14 days if not resolved. Next annual wellness April 2027. <span class="src">▲</span></span></div>
+          </div>
+
+          <!-- Financial -->
+          <div class="soap-block">
+            <h3>Financial <span class="tag">parsed from invoice</span></h3>
+            <div class="form-row"><span class="k">Total invoice</span><span class="v mono" style="font-weight:600">$310.00</span></div>
+            <div class="form-row"><span class="k">Itemized charges</span><span class="v">
+              New-patient exam: <span class="mono">$95</span> &nbsp; · &nbsp;
+              Epi-Otic Advanced: <span class="mono">$28</span> &nbsp; · &nbsp;
+              Heartgard Plus 6-mo: <span class="mono">$72</span> &nbsp; · &nbsp;
+              NexGard 6-mo: <span class="mono">$115</span>
+            </span></div>
+            <div class="form-row"><span class="k">Prior treatment</span><span class="v">
+              <div class="flag-box" style="margin-top:0"><strong>⚠ Possible pre-existing</strong> — Otitis externa noted in shelter intake Feb 2026. May be excluded by insurer. <button class="btn btn-sm" style="margin-top:8px">Mark as new occurrence ✎</button></div>
+            </span></div>
+            <div class="form-row"><span class="k">Other coverage</span><span class="v">None on file <span class="src">◆</span></span></div>
+          </div>
+
+          <!-- Signatures -->
+          <div class="soap-block">
+            <h3>Signatures</h3>
+            <div class="form-row"><span class="k">Policyholder</span><span class="v">Pending — will prompt Sarah via PawMatch app <span class="src">✎</span></span></div>
+            <div class="form-row"><span class="k">Vet</span><span class="v">Not yet signed — <button class="btn btn-primary btn-sm" style="margin-left:6px">Sign & submit to Lemonade</button></span></div>
+            <div class="form-row"><span class="k">Release of records</span><span class="v">Collected at enrollment <span class="src">◆</span></span></div>
+          </div>
+
+          <div class="row end gap-sm">
+            <button class="btn">Save draft</button>
+            <button class="btn btn-primary">Sign & submit to Lemonade</button>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     11. DESKTOP · CLAIMS LIST
+     ============================================================ -->
+<div>
+  <p class="page-label">Desktop · Claims list</p>
+  <div class="frame frame-desktop">
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">[LOGO] PawMatch <span class="tag">Vet</span></div>
+        <div class="nav-label">Clinic</div>
+        <div class="nav-item">Dashboard</div>
+        <div class="nav-item">Appointments <span class="count">8</span></div>
+        <div class="nav-item">Patients</div>
+        <div class="nav-label">Records</div>
+        <div class="nav-item">AI Notes <span class="count">3</span></div>
+        <div class="nav-item">Documents</div>
+        <div class="nav-label">Finance</div>
+        <div class="nav-item active">Claims <span class="count">2</span></div>
+        <div class="nav-label">Settings</div>
+        <div class="nav-item">My Account</div>
+        <div class="profile-box">
+          <div class="avatar-sq">[ph]</div>
+          <div><div class="n">Dr. Ari Patel</div><div class="s">Forest Park Vet</div></div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="topbar">
+          <div>
+            <h1>Claims</h1>
+            <div class="sub">Auto-filed via PawMatch · 32 claims this month</div>
+          </div>
+          <div class="topbar-actions">
+            <div class="search-bar">[Search] by pet, policy #, insurer…</div>
+            <button class="btn btn-sm">Sort: Date ▾</button>
+            <button class="btn btn-primary">+ New claim</button>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="tab-bar">
+            <button class="on">Draft · 1</button>
+            <button>Pending · 2</button>
+            <button>Approved · 28</button>
+            <button>Denied · 1</button>
+          </div>
+
+          <div class="card">
+            <table class="tbl">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Claim #</th>
+                  <th>Pet</th>
+                  <th>Owner</th>
+                  <th>Amount</th>
+                  <th>Insurer</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="mono" style="font-size:12px">Apr 16, 2026</td>
+                  <td class="mono" style="font-size:12px">LEM-2026-04-16-001</td>
+                  <td><div class="pet-cell"><div class="thumb">[ph]</div><div><div class="n">Biscuit</div><div class="s">Golden Retriever · 2y</div></div></div></td>
+                  <td>Sarah Chen</td>
+                  <td class="mono" style="font-weight:600">$310.00</td>
+                  <td>Lemonade</td>
+                  <td><span class="badge">DRAFT</span></td>
+                  <td><a href="#" class="row-act">Open →</a></td>
+                </tr>
+                <tr>
+                  <td class="mono" style="font-size:12px">Apr 14, 2026</td>
+                  <td class="mono" style="font-size:12px">LEM-2026-04-14-007</td>
+                  <td><div class="pet-cell"><div class="thumb">[ph]</div><div><div class="n">Max</div><div class="s">Labrador · 3y</div></div></div></td>
+                  <td>Jamie Rhodes</td>
+                  <td class="mono" style="font-weight:600">$285.00</td>
+                  <td>Lemonade</td>
+                  <td><span class="badge">PENDING</span></td>
+                  <td><a href="#" class="row-act">Open →</a></td>
+                </tr>
+                <tr>
+                  <td class="mono" style="font-size:12px">Apr 14, 2026</td>
+                  <td class="mono" style="font-size:12px">TRU-2026-04-14-003</td>
+                  <td><div class="pet-cell"><div class="thumb">[ph]</div><div><div class="n">Miso</div><div class="s">DSH · 4y</div></div></div></td>
+                  <td>Daniel Park</td>
+                  <td class="mono" style="font-weight:600">$200.00</td>
+                  <td>Trupanion</td>
+                  <td><span class="badge">PENDING</span></td>
+                  <td><a href="#" class="row-act">Open →</a></td>
+                </tr>
+                <tr>
+                  <td class="mono" style="font-size:12px">Apr 14, 2026</td>
+                  <td class="mono" style="font-size:12px">LEM-2026-04-14-002</td>
+                  <td><div class="pet-cell"><div class="thumb">[ph]</div><div><div class="n">Luna</div><div class="s">Maine Coon · 3y</div></div></div></td>
+                  <td>Mike Tran</td>
+                  <td class="mono" style="font-weight:600">$180.00</td>
+                  <td>Lemonade</td>
+                  <td><span class="badge fill">APPROVED</span><div style="font-size:10px;color:var(--ink2);margin-top:3px;font-family:var(--mono)">paid Apr 14</div></td>
+                  <td><a href="#" class="row-act">Open →</a></td>
+                </tr>
+                <tr>
+                  <td class="mono" style="font-size:12px">Apr 10, 2026</td>
+                  <td class="mono" style="font-size:12px">TRU-2026-04-10-001</td>
+                  <td><div class="pet-cell"><div class="thumb">[ph]</div><div><div class="n">Pepper</div><div class="s">Mixed · 7y</div></div></div></td>
+                  <td>Robin L.</td>
+                  <td class="mono" style="font-weight:600">$450.00</td>
+                  <td>Trupanion</td>
+                  <td><span class="badge fill">APPROVED</span><div style="font-size:10px;color:var(--ink2);margin-top:3px;font-family:var(--mono)">paid Apr 10</div></td>
+                  <td><a href="#" class="row-act">Open →</a></td>
+                </tr>
+                <tr>
+                  <td class="mono" style="font-size:12px">Apr 5, 2026</td>
+                  <td class="mono" style="font-size:12px">LEM-2026-04-05-004</td>
+                  <td><div class="pet-cell"><div class="thumb">[ph]</div><div><div class="n">Juno</div><div class="s">Corgi · 5y</div></div></div></td>
+                  <td>Chen family</td>
+                  <td class="mono" style="font-weight:600">$90.00</td>
+                  <td>Lemonade</td>
+                  <td><span class="badge">DENIED</span><div style="font-size:10px;color:var(--ink2);margin-top:3px;font-family:var(--mono)">pre-existing</div></td>
+                  <td><a href="#" class="row-act">Open →</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     12. DESKTOP · CLAIM DETAIL (submitted, pending)
+     ============================================================ -->
+<div>
+  <p class="page-label">Desktop · Claim detail · Pending</p>
+  <div class="frame frame-desktop">
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">[LOGO] PawMatch <span class="tag">Vet</span></div>
+        <div class="nav-label">Clinic</div>
+        <div class="nav-item">Dashboard</div>
+        <div class="nav-item">Appointments <span class="count">8</span></div>
+        <div class="nav-item">Patients</div>
+        <div class="nav-label">Records</div>
+        <div class="nav-item">AI Notes <span class="count">3</span></div>
+        <div class="nav-item">Documents</div>
+        <div class="nav-label">Finance</div>
+        <div class="nav-item active">Claims <span class="count">2</span></div>
+        <div class="nav-label">Settings</div>
+        <div class="nav-item">My Account</div>
+        <div class="profile-box">
+          <div class="avatar-sq">[ph]</div>
+          <div><div class="n">Dr. Ari Patel</div><div class="s">Forest Park Vet</div></div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="topbar">
+          <div>
+            <div class="breadcrumb"><a href="#">Claims</a> / LEM-2026-04-14-007</div>
+            <div class="title-row"><h1>Claim #LEM-2026-04-14-007 — Max</h1><span class="badge">PENDING</span></div>
+            <div class="sub">Post-surgery follow-up · Apr 14, 2026 · Lemonade</div>
+          </div>
+          <div class="topbar-actions">
+            <button class="btn btn-sm">Download PDF</button>
+            <button class="btn btn-sm">Message Lemonade agent</button>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="status-banner">
+            <div>
+              <strong>PENDING · submitted to Lemonade</strong>
+              <div style="font-size:11px;color:var(--ink2);margin-top:4px">Submitted Apr 14, 2026 · Typical review: 2–5 business days</div>
+            </div>
+            <button class="btn btn-sm">View status history</button>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 300px;gap:16px">
+            <div class="col">
+              <div class="legend-bar">
+                <span><span class="sym">◆</span>Auto</span>
+                <span><span class="sym">◉</span>Clinic</span>
+                <span><span class="sym">▲</span>AI</span>
+                <span><span class="sym">✎</span>Manual</span>
+                <span style="margin-left:auto;color:var(--ink2)">Read-only · submitted 2 days ago</span>
+              </div>
+
+              <div class="soap-block">
+                <h3>Policyholder Info</h3>
+                <div class="form-row"><span class="k">Policy #</span><span class="v">LEM-4231905 <span class="src">◆</span></span></div>
+                <div class="form-row"><span class="k">Policyholder</span><span class="v">Jamie Rhodes <span class="src">◆</span></span></div>
+                <div class="form-row"><span class="k">Address</span><span class="v">2311 SE Clinton St, Portland OR 97202 <span class="src">◆</span></span></div>
+                <div class="form-row"><span class="k">Phone</span><span class="v">(971) 555-0108 <span class="src">◆</span></span></div>
+              </div>
+
+              <div class="soap-block">
+                <h3>Pet Info</h3>
+                <div class="form-row"><span class="k">Pet name</span><span class="v">Max <span class="src">◆</span></span></div>
+                <div class="form-row"><span class="k">Species / Breed</span><span class="v">Dog · Labrador Retriever <span class="src">◆</span></span></div>
+                <div class="form-row"><span class="k">DOB</span><span class="v">June 12, 2023 <span class="src">◆</span></span></div>
+                <div class="form-row"><span class="k">Sex</span><span class="v">Male (Neutered) <span class="src">◆</span></span></div>
+              </div>
+
+              <div class="soap-block">
+                <h3>Visit & Treatment</h3>
+                <div class="form-row"><span class="k">Date of service</span><span class="v">April 14, 2026 <span class="src">▲</span></span></div>
+                <div class="form-row"><span class="k">Vet</span><span class="v">Dr. Ari Patel, DVM · OR #VET-2014-5612 <span class="src">◉</span></span></div>
+                <div class="form-row"><span class="k">Reason for visit</span><span class="v">Post-surgery follow-up (TPLO · left stifle) <span class="src">▲</span></span></div>
+                <div class="form-row"><span class="k">Diagnosis</span><span class="v">Healing well post-TPLO. Sutures dissolving as expected. Mild residual stiffness. <span class="src">▲</span></span></div>
+                <div class="form-row"><span class="k">Procedures</span><span class="v">Suture check, gait assessment, rehab planning <span class="src">▲</span></span></div>
+                <div class="form-row"><span class="k">Medications</span><span class="v">Carprofen 75 mg BID × 7 days (continue). Gabapentin PRN. <span class="src">▲</span></span></div>
+                <div class="form-row"><span class="k">Follow-up</span><span class="v">6-week recheck w/ radiographs · May 28, 2026 <span class="src">▲</span></span></div>
+              </div>
+
+              <div class="soap-block">
+                <h3>Financial</h3>
+                <div class="form-row"><span class="k">Total invoice</span><span class="v mono" style="font-weight:600">$285.00</span></div>
+                <div class="form-row"><span class="k">Itemized</span><span class="v">Follow-up exam $85 · Carprofen refill $42 · Gabapentin $28 · Rehab consult $130</span></div>
+                <div class="form-row"><span class="k">Pre-existing</span><span class="v">Not applicable — post-op follow-up for covered TPLO (original claim LEM-2026-03-08-011)</span></div>
+              </div>
+            </div>
+
+            <!-- Timeline sidebar -->
+            <div class="col">
+              <div class="pd-card">
+                <div class="pd-card-head">Claim timeline</div>
+                <div class="pd-card-body">
+                  <div class="timeline-v">
+                    <div class="ti done">
+                      <div class="dot"></div>
+                      <div class="body"><div class="n">Submitted ✓</div><div class="s">Apr 14, 2026 · 4:12 pm</div></div>
+                    </div>
+                    <div class="ti current">
+                      <div class="dot"></div>
+                      <div class="body"><div class="n">Under review</div><div class="s">In progress · day 2 of 5</div></div>
+                    </div>
+                    <div class="ti">
+                      <div class="dot"></div>
+                      <div class="body"><div class="n">Approved</div><div class="s">Pending</div></div>
+                    </div>
+                    <div class="ti">
+                      <div class="dot"></div>
+                      <div class="body"><div class="n">Payout</div><div class="s">ACH to clinic</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pd-card">
+                <div class="pd-card-head">Actions</div>
+                <div class="pd-card-body" style="display:flex;flex-direction:column;gap:8px">
+                  <button class="btn btn-block" style="justify-content:center">Download PDF</button>
+                  <button class="btn btn-block" style="justify-content:center">Message Lemonade agent</button>
+                  <button class="btn btn-block" style="justify-content:center">View prior claim (TPLO)</button>
+                </div>
+              </div>
+
+              <div class="pd-card">
+                <div class="pd-card-head">Contact</div>
+                <div class="pd-card-body" style="font-size:12px;color:var(--ink2);line-height:1.5">
+                  Lemonade Claims<br>
+                  <span class="mono" style="color:var(--ink)">claims@lemonade.com</span><br>
+                  <span class="mono" style="color:var(--ink)">(844) 733-8666</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     13. DESKTOP · AI NOTES LIST
+     ============================================================ -->
+<div>
+  <p class="page-label">Desktop · AI Notes list</p>
+  <div class="frame frame-desktop">
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">[LOGO] PawMatch <span class="tag">Vet</span></div>
+        <div class="nav-label">Clinic</div>
+        <div class="nav-item">Dashboard</div>
+        <div class="nav-item">Appointments <span class="count">8</span></div>
+        <div class="nav-item">Patients</div>
+        <div class="nav-label">Records</div>
+        <div class="nav-item active">AI Notes <span class="count">3</span></div>
+        <div class="nav-item">Documents</div>
+        <div class="nav-label">Finance</div>
+        <div class="nav-item">Claims <span class="count">2</span></div>
+        <div class="nav-label">Settings</div>
+        <div class="nav-item">My Account</div>
+        <div class="profile-box">
+          <div class="avatar-sq">[ph]</div>
+          <div><div class="n">Dr. Ari Patel</div><div class="s">Forest Park Vet</div></div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="topbar">
+          <div>
+            <h1>AI Notes</h1>
+            <div class="sub">Review, edit, and sign SOAP notes drafted by the AI Notetaker.</div>
+          </div>
+          <div class="topbar-actions">
+            <div class="search-bar">[Search] by pet, vet, or keyword…</div>
+            <button class="btn btn-sm">Sort: Most recent ▾</button>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="tab-bar">
+            <button class="on">All · 127</button>
+            <button>Draft · 3</button>
+            <button>Ready for review · 2</button>
+            <button>Signed · 122</button>
+          </div>
+
+          <div class="card">
+            <table class="tbl">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Visit</th>
+                  <th>Pet</th>
+                  <th>Vet</th>
+                  <th>Status</th>
+                  <th>Length</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="mono" style="font-size:12px">Today · 09:30</td>
+                  <td>New-patient wellness</td>
+                  <td><div class="pet-cell"><div class="thumb">[ph]</div><div><div class="n">Biscuit</div><div class="s">Golden Retriever</div></div></div></td>
+                  <td>Dr. Patel</td>
+                  <td><span class="badge">DRAFT</span><div style="font-size:10px;color:var(--ink2);margin-top:3px">recorded · categorized · needs review</div></td>
+                  <td class="mono" style="font-size:12px">45 min</td>
+                  <td><a href="#" class="row-act">Open →</a></td>
+                </tr>
+                <tr>
+                  <td class="mono" style="font-size:12px">Today · 08:00</td>
+                  <td>Post-op follow-up</td>
+                  <td><div class="pet-cell"><div class="thumb">[ph]</div><div><div class="n">Max</div><div class="s">Labrador</div></div></div></td>
+                  <td>Dr. Patel</td>
+                  <td><span class="badge fill">READY FOR REVIEW</span></td>
+                  <td class="mono" style="font-size:12px">20 min</td>
+                  <td><a href="#" class="row-act">Open →</a></td>
+                </tr>
+                <tr>
+                  <td class="mono" style="font-size:12px">Yesterday · 15:45</td>
+                  <td>New-patient wellness</td>
+                  <td><div class="pet-cell"><div class="thumb">[ph]</div><div><div class="n">Luna</div><div class="s">Maine Coon</div></div></div></td>
+                  <td>Dr. Tran</td>
+                  <td><span class="badge fill">READY FOR REVIEW</span><div style="font-size:10px;color:var(--ink2);margin-top:3px">brief summary</div></td>
+                  <td class="mono" style="font-size:12px">30 min</td>
+                  <td><a href="#" class="row-act">Open →</a></td>
+                </tr>
+                <tr>
+                  <td class="mono" style="font-size:12px">Yesterday · 14:00</td>
+                  <td>Dental cleaning</td>
+                  <td><div class="pet-cell"><div class="thumb">[ph]</div><div><div class="n">Pepper</div><div class="s">Mixed</div></div></div></td>
+                  <td>Dr. Patel</td>
+                  <td><span class="badge">SIGNED</span><div style="font-size:10px;color:var(--ink2);margin-top:3px">Apr 15, 2026</div></td>
+                  <td class="mono" style="font-size:12px">60 min</td>
+                  <td><a href="#" class="row-act">Open →</a></td>
+                </tr>
+                <tr>
+                  <td class="mono" style="font-size:12px">Yesterday · 11:00</td>
+                  <td>Vaccines</td>
+                  <td><div class="pet-cell"><div class="thumb">[ph]</div><div><div class="n">Juno</div><div class="s">Corgi</div></div></div></td>
+                  <td>Dr. Tran</td>
+                  <td><span class="badge">SIGNED</span></td>
+                  <td class="mono" style="font-size:12px">30 min</td>
+                  <td><a href="#" class="row-act">Open →</a></td>
+                </tr>
+                <tr>
+                  <td class="mono" style="font-size:12px">Apr 14 · 09:30</td>
+                  <td>Spay post-op</td>
+                  <td><div class="pet-cell"><div class="thumb">[ph]</div><div><div class="n">Mia</div><div class="s">Cat · DSH</div></div></div></td>
+                  <td>Dr. Patel</td>
+                  <td><span class="badge">SIGNED</span></td>
+                  <td class="mono" style="font-size:12px">25 min</td>
+                  <td><a href="#" class="row-act">Open →</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     14. DESKTOP · DOCUMENTS
+     ============================================================ -->
+<div>
+  <p class="page-label">Desktop · Documents</p>
+  <div class="frame frame-desktop">
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">[LOGO] PawMatch <span class="tag">Vet</span></div>
+        <div class="nav-label">Clinic</div>
+        <div class="nav-item">Dashboard</div>
+        <div class="nav-item">Appointments <span class="count">8</span></div>
+        <div class="nav-item">Patients</div>
+        <div class="nav-label">Records</div>
+        <div class="nav-item">AI Notes <span class="count">3</span></div>
+        <div class="nav-item active">Documents</div>
+        <div class="nav-label">Finance</div>
+        <div class="nav-item">Claims <span class="count">2</span></div>
+        <div class="nav-label">Settings</div>
+        <div class="nav-item">My Account</div>
+        <div class="profile-box">
+          <div class="avatar-sq">[ph]</div>
+          <div><div class="n">Dr. Ari Patel</div><div class="s">Forest Park Vet</div></div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="topbar">
+          <div>
+            <h1>Documents</h1>
+            <div class="sub">Imaging, lab results, consent forms and adoption records.</div>
+          </div>
+          <div class="topbar-actions">
+            <div class="search-bar">[Search] files…</div>
+            <button class="btn btn-primary">Upload</button>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="tab-bar">
+            <button class="on">All · 284</button>
+            <button>X-rays · 48</button>
+            <button>Lab results · 112</button>
+            <button>Images · 67</button>
+            <button>PDFs · 51</button>
+            <button>Consent forms · 6</button>
+          </div>
+
+          <div class="doc-grid">
+            <div class="doc-card">
+              <div class="doc-icon">[📄]</div>
+              <div class="name">Biscuit_vet-records_shelter-transfer.pdf</div>
+              <div class="meta">Apr 12, 2026 · 1.2 MB</div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-icon">[🩻]</div>
+              <div class="name">Max_post-op_x-ray_hip.jpg</div>
+              <div class="meta">Apr 10, 2026 · 3.4 MB</div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-icon">[📄]</div>
+              <div class="name">Miso_bloodwork_chem-panel.pdf</div>
+              <div class="meta">Apr 8, 2026 · 890 KB</div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-icon">[📄]</div>
+              <div class="name">Luna_adoption-contract_willow-creek.pdf</div>
+              <div class="meta">Apr 7, 2026 · 720 KB</div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-icon">[🩻]</div>
+              <div class="name">Pepper_dental_x-ray_full-mouth.jpg</div>
+              <div class="meta">Apr 6, 2026 · 2.8 MB</div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-icon">[📄]</div>
+              <div class="name">Juno_vaccination-certs_2026.pdf</div>
+              <div class="meta">Apr 5, 2026 · 240 KB</div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-icon">[📄]</div>
+              <div class="name">Signed consent form template_2026.pdf</div>
+              <div class="meta">Mar 28, 2026 · 180 KB</div>
+            </div>
+            <div class="doc-card upload">
+              <div style="font-size:24px">+</div>
+              <div>Upload</div>
+              <div style="font-size:10px;color:var(--ink3)">PDF, JPG, PNG up to 25 MB</div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     15. DESKTOP · MY ACCOUNT
+     ============================================================ -->
+<div>
+  <p class="page-label">Desktop · My Account · Clinic profile</p>
+  <div class="frame frame-desktop">
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">[LOGO] PawMatch <span class="tag">Vet</span></div>
+        <div class="nav-label">Clinic</div>
+        <div class="nav-item">Dashboard</div>
+        <div class="nav-item">Appointments <span class="count">8</span></div>
+        <div class="nav-item">Patients</div>
+        <div class="nav-label">Records</div>
+        <div class="nav-item">AI Notes <span class="count">3</span></div>
+        <div class="nav-item">Documents</div>
+        <div class="nav-label">Finance</div>
+        <div class="nav-item">Claims <span class="count">2</span></div>
+        <div class="nav-label">Settings</div>
+        <div class="nav-item active">My Account</div>
+        <div class="profile-box">
+          <div class="avatar-sq">[ph]</div>
+          <div><div class="n">Dr. Ari Patel</div><div class="s">Forest Park Vet</div></div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="topbar">
+          <div>
+            <h1>My Account</h1>
+            <div class="sub">Forest Park Veterinary · Portland OR · 3 vets</div>
+          </div>
+          <div class="topbar-actions">
+            <button class="btn btn-sm">Sign out</button>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="tab-bar">
+            <button class="on">Clinic profile</button>
+            <button>Team & sub-accounts</button>
+            <button>Licenses & credentials</button>
+            <button>Billing</button>
+            <button>Security</button>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+            <!-- Clinic profile form -->
+            <div class="soap-block">
+              <h3>Clinic profile</h3>
+              <div class="field">
+                <label>Clinic name</label>
+                <input class="input" value="Forest Park Veterinary">
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                <div class="field">
+                  <label>Clinic type</label>
+                  <input class="input" value="Private practice">
+                </div>
+                <div class="field">
+                  <label>Year opened</label>
+                  <input class="input" value="2011">
+                </div>
+              </div>
+              <div class="field">
+                <label>Address</label>
+                <input class="input" value="2250 NW Thurman St, Portland OR 97210">
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                <div class="field">
+                  <label>Phone</label>
+                  <input class="input" value="(503) 555-0181">
+                </div>
+                <div class="field">
+                  <label>Email</label>
+                  <input class="input" value="hello@forestparkvet.com">
+                </div>
+              </div>
+              <div class="field">
+                <label>Website</label>
+                <input class="input" value="forestparkvet.com">
+              </div>
+
+              <div class="upper" style="margin:10px 0 8px">Insurance partners</div>
+              <div class="chips">
+                <span class="pill">Lemonade ✓</span>
+                <span class="pill">Trupanion ✓</span>
+                <span class="pill">Healthy Paws ✓</span>
+                <span class="pill" style="border-style:dashed;color:var(--ink2)">MetLife — [+ Add]</span>
+                <span class="pill" style="border-style:dashed;color:var(--ink2)">[+ Add new]</span>
+              </div>
+
+              <div class="upper" style="margin:14px 0 8px">Accepted species</div>
+              <div class="chips">
+                <span class="pill dark">Dogs</span>
+                <span class="pill dark">Cats</span>
+                <span class="pill dark">Exotic / small pets</span>
+              </div>
+
+              <div class="row end gap-sm mt-lg">
+                <button class="btn">Cancel</button>
+                <button class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+
+            <!-- Right col: hours + team -->
+            <div class="col">
+              <div class="soap-block">
+                <h3>Hours of operation</h3>
+                <div class="card">
+                  <div class="form-row" style="padding:10px 14px"><span class="k">Mon–Fri</span><span class="v mono">7:00 am – 6:00 pm</span></div>
+                  <div class="form-row" style="padding:10px 14px"><span class="k">Saturday</span><span class="v mono">8:00 am – 4:00 pm</span></div>
+                  <div class="form-row" style="padding:10px 14px;border-bottom:none"><span class="k">Sunday</span><span class="v mono" style="color:var(--ink3)">Closed</span></div>
+                </div>
+              </div>
+
+              <div class="soap-block">
+                <h3>Team & sub-accounts <span class="tag">preview</span></h3>
+                <div class="col gap-sm">
+                  <div class="pd-card" style="padding:12px 14px;display:flex;gap:12px;align-items:center">
+                    <div class="avatar-sq">[ph]</div>
+                    <div style="flex:1">
+                      <div style="font-size:13px;font-weight:600">Dr. Ari Patel <span class="badge" style="margin-left:6px">LEAD · ADMIN</span></div>
+                      <div style="font-size:11px;color:var(--ink2);font-family:var(--mono)">OR #VET-2014-5612</div>
+                    </div>
+                    <button class="btn btn-sm">Edit</button>
+                  </div>
+                  <div class="pd-card" style="padding:12px 14px;display:flex;gap:12px;align-items:center">
+                    <div class="avatar-sq">[ph]</div>
+                    <div style="flex:1">
+                      <div style="font-size:13px;font-weight:600">Dr. Mike Tran <span class="badge" style="margin-left:6px">ASSOCIATE</span></div>
+                      <div style="font-size:11px;color:var(--ink2);font-family:var(--mono)">OR #VET-2019-9234</div>
+                    </div>
+                    <button class="btn btn-sm">Edit</button>
+                  </div>
+                  <div class="pd-card" style="padding:12px 14px;display:flex;gap:12px;align-items:center">
+                    <div class="avatar-sq">[ph]</div>
+                    <div style="flex:1">
+                      <div style="font-size:13px;font-weight:600">Dr. Lisa Nguyen <span class="badge" style="margin-left:6px">ASSOCIATE</span></div>
+                      <div style="font-size:11px;color:var(--ink2);font-family:var(--mono)">OR #VET-2020-1876</div>
+                    </div>
+                    <button class="btn btn-sm">Edit</button>
+                  </div>
+                  <button class="btn btn-block" style="border-style:dashed;color:var(--ink2);justify-content:center">+ Invite vet</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     16. DESKTOP · NEW APPOINTMENT / PATIENT SELECTION
+     ============================================================ -->
+<div>
+  <p class="page-label">Desktop · New appointment · Patient selection</p>
+  <div class="frame frame-desktop">
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">[LOGO] PawMatch <span class="tag">Vet</span></div>
+        <div class="nav-label">Clinic</div>
+        <div class="nav-item">Dashboard</div>
+        <div class="nav-item active">Appointments <span class="count">8</span></div>
+        <div class="nav-item">Patients</div>
+        <div class="nav-label">Records</div>
+        <div class="nav-item">AI Notes <span class="count">3</span></div>
+        <div class="nav-item">Documents</div>
+        <div class="nav-label">Finance</div>
+        <div class="nav-item">Claims <span class="count">2</span></div>
+        <div class="nav-label">Settings</div>
+        <div class="nav-item">My Account</div>
+        <div class="profile-box">
+          <div class="avatar-sq">[ph]</div>
+          <div><div class="n">Dr. Ari Patel</div><div class="s">Forest Park Vet</div></div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="topbar">
+          <div>
+            <div class="breadcrumb"><a href="#">Appointments</a> / New</div>
+            <h1>New appointment</h1>
+            <div class="sub">Step 1 of 3 · Select a patient</div>
+          </div>
+          <div class="topbar-actions">
+            <button class="btn btn-sm">✕ Close</button>
+          </div>
+        </div>
+
+        <div class="content" style="align-items:center">
+          <div style="width:720px;max-width:100%">
+            <!-- stepper -->
+            <div class="row gap-sm" style="margin-bottom:20px">
+              <div class="pill dark">1 · Patient</div>
+              <div style="flex:1;height:1px;background:var(--line)"></div>
+              <div class="pill">2 · Time</div>
+              <div style="flex:1;height:1px;background:var(--line)"></div>
+              <div class="pill">3 · Confirm</div>
+            </div>
+
+            <div class="soap-block">
+              <h3>Select a patient</h3>
+              <div class="field" style="margin-bottom:16px">
+                <label>Search</label>
+                <input class="input" placeholder="Type a pet or owner name…" value="bis">
+              </div>
+
+              <div class="upper" style="margin-bottom:6px">Matches · 2</div>
+              <div class="col gap-sm">
+                <div class="pd-card" style="padding:12px 14px;display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;border-color:var(--ink);border-width:2px">
+                  <div class="avatar-sq">[ph]</div>
+                  <div>
+                    <div style="font-size:13px;font-weight:600">Biscuit · Golden Retriever, 2y <span class="badge fill" style="margin-left:6px">NEW PATIENT</span></div>
+                    <div style="font-size:11px;color:var(--ink2);font-family:var(--mono)">Owner: Sarah Chen · #PM-2143 · Tomorrow 9:30am scheduled</div>
+                  </div>
+                  <span class="mono" style="font-size:11px;color:var(--ink2)">●</span>
+                </div>
+                <div class="pd-card" style="padding:12px 14px;display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center">
+                  <div class="avatar-sq">[ph]</div>
+                  <div>
+                    <div style="font-size:13px;font-weight:600">Bismarck · Bernese Mountain Dog, 4y</div>
+                    <div style="font-size:11px;color:var(--ink2);font-family:var(--mono)">Owner: Dana Silver · #PM-1422</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="upper" style="margin:18px 0 6px">Or create new</div>
+              <button class="btn btn-block" style="border-style:dashed;color:var(--ink2);justify-content:center;padding:14px">+ Create new patient</button>
+
+              <div class="row between mt-lg">
+                <button class="btn">Cancel</button>
+                <button class="btn btn-primary">Next: pick time →</button>
+              </div>
+            </div>
+
+            <div class="upper" style="color:var(--ink3);margin-top:12px">Tip</div>
+            <p style="font-size:12px;color:var(--ink2);line-height:1.5">Patients added here automatically receive a PawMatch owner invite if they're not in the ecosystem yet. When the owner links their insurance, claims auto-file after each visit.</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     ==========================================================
+     MOBILE FRAMES
+     ==========================================================
+     ============================================================ -->
+
+<!-- M1. Mobile · Dashboard -->
+<div>
+  <p class="page-label">Mobile · Dashboard</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+      <div class="m-top">
+        <div class="brand" style="border:none;padding:0">[LOGO] PawMatch Vet</div>
+        <button class="icon-btn">[🔔]</button>
+      </div>
+      <div style="padding:14px 16px 10px;background:var(--white);border-bottom:1px solid var(--line)">
+        <div class="greet">
+          <h1 style="font-size:20px;font-weight:600;letter-spacing:-0.3px">Good morning, Dr. Patel</h1>
+          <div style="font-size:11px;color:var(--ink2);margin-top:3px">Wed · Apr 16 · 8 appts today</div>
+        </div>
+      </div>
+
+      <div class="m-content">
+        <div class="m-kpi-grid">
+          <div class="m-kpi"><div class="l">Today's appts</div><div class="v">8</div><div class="d">+2 vs yest · 3 new</div></div>
+          <div class="m-kpi"><div class="l">Notes to finalize</div><div class="v">3</div><div class="d">2 in review · 1 ready</div></div>
+          <div class="m-kpi"><div class="l">Pending claims</div><div class="v">2</div><div class="d">$485 total</div></div>
+          <div class="m-kpi"><div class="l">Active patients</div><div class="v">412</div><div class="d">+7 this month</div></div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head"><span>Up next</span><a href="#" class="link mono" style="font-size:11px">View all →</a></div>
+          <div class="m-appt" style="background:var(--surface)">
+            <div class="time">09:30</div>
+            <div class="thumb">[ph]</div>
+            <div>
+              <div class="n">Biscuit · Golden, 2y</div>
+              <div class="s">New-pt wellness · Sarah Chen</div>
+            </div>
+            <span class="badge fill">NEW</span>
+          </div>
+          <div class="m-appt">
+            <div class="time">10:30</div>
+            <div class="thumb">[ph]</div>
+            <div>
+              <div class="n">Miso · DSH, 4y</div>
+              <div class="s">Annual checkup · Daniel P.</div>
+            </div>
+            <span class="badge">RTN</span>
+          </div>
+          <div class="m-appt">
+            <div class="time">11:15</div>
+            <div class="thumb">[ph]</div>
+            <div>
+              <div class="n">Olive · Beagle mix, 1y</div>
+              <div class="s">DHPP booster · Alvarez</div>
+            </div>
+            <span class="badge">RTN</span>
+          </div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head"><span>Notes to finalize</span><a href="#" class="link mono" style="font-size:11px">All</a></div>
+          <div class="act-item">
+            <div class="act-bullet"></div>
+            <div><strong>Miso</strong> · AI note ready<span class="t">Categorized · 2m ago</span></div>
+          </div>
+          <div class="act-item">
+            <div class="act-bullet"></div>
+            <div><strong>Luna</strong> · AI note ready<span class="t">Brief summary · 1h ago</span></div>
+          </div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head"><span>Pending claims</span><a href="#" class="link mono" style="font-size:11px">All</a></div>
+          <div class="act-item">
+            <div class="act-bullet hollow"></div>
+            <div><strong>Max — $285</strong> · Lemonade<span class="t">Auto-filed 3h ago</span></div>
+          </div>
+          <div class="act-item">
+            <div class="act-bullet hollow"></div>
+            <div><strong>Miso — $200</strong> · Trupanion<span class="t">Needs your signature</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-tab-bar">
+        <div class="t active"><div class="ic">⌂</div>Home</div>
+        <div class="t"><div class="ic">▤</div>Calendar</div>
+        <div class="t"><div class="ic">●</div>Record</div>
+        <div class="t"><div class="ic">$</div>Claims</div>
+        <div class="t"><div class="ic">◔</div>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- M2. Mobile · Appointments -->
+<div>
+  <p class="page-label">Mobile · Appointments · Today</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+      <div class="m-top">
+        <div>
+          <div style="font-size:18px;font-weight:600">Today</div>
+          <div style="font-size:11px;color:var(--ink2)">Wed · Apr 16, 2026</div>
+        </div>
+        <div class="seg">
+          <button class="on">Day</button>
+          <button>Week</button>
+        </div>
+      </div>
+
+      <div class="m-content">
+        <div class="row between">
+          <div class="tab-bar" style="border:none">
+            <button class="on">All · 8</button>
+            <button>New · 3</button>
+            <button>Rtn · 5</button>
+          </div>
+          <button class="btn btn-sm">+</button>
+        </div>
+
+        <div class="m-card">
+          <div class="m-appt" style="background:var(--surface)">
+            <div class="time">09:30<div style="font-size:9px;color:var(--ink2)">NOW</div></div>
+            <div class="thumb">[ph]</div>
+            <div>
+              <div class="n">Biscuit · Golden, 2y</div>
+              <div class="s">New-pt wellness · 45m</div>
+            </div>
+            <button class="btn btn-primary btn-sm">Start →</button>
+          </div>
+          <div class="m-appt">
+            <div class="time">10:30</div>
+            <div class="thumb">[ph]</div>
+            <div>
+              <div class="n">Miso · DSH, 4y</div>
+              <div class="s">Annual · 30m · Daniel P.</div>
+            </div>
+            <span class="badge">RTN</span>
+          </div>
+          <div class="m-appt">
+            <div class="time">11:15</div>
+            <div class="thumb">[ph]</div>
+            <div>
+              <div class="n">Olive · Beagle mix, 1y</div>
+              <div class="s">DHPP · 30m · Alvarez</div>
+            </div>
+            <span class="badge">RTN</span>
+          </div>
+          <div class="m-appt" style="font-style:italic;color:var(--ink3);grid-template-columns:1fr">
+            <div style="text-align:center;font-size:11px">— Lunch · 12:00–12:30 —</div>
+          </div>
+          <div class="m-appt">
+            <div class="time">13:00</div>
+            <div class="thumb">[ph]</div>
+            <div>
+              <div class="n">Clover · Holland Lop, 6m</div>
+              <div class="s">New-pt exam · 45m · Priya S.</div>
+            </div>
+            <span class="badge fill">NEW</span>
+          </div>
+          <div class="m-appt">
+            <div class="time">14:00</div>
+            <div class="thumb">[ph]</div>
+            <div>
+              <div class="n">Pepper · Mixed, 7y</div>
+              <div class="s">Dental · 60m · Robin L.</div>
+            </div>
+            <span class="badge">RTN</span>
+          </div>
+          <div class="m-appt">
+            <div class="time">15:00</div>
+            <div class="thumb">[ph]</div>
+            <div>
+              <div class="n">Max · Lab, 3y</div>
+              <div class="s">Post-op · 20m · Jamie R.</div>
+            </div>
+            <span class="badge">RTN</span>
+          </div>
+          <div class="m-appt">
+            <div class="time">15:30</div>
+            <div class="thumb">[ph]</div>
+            <div>
+              <div class="n">Luna · Maine Coon, 3y</div>
+              <div class="s">New-pt · 30m · Mike T.</div>
+            </div>
+            <span class="badge fill">NEW</span>
+          </div>
+          <div class="m-appt">
+            <div class="time">16:00</div>
+            <div class="thumb">[ph]</div>
+            <div>
+              <div class="n">Juno · Corgi, 5y</div>
+              <div class="s">Vaccines · 30m · Chen fam.</div>
+            </div>
+            <span class="badge">RTN</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-tab-bar">
+        <div class="t"><div class="ic">⌂</div>Home</div>
+        <div class="t active"><div class="ic">▤</div>Calendar</div>
+        <div class="t"><div class="ic">●</div>Record</div>
+        <div class="t"><div class="ic">$</div>Claims</div>
+        <div class="t"><div class="ic">◔</div>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- M3. Mobile · Active recording -->
+<div>
+  <p class="page-label">Mobile · Active recording</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+      <div class="m-top">
+        <div class="m-back">← Back</div>
+        <span class="badge fill">● REC</span>
+      </div>
+
+      <div style="padding:12px 16px;border-bottom:1px solid var(--line);background:var(--white);display:flex;gap:10px;align-items:center">
+        <div class="avatar-sq">[ph]</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:600">Biscuit — Golden, 2y</div>
+          <div style="font-size:11px;color:var(--ink2);font-family:var(--mono)">Wed 9:30am · 45 min · Dr. Patel</div>
+        </div>
+      </div>
+
+      <div class="m-content" style="align-items:center;gap:20px">
+        <div class="upper" style="margin-top:10px"><span class="rec-dot" style="width:10px;height:10px"></span>Recording · Transcribing live…</div>
+        <div class="big-timer" style="font-size:64px">00:12:47</div>
+
+        <div class="waveform" style="width:100%;padding:0">
+          <div class="bar" style="height:30%"></div>
+          <div class="bar" style="height:55%"></div>
+          <div class="bar" style="height:80%"></div>
+          <div class="bar" style="height:40%"></div>
+          <div class="bar" style="height:65%"></div>
+          <div class="bar" style="height:90%"></div>
+          <div class="bar" style="height:50%"></div>
+          <div class="bar" style="height:30%"></div>
+          <div class="bar" style="height:70%"></div>
+          <div class="bar" style="height:55%"></div>
+          <div class="bar" style="height:45%"></div>
+          <div class="bar" style="height:85%"></div>
+          <div class="bar" style="height:35%"></div>
+          <div class="bar" style="height:60%"></div>
+          <div class="bar" style="height:75%"></div>
+          <div class="bar" style="height:40%"></div>
+          <div class="bar" style="height:50%"></div>
+          <div class="bar" style="height:30%"></div>
+          <div class="bar" style="height:65%"></div>
+          <div class="bar" style="height:55%"></div>
+          <div class="bar" style="height:80%"></div>
+          <div class="bar" style="height:45%"></div>
+          <div class="bar" style="height:35%"></div>
+          <div class="bar" style="height:70%"></div>
+        </div>
+
+        <div class="row gap-sm" style="width:100%;justify-content:center">
+          <button class="btn btn-lg" style="flex:1;justify-content:center">⏸ Pause</button>
+          <button class="btn btn-primary btn-lg" style="flex:1;justify-content:center">◼ Stop</button>
+        </div>
+        <div class="row gap-sm" style="width:100%">
+          <button class="btn btn-block" style="justify-content:center">[📷] Photo</button>
+          <button class="btn btn-block" style="justify-content:center">[📄] X-ray</button>
+        </div>
+
+        <div class="m-card" style="width:100%">
+          <div class="m-card-head"><span>Live transcript</span><span class="upper" style="font-size:9px">auto</span></div>
+          <div style="padding:12px 14px;font-size:11px;line-height:1.6;color:var(--ink2);max-height:110px;overflow:hidden">
+            <strong style="color:var(--ink)">Dr:</strong> He's 32.1 kilos, looking healthy. HR 72, temp 38.4, all within normal range. Let me listen to his chest… Lungs clear bilaterally. No murmur. Let me check ears now.
+          </div>
+        </div>
+      </div>
+
+      <div class="m-tab-bar">
+        <div class="t"><div class="ic">⌂</div>Home</div>
+        <div class="t"><div class="ic">▤</div>Calendar</div>
+        <div class="t active"><div class="ic">●</div>Record</div>
+        <div class="t"><div class="ic">$</div>Claims</div>
+        <div class="t"><div class="ic">◔</div>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- M4. Mobile · Note review -->
+<div>
+  <p class="page-label">Mobile · Note review · Biscuit</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+      <div class="m-top">
+        <div class="m-back">← Biscuit</div>
+        <span class="badge">DRAFT</span>
+      </div>
+
+      <div style="padding:12px 16px;border-bottom:1px solid var(--line);background:var(--white);display:flex;gap:10px;align-items:center">
+        <div class="avatar-sq">[ph]</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:600">Biscuit — Golden, 2y</div>
+          <div style="font-size:11px;color:var(--ink2);font-family:var(--mono)">Visit ended 10:15am · 45 min</div>
+        </div>
+      </div>
+
+      <div class="tab-bar" style="padding:0 16px;background:var(--white);border-top:1px solid var(--line)">
+        <button>Summary</button>
+        <button class="on">Notes</button>
+        <button>Transcript</button>
+      </div>
+
+      <div class="m-content">
+        <!-- Accordion-style soap blocks -->
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)">
+            <span>Chief Complaint <span class="mono" style="font-size:9px;color:var(--ink2);margin-left:4px">S</span></span>
+            <span class="ch mono">▾</span>
+          </div>
+          <div style="padding:12px 14px;font-size:12px;line-height:1.6">New-patient wellness exam following adoption from Willow Creek Rescue. Owner reports no concerns; pet is eating, drinking, normal elimination. Energy level high and age-appropriate.</div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)">
+            <span>Physical Exam <span class="mono" style="font-size:9px;color:var(--ink2);margin-left:4px">O</span></span>
+            <span class="ch mono">▾</span>
+          </div>
+          <div style="padding:12px 14px;font-size:12px;line-height:1.6">
+            <div class="soap-kv" style="grid-template-columns:1fr 1fr;margin-bottom:10px">
+              <div><div class="k">Weight</div><div class="v">32.1 kg</div></div>
+              <div><div class="k">Temp</div><div class="v">38.4 °C</div></div>
+              <div><div class="k">HR</div><div class="v">72</div></div>
+              <div><div class="k">RR</div><div class="v">24</div></div>
+            </div>
+            Mild left ear erythema, no debris. Grade 1 dental tartar. Otherwise unremarkable.
+          </div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)">
+            <span>Diagnosis</span>
+            <span class="ch mono">▾</span>
+          </div>
+          <div style="padding:12px 14px;font-size:12px;line-height:1.6">Healthy 2yo M/N Golden. Mild L otitis externa (early). Grade 1 dental tartar.</div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)">
+            <span>Treatment Plan <span class="mono" style="font-size:9px;color:var(--ink2);margin-left:4px">P</span></span>
+            <span class="ch mono">▾</span>
+          </div>
+          <div style="padding:12px 14px;font-size:12px;line-height:1.6">
+            ▸ Epi-Otic Advanced 5mL ea ear × 7d<br>
+            ▸ Heartgard Plus (51–100 lb)<br>
+            ▸ NexGard (24–60 lb)<br>
+            ▸ Dental prophy w/in 6 mo
+          </div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)">
+            <span>Insurance-Ready</span>
+            <span class="ch mono">▸</span>
+          </div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)">
+            <span>Sign-off</span>
+            <span class="ch mono">▾</span>
+          </div>
+          <div style="padding:12px 14px;font-size:12px;line-height:1.6;color:var(--ink2)">Status: Draft · Not yet signed.</div>
+        </div>
+      </div>
+
+      <div class="m-sticky-cta">
+        <button class="btn btn-primary btn-lg btn-block">Approve & sign</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- M5. Mobile · Claim preview -->
+<div>
+  <p class="page-label">Mobile · Claim preview · Biscuit</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+      <div class="m-top">
+        <div class="m-back">← Claims</div>
+        <span class="badge">DRAFT</span>
+      </div>
+
+      <div style="padding:12px 16px;border-bottom:1px solid var(--line);background:var(--white)">
+        <div style="font-size:14px;font-weight:600">Claim — Biscuit</div>
+        <div style="font-size:10px;color:var(--ink2);font-family:var(--mono);margin-top:3px">LEM-2026-04-16-001 · $310.00</div>
+      </div>
+
+      <div style="padding:10px 14px;border-bottom:1px solid var(--line);background:var(--page);font-size:10px;color:var(--ink2);display:flex;flex-wrap:wrap;gap:10px">
+        <span><span class="mono" style="color:var(--ink);font-weight:700">◆</span> Auto</span>
+        <span><span class="mono" style="color:var(--ink);font-weight:700">◉</span> Clinic</span>
+        <span><span class="mono" style="color:var(--ink);font-weight:700">▲</span> AI</span>
+        <span><span class="mono" style="color:var(--ink);font-weight:700">✎</span> Manual</span>
+      </div>
+
+      <div class="m-content">
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)"><span>Policyholder</span><span class="ch mono">▾</span></div>
+          <div style="padding:10px 14px;font-size:11px;line-height:1.7">
+            <div><strong>Sarah Chen</strong> <span class="src">◆</span></div>
+            <div style="color:var(--ink2)">LEM-8892341</div>
+            <div style="color:var(--ink2)">1408 NW Raleigh St, Portland OR 97209</div>
+          </div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)"><span>Pet</span><span class="ch mono">▾</span></div>
+          <div style="padding:10px 14px;font-size:11px;line-height:1.7">
+            <div><strong>Biscuit</strong> · Golden Retriever <span class="src">◆</span></div>
+            <div style="color:var(--ink2)">M/Neutered · DOB Mar 3, 2024</div>
+            <div style="color:var(--ink2);font-family:var(--mono)">985112004893221</div>
+          </div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)"><span>Visit & Treatment</span><span class="ch mono">▾</span></div>
+          <div style="padding:10px 14px;font-size:11px;line-height:1.7">
+            <div><strong>New-patient wellness</strong> <span class="src">▲</span></div>
+            <div style="color:var(--ink2);margin-top:4px">Dx: Mild L otitis externa · Grade 1 tartar</div>
+            <div style="color:var(--ink2)">Rx: Epi-Otic, Heartgard, NexGard</div>
+          </div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)"><span>Financial</span><span class="ch mono">▾</span></div>
+          <div style="padding:10px 14px;font-size:11px;line-height:1.7">
+            <div class="row between"><span>Exam</span><span class="mono">$95</span></div>
+            <div class="row between"><span>Epi-Otic</span><span class="mono">$28</span></div>
+            <div class="row between"><span>Heartgard 6mo</span><span class="mono">$72</span></div>
+            <div class="row between"><span>NexGard 6mo</span><span class="mono">$115</span></div>
+            <div class="row between" style="font-weight:600;border-top:1px solid var(--line);padding-top:6px;margin-top:6px"><span>Total</span><span class="mono">$310.00</span></div>
+          </div>
+        </div>
+
+        <div class="flag-box">
+          <strong>⚠ Possible pre-existing</strong><br>
+          <span style="font-size:11px">Otitis externa noted in shelter intake Feb 2026. May be excluded by Lemonade.</span>
+          <button class="btn btn-sm" style="margin-top:8px">Mark as new occurrence</button>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)"><span>Signatures</span><span class="ch mono">▾</span></div>
+          <div style="padding:10px 14px;font-size:11px;line-height:1.7">
+            <div>Policyholder: <em style="color:var(--ink2)">prompt Sarah in app</em></div>
+            <div>Vet: <em style="color:var(--ink2)">not yet signed</em></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-sticky-cta">
+        <button class="btn btn-primary btn-lg btn-block">Sign & submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- M6. Mobile · My Account -->
+<div>
+  <p class="page-label">Mobile · My Account</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+      <div class="m-top">
+        <div class="m-back">← Back</div>
+        <div style="font-size:14px;font-weight:600">Me</div>
+        <div style="width:60px"></div>
+      </div>
+
+      <div class="m-content">
+        <div class="pd-card" style="padding:20px 18px;display:flex;gap:14px;align-items:center">
+          <div class="avatar-sq lg">[ph]</div>
+          <div style="flex:1">
+            <div style="font-size:16px;font-weight:600;letter-spacing:-0.2px">Dr. Ari Patel</div>
+            <div style="font-size:12px;color:var(--ink2);margin-top:2px">Lead vet · Admin</div>
+            <div style="font-size:11px;color:var(--ink2);font-family:var(--mono);margin-top:2px">Forest Park Vet · OR #VET-2014-5612</div>
+          </div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-section"><span>Clinic profile</span><span class="ch">›</span></div>
+          <div class="m-section"><span>Team & sub-accounts <span class="badge" style="margin-left:6px;font-size:9px">3</span></span><span class="ch">›</span></div>
+          <div class="m-section"><span>Licenses & credentials</span><span class="ch">›</span></div>
+          <div class="m-section"><span>Insurance partners <span class="badge" style="margin-left:6px;font-size:9px">4</span></span><span class="ch">›</span></div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-section"><span>Billing</span><span class="ch">›</span></div>
+          <div class="m-section"><span>Payouts & ACH</span><span class="ch">›</span></div>
+          <div class="m-section"><span>Security</span><span class="ch">›</span></div>
+          <div class="m-section"><span>Notifications</span><span class="ch">›</span></div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-section"><span>Help & support</span><span class="ch">›</span></div>
+          <div class="m-section"><span>What's new</span><span class="ch">›</span></div>
+          <div class="m-section"><span>About PawMatch Vet</span><span class="ch">›</span></div>
+        </div>
+
+        <button class="btn btn-block" style="justify-content:center;border-color:var(--line);color:var(--ink2);margin-top:8px">Sign out</button>
+
+        <div style="text-align:center;font-size:10px;color:var(--ink3);font-family:var(--mono);margin-top:14px">PawMatch Vet · v0.4.1</div>
+      </div>
+
+      <div class="m-tab-bar">
+        <div class="t"><div class="ic">⌂</div>Home</div>
+        <div class="t"><div class="ic">▤</div>Calendar</div>
+        <div class="t"><div class="ic">●</div>Record</div>
+        <div class="t"><div class="ic">$</div>Claims</div>
+        <div class="t active"><div class="ic">◔</div>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
