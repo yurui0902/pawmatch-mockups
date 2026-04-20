@@ -494,8 +494,8 @@ svg path[stroke="#d97757"], svg path[fill="#d97757"] {
 }
 svg path[fill="url(#g)"], svg path[fill="url(#g2)"] { fill:#e0e0e0 !important; }
 
-/* Hero image — keep original color */
-.hero-img { filter:none !important; background:#eee !important; }
+/* Hero image — keep original color (force no filter) */
+.hero-img, img.hero-img, img[src="biscuit.jpg"], .hero-wrap img { filter:none !important; -webkit-filter:none !important; background:#eee !important; }
 .hero-caption .dot-adopted { background:#111 !important; }
 </style>
 
