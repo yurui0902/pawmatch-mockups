@@ -1,0 +1,2120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PawMatch — Adopter Mobile (Wireframe)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,300;9..144,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#fffefb; --off:#fffdf9; --black:#201515; --charcoal:#36342e; --gray:#939084;
+    --sand:#c5c0b1; --lsand:#eceae3; --midwarm:#b5b2aa;
+    --orange:#ff4f00;
+    --display:'Archivo','Degular Display','Inter',sans-serif;
+    --sans:'Inter','Helvetica','Arial',sans-serif;
+    --serif:'Fraunces','GT Alpina','Georgia',serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--cream);color:var(--black);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  body{padding:48px 32px 120px}
+  .page-label{font-size:12px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--gray);margin:0 0 12px 4px}
+  .stack{display:flex;gap:48px;flex-wrap:wrap;justify-content:center;align-items:flex-start}
+  .frame{border:1px solid var(--sand);border-radius:8px;overflow:hidden;margin:0 auto 48px;background:var(--cream)}
+  .frame-desktop{width:1440px;height:900px}
+  .frame-mobile{width:390px;height:844px}
+
+  /* ======= shared buttons/tokens ======= */
+  .btn{font-family:var(--sans);font-weight:600;font-size:16px;border:1px solid;border-radius:4px;padding:8px 16px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;line-height:1.2;text-decoration:none}
+  .btn-orange{background:var(--orange);border-color:var(--orange);color:var(--cream)}
+  .btn-dark{background:var(--black);border-color:var(--black);color:var(--cream);padding:14px 22px;border-radius:8px}
+  .btn-light{background:var(--lsand);border-color:var(--sand);color:var(--charcoal);border-radius:8px;padding:12px 18px}
+  .btn-ghost{background:transparent;border-color:var(--sand);color:var(--black);border-radius:8px}
+  .pill{background:var(--cream);border:1px solid var(--sand);color:var(--charcoal);font-size:13px;font-weight:500;padding:4px 12px;border-radius:20px;display:inline-flex;align-items:center;gap:6px}
+  .pill-dark{background:var(--black);color:var(--cream);border-color:var(--black)}
+  .tab-underline{box-shadow:inset 0 -4px 0 0 var(--orange);color:var(--black)}
+
+  /* Uppercase label */
+  .label-upper{font-size:12px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--gray)}
+
+  /* ============================ */
+  /* MOBILE SWIPE (Zapier style)  */
+  /* ============================ */
+  .m{width:100%;height:100%;background:var(--cream);display:flex;flex-direction:column;position:relative;overflow:hidden}
+  .m-top{padding:14px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--sand);background:var(--cream)}
+  .m-logo{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-0.5px}
+  .m-logo .dot{color:var(--orange)}
+  .m-top-actions{display:flex;gap:8px}
+  .m-icon{width:36px;height:36px;border:1px solid var(--sand);border-radius:8px;background:var(--cream);display:flex;align-items:center;justify-content:center;color:var(--black);font-size:15px}
+
+  .m-filter-row{display:flex;gap:6px;padding:10px 14px 12px;overflow-x:auto;border-bottom:1px solid var(--sand)}
+  .m-filter-row::-webkit-scrollbar{display:none}
+
+  .m-card-wrap{flex:1;padding:14px;position:relative;overflow:hidden}
+  .m-card{border:1px solid var(--sand);border-radius:8px;overflow:hidden;background:var(--cream);height:100%;display:flex;flex-direction:column;position:relative}
+  .m-card-back{position:absolute;inset:14px;border:1px solid var(--sand);border-radius:8px;background:var(--off);transform:translate(4px,6px);z-index:0}
+
+  .m-photo{flex:1;position:relative;background:linear-gradient(180deg,#f5e3c8 0%,#e8a27a 100%);overflow:hidden;border-bottom:1px solid var(--sand)}
+  .m-photo-badge{position:absolute;top:12px;left:12px;background:var(--cream);border:1px solid var(--sand);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase}
+  .m-photo-badge .o{color:var(--orange)}
+  .m-photo-count{position:absolute;top:12px;right:12px;background:var(--black);color:var(--cream);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:0.3px}
+
+  .m-photo-indicators{position:absolute;top:10px;left:12px;right:12px;display:flex;gap:4px}
+  .m-photo-indicators div{flex:1;height:2px;background:rgba(32,21,21,0.2);border-radius:2px}
+  .m-photo-indicators div.active{background:var(--black)}
+
+  .m-info{padding:18px 18px 14px;border-top:1px solid var(--sand);background:var(--cream)}
+  .m-info .label-upper{margin-bottom:6px}
+  .m-info h2{font-family:var(--display);font-weight:700;font-size:36px;line-height:0.92;letter-spacing:-0.8px;margin:0}
+  .m-info h2 .age{font-weight:500;color:var(--gray);margin-left:6px}
+  .m-info .meta{font-size:14px;color:var(--charcoal);margin-top:6px;font-weight:500;display:flex;gap:10px;flex-wrap:wrap}
+
+  .m-tags{padding:0 18px 14px;display:flex;flex-wrap:wrap;gap:6px}
+
+  .m-meta-grid{padding:0 18px 16px;display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--sand);margin-top:6px}
+  .m-meta-grid > div{padding:10px 0;border-bottom:1px solid var(--sand)}
+  .m-meta-grid > div:nth-last-child(-n+2){border-bottom:none}
+  .m-meta-grid > div:nth-child(odd){border-right:1px solid var(--sand);padding-right:14px}
+  .m-meta-grid > div:nth-child(even){padding-left:14px}
+  .m-meta-grid .k{font-size:11px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase;color:var(--gray);margin-bottom:2px}
+  .m-meta-grid .v{font-size:14px;color:var(--black);font-weight:500}
+
+  .m-shelter{padding:14px 18px;border-top:1px solid var(--sand);display:flex;gap:10px;align-items:center}
+  .m-shelter .av{width:32px;height:32px;border-radius:6px;border:1px solid var(--sand);background:var(--lsand);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:13px;color:var(--black)}
+  .m-shelter .n{font-size:13px;font-weight:600;color:var(--black);line-height:1.2}
+  .m-shelter .s{font-size:11px;color:var(--gray);font-weight:500}
+  .m-shelter .chk{margin-left:auto;color:var(--orange);font-size:12px;font-weight:600}
+
+  .m-actions{padding:14px 14px 16px;display:grid;grid-template-columns:44px 1fr 44px 44px;gap:8px;border-top:1px solid var(--sand);background:var(--cream)}
+  .m-action{border:1px solid var(--sand);background:var(--cream);border-radius:8px;height:44px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;color:var(--black);cursor:pointer}
+  .m-action.primary{background:var(--orange);border-color:var(--orange);color:var(--cream);font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:0.2px}
+  .m-action.primary .heart{margin-right:6px}
+
+  .m-tab{position:absolute;bottom:0;left:0;right:0;background:var(--cream);border-top:1px solid var(--sand);display:flex;padding:6px 4px 22px}
+  .m-tab .t{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 4px;font-size:10px;font-weight:600;color:var(--gray);letter-spacing:0.2px}
+  .m-tab .t.active{color:var(--black);box-shadow:inset 0 -4px 0 0 var(--orange)}
+  .m-tab .t svg{width:20px;height:20px}
+
+  /* AUTH */
+  .auth{display:grid;grid-template-columns:1fr 1fr;height:100%;background:var(--cream)}
+  .auth-left{padding:72px 64px;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid var(--sand);background:var(--off);position:relative;overflow:hidden}
+  .auth-left h1{font-family:var(--display);font-weight:700;font-size:56px;line-height:0.92;letter-spacing:-1.4px;margin:0 0 16px;color:var(--black)}
+  .auth-left p{font-size:18px;line-height:1.4;color:var(--charcoal);max-width:420px;font-weight:500;margin:0}
+  .auth-quote{border-left:4px solid var(--orange);padding:4px 0 4px 18px;font-family:var(--serif);font-size:22px;line-height:1.4;color:var(--black);max-width:440px;font-weight:400;letter-spacing:-0.4px}
+  .auth-quote cite{display:block;font-style:normal;font-size:13px;color:var(--gray);font-family:var(--sans);font-weight:600;margin-top:10px;letter-spacing:0.3px;text-transform:uppercase}
+  .auth-right{padding:72px 80px;display:flex;flex-direction:column;justify-content:center}
+  .auth-form{max-width:420px;width:100%;margin:0 auto}
+  .auth-form h2{font-family:var(--display);font-weight:700;font-size:36px;line-height:1.0;letter-spacing:-0.8px;margin:0 0 6px}
+  .auth-form .sub{font-size:15px;color:var(--gray);margin:0 0 28px;font-weight:500}
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+  .field label{font-size:13px;font-weight:600;color:var(--black);letter-spacing:-0.1px}
+  .input{font-family:var(--sans);font-size:15px;color:var(--black);background:var(--cream);border:1px solid var(--sand);border-radius:5px;padding:12px 14px;outline:none;width:100%}
+  .input:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,79,0,0.15)}
+  .radio-group{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .radio-card{border:1px solid var(--sand);border-radius:8px;padding:12px 14px;background:var(--cream);cursor:pointer;display:flex;gap:10px;align-items:center}
+  .radio-card.sel{border-color:var(--orange);box-shadow:inset 0 0 0 1px var(--orange)}
+  .radio-card .dot{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--sand);flex:none}
+  .radio-card.sel .dot{border-color:var(--orange);background:radial-gradient(circle,var(--orange) 0 4px, var(--cream) 5px)}
+  .radio-card .t{font-size:14px;font-weight:600;color:var(--black);line-height:1.2}
+  .radio-card .s{font-size:11px;color:var(--gray);font-weight:500;margin-top:2px}
+  .divider-or{display:flex;align-items:center;gap:12px;color:var(--gray);font-size:12px;font-weight:600;margin:18px 0;letter-spacing:0.4px;text-transform:uppercase}
+  .divider-or::before,.divider-or::after{content:"";flex:1;height:1px;background:var(--sand)}
+  .sso-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .sso-btn{background:var(--cream);border:1px solid var(--sand);border-radius:8px;padding:12px;display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(--sans);font-size:14px;font-weight:600;color:var(--black);cursor:pointer}
+  .sso-btn:hover{background:var(--lsand)}
+  .auth-footnote{text-align:center;margin-top:22px;font-size:14px;color:var(--charcoal);font-weight:500}
+  .auth-footnote a{color:var(--orange);text-decoration:none;font-weight:700}
+
+  /* FIND A VET helpers */
+  .vet-card{border:1px solid var(--sand);border-radius:8px;padding:14px;display:grid;grid-template-columns:52px 1fr;gap:12px;background:var(--cream);cursor:pointer}
+  .vet-card.sel{border-color:var(--orange);box-shadow:inset 0 0 0 1px var(--orange);background:var(--off)}
+  .vet-pin{width:48px;height:48px;border:1px solid var(--sand);border-radius:6px;background:var(--lsand);display:flex;align-items:center;justify-content:center;font-size:20px}
+  .vet-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+  .vet-name{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-0.3px;line-height:1.2;color:var(--black)}
+  .vet-rating{font-size:12px;font-weight:600;white-space:nowrap}
+  .vet-rating small{color:var(--gray);font-weight:500}
+  .vet-meta{font-size:13px;color:var(--charcoal);margin-top:3px;font-weight:500}
+  .vet-meta strong{color:var(--black);font-weight:600}
+  .vet-tags{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
+  .vet-tag{font-size:10px;font-weight:700;padding:3px 7px;border-radius:14px;background:var(--lsand);color:var(--black);letter-spacing:0.3px;text-transform:uppercase}
+  .vet-tag.in{background:#e7f0d8;color:#3c5e17}
+  .vet-tag.out{background:#f6e3d5;color:#8a3d0f}
+  .vet-tag.accept{background:#dfe8db;color:#3c5e17}
+  .vet-next{font-size:12px;color:var(--charcoal);margin-top:6px;font-weight:500}
+  .vet-next strong{color:var(--orange);font-weight:700}
+  .fv-sort{background:var(--cream);border:1px solid var(--sand);border-radius:6px;padding:6px 10px;font-size:12px;font-weight:600;color:var(--black);cursor:pointer}
+  .fv-map-pin{position:absolute;transform:translate(-50%,-100%);color:var(--orange);font-size:30px;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.3));cursor:pointer}
+  .fv-map-pin.sm{color:var(--charcoal);font-size:22px;opacity:0.65}
+  .fv-map-label{position:absolute;transform:translate(-50%,-100%);margin-top:-36px;background:var(--cream);border:1px solid var(--black);border-radius:6px;padding:5px 10px;font-size:12px;font-weight:700;white-space:nowrap}
+  .fv-you{position:absolute;width:14px;height:14px;border-radius:50%;background:#2d7dff;box-shadow:0 0 0 4px rgba(45,125,255,0.25);transform:translate(-50%,-50%)}
+
+  /* VET DETAIL / BOOKING */
+  .book-card{border:1px solid var(--sand);border-radius:8px;background:var(--cream);padding:22px}
+  .book-card h3{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-0.3px;margin:0 0 14px}
+  .mcal{border:1px solid var(--sand);border-radius:8px;padding:14px;background:var(--cream)}
+  .mcal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px}
+  .mcal-nav{display:flex;gap:4px}
+  .mcal-nav button{width:30px;height:30px;border:1px solid var(--sand);border-radius:6px;background:var(--cream);cursor:pointer;font-size:14px;color:var(--black);font-weight:700}
+  .mcal-nav button:hover{background:var(--lsand)}
+  .mcal-sel{display:flex;gap:6px;align-items:center}
+  .mcal-sel select{font-family:var(--sans);font-size:13px;font-weight:700;border:1px solid var(--sand);border-radius:6px;padding:5px 8px;background:var(--cream);color:var(--black);cursor:pointer}
+  .mcal-weeks{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+  .mcal-weeks .wd{font-size:10px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;color:var(--gray);text-align:center;padding:6px 0}
+  .mcal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--black);border-radius:6px;cursor:pointer;background:var(--cream);position:relative}
+  .mcal-day:hover{background:var(--lsand)}
+  .mcal-day.muted{color:var(--gray);opacity:0.4}
+  .mcal-day.full{color:var(--gray);opacity:0.4;cursor:not-allowed;text-decoration:line-through;background:transparent}
+  .mcal-day.full:hover{background:transparent}
+  .mcal-day.today{box-shadow:inset 0 0 0 1px var(--sand)}
+  .mcal-day.on{background:var(--orange);color:var(--cream)}
+  .mcal-day.on:hover{background:var(--orange)}
+  .mcal-legend{display:flex;gap:14px;margin-top:12px;padding-top:10px;border-top:1px solid var(--sand);font-size:11px;color:var(--gray);font-weight:500}
+  .mcal-legend span{display:inline-flex;align-items:center;gap:5px}
+  .mcal-legend .sw{width:10px;height:10px;border-radius:3px}
+  .time-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+  .time-slot{padding:9px;text-align:center;border:1px solid var(--sand);border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;background:var(--cream)}
+  .time-slot.on{border-color:var(--orange);background:var(--orange);color:var(--cream)}
+
+  /* PRE-WORK FORM */
+  .pf-card{border:1px solid var(--sand);border-radius:8px;padding:26px;background:var(--cream);margin-bottom:14px}
+  .pf-card h3{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-0.3px;margin:0 0 14px}
+  .textarea{font-family:var(--sans);font-size:14px;color:var(--black);background:var(--cream);border:1px solid var(--sand);border-radius:5px;padding:12px 14px;outline:none;width:100%;min-height:80px;resize:vertical;line-height:1.5}
+
+  /* INSURANCE */
+  .plan{border:1px solid var(--sand);border-radius:8px;padding:24px;background:var(--cream);display:flex;flex-direction:column;gap:12px}
+  .plan.featured{background:var(--black);color:var(--cream);border-color:var(--black)}
+  .plan.featured h3,.plan.featured .price{color:var(--cream)}
+  .plan.featured ul li{color:var(--lsand)}
+  .plan h3{font-family:var(--display);font-weight:700;font-size:24px;letter-spacing:-0.5px;margin:0;line-height:1}
+  .plan .price{font-family:var(--display);font-weight:700;font-size:40px;letter-spacing:-1.1px;line-height:1}
+  .plan .price small{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--gray)}
+  .plan.featured .price small{color:var(--gray)}
+  .plan ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--charcoal);font-weight:500}
+  .plan ul li::before{content:"\2713";color:var(--orange);margin-right:8px;font-weight:700}
+
+  /* CHECKOUT */
+  .line{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--sand);font-size:14px}
+  .line.total{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-0.3px;padding-top:16px;border-bottom:none}
+
+  /* MOBILE COMMON */
+  .mp{width:100%;height:100%;background:var(--cream);position:relative;overflow-y:auto;display:flex;flex-direction:column}
+  .mp-header{padding:14px 18px;border-bottom:1px solid var(--sand);display:flex;align-items:center;justify-content:space-between;background:var(--cream);position:sticky;top:0;z-index:5}
+  .mp-back{font-size:20px;color:var(--black);background:transparent;border:none;cursor:pointer;padding:4px}
+  .mp-title{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-0.2px}
+  .mp-body{padding:22px 20px 32px;display:flex;flex-direction:column;gap:14px;flex:1}
+  .mp-h1{font-family:var(--display);font-weight:700;font-size:30px;letter-spacing:-0.8px;line-height:0.95;margin:0}
+  .mp-sub{font-size:13px;color:var(--gray);margin:6px 0 0;font-weight:500}
+
+  /* MATCH RESULT */
+  .score-card{border:1px solid var(--sand);border-radius:8px;padding:18px;background:var(--off);display:flex;justify-content:space-between;align-items:center}
+  .score-card .l{font-size:12px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;color:var(--gray)}
+  .score-card .v{font-family:var(--display);font-weight:700;font-size:28px;letter-spacing:-0.5px;margin-top:2px}
+  .score-card .v .t{color:var(--orange)}
+  .progress{width:120px;height:8px;background:var(--lsand);border-radius:8px;overflow:hidden}
+  .progress div{height:100%;background:var(--orange);border-radius:8px}
+
+  .rq-list{display:flex;flex-direction:column;gap:8px}
+  .rq{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid var(--sand);border-radius:6px;background:var(--cream)}
+  .rq.miss{background:#fdf2e7;border-color:#e9c9ae}
+  .rq.ok .i{color:#3c5e17}
+  .rq.miss .i{color:#8a3d0f}
+  .rq .i{flex:none;font-weight:800;font-size:16px;width:22px}
+  .rq .t{font-size:14px;font-weight:600;color:var(--black);line-height:1.3}
+  .rq .s{font-size:12px;color:var(--gray);font-weight:500;margin-top:2px}
+  .rq .a{margin-left:auto;font-size:12px;color:var(--orange);font-weight:700;text-decoration:none}
+
+  /* Conversations (chat list) */
+  .conv-item{display:flex;gap:11px;padding:13px 14px;border-bottom:1px solid var(--sand);cursor:pointer;align-items:flex-start}
+  .conv-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#d97757,#c96442);color:var(--cream);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:15px;flex:none}
+  .conv-t{flex:1;min-width:0}
+  .conv-n{font-size:13px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+  .conv-n .time{font-size:11px;color:var(--gray);font-weight:500}
+  .conv-p{font-size:12px;color:var(--gray);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .conv-ctx{font-size:10px;font-weight:700;letter-spacing:0.3px;text-transform:uppercase;color:var(--orange);margin-top:2px}
+  .conv-unread{width:8px;height:8px;border-radius:50%;background:var(--orange);margin-left:6px;flex:none}
+
+  /* APPOINTMENTS */
+  .appt-card{border:1px solid var(--sand);border-radius:8px;padding:18px;background:var(--off);display:grid;grid-template-columns:60px 1fr auto;gap:16px;align-items:center}
+  .appt-date{width:60px;text-align:center;padding:8px 4px;border:1px solid var(--sand);border-radius:6px;background:var(--cream);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+  .appt-date .m{font-size:10px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;color:var(--orange);line-height:1}
+  .appt-date .d{font-family:var(--display);font-weight:700;font-size:20px;line-height:1}
+  .appt-info .t{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-0.2px}
+  .appt-info .s{font-size:13px;color:var(--gray);font-weight:500;margin-top:3px}
+
+  .app-stepper{display:flex;align-items:center;gap:4px;font-size:11px;flex-wrap:wrap}
+  .app-step{padding:4px 10px;border-radius:12px;border:1px solid var(--sand);background:var(--cream);color:var(--gray);font-weight:600;letter-spacing:0.2px}
+  .app-step.done{background:#e7f0d8;border-color:#b9cf95;color:#3c5e17}
+  .app-step.current{background:var(--orange);border-color:var(--orange);color:var(--cream)}
+
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ======================== WIREFRAME OVERRIDE ======================== */
+/* Strips color from the existing design, converts to b&w wireframe */
+
+/* Remap all palette variables to grayscale */
+:root {
+  /* Shelter (Claude) palette */
+  --parchment:#fafafa !important; --ivory:#fff !important; --white:#fff !important;
+  --sand:#e0e0e0 !important; --cream:#fff !important; --ring:#e0e0e0 !important;
+  --near-black:#111 !important; --dark-surface:#222 !important;
+  --charcoal:#333 !important; --olive:#666 !important; --stone:#999 !important;
+  --silver:#ccc !important;
+  --terracotta:#111 !important; --coral:#333 !important;
+  --error:#111 !important; --focus:#111 !important;
+  --muted-green:#555 !important;
+  --dark-warm:#222 !important; --warm-silver:#ccc !important;
+  --border-cream:#e0e0e0 !important; --border-warm:#e0e0e0 !important;
+  --ring-warm:#e0e0e0 !important; --ring-subtle:#f0f0f0 !important;
+  --serif:'Inter','Helvetica','Arial',sans-serif !important;
+  --sans:'Inter','Helvetica','Arial',sans-serif !important;
+  --mono:'JetBrains Mono','Menlo',monospace !important;
+
+  /* Zapier palette (adopter) */
+  --off:#fafafa !important; --lsand:#f5f5f5 !important; --midwarm:#e0e0e0 !important;
+  --orange:#111 !important; --gray:#999 !important; --black:#111 !important;
+  --display:'Inter','Helvetica','Arial',sans-serif !important;
+}
+
+html, body { background:#fafafa !important; color:#111 !important; font-family:'Inter','Helvetica','Arial',sans-serif !important; }
+body * { font-family:'Inter','Helvetica','Arial',sans-serif !important; letter-spacing:0 !important; }
+
+/* Frames — clean white with thin gray border */
+.frame, .frame-desktop, .frame-mobile {
+  background:#fff !important;
+  border:1px solid #d4d4d4 !important;
+  border-radius:4px !important;
+  box-shadow:none !important;
+}
+
+/* Any element with gradient backgrounds → flat gray + diagonal stripe wireframe */
+[style*="gradient"] {
+  background:repeating-linear-gradient(45deg,#f5f5f5,#f5f5f5 8px,#ececec 8px,#ececec 16px) !important;
+  color:#666 !important;
+}
+/* But avatars/circles keep simple flat gray */
+[style*="border-radius:50%"][style*="gradient"],
+.avatar, .applicant-avatar, .shelter-chip, .d-sh-av, .m-shelter-av, .conv-av,
+.nav-profile .avatar, .av {
+  background:#e8e8e8 !important;
+  color:#333 !important;
+  border:1px solid #d4d4d4 !important;
+}
+
+/* Buttons */
+.btn-primary, .btn-orange, .btn.btn-primary, .btn.btn-orange,
+button.btn-primary, button.btn-orange, .panel-btn, .m-primary, .lem-cta, .lem-cta-big,
+.m-action.primary, .d-like, .btn-on-dark, .sa-btn.like {
+  background:#111 !important;
+  color:#fff !important;
+  border:1px solid #111 !important;
+  border-radius:4px !important;
+  box-shadow:none !important;
+  font-weight:600 !important;
+}
+.btn-secondary, .btn-ghost, .btn-light, .btn.btn-secondary, .btn.btn-ghost, .btn.btn-light,
+.panel-btn.ghost, .sso-btn, .m-circ, .d-pass, .d-super {
+  background:#fff !important;
+  color:#111 !important;
+  border:1px solid #111 !important;
+  border-radius:4px !important;
+  box-shadow:none !important;
+  font-weight:600 !important;
+}
+
+/* Badges / pills — border only */
+.pill, .chip, .vet-tag, .badge, .tag, .m-tag, .d-feat-tag, .panel-chip, .m-photo-badge,
+.filter-pill, .pill-dark {
+  background:#fff !important;
+  color:#111 !important;
+  border:1px solid #d4d4d4 !important;
+  box-shadow:none !important;
+  border-radius:2px !important;
+  text-transform:uppercase !important;
+  letter-spacing:0.4px !important;
+  font-size:10px !important;
+  font-weight:600 !important;
+}
+.pill-dark, .filter-pill.active {
+  background:#111 !important; color:#fff !important; border-color:#111 !important;
+}
+.badge-pending, .badge-review, .badge-approved {
+  background:#fff !important; color:#111 !important; border:1px solid #111 !important;
+}
+
+/* Chips with accent color → plain outline */
+.chip.accent, .m-tag.accent, .d-feat-tag.accent, .pill[style*="orange"], .pill[style*="terracotta"] {
+  background:#111 !important; color:#fff !important; border-color:#111 !important;
+}
+
+/* Cards */
+.card, .kpi, .match-card, .pf-card, .plan, .book-card, .vet-card,
+.d-panel-section, .d-pet-card, .mb-card, .ads-card, .ads-banner, .score-card,
+.rq, .appt-card, .data-sources .src-card, .lem-quote, .lem-test, .review {
+  background:#fff !important;
+  border:1px solid #e0e0e0 !important;
+  border-radius:4px !important;
+  box-shadow:none !important;
+}
+
+/* Applications / forms / inputs */
+.input, .textarea, .select, input[type="text"], input[type="email"], input[type="password"],
+input.input, select.input, textarea.textarea, .m-filter-row .pill {
+  background:#fff !important;
+  color:#111 !important;
+  border:1px solid #111 !important;
+  border-radius:3px !important;
+  box-shadow:none !important;
+}
+.input:focus, .textarea:focus, .select:focus { border-color:#111 !important; box-shadow:0 0 0 2px #e0e0e0 !important; }
+
+/* Links */
+a { color:#111 !important; }
+.card-link, .auth-footnote a { text-decoration:underline !important; color:#111 !important; }
+
+/* Feature-specific colored elements → gray equivalents */
+.status-dot, .pause-dot { background:#111 !important; box-shadow:none !important; }
+.legend-dot { background:#666 !important; }
+.bar-fill, .match-progress .bar div, .progress div { background:#111 !important; }
+.bar-fill.alt { background:#666 !important; }
+.bar-fill.neutral { background:#999 !important; }
+.bar-track, .progress, .match-progress .bar { background:#e0e0e0 !important; }
+
+/* Nav sidebars */
+.dt-nav, .d-nav, .fv-filters, .chat-side, .auth-hero, .auth-left {
+  background:#fafafa !important; border-right:1px solid #e0e0e0 !important;
+  color:#111 !important;
+}
+.auth-hero, .auth-left { background:#111 !important; color:#fff !important; }
+.auth-hero h1, .auth-left h1, .auth-hero p, .auth-left p,
+.auth-hero blockquote, .auth-hero .sub { color:#fff !important; }
+.auth-hero blockquote { border-left-color:#fff !important; }
+.auth-hero cite, .auth-left cite { color:#999 !important; }
+
+.nav-item, .dt-nav .nav-item, .d-nav .d-navitem, .dt-nav-item, .d-navitem {
+  color:#111 !important; background:transparent !important;
+}
+.nav-item.active, .dt-nav .nav-item.active, .d-nav .d-navitem.active, .d-navitem.active,
+.nav-item:hover, .d-navitem:hover {
+  background:#f0f0f0 !important; color:#111 !important;
+}
+.d-navitem.active { background:#111 !important; color:#fff !important; box-shadow:none !important; }
+.d-nav .count, .d-navitem .count { background:#111 !important; color:#fff !important; border-radius:2px !important; }
+
+/* Mobile tab bar */
+.m-tab, .mb-tab-bar { background:#fff !important; border-top:1px solid #e0e0e0 !important; }
+.m-tab .t, .mb-tab { color:#999 !important; }
+.m-tab .t.active, .mb-tab.active { color:#111 !important; box-shadow:inset 0 -3px 0 0 #111 !important; background:transparent !important; }
+.m-tab .t svg, .mb-tab svg { color:currentColor !important; }
+
+/* Tabs (top bar) */
+.page-tab, .d-feed-tabs button, .m-tabs button, .d-mode button, .ch-tab {
+  color:#666 !important; background:transparent !important;
+}
+.page-tab.active, .d-feed-tabs button.on, .m-tabs button.on, .d-mode button.on, .ch-tab.on {
+  color:#111 !important; background:transparent !important;
+  box-shadow:inset 0 -3px 0 0 #111 !important;
+  font-weight:600 !important;
+}
+
+/* KPIs */
+.kpi .kpi-value, .top-pet-stat .n, .d-sh-kpi .n, .d-sh-stat .n {
+  color:#111 !important; font-family:'JetBrains Mono',monospace !important;
+}
+.kpi-delta, .kpi-delta.neg { color:#666 !important; }
+
+/* Chat */
+.bubble.me, .msg.me { background:#111 !important; color:#fff !important; border-radius:3px !important; }
+.bubble.them, .msg.them { background:#fff !important; color:#111 !important; border:1px solid #e0e0e0 !important; border-radius:3px !important; }
+
+/* Pause toggle / switch */
+.switch { background:#e0e0e0 !important; box-shadow:inset 0 0 0 1px #111 !important; }
+.switch.on { background:#111 !important; box-shadow:inset 0 0 0 1px #111 !important; }
+.switch .knob { background:#fff !important; }
+
+/* Rich color blocks → grayscale */
+.ads-banner, .ads-card, .auth-hero, .dt-side, .feed-card, .lem-hero {
+  background:#111 !important; color:#fff !important;
+}
+.ads-banner *, .ads-card *, .feed-card * { color:inherit !important; }
+
+/* BUT pet cards on swipe feed that used colored gradients: give them monochrome placeholder */
+.m-photo, .d-pet-photo, .card-bg, .d-feat-photo, .m-photo .card-bg,
+.d-sim-photo, .match-thumb, .boost-thumb, .pet-thumb {
+  background:repeating-linear-gradient(45deg,#eee,#eee 8px,#e0e0e0 8px,#e0e0e0 16px) !important;
+  color:#333 !important;
+}
+/* Override emoji pet photos to stay visible */
+.m-photo svg, .d-pet-photo svg, .d-feat-photo svg, .card-illu svg { filter:grayscale(100%) brightness(0.9) !important; }
+.m-photo svg *, .d-pet-photo svg *, .d-feat-photo svg * { fill:#fff !important; stroke:#111 !important; }
+
+/* Dividers */
+hr, .persona-divider { background:#e0e0e0 !important; border:none !important; height:1px !important; }
+
+/* Remove shadows everywhere */
+*, *::before, *::after { box-shadow:none !important; text-shadow:none !important; }
+.card, .match-card, .pf-card, .plan, .book-card, .vet-card, .kpi { filter:none !important; }
+
+/* Orange text / terracotta → black */
+[style*="color:#ff4f00"], [style*="color: #ff4f00"], [style*="--orange"], [style*="color:var(--orange)"],
+[style*="color:#c96442"], [style*="color: #c96442"], [style*="color:var(--terracotta)"],
+[style*="color:#d97757"], [style*="color:var(--coral)"] {
+  color:#111 !important;
+}
+
+/* Backgrounds colored → grayscale */
+[style*="background:#c96442"], [style*="background: #c96442"],
+[style*="background:#ff4f00"], [style*="background: #ff4f00"],
+[style*="background:var(--orange)"], [style*="background:var(--terracotta)"],
+[style*="background:var(--coral)"] {
+  background:#111 !important; color:#fff !important;
+}
+
+/* Hand-drawn illustrations → mono line-art */
+.illu *, .illu, svg.illu, svg [fill="#c96442"], svg [fill="#d97757"], svg [fill="#e8a27a"],
+svg [fill="#f4c494"], svg [fill="#ff385c"], svg [fill="#ff0083"], svg [fill="#ff4f00"],
+svg [fill="#6b8a63"] {
+  fill:#fff !important;
+}
+svg [stroke="#c96442"], svg [stroke="#141413"], svg [stroke="#201515"], svg [stroke="#ff385c"] {
+  stroke:#111 !important;
+}
+
+/* Page label at top of each frame preview stays gray */
+.page-label { color:#666 !important; font-family:'Inter',sans-serif !important; }
+
+/* Ensure any background-image/SVG gradient placeholders aren't pink/red/etc */
+[style*="#ffd5b8"], [style*="#ff9a6b"], [style*="#e8794a"], [style*="#f5e3c8"] {
+  background:repeating-linear-gradient(45deg,#eee,#eee 8px,#e0e0e0 8px,#e0e0e0 16px) !important;
+}
+
+/* Extra: inline hardcoded tints */
+[style*="#f4f6ef"], [style*="#dce3d2"], [style*="#e7f0d8"], [style*="#dfe8db"],
+[style*="#b9cf95"], [style*="#f6ead8"], [style*="#e6d4b3"],
+[style*="#eadfd7"], [style*="#f3ead6"], [style*="#f4e1d7"], [style*="#eacbb9"],
+[style*="#f1d6d1"], [style*="#e0b8b1"], [style*="#ffe9ee"] {
+  background:#fff !important; border-color:#e0e0e0 !important;
+}
+[style*="color:#4a6b40"], [style*="color: #4a6b40"],
+[style*="color:#3c5e17"], [style*="color: #3c5e17"],
+[style*="color:#8a6a1f"], [style*="color: #8a6a1f"],
+[style*="color:#8a4a2d"], [style*="color: #8a4a2d"],
+[style*="color:#8a2d2d"], [style*="color: #8a2d2d"],
+[style*="color:#8a3d0f"], [style*="color: #8a3d0f"] {
+  color:#111 !important;
+}
+[style*="box-shadow:0 0 0 1px #e0b8b1"],
+[style*="box-shadow:0 0 0 1px #e6d4b3"],
+[style*="box-shadow:0 0 0 1px #eacbb9"],
+[style*="box-shadow:0 0 0 1px #b9cf95"] {
+  box-shadow:none !important;
+}
+</style>
+
+<!-- =================================================================== -->
+<!-- INTERACTIVE SWIPE COMPONENT · scoped styles                          -->
+<!-- =================================================================== -->
+<style>
+/* Scoped to #swipe-interactive so the rest of the wireframe overrides don't mangle it */
+#swipe-interactive{width:100%;height:100%;background:#fff;display:flex;flex-direction:column;position:relative;overflow:hidden;font-family:'Inter','Helvetica','Arial',sans-serif;color:#111}
+
+#swipe-interactive .si-top{padding:14px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e0e0e0;background:#fff}
+#swipe-interactive .si-logo{font-family:'Inter',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.5px;color:#111}
+#swipe-interactive .si-logo .dot{color:#111}
+#swipe-interactive .si-top-actions{display:flex;gap:8px}
+#swipe-interactive .si-icon{width:36px;height:36px;border:1px solid #d4d4d4;border-radius:4px;background:#fff;display:flex;align-items:center;justify-content:center;color:#111;font-size:15px;cursor:pointer}
+
+#swipe-interactive .si-filter-row{display:flex;gap:6px;padding:10px 14px 12px;overflow-x:auto;border-bottom:1px solid #e0e0e0;background:#fff}
+#swipe-interactive .si-filter-row::-webkit-scrollbar{display:none}
+#swipe-interactive .si-filter-pill{background:#fff;color:#111;border:1px solid #d4d4d4;font-size:10px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase;padding:5px 10px;border-radius:2px;white-space:nowrap;flex:none;cursor:pointer}
+#swipe-interactive .si-filter-pill.active{background:#111;color:#fff;border-color:#111}
+
+#swipe-interactive .si-deck-wrap{flex:1;position:relative;padding:14px;overflow:hidden;display:flex;flex-direction:column;min-height:0}
+#swipe-interactive .si-deck{position:relative;flex:1;min-height:0}
+#swipe-interactive .si-card{
+  position:absolute;
+  inset:0;
+  border:1px solid #d4d4d4;
+  border-radius:6px;
+  background:#fff;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  transform-origin:center bottom;
+  will-change:transform,opacity;
+  user-select:none;
+  -webkit-user-select:none;
+}
+#swipe-interactive .si-card.top{cursor:grab;z-index:30}
+#swipe-interactive .si-card.top.dragging{cursor:grabbing;transition:none}
+#swipe-interactive .si-card.snap{transition:transform 300ms cubic-bezier(.2,.7,.3,1),opacity 300ms}
+#swipe-interactive .si-card.flying{transition:transform 420ms cubic-bezier(.4,.1,.5,1),opacity 420ms}
+
+#swipe-interactive .si-photo{flex:1;position:relative;background:repeating-linear-gradient(45deg,#eee,#eee 8px,#e0e0e0 8px,#e0e0e0 16px);overflow:hidden;border-bottom:1px solid #e0e0e0;min-height:220px;display:flex;align-items:center;justify-content:center}
+#swipe-interactive .si-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(100%) contrast(1.05)}
+#swipe-interactive .si-photo-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#666;letter-spacing:1px}
+#swipe-interactive .si-photo-placeholder .emoji{font-size:44px;filter:grayscale(0%);letter-spacing:0}
+#swipe-interactive .si-photo-badge{position:absolute;top:10px;left:10px;background:#fff;color:#111;border:1px solid #d4d4d4;font-size:10px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase;padding:4px 8px;border-radius:2px}
+#swipe-interactive .si-photo-count{position:absolute;top:10px;right:10px;background:#111;color:#fff;font-size:10px;font-weight:600;letter-spacing:0.3px;padding:4px 8px;border-radius:2px}
+
+/* Stamps — LIKE / NOPE / SUPER */
+#swipe-interactive .si-stamp{
+  position:absolute;
+  padding:6px 12px;
+  border:3px solid #111;
+  border-radius:4px;
+  font-family:'Inter',sans-serif;
+  font-weight:800;
+  font-size:32px;
+  letter-spacing:2px;
+  color:#111;
+  background:rgba(255,255,255,0.9);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 60ms linear;
+}
+#swipe-interactive .si-stamp.like{top:24px;right:20px;transform:rotate(-12deg)}
+#swipe-interactive .si-stamp.nope{top:24px;left:20px;transform:rotate(12deg)}
+#swipe-interactive .si-stamp.super{top:60px;left:50%;transform:translateX(-50%) rotate(-4deg)}
+
+/* MATCH flash overlay */
+#swipe-interactive .si-match-flash{
+  position:absolute;
+  top:40px;
+  left:50%;
+  transform:translateX(-50%) scale(0.9);
+  padding:10px 22px;
+  border:3px solid #111;
+  background:#111;
+  color:#fff;
+  font-weight:800;
+  font-size:22px;
+  letter-spacing:3px;
+  border-radius:4px;
+  opacity:0;
+  pointer-events:none;
+  z-index:50;
+  transition:opacity 180ms,transform 180ms;
+}
+#swipe-interactive .si-match-flash.show{opacity:1;transform:translateX(-50%) scale(1)}
+
+#swipe-interactive .si-info{padding:14px 16px 10px;border-top:1px solid #e0e0e0;background:#fff}
+#swipe-interactive .si-info .label{font-size:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:#999;margin-bottom:4px}
+#swipe-interactive .si-info h2{font-family:'Inter',sans-serif;font-weight:700;font-size:26px;line-height:0.95;letter-spacing:-0.6px;margin:0;color:#111}
+#swipe-interactive .si-info h2 .age{font-weight:500;color:#999;margin-left:6px;font-size:18px}
+#swipe-interactive .si-info .meta{font-size:12px;color:#333;margin-top:4px;font-weight:500}
+
+#swipe-interactive .si-tags{padding:0 16px 10px;display:flex;flex-wrap:wrap;gap:5px}
+#swipe-interactive .si-tags .tag{background:#fff;color:#111;border:1px solid #d4d4d4;font-size:10px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase;padding:3px 8px;border-radius:2px;white-space:nowrap}
+
+/* Info overlay (toggle with i button) */
+#swipe-interactive .si-overlay{
+  position:absolute;
+  inset:0;
+  background:#fff;
+  padding:18px 18px;
+  border-radius:6px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  overflow-y:auto;
+  z-index:10;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 180ms;
+  font-size:12px;
+  color:#111;
+  line-height:1.5;
+}
+#swipe-interactive .si-overlay.show{opacity:1;pointer-events:auto}
+#swipe-interactive .si-overlay h3{font-family:'Inter',sans-serif;font-weight:700;font-size:18px;margin:0;letter-spacing:-0.3px}
+#swipe-interactive .si-overlay .bio{font-size:13px;color:#333;line-height:1.5;margin:0}
+#swipe-interactive .si-overlay .grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #e0e0e0;border-radius:4px;overflow:hidden}
+#swipe-interactive .si-overlay .grid > div{padding:8px 12px;border-right:1px solid #e0e0e0;border-bottom:1px solid #e0e0e0}
+#swipe-interactive .si-overlay .grid > div:nth-child(2n){border-right:none}
+#swipe-interactive .si-overlay .grid > div:nth-last-child(-n+2){border-bottom:none}
+#swipe-interactive .si-overlay .k{font-size:9px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;color:#999;margin-bottom:2px}
+#swipe-interactive .si-overlay .v{font-size:12px;color:#111;font-weight:500}
+#swipe-interactive .si-overlay .shelter{display:flex;gap:10px;align-items:center;border:1px solid #e0e0e0;border-radius:4px;padding:10px}
+#swipe-interactive .si-overlay .shelter .av{width:32px;height:32px;border-radius:4px;border:1px solid #d4d4d4;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#111}
+#swipe-interactive .si-overlay .shelter .n{font-size:12px;font-weight:600}
+#swipe-interactive .si-overlay .shelter .s{font-size:10px;color:#999;font-weight:500;margin-top:2px}
+#swipe-interactive .si-overlay .close{position:absolute;top:10px;right:10px;width:30px;height:30px;border:1px solid #d4d4d4;background:#fff;cursor:pointer;font-size:14px;font-weight:700;border-radius:4px;display:flex;align-items:center;justify-content:center}
+
+#swipe-interactive .si-actions{padding:10px 14px 14px;display:grid;grid-template-columns:repeat(5,1fr);gap:8px;border-top:1px solid #e0e0e0;background:#fff;justify-items:center;align-items:center}
+#swipe-interactive .si-btn{
+  width:52px;height:52px;
+  border:1.5px solid #111;
+  border-radius:50%;
+  background:#fff;
+  color:#111;
+  cursor:pointer;
+  font-size:20px;
+  font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  transition:transform 120ms ease;
+  font-family:'Inter',sans-serif;
+}
+#swipe-interactive .si-btn:hover{transform:scale(1.05)}
+#swipe-interactive .si-btn:active{transform:scale(0.95)}
+#swipe-interactive .si-btn.primary{background:#111;color:#fff;border-color:#111}
+#swipe-interactive .si-btn.small{width:44px;height:44px;font-size:15px;border-width:1.25px}
+
+#swipe-interactive .si-empty{
+  position:absolute;
+  inset:14px;
+  border:1px dashed #d4d4d4;
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:30px;
+  font-size:13px;
+  color:#666;
+  line-height:1.5;
+  background:#fafafa;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 280ms;
+  z-index:5;
+}
+#swipe-interactive .si-empty.show{opacity:1;pointer-events:auto}
+
+#swipe-interactive .si-tab{background:#fff;border-top:1px solid #e0e0e0;display:flex;padding:6px 4px 18px}
+#swipe-interactive .si-tab .t{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px;font-size:10px;font-weight:600;color:#999;letter-spacing:0.2px}
+#swipe-interactive .si-tab .t.active{color:#111;box-shadow:inset 0 -3px 0 0 #111}
+#swipe-interactive .si-tab .t svg{width:20px;height:20px}
+
+</style>
+
+</head>
+<body>
+
+<div class="stack">
+
+<!-- ================= 1. MOBILE REGISTER ================= -->
+<div>
+  <p class="page-label">Mobile · Register</p>
+  <div class="frame frame-mobile">
+    <div class="mp">
+      <div class="mp-body" style="padding:40px 22px 30px">
+        <div style="font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-0.5px">PawMatch<span style="color:var(--orange)">.</span></div>
+        <div style="margin-top:18px">
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:var(--orange);margin-bottom:10px">New here</div>
+          <h1 style="font-family:var(--display);font-weight:700;font-size:32px;line-height:0.95;letter-spacing:-0.9px;margin:0 0 6px">Find the pet that finds you.</h1>
+          <p style="font-size:14px;color:var(--charcoal);margin:0;font-weight:500">Create an account in 30 seconds.</p>
+        </div>
+
+        <button class="sso-btn" style="width:100%;margin-top:14px">🔵 Continue with Google</button>
+        <button class="sso-btn" style="width:100%"> Continue with Apple</button>
+        <div class="divider-or">or with email</div>
+        <div class="field"><label>Email</label><input class="input" value="sarah@example.com"/></div>
+        <div class="field"><label>Password</label><input class="input" type="password" value="••••••••••"/></div>
+        <button class="btn btn-orange" style="width:100%;justify-content:center;padding:14px;margin-top:4px">Create account</button>
+        <div class="auth-footnote">Already have one? <a href="#">Sign in</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 2. MOBILE LOGIN ================= -->
+<div>
+  <p class="page-label">Mobile · Login</p>
+  <div class="frame frame-mobile">
+    <div class="mp">
+      <div class="mp-body" style="padding:64px 22px 30px;justify-content:center;flex:1">
+        <div style="font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-0.5px">PawMatch<span style="color:var(--orange)">.</span></div>
+        <h1 style="font-family:var(--display);font-weight:700;font-size:34px;line-height:0.95;letter-spacing:-0.9px;margin:24px 0 6px">Sign in.</h1>
+        <p style="font-size:14px;color:var(--charcoal);margin:0 0 8px;font-weight:500">Welcome back.</p>
+        <div class="field"><label>Email or username</label><input class="input" value="sarah@example.com"/></div>
+        <div class="field"><label style="display:flex;justify-content:space-between;align-items:center">Password <a href="#" style="color:var(--orange);text-decoration:none;font-weight:700;font-size:12px">Forgot?</a></label><input class="input" type="password" value="••••••••••"/></div>
+        <button class="btn btn-orange" style="width:100%;justify-content:center;padding:14px;margin-top:4px">Sign in</button>
+        <div class="divider-or">or</div>
+        <button class="sso-btn" style="width:100%">🔵 Continue with Google</button>
+        <button class="sso-btn" style="width:100%"> Continue with Apple</button>
+        <div class="auth-footnote">New here? <a href="#">Create an account</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 3. MOBILE ONBOARDING ================= -->
+<div>
+  <p class="page-label">Mobile · New-user onboarding</p>
+  <div class="frame frame-mobile">
+    <div class="mp">
+      <div class="mp-header">
+        <div style="font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-0.4px">Welcome, Sarah</div>
+        <button class="mp-back">✕</button>
+      </div>
+      <div class="mp-body">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:var(--orange)">02 / 03 · Preferences</div>
+        <h1 class="mp-h1">What are you<br/>looking for?</h1>
+        <p class="mp-sub">We'll use this to shape your feed. Change anytime from Profile.</p>
+
+        <div class="pf-card" style="padding:18px;margin-top:8px">
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;color:var(--gray);margin-bottom:8px">Pet type</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <span class="pill" style="border-color:var(--orange);color:var(--orange)">Dogs</span>
+            <span class="pill">Cats</span>
+            <span class="pill">Small pets</span>
+            <span class="pill">Any</span>
+          </div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;color:var(--gray);margin:16px 0 8px">Household</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <span class="pill" style="border-color:var(--orange);color:var(--orange)">Family w/ kids</span>
+            <span class="pill">Couple</span>
+            <span class="pill">Single</span>
+          </div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;color:var(--gray);margin:16px 0 8px">Experience</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <span class="pill">First-time</span>
+            <span class="pill" style="border-color:var(--orange);color:var(--orange)">Owned before</span>
+            <span class="pill">Current owner</span>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:2px;height:4px;border-radius:4px;overflow:hidden;margin-top:8px">
+          <div style="flex:1;background:var(--orange)"></div>
+          <div style="flex:1;background:var(--orange)"></div>
+          <div style="flex:1;background:var(--lsand)"></div>
+        </div>
+
+        <div style="display:flex;gap:10px;margin-top:auto">
+          <button class="btn btn-ghost" style="flex:1;justify-content:center">Skip</button>
+          <button class="btn btn-orange" style="flex:2;justify-content:center;padding:14px">Continue →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================= -->
+<!-- 4. MOBILE SWIPE · INTERACTIVE · Tinder-style deck          -->
+<!-- ========================================================= -->
+<div>
+  <p class="page-label">Mobile · Adopter · Swipe (INTERACTIVE)</p>
+  <div class="frame frame-mobile">
+    <div id="swipe-interactive">
+      <!-- header -->
+      <div class="si-top">
+        <div class="si-logo">PawMatch<span class="dot">.</span></div>
+        <div class="si-top-actions">
+          <button class="si-icon" title="Settings">⚙</button>
+          <button class="si-icon" title="Chat">💬</button>
+        </div>
+      </div>
+
+      <!-- filter row -->
+      <div class="si-filter-row">
+        <button class="si-filter-pill active">Dogs</button>
+        <button class="si-filter-pill">Cats</button>
+        <button class="si-filter-pill">Rabbits</button>
+        <button class="si-filter-pill">Any age</button>
+        <button class="si-filter-pill">Kids OK</button>
+        <button class="si-filter-pill">15 mi</button>
+      </div>
+
+      <!-- deck + match flash -->
+      <div class="si-deck-wrap">
+        <div class="si-match-flash" data-match-flash>MATCH</div>
+        <div class="si-deck" data-deck>
+          <!-- cards injected by JS -->
+        </div>
+        <div class="si-empty" data-empty>
+          No more pets nearby —<br/>adjust filters or come back later.
+        </div>
+      </div>
+
+      <!-- action row: rewind · pass · super · like · info -->
+      <div class="si-actions">
+        <button class="si-btn small" data-action="rewind" title="Rewind">↶</button>
+        <button class="si-btn" data-action="pass" title="Pass">✕</button>
+        <button class="si-btn" data-action="super" title="Super Like">★</button>
+        <button class="si-btn primary" data-action="like" title="Like">♥</button>
+        <button class="si-btn small" data-action="info" title="Info">i</button>
+      </div>
+
+      <!-- bottom tab bar — Pets active -->
+      <div class="si-tab">
+        <div class="t active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg>Pets</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-8-5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-8 11-8 11H12z"/></svg>Matches</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18"/></svg>Vet</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 5. MOBILE SEARCH MODE ================= -->
+<div>
+  <p class="page-label">Mobile · Search mode</p>
+  <div class="frame frame-mobile">
+    <div class="mp">
+      <div class="mp-header" style="flex-direction:column;gap:10px;align-items:stretch;padding:14px 16px">
+        <div style="display:flex;gap:8px">
+          <input class="input" style="flex:1;padding:10px 14px" placeholder="Search terrier, kitten, etc."/>
+          <button class="btn btn-orange" style="padding:10px 14px">⚲</button>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:6px;padding:10px 14px;overflow-x:auto;border-bottom:1px solid var(--sand)">
+        <div style="display:flex;border:1px solid var(--sand);border-radius:8px;overflow:hidden;flex:none">
+          <button style="padding:6px 14px;font-family:var(--sans);font-weight:600;font-size:12px;background:transparent;color:var(--charcoal);border:none;cursor:pointer">Swipe</button>
+          <button style="padding:6px 14px;font-family:var(--sans);font-weight:700;font-size:12px;background:var(--black);color:var(--cream);border:none;cursor:pointer">Search</button>
+        </div>
+        <span class="pill" style="flex:none">📍 Portland · 15 mi</span>
+        <span class="pill" style="flex:none;border-color:var(--orange);color:var(--orange)">Mixed</span>
+        <span class="pill" style="flex:none">Young</span>
+        <span class="pill" style="flex:none">Kids OK</span>
+        <button class="pill" style="flex:none;cursor:pointer;font-weight:700;color:var(--orange);border-color:var(--orange)">⚙ All filters</button>
+      </div>
+
+      <div style="padding:12px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--sand)">
+        <div style="font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:-0.3px">42 pets match</div>
+        <select style="font-family:var(--sans);font-size:12px;font-weight:600;border:1px solid var(--sand);border-radius:6px;padding:5px 8px;background:var(--cream);color:var(--black)"><option>Best match ⌄</option></select>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px;overflow-y:auto;flex:1">
+        <div style="border:1px solid var(--sand);border-radius:8px;overflow:hidden;background:var(--cream)">
+          <div style="aspect-ratio:1;background:linear-gradient(180deg,#ffd5b8,#e8a27a);display:flex;align-items:center;justify-content:center;font-size:36px;border-bottom:1px solid var(--sand);position:relative">🐕<div style="position:absolute;top:6px;right:6px;font-size:14px">♡</div></div>
+          <div style="padding:8px 10px"><div style="font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:-0.2px">Biscuit · 2y</div><div style="font-size:11px;color:var(--charcoal);font-weight:500">Mixed · 2.4 mi</div><div style="font-size:11px;color:var(--gray);font-weight:600">$350</div></div>
+        </div>
+        <div style="border:1px solid var(--sand);border-radius:8px;overflow:hidden;background:var(--cream)">
+          <div style="aspect-ratio:1;background:linear-gradient(180deg,#e0cdb0,#8a7e5f);display:flex;align-items:center;justify-content:center;font-size:36px;border-bottom:1px solid var(--sand);position:relative">🐈<div style="position:absolute;top:6px;right:6px;font-size:14px">♡</div></div>
+          <div style="padding:8px 10px"><div style="font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:-0.2px">Miso · 4y</div><div style="font-size:11px;color:var(--charcoal);font-weight:500">Shorthair · 1.9 mi</div><div style="font-size:11px;color:var(--gray);font-weight:600">$180</div></div>
+        </div>
+        <div style="border:1px solid var(--sand);border-radius:8px;overflow:hidden;background:var(--cream)">
+          <div style="aspect-ratio:1;background:linear-gradient(180deg,#d4c7a8,#8a7e5f);display:flex;align-items:center;justify-content:center;font-size:36px;border-bottom:1px solid var(--sand);position:relative">🐕<div style="position:absolute;top:6px;right:6px;font-size:14px">♡</div></div>
+          <div style="padding:8px 10px"><div style="font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:-0.2px">Olive · 1y</div><div style="font-size:11px;color:var(--charcoal);font-weight:500">Beagle · 3.1 mi</div><div style="font-size:11px;color:var(--gray);font-weight:600">$250</div></div>
+        </div>
+        <div style="border:1px solid var(--sand);border-radius:8px;overflow:hidden;background:var(--cream)">
+          <div style="aspect-ratio:1;background:linear-gradient(180deg,#f4d6c4,#c96442);display:flex;align-items:center;justify-content:center;font-size:36px;border-bottom:1px solid var(--sand);position:relative">🐇<div style="position:absolute;top:6px;right:6px;font-size:14px">♡</div></div>
+          <div style="padding:8px 10px"><div style="font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:-0.2px">Clover · 6m</div><div style="font-size:11px;color:var(--charcoal);font-weight:500">Holland Lop · 2.1 mi</div><div style="font-size:11px;color:var(--gray);font-weight:600">$150</div></div>
+        </div>
+        <div style="border:1px solid var(--sand);border-radius:8px;overflow:hidden;background:var(--cream)">
+          <div style="aspect-ratio:1;background:linear-gradient(180deg,#d9c9a8,#a89060);display:flex;align-items:center;justify-content:center;font-size:36px;border-bottom:1px solid var(--sand);position:relative">🐕<div style="position:absolute;top:6px;right:6px;font-size:14px">♡</div></div>
+          <div style="padding:8px 10px"><div style="font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:-0.2px">Pepper · 7y</div><div style="font-size:11px;color:var(--charcoal);font-weight:500">Mixed · 4.8 mi</div><div style="font-size:11px;color:var(--gray);font-weight:600">$150</div></div>
+        </div>
+        <div style="border:1px solid var(--sand);border-radius:8px;overflow:hidden;background:var(--cream)">
+          <div style="aspect-ratio:1;background:linear-gradient(180deg,#f5e3c8,#d9a76b);display:flex;align-items:center;justify-content:center;font-size:36px;border-bottom:1px solid var(--sand);position:relative">🐈<div style="position:absolute;top:6px;right:6px;font-size:14px">♡</div></div>
+          <div style="padding:8px 10px"><div style="font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:-0.2px">Luna · 3y</div><div style="font-size:11px;color:var(--charcoal);font-weight:500">Maine Coon · 5.2 mi</div><div style="font-size:11px;color:var(--gray);font-weight:600">$200</div></div>
+        </div>
+      </div>
+
+      <div class="m-tab">
+        <div class="t active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg>Pets</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-8-5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-8 11-8 11H12z"/></svg>Matches</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18"/></svg>Vet</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 6. MOBILE MATCH RESULT ================= -->
+<div>
+  <p class="page-label">Mobile · After Like · Match result</p>
+  <div class="frame frame-mobile">
+    <div class="mp">
+      <div class="mp-header">
+        <button class="mp-back">✕</button>
+        <div class="mp-title">Match check</div>
+        <div></div>
+      </div>
+      <div class="mp-body">
+        <div style="position:relative;height:180px;border-radius:8px;overflow:hidden;background:linear-gradient(180deg,#ffd5b8,#c96442)">
+          <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice">
+            <g transform="translate(100,50)"><ellipse cx="100" cy="100" rx="90" ry="50" fill="#c96442"/><path fill="#f4c494" stroke="#201515" stroke-width="2" d="M40 80 C 32 40, 50 12, 85 8 C 115 4, 140 26, 144 55 C 146 76, 128 95, 100 97 Z"/><circle cx="72" cy="48" r="3" fill="#201515"/><circle cx="110" cy="45" r="3" fill="#201515"/><ellipse cx="92" cy="68" rx="6" ry="4" fill="#201515"/></g>
+          </svg>
+          <div style="position:absolute;left:16px;bottom:14px;color:#fff">
+            <div style="font-size:10px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;background:rgba(255,255,255,0.25);padding:3px 8px;border-radius:10px;display:inline-block;margin-bottom:6px">♥ You liked</div>
+            <div style="font-family:var(--display);font-weight:700;font-size:26px;letter-spacing:-0.6px;line-height:1">Biscuit</div>
+            <div style="font-size:12px;font-weight:600;opacity:0.95">Willow Creek · 2y mixed</div>
+          </div>
+        </div>
+
+        <div>
+          <h1 class="mp-h1" style="font-size:26px">You're mostly a match.</h1>
+          <p class="mp-sub">We checked Willow Creek's requirements for Biscuit.</p>
+        </div>
+
+        <div class="score-card" style="padding:14px">
+          <div><div class="l">Your match</div><div class="v" style="font-size:22px"><span class="t">5 / 7</span> met</div></div>
+          <div class="progress" style="width:90px"><div style="width:71%"></div></div>
+        </div>
+
+        <div class="rq-list">
+          <div class="rq ok"><div class="i">✓</div><div class="t">Age 21+</div></div>
+          <div class="rq ok"><div class="i">✓</div><div class="t">Fenced yard</div></div>
+          <div class="rq ok"><div class="i">✓</div><div class="t">Kids-safe</div></div>
+          <div class="rq ok"><div class="i">✓</div><div class="t">No landlord restrictions</div></div>
+          <div class="rq ok"><div class="i">✓</div><div class="t">Dog-experienced</div></div>
+          <div class="rq miss"><div class="i">!</div><div style="flex:1"><div class="t">Vet reference needed</div><div class="s">Name + phone</div></div><a href="#" class="a">Add →</a></div>
+          <div class="rq miss"><div class="i">!</div><div style="flex:1"><div class="t">Daily routine</div><div class="s">Short note</div></div><a href="#" class="a">Answer</a></div>
+        </div>
+
+        <div style="background:var(--lsand);border-radius:8px;padding:12px 14px;font-size:12px;color:var(--charcoal);font-weight:500;line-height:1.5">
+          <strong>Good news:</strong> previously answered fields are reused. Only 2 new to fill.
+        </div>
+
+        <button class="btn btn-orange" style="width:100%;justify-content:center;padding:14px;margin-top:auto">Complete & start pre-application →</button>
+        <button class="btn btn-ghost" style="width:100%;justify-content:center;padding:12px">Save to Matches · finish later</button>
+
+      <div class="m-tab">
+        <div class="t active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg>Pets</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-8-5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-8 11-8 11H12z"/></svg>Matches</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18"/></svg>Vet</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 7. MOBILE MATCHES ================= -->
+<div>
+  <p class="page-label">Mobile · Matches</p>
+  <div class="frame frame-mobile">
+    <div class="mp">
+      <div class="mp-header">
+        <button class="mp-back">‹</button>
+        <div class="mp-title">Matches · 7</div>
+        <button class="mp-back">⚲</button>
+      </div>
+      <div class="mp-body" style="gap:12px">
+        <div style="display:flex;gap:6px;overflow-x:auto">
+          <button class="filter-pill active" style="background:var(--black);color:var(--cream);border-color:var(--black);padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;border:1px solid">All 7</button>
+          <button class="filter-pill" style="padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;background:var(--cream);border:1px solid var(--sand);color:var(--charcoal)">Needs info 3</button>
+          <button class="filter-pill" style="padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;background:var(--cream);border:1px solid var(--sand);color:var(--charcoal)">Submitted 2</button>
+        </div>
+
+        <div class="pf-card" style="padding:14px;display:flex;gap:12px;align-items:center">
+          <div style="width:56px;height:56px;border-radius:6px;background:linear-gradient(180deg,#ffd5b8,#e8a27a);flex:none;display:flex;align-items:center;justify-content:center;font-size:26px">🐕</div>
+          <div style="flex:1;min-width:0">
+            <div style="font-family:var(--display);font-weight:700;font-size:16px">Biscuit</div>
+            <div style="font-size:12px;color:var(--charcoal);font-weight:500">Mixed · Willow Creek</div>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:4px"><div style="height:4px;background:var(--lsand);border-radius:3px;flex:1"><div style="width:71%;height:100%;background:var(--orange);border-radius:3px"></div></div><span style="font-size:11px;font-weight:700;color:var(--gray)">5/7</span></div>
+            <div style="font-size:11px;color:#8a3d0f;font-weight:600;margin-top:3px">⚠ 2 fields missing</div>
+          </div>
+          <button class="btn btn-orange" style="padding:7px 10px;font-size:12px">Continue</button>
+        </div>
+
+        <div class="pf-card" style="padding:14px;display:flex;gap:12px;align-items:center">
+          <div style="width:56px;height:56px;border-radius:6px;background:linear-gradient(180deg,#e0cdb0,#8a7e5f);flex:none;display:flex;align-items:center;justify-content:center;font-size:26px">🐈</div>
+          <div style="flex:1;min-width:0">
+            <div style="font-family:var(--display);font-weight:700;font-size:16px">Miso</div>
+            <div style="font-size:12px;color:var(--charcoal);font-weight:500">Shorthair · Rose City</div>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:4px"><div style="height:4px;background:var(--lsand);border-radius:3px;flex:1"><div style="width:100%;height:100%;background:var(--orange);border-radius:3px"></div></div><span style="font-size:11px;font-weight:700;color:var(--gray)">6/6</span></div>
+            <div style="font-size:11px;color:#3c5e17;font-weight:600;margin-top:3px">✓ Ready to submit</div>
+          </div>
+          <button class="btn btn-orange" style="padding:7px 10px;font-size:12px">Submit</button>
+        </div>
+
+        <div class="pf-card" style="padding:14px;display:flex;gap:12px;align-items:center">
+          <div style="width:56px;height:56px;border-radius:6px;background:linear-gradient(180deg,#f4d6c4,#c96442);flex:none;display:flex;align-items:center;justify-content:center;font-size:26px">🐇</div>
+          <div style="flex:1;min-width:0">
+            <div style="font-family:var(--display);font-weight:700;font-size:16px">Clover</div>
+            <div style="font-size:12px;color:var(--charcoal);font-weight:500">Rabbit · Willow Creek</div>
+            <div style="font-size:11px;color:var(--gray);font-weight:600;margin-top:4px">● Submitted 3d · awaiting review</div>
+          </div>
+          <button class="btn btn-ghost" style="padding:7px 10px;font-size:12px">View</button>
+        </div>
+
+        <div class="pf-card" style="padding:14px;display:flex;gap:12px;align-items:center">
+          <div style="width:56px;height:56px;border-radius:6px;background:linear-gradient(180deg,#d4c7a8,#8a7e5f);flex:none;display:flex;align-items:center;justify-content:center;font-size:26px">🐕</div>
+          <div style="flex:1;min-width:0">
+            <div style="font-family:var(--display);font-weight:700;font-size:16px">Olive</div>
+            <div style="font-size:12px;color:var(--charcoal);font-weight:500">Beagle mix · Pearl</div>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:4px"><div style="height:4px;background:var(--lsand);border-radius:3px;flex:1"><div style="width:50%;height:100%;background:var(--orange);border-radius:3px"></div></div><span style="font-size:11px;font-weight:700;color:var(--gray)">3/6</span></div>
+            <div style="font-size:11px;color:#8a3d0f;font-weight:600;margin-top:3px">⚠ 3 fields missing</div>
+          </div>
+          <button class="btn btn-orange" style="padding:7px 10px;font-size:12px">Fill</button>
+        </div>
+
+        <div style="background:var(--lsand);border-radius:8px;padding:12px 14px;font-size:12px;color:var(--charcoal);font-weight:500;line-height:1.5;margin-top:4px">💡 Answers reuse across shelters — fill once, applies everywhere.</div>
+
+      <div class="m-tab">
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg>Pets</div>
+        <div class="t active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-8-5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-8 11-8 11H12z"/></svg>Matches</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18"/></svg>Vet</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 8. MOBILE CHAT ================= -->
+<div>
+  <p class="page-label">Mobile · Chat</p>
+  <div class="frame frame-mobile">
+    <div class="mp">
+      <div class="mp-header">
+        <button class="mp-back">‹</button>
+        <div class="mp-title">Chat</div>
+        <button class="mp-back">⚲</button>
+      </div>
+      <div style="display:flex;border-bottom:1px solid var(--sand)">
+        <button style="flex:1;padding:12px;background:transparent;border:none;font-family:var(--sans);font-weight:600;font-size:13px;color:var(--black);cursor:pointer;box-shadow:inset 0 -3px 0 0 var(--orange)">Shelters · 2</button>
+        <button style="flex:1;padding:12px;background:transparent;border:none;font-family:var(--sans);font-weight:500;font-size:13px;color:var(--gray);cursor:pointer">Vets · 1</button>
+      </div>
+      <div class="mp-body" style="padding:0;gap:0">
+        <div class="conv-item" style="padding:14px 16px">
+          <div class="conv-av">W</div>
+          <div class="conv-t">
+            <div class="conv-n">Willow Creek Rescue <span class="time">2h</span></div>
+            <div class="conv-ctx">About Biscuit 🐕</div>
+            <div class="conv-p">Great — we'd love to meet you Saturday 2pm.</div>
+          </div>
+          <div class="conv-unread"></div>
+        </div>
+        <div class="conv-item" style="padding:14px 16px">
+          <div class="conv-av">R</div>
+          <div class="conv-t">
+            <div class="conv-n">Rose City Cat Rescue <span class="time">1d</span></div>
+            <div class="conv-ctx">About Miso 🐈</div>
+            <div class="conv-p">Could you share a photo of your home?</div>
+          </div>
+          <div class="conv-unread"></div>
+        </div>
+        <div class="conv-item" style="padding:14px 16px">
+          <div class="conv-av">P</div>
+          <div class="conv-t">
+            <div class="conv-n">Pearl District <span class="time">3d</span></div>
+            <div class="conv-ctx">About Olive 🐕</div>
+            <div class="conv-p">Thanks for your application.</div>
+          </div>
+        </div>
+
+      <div class="m-tab">
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg>Pets</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-8-5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-8 11-8 11H12z"/></svg>Matches</div>
+        <div class="t active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18"/></svg>Vet</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 9. MOBILE MY APPLICATIONS ================= -->
+<div>
+  <p class="page-label">Mobile · My applications</p>
+  <div class="frame frame-mobile">
+    <div class="mp">
+      <div class="mp-header">
+        <button class="mp-back">‹</button>
+        <div class="mp-title">My applications</div>
+        <div></div>
+      </div>
+      <div class="mp-body">
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;color:var(--gray);margin-bottom:8px">Upcoming</div>
+          <div class="appt-card" style="padding:12px;gap:12px">
+            <div class="appt-date" style="width:48px"><div class="m">Apr</div><div class="d" style="font-size:18px;line-height:1">19</div></div>
+            <div class="appt-info"><div class="t" style="font-size:14px">Meet Biscuit 🐕</div><div class="s" style="font-size:12px">Sat 2pm · Willow Creek</div></div>
+          </div>
+          <div class="appt-card" style="padding:12px;gap:12px;margin-top:8px">
+            <div class="appt-date" style="width:48px"><div class="m">Apr</div><div class="d" style="font-size:18px;line-height:1">16</div></div>
+            <div class="appt-info"><div class="t" style="font-size:14px">Vet · Dr. Patel</div><div class="s" style="font-size:12px">Wed 9:30am · wellness</div></div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;color:var(--gray);margin-bottom:8px">Applications</div>
+
+          <div class="pf-card" style="padding:14px">
+            <div style="display:flex;gap:12px;align-items:center">
+              <div style="width:48px;height:48px;border-radius:6px;background:linear-gradient(180deg,#ffd5b8,#e8a27a);flex:none;display:flex;align-items:center;justify-content:center;font-size:22px">🐕</div>
+              <div style="flex:1;min-width:0">
+                <div style="font-family:var(--display);font-weight:700;font-size:15px">Biscuit · Willow Creek</div>
+                <div style="font-size:11px;color:var(--orange);font-weight:700;margin-top:2px">Meeting Apr 19</div>
+              </div>
+            </div>
+            <div class="app-stepper" style="margin-top:10px">
+              <span class="app-step done">1 ✓</span>
+              <span class="app-step current">2 · Meeting</span>
+              <span class="app-step">3</span>
+              <span class="app-step">4</span>
+            </div>
+          </div>
+
+          <div class="pf-card" style="padding:14px">
+            <div style="display:flex;gap:12px;align-items:center">
+              <div style="width:48px;height:48px;border-radius:6px;background:linear-gradient(180deg,#f4d6c4,#c96442);flex:none;display:flex;align-items:center;justify-content:center;font-size:22px">🐇</div>
+              <div style="flex:1;min-width:0">
+                <div style="font-family:var(--display);font-weight:700;font-size:15px">Clover · Willow Creek</div>
+                <div style="font-size:11px;color:var(--gray);font-weight:600;margin-top:2px">Under review · 3d ago</div>
+              </div>
+            </div>
+            <div class="app-stepper" style="margin-top:10px">
+              <span class="app-step current">1 · Pre-app</span>
+              <span class="app-step">2</span>
+              <span class="app-step">3</span>
+              <span class="app-step">4</span>
+            </div>
+          </div>
+
+          <div class="pf-card" style="padding:14px">
+            <div style="display:flex;gap:12px;align-items:center">
+              <div style="width:48px;height:48px;border-radius:6px;background:linear-gradient(180deg,#e0cdb0,#8a7e5f);flex:none;display:flex;align-items:center;justify-content:center;font-size:22px">🐈</div>
+              <div style="flex:1;min-width:0">
+                <div style="font-family:var(--display);font-weight:700;font-size:15px">Miso · Rose City</div>
+                <div style="font-size:11px;color:#3c5e17;font-weight:700;margin-top:2px">Ready to submit</div>
+              </div>
+              <button class="btn btn-orange" style="padding:7px 10px;font-size:12px">Submit</button>
+            </div>
+          </div>
+
+          <div class="pf-card" style="padding:14px">
+            <div style="display:flex;gap:12px;align-items:center">
+              <div style="width:48px;height:48px;border-radius:6px;background:linear-gradient(180deg,#d4c7a8,#8a7e5f);flex:none;display:flex;align-items:center;justify-content:center;font-size:22px">🐕</div>
+              <div style="flex:1;min-width:0">
+                <div style="font-family:var(--display);font-weight:700;font-size:15px">Olive · Pearl</div>
+                <div style="font-size:11px;color:#8a3d0f;font-weight:700;margin-top:2px">3 fields missing</div>
+              </div>
+              <button class="btn btn-orange" style="padding:7px 10px;font-size:12px">Finish</button>
+            </div>
+          </div>
+        </div>
+
+      <div class="m-tab">
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg>Pets</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-8-5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-8 11-8 11H12z"/></svg>Matches</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18"/></svg>Vet</div>
+        <div class="t active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 10. MOBILE UPLOAD SIGNED FORM ================= -->
+<div>
+  <p class="page-label">Mobile · Upload signed form</p>
+  <div class="frame frame-mobile">
+    <div class="mp">
+      <div class="mp-header">
+        <button class="mp-back">‹</button>
+        <div class="mp-title">Upload form</div>
+        <div></div>
+      </div>
+      <div class="mp-body">
+        <div>
+          <h1 class="mp-h1">Upload your signed adoption form</h1>
+          <p class="mp-sub">Take a photo of the completed form from Willow Creek Rescue. Lemonade AI will verify it in seconds.</p>
+        </div>
+
+        <div style="border:2px dashed var(--sand);border-radius:8px;padding:32px 20px;text-align:center;background:var(--off)">
+          <div style="font-size:32px;margin-bottom:8px">📷</div>
+          <div style="font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-0.2px;margin-bottom:4px">Take a photo or choose from gallery</div>
+          <div style="font-size:12px;color:var(--gray);font-weight:500">JPG, PNG, or PDF · max 10 MB</div>
+        </div>
+
+        <div style="border:1px solid var(--sand);border-radius:8px;padding:12px;display:flex;gap:10px;align-items:center;background:var(--cream)">
+          <div style="width:44px;height:44px;border-radius:6px;background:var(--lsand);border:1px solid var(--sand);display:flex;align-items:center;justify-content:center;font-size:20px">📄</div>
+          <div style="flex:1;min-width:0">
+            <div style="font-weight:600;font-size:13px">adoption-form-biscuit.jpg</div>
+            <div style="font-size:11px;color:var(--gray);font-weight:500">2.4 MB</div>
+          </div>
+          <button style="font-size:12px;color:var(--gray);background:none;border:none;font-weight:600">✕</button>
+        </div>
+
+        <div style="border:1px solid var(--sand);border-radius:8px;padding:16px;background:var(--off)">
+          <div style="font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-0.2px;margin-bottom:10px">Validating with AI...</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#3c5e17"><span style="font-weight:700">✓</span> Shelter registered on PawMatch</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#3c5e17"><span style="font-weight:700">✓</span> Form matches Willow Creek's template</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--charcoal)"><span style="color:var(--orange);font-weight:700">⟳</span> Record found (Biscuit → Sarah Chen)</div>
+          </div>
+          <div style="margin-top:10px;font-size:12px;color:var(--orange);font-weight:600">Verifying...</div>
+        </div>
+
+        <button class="btn btn-orange" style="width:100%;justify-content:center;padding:14px;font-size:15px;margin-top:auto">Submit for verification</button>
+      </div>
+
+      <div class="m-tab">
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg>Pets</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-8-5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-8 11-8 11H12z"/></svg>Matches</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18"/></svg>Vet</div>
+        <div class="t active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 11. MOBILE FORM VERIFIED ================= -->
+<div>
+  <p class="page-label">Mobile · Form verified + select vet</p>
+  <div class="frame frame-mobile">
+    <div class="mp">
+      <div class="mp-header">
+        <button class="mp-back">‹</button>
+        <div class="mp-title">Form verified</div>
+        <div></div>
+      </div>
+      <div class="mp-body" style="align-items:center;text-align:center">
+        <div style="width:64px;height:64px;border-radius:50%;background:#e7f0d8;border:2px solid #b9cf95;display:flex;align-items:center;justify-content:center;font-size:28px;margin-top:16px">✓</div>
+        <div>
+          <h1 class="mp-h1" style="font-size:28px">Form verified!</h1>
+          <p class="mp-sub">Lemonade AI confirmed your adoption form from Willow Creek Rescue.</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:6px;text-align:left;width:100%">
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#3c5e17"><span style="font-weight:700">✓</span> Shelter registered</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#3c5e17"><span style="font-weight:700">✓</span> Template match</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#3c5e17"><span style="font-weight:700">✓</span> Record found</div>
+        </div>
+
+        <div style="border:1px solid var(--sand);border-radius:8px;padding:16px;background:var(--off);width:100%;text-align:center">
+          <div style="font-size:18px;margin-bottom:4px">🎉</div>
+          <div style="font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:-0.3px;margin-bottom:4px">Lemonade insurance discount unlocked!</div>
+          <p style="font-size:13px;color:var(--charcoal);font-weight:500;margin:0;line-height:1.4">Select an in-network vet clinic to activate your discount. You'll save on every visit.</p>
+        </div>
+
+        <button class="btn btn-orange" style="width:100%;justify-content:center;padding:14px;font-size:15px">Select an in-network vet →</button>
+        <button class="btn btn-ghost" style="width:100%;justify-content:center;padding:12px;font-size:14px">I'll do this later</button>
+      </div>
+
+      <div class="m-tab">
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg>Pets</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-8-5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-8 11-8 11H12z"/></svg>Matches</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18"/></svg>Vet</div>
+        <div class="t active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 12. MOBILE FIND A VET ================= -->
+<div>
+  <p class="page-label">Mobile · Find a vet</p>
+  <div class="frame frame-mobile">
+    <div class="mp">
+      <div class="mp-header">
+        <button class="mp-back">‹</button>
+        <div class="mp-title">Find a vet</div>
+        <button class="mp-back">⚲</button>
+      </div>
+      <div class="mp-body" style="padding:14px 16px 24px;gap:10px">
+        <div style="display:flex;gap:6px;overflow-x:auto;padding-bottom:4px">
+          <span class="pill pill-dark">📍 Portland · 10 mi</span>
+          <span class="pill" style="border-color:var(--orange);color:var(--orange)">In-network</span>
+          <span class="pill">Accepting new</span>
+          <span class="pill">4★+</span>
+        </div>
+
+        <div style="position:relative;height:200px;border:1px solid var(--sand);border-radius:8px;overflow:hidden;background:#eceae3">
+          <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="220" fill="#eceae3"/>
+            <g stroke="#d4cfbd" stroke-width="1" fill="none">
+              <path d="M0 60 L 400 40"/><path d="M0 130 L 400 110"/><path d="M0 200 L 400 180"/>
+              <path d="M80 0 L 70 220"/><path d="M200 0 L 210 220"/><path d="M320 0 L 310 220"/>
+            </g>
+            <g fill="#c5c0b1" opacity="0.45">
+              <path d="M40 100 L 110 84 L 140 160 L 60 180 Z"/>
+              <path d="M240 120 L 340 100 L 360 200 L 250 210 Z"/>
+            </g>
+          </svg>
+          <div class="fv-you" style="left:48%;top:55%"></div>
+          <div class="fv-map-label" style="left:40%;top:38%">★ Forest Park · 1.2 mi</div>
+          <div class="fv-map-pin" style="left:40%;top:38%;font-size:26px">📍</div>
+          <div class="fv-map-pin sm" style="left:24%;top:62%">📍</div>
+          <div class="fv-map-pin sm" style="left:68%;top:46%">📍</div>
+          <div class="fv-map-pin sm" style="left:80%;top:72%">📍</div>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:4px">
+          <div style="font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-0.4px">12 vets match</div>
+          <button class="fv-sort" style="padding:5px 10px">Closest ⌄</button>
+        </div>
+
+        <div class="vet-card sel" style="padding:12px">
+          <div class="vet-pin" style="width:40px;height:40px;font-size:18px">🏥</div>
+          <div>
+            <div class="vet-head"><div class="vet-name" style="font-size:14px">Forest Park Veterinary</div><div class="vet-rating">★ 4.9</div></div>
+            <div class="vet-meta" style="font-size:12px"><strong>1.2 mi</strong> · Dr. Patel · Mon–Sat 8a–7p</div>
+            <div class="vet-tags"><span class="vet-tag in">In-network</span><span class="vet-tag accept">New pts</span></div>
+            <div class="vet-next" style="font-size:11px">Next: <strong>Tomorrow 9:30am</strong></div>
+          </div>
+        </div>
+
+        <div class="vet-card" style="padding:12px">
+          <div class="vet-pin" style="width:40px;height:40px;font-size:18px">🏥</div>
+          <div>
+            <div class="vet-head"><div class="vet-name" style="font-size:14px">Pearl District Animal Hospital</div><div class="vet-rating">★ 4.7</div></div>
+            <div class="vet-meta" style="font-size:12px"><strong>2.8 mi</strong> · Dr. Nguyen · Mon–Fri 7a–6p</div>
+            <div class="vet-tags"><span class="vet-tag in">In-network</span><span class="vet-tag accept">New pts</span></div>
+            <div class="vet-next" style="font-size:11px">Next: <strong>Fri 2:15pm</strong></div>
+          </div>
+        </div>
+
+        <div class="vet-card" style="padding:12px">
+          <div class="vet-pin" style="width:40px;height:40px;font-size:18px">🏥</div>
+          <div>
+            <div class="vet-head"><div class="vet-name" style="font-size:14px">Rose City Pet Care</div><div class="vet-rating">★ 4.8</div></div>
+            <div class="vet-meta" style="font-size:12px"><strong>3.5 mi</strong> · Dr. Alvarez · Daily 9a–9p</div>
+            <div class="vet-tags"><span class="vet-tag out">Out-of-net</span><span class="vet-tag accept">New pts</span></div>
+            <div class="vet-next" style="font-size:11px">Next: <strong>Today 6:00pm</strong></div>
+          </div>
+        </div>
+
+      <div class="m-tab">
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg>Pets</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-8-5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-8 11-8 11H12z"/></svg>Matches</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="t active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18"/></svg>Vet</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 13. MOBILE VET DETAIL + BOOKING ================= -->
+<div>
+  <p class="page-label">Mobile · Vet detail + booking</p>
+  <div class="frame frame-mobile">
+    <div class="mp">
+      <div class="mp-header">
+        <button class="mp-back">‹</button>
+        <div class="mp-title">Vet details</div>
+        <button class="mp-back">♡</button>
+      </div>
+      <div class="mp-body">
+        <div>
+          <h1 class="mp-h1" style="font-size:26px">Forest Park Veterinary</h1>
+          <div style="font-size:13px;color:var(--charcoal);font-weight:500;margin-top:6px">★ 4.9 (214) · <strong style="color:var(--black)">1.2 mi</strong> · Mon–Sat 8a–7p</div>
+          <div style="display:flex;gap:5px;margin-top:10px;flex-wrap:wrap">
+            <span class="vet-tag in">In-network</span>
+            <span class="vet-tag accept">Accepting new</span>
+            <span class="vet-tag">Dogs · Cats</span>
+          </div>
+        </div>
+
+        <div class="book-card" style="padding:18px">
+          <h3 style="font-size:17px">Book appointment</h3>
+          <div class="field" style="margin-bottom:10px"><label>Visit reason</label><select class="input"><option>New-patient wellness</option></select></div>
+
+          <div class="mcal">
+            <div class="mcal-head">
+              <div class="mcal-sel">
+                <select><option>2026</option><option>2027</option></select>
+                <select><option>April</option><option>May</option><option>June</option></select>
+              </div>
+              <div class="mcal-nav">
+                <button>‹</button>
+                <button>›</button>
+              </div>
+            </div>
+            <div class="mcal-weeks"><div class="wd">S</div><div class="wd">M</div><div class="wd">T</div><div class="wd">W</div><div class="wd">T</div><div class="wd">F</div><div class="wd">S</div><div class="mcal-day muted">29</div><div class="mcal-day muted">30</div><div class="mcal-day muted">31</div><div class="mcal-day">1</div><div class="mcal-day">2</div><div class="mcal-day">3</div><div class="mcal-day">4</div><div class="mcal-day full">5</div><div class="mcal-day">6</div><div class="mcal-day">7</div><div class="mcal-day">8</div><div class="mcal-day">9</div><div class="mcal-day">10</div><div class="mcal-day">11</div><div class="mcal-day full">12</div><div class="mcal-day">13</div><div class="mcal-day">14</div><div class="mcal-day today">15</div><div class="mcal-day on">16</div><div class="mcal-day">17</div><div class="mcal-day">18</div><div class="mcal-day full">19</div><div class="mcal-day">20</div><div class="mcal-day">21</div><div class="mcal-day">22</div><div class="mcal-day">23</div><div class="mcal-day">24</div><div class="mcal-day">25</div><div class="mcal-day full">26</div><div class="mcal-day">27</div><div class="mcal-day">28</div><div class="mcal-day">29</div><div class="mcal-day">30</div><div class="mcal-day muted">1</div><div class="mcal-day muted">2</div></div>
+            <div class="mcal-legend">
+              <span><span class="sw" style="background:var(--orange)"></span>Selected</span>
+              <span><span class="sw" style="background:var(--cream);box-shadow:inset 0 0 0 1px var(--sand)"></span>Available</span>
+              <span><span class="sw" style="background:transparent;text-decoration:line-through;color:var(--gray)">—</span>Fully booked</span>
+            </div>
+          </div>
+
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;color:var(--gray);margin:14px 0 8px">Select time · Wed Apr 16</div>
+          <div class="time-grid">
+            <div class="time-slot">8:30a</div>
+            <div class="time-slot on">9:30a</div>
+            <div class="time-slot">11:00a</div>
+            <div class="time-slot">1:15p</div>
+            <div class="time-slot">3:00p</div>
+            <div class="time-slot">4:45p</div>
+          </div>
+
+          <div style="background:var(--lsand);border-radius:6px;padding:10px 12px;margin-top:14px;font-size:12px;color:var(--charcoal);font-weight:500;line-height:1.5">
+            <strong style="color:var(--black)">Wed Apr 16, 9:30am · 45 min</strong><br/>With Dr. Patel · in-network copay <strong style="color:var(--orange)">$25</strong>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px">
+          <span class="pill">Wellness</span>
+          <span class="pill">Vaccines</span>
+          <span class="pill">Spay / neuter</span>
+          <span class="pill">Dental</span>
+          <span class="pill">Surgery</span>
+          <span class="pill">Emergency</span>
+        </div>
+
+        <button class="btn btn-orange" style="width:100%;justify-content:center;padding:14px;margin-top:auto">Continue to pre-visit form →</button>
+
+      <div class="m-tab">
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg>Pets</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-8-5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-8 11-8 11H12z"/></svg>Matches</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="t active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18"/></svg>Vet</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 14. MOBILE PRE-VISIT FORM ================= -->
+<div>
+  <p class="page-label">Mobile · Pre-visit form</p>
+  <div class="frame frame-mobile">
+    <div class="mp">
+      <div class="mp-header">
+        <button class="mp-back">‹</button>
+        <div class="mp-title">Pre-visit form</div>
+        <div style="font-size:11px;color:var(--gray);font-weight:600">2 / 3</div>
+      </div>
+      <div class="mp-body">
+        <div>
+          <h1 class="mp-h1" style="font-size:26px">Tell the vet what's going on.</h1>
+          <p class="mp-sub">Takes 2 min · skip what you don't know.</p>
+        </div>
+
+        <div class="pf-card" style="padding:18px">
+          <h3 style="font-size:16px">Your pet</h3>
+          <div class="field"><label>Name</label><input class="input" value="Biscuit"/></div>
+          <div class="field"><label>Breed</label><input class="input" value="Mixed (Dalmatian × Setter)"/></div>
+          <div class="field"><label>Age / weight</label><input class="input" value="2y · 32 kg"/></div>
+        </div>
+
+        <div class="pf-card" style="padding:18px">
+          <h3 style="font-size:16px">Reason for visit</h3>
+          <div class="field"><label>What's going on?</label><textarea class="textarea" style="min-height:70px">New-patient wellness — just adopted from Willow Creek.</textarea></div>
+          <div class="field"><label>Going on for</label>
+            <div style="display:flex;gap:6px;flex-wrap:wrap"><span class="pill">Hours</span><span class="pill" style="border-color:var(--orange);color:var(--orange)">Days</span><span class="pill">Weeks</span></div>
+          </div>
+        </div>
+
+        <div class="pf-card" style="padding:18px">
+          <h3 style="font-size:16px">Medical</h3>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <span class="pill" style="border-color:var(--orange);color:var(--orange)">DHPP ✓</span>
+            <span class="pill" style="border-color:var(--orange);color:var(--orange)">Rabies ✓</span>
+            <span class="pill" style="border-color:var(--orange);color:var(--orange)">Bordetella ✓</span>
+          </div>
+          <div class="field" style="margin-top:12px"><label>Allergies / conditions</label><textarea class="textarea" style="min-height:60px">None known.</textarea></div>
+          <div style="border:1px dashed var(--sand);border-radius:8px;padding:10px;font-size:12px;color:var(--charcoal);font-weight:500;margin-top:10px">📄 biscuit-shelter-records.pdf</div>
+        </div>
+
+        <button class="btn btn-orange" style="width:100%;justify-content:center;padding:14px;margin-top:auto">Submit & continue →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 15. MOBILE INSURANCE (Lemonade) ================= -->
+<div>
+  <p class="page-label">Mobile · Pet insurance · Lemonade</p>
+  <div class="frame frame-mobile">
+    <div class="mp">
+      <div class="mp-header">
+        <button class="mp-back">‹</button>
+        <div class="mp-title">Insurance</div>
+        <div></div>
+      </div>
+      <div class="mp-body">
+        <div>
+          <div style="font-size:11px;color:var(--orange);font-weight:700;letter-spacing:0.5px;text-transform:uppercase">Powered by Lemonade</div>
+          <h1 class="mp-h1" style="margin-top:6px">Pick a plan that fits you and your pet.</h1>
+          <p class="mp-sub">Prices shown for Biscuit · Mixed · 2y · ZIP 97209.</p>
+        </div>
+
+        <div class="plan">
+          <h3 style="font-size:22px">Base</h3>
+          <div class="price" style="font-size:30px">$44.27<small>&nbsp;/mo</small></div>
+          <ul>
+            <li>Diagnostics</li>
+            <li>Procedures</li>
+            <li>Medication</li>
+            <li style="color:var(--gray);opacity:0.6"><span style="color:var(--gray)">—</span> Vet Visit Fees</li>
+            <li style="color:var(--gray);opacity:0.6"><span style="color:var(--gray)">—</span> Dental Illness</li>
+            <li style="color:var(--gray);opacity:0.6"><span style="color:var(--gray)">—</span> Behavioral</li>
+          </ul>
+          <button class="btn btn-ghost" style="justify-content:center">Select</button>
+        </div>
+
+        <div class="plan featured" style="position:relative;overflow:visible;margin-top:10px">
+          <span style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--orange);color:var(--cream);padding:3px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase">Popular</span>
+          <h3 style="font-size:22px">Plus</h3>
+          <div class="price" style="font-size:30px">$67.74<small style="color:var(--lsand)">&nbsp;/mo</small></div>
+          <ul>
+            <li>Diagnostics</li>
+            <li>Procedures</li>
+            <li>Medication</li>
+            <li>Vet Visit Fees</li>
+            <li>Dental Illness</li>
+            <li>Behavioral Conditions</li>
+            <li style="color:var(--gray);opacity:0.55"><span style="color:var(--gray)">—</span> Physical Therapy</li>
+            <li style="color:var(--gray);opacity:0.55"><span style="color:var(--gray)">—</span> End-of-Life</li>
+          </ul>
+          <button class="btn btn-orange" style="justify-content:center">Select Plus</button>
+        </div>
+
+        <div class="plan">
+          <h3 style="font-size:22px">Complete</h3>
+          <div class="price" style="font-size:30px">$74.24<small>&nbsp;/mo</small></div>
+          <ul>
+            <li>Everything in Plus</li>
+            <li>Physical Therapy</li>
+            <li>End-of-Life</li>
+          </ul>
+          <button class="btn btn-ghost" style="justify-content:center">Select</button>
+        </div>
+
+        <div class="pf-card" style="margin:0;background:var(--lsand);padding:14px 16px">
+          <div style="font-size:11px;color:var(--orange);font-weight:700;letter-spacing:0.4px;text-transform:uppercase">Good to know</div>
+          <p style="font-size:13px;color:var(--charcoal);margin:6px 0 0;line-height:1.5;font-weight:500">Pre-existing conditions are excluded — enroll before the first visit.</p>
+        </div>
+
+      <div class="m-tab">
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg>Pets</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-8-5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-8 11-8 11H12z"/></svg>Matches</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18"/></svg>Vet</div>
+        <div class="t active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 16. MOBILE PAYMENT / CHECKOUT ================= -->
+<div>
+  <p class="page-label">Mobile · Payment / checkout</p>
+  <div class="frame frame-mobile">
+    <div class="mp">
+      <div class="mp-header">
+        <button class="mp-back">‹</button>
+        <div class="mp-title">Checkout</div>
+        <div style="font-size:11px;color:var(--gray);font-weight:600">3 / 3</div>
+      </div>
+      <div class="mp-body">
+        <div>
+          <h1 class="mp-h1" style="font-size:28px">Confirm &amp; pay.</h1>
+          <p class="mp-sub">Your card isn't charged until after the visit.</p>
+        </div>
+
+        <div style="border:1px solid var(--sand);border-radius:8px;padding:14px;background:var(--cream)">
+          <div style="font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-0.3px">Forest Park Veterinary</div>
+          <div style="font-size:12px;color:var(--charcoal);font-weight:500;margin-top:2px">Wed Apr 16, 9:30am · Dr. Patel</div>
+          <div style="font-size:12px;color:var(--charcoal);font-weight:500">For <strong style="color:var(--black)">Biscuit</strong> · wellness</div>
+        </div>
+
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;color:var(--gray);margin-bottom:8px">Payment method</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div class="radio-card sel"><div class="dot"></div><div><div class="t">Card</div></div></div>
+            <div class="radio-card"><div class="dot"></div><div><div class="t">Apple Pay</div></div></div>
+          </div>
+          <div class="field" style="margin-top:10px;margin-bottom:10px"><label>Card number</label><input class="input" value="4242 4242 4242 4242"/></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div class="field" style="margin-bottom:0"><label>Expiry</label><input class="input" value="04/28"/></div>
+            <div class="field" style="margin-bottom:0"><label>CVC</label><input class="input" value="•••"/></div>
+          </div>
+        </div>
+
+        <div class="radio-card sel"><div class="dot"></div><div><div class="t">Apply Lemonade coverage</div><div class="s">Accident + Illness · copay $25</div></div></div>
+
+        <div style="border-top:1px solid var(--sand);padding-top:10px">
+          <div class="line"><span>Wellness exam</span><span>$95</span></div>
+          <div class="line"><span>Intake</span><span>$35</span></div>
+          <div class="line"><span>DHPP booster</span><span>$45</span></div>
+          <div class="line"><span>Insurance</span><span style="color:var(--orange);font-weight:700">−$150</span></div>
+          <div class="line total"><span>Copay at visit</span><span>$25</span></div>
+        </div>
+
+        <button class="btn btn-orange" style="width:100%;justify-content:center;padding:14px;margin-top:auto">Confirm · $25</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 17. MOBILE PROFILE ================= -->
+<div>
+  <p class="page-label">Mobile · Profile</p>
+  <div class="frame frame-mobile">
+    <div class="mp">
+      <div class="mp-header">
+        <button class="mp-back">‹</button>
+        <div class="mp-title">Profile</div>
+        <div></div>
+      </div>
+      <div class="mp-body">
+        <div style="text-align:center;padding:8px 0">
+          <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#ff8a4f,#ff4f00);display:flex;align-items:center;justify-content:center;color:var(--cream);font-family:var(--display);font-weight:700;font-size:24px;margin:0 auto 10px">SC</div>
+          <div style="font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-0.4px">Sarah Chen</div>
+          <div style="font-size:12px;color:var(--gray);font-weight:500;margin-top:2px">sarah@example.com · Since Mar 2026</div>
+        </div>
+
+        <div class="pf-card" style="margin:0;padding:14px">
+          <div style="font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-0.2px;margin-bottom:10px">Personal info</div>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Name</span><span>Sarah Chen</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Email</span><span>sarah@example.com</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Phone</span><span>(503) 555-0143</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Location</span><span>Portland, OR</span></div>
+          </div>
+        </div>
+
+        <div class="pf-card" style="margin:0;padding:14px">
+          <div style="font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-0.2px;margin-bottom:10px">Household</div>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Type</span><span>Family w/ kids</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Adults / Kids</span><span>2 / 2 (7, 10)</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Housing</span><span>Own · fenced yard</span></div>
+          </div>
+        </div>
+
+        <div class="pf-card" style="margin:0;padding:14px">
+          <div style="font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-0.2px;margin-bottom:10px">Pet experience</div>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Current pets</span><span>Murphy · Golden · 6y</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Experience</span><span>Raised 2 goldens</span></div>
+          </div>
+        </div>
+
+        <div class="pf-card" style="margin:0;padding:14px">
+          <div style="font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-0.2px;margin-bottom:4px">Saved form data</div>
+          <div style="font-size:11px;color:var(--gray);font-weight:500;margin-bottom:8px">Reused across applications</div>
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:#3c5e17;font-weight:500">
+            <div>✓ Vet reference</div>
+            <div>✓ Daily routine</div>
+            <div>✓ Household details</div>
+            <div>✓ Housing info</div>
+            <div>✓ Pet history</div>
+          </div>
+        </div>
+
+        <div class="pf-card" style="margin:0;padding:14px">
+          <div style="font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-0.2px;margin-bottom:10px">Insurance</div>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Status</span><span style="color:#3c5e17;font-weight:600">Active</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray)">Plan</span><span>Lemonade Plus · $67.74/mo</span></div>
+          </div>
+          <a href="#" style="display:block;margin-top:8px;font-size:12px;color:var(--orange);font-weight:600;text-decoration:none">Manage policy →</a>
+        </div>
+
+        <div class="pf-card" style="margin:0;padding:14px">
+          <div style="font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-0.2px;margin-bottom:10px">Saved vets</div>
+          <div style="border:1px solid var(--sand);border-radius:6px;padding:10px;display:flex;gap:8px;align-items:center">
+            <div style="width:32px;height:32px;border-radius:6px;background:var(--lsand);border:1px solid var(--sand);display:flex;align-items:center;justify-content:center;font-size:14px">🏥</div>
+            <div style="flex:1"><div style="font-weight:600;font-size:13px">Forest Park Veterinary</div><div style="font-size:10px;color:#3c5e17;font-weight:600">In-network</div></div>
+          </div>
+        </div>
+
+        <div class="pf-card" style="margin:0;padding:14px">
+          <div style="font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-0.2px;margin-bottom:10px">Settings</div>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:13px">
+            <div style="display:flex;justify-content:space-between"><span>Notifications</span><span style="color:#3c5e17;font-weight:600">On</span></div>
+            <div style="display:flex;justify-content:space-between;border-top:1px solid var(--sand);padding-top:10px"><span>Privacy</span><a href="#" style="color:var(--orange);text-decoration:none;font-weight:600;font-size:12px">Manage →</a></div>
+            <div style="display:flex;justify-content:space-between;border-top:1px solid var(--sand);padding-top:10px"><span style="color:#8a3d0f">Delete account</span><a href="#" style="color:#8a3d0f;text-decoration:none;font-weight:600;font-size:12px">Request →</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-tab">
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg>Pets</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-8-5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-8 11-8 11H12z"/></svg>Matches</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v12H7l-3 3z"/></svg>Chat</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18"/></svg>Vet</div>
+        <div class="t active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div> <!-- /.stack -->
+
+<!-- =================================================================== -->
+<!-- Interactive Swipe script — vanilla JS, scoped                        -->
+<!-- =================================================================== -->
+<script>
+(function(){
+  'use strict';
+
+  var root = document.getElementById('swipe-interactive');
+  if(!root) return;
+  var deckEl = root.querySelector('[data-deck]');
+  var emptyEl = root.querySelector('[data-empty]');
+  var matchFlashEl = root.querySelector('[data-match-flash]');
+
+  // Card data
+  var PETS = [
+    {
+      id:'biscuit',
+      name:'Biscuit',
+      breed:'Mixed (Dalmatian × Setter)',
+      ageLine:'2y · Male · Neutered',
+      ageShort:'2y',
+      distance:'2.4 mi',
+      tags:['Kids OK','Dogs OK','Fenced yard','Neutered'],
+      bio:'Smiley park-loving boy. Great with kids and dogs, walks like a dream.',
+      shelter:'Willow Creek Rescue',
+      shelterInit:'W',
+      verified:true,
+      fee:'$350',
+      photo:{kind:'img', src:'biscuit.jpg'},
+      emoji:'🐕'
+    },
+    {
+      id:'miso',
+      name:'Miso',
+      breed:'Domestic Shorthair',
+      ageLine:'4y · Female · Spayed',
+      ageShort:'4y',
+      distance:'1.9 mi',
+      tags:['Quiet apt OK','Cats OK','Indoor'],
+      bio:'Quiet, snuggly, napped her way through rescue. Prefers a calm home.',
+      shelter:'Rose City Cat Rescue',
+      shelterInit:'R',
+      verified:false,
+      fee:'$180',
+      photo:{kind:'placeholder'},
+      emoji:'🐈'
+    },
+    {
+      id:'olive',
+      name:'Olive',
+      breed:'Beagle mix',
+      ageLine:'1y · Female · Spayed',
+      ageShort:'1y',
+      distance:'3.1 mi',
+      tags:['Kids OK','Dogs OK','Active'],
+      bio:'Young energy. Needs a family that hikes, plays fetch, and loves belly rubs.',
+      shelter:'Pearl District Rescue',
+      shelterInit:'P',
+      verified:false,
+      fee:'$250',
+      photo:{kind:'placeholder'},
+      emoji:'🐕'
+    },
+    {
+      id:'clover',
+      name:'Clover',
+      breed:'Holland Lop rabbit',
+      ageLine:'6m · Female · Intact',
+      ageShort:'6m',
+      distance:'2.1 mi',
+      tags:['Indoor only','Quiet','First-time OK'],
+      bio:'Free-roam house bunny. Litter-trained. Loves greens and human laptops.',
+      shelter:'Willow Creek Rescue',
+      shelterInit:'W',
+      verified:true,
+      fee:'$150',
+      photo:{kind:'placeholder'},
+      emoji:'🐇'
+    },
+    {
+      id:'max',
+      name:'Max',
+      breed:'Labrador',
+      ageLine:'3y · Male · Neutered',
+      ageShort:'3y',
+      distance:'5.2 mi',
+      tags:['Kids OK','Dogs OK','Senior household OK'],
+      bio:'Calm, cuddly, great off-leash. Looking for someone with time for daily walks.',
+      shelter:'Forest Park Animal Rescue',
+      shelterInit:'F',
+      verified:false,
+      fee:'$400',
+      photo:{kind:'placeholder'},
+      emoji:'🐕'
+    }
+  ];
+
+  // State
+  var deck = PETS.slice();        // cards remaining (top = index 0)
+  var history = [];               // [{pet, direction}]
+  var interactionLocked = false;  // during fly-away animation
+
+  // Build a card element
+  function buildCardEl(pet, index){
+    var el = document.createElement('div');
+    el.className = 'si-card';
+    el.dataset.pet = pet.id;
+
+    // photo
+    var photoHtml;
+    if(pet.photo.kind === 'img'){
+      photoHtml = '<img src="'+pet.photo.src+'" alt="'+pet.name+'"/>';
+    } else {
+      photoHtml = '<div class="si-photo-placeholder">' +
+                    '<div class="emoji">'+pet.emoji+'</div>' +
+                    '<div>[ photo ]</div>' +
+                  '</div>';
+    }
+
+    var tagsHtml = pet.tags.map(function(t){ return '<span class="tag">'+t+'</span>'; }).join('');
+
+    el.innerHTML =
+      '<div class="si-photo">' +
+        photoHtml +
+        '<span class="si-photo-badge">'+ (index===0?'New today':'Nearby') +'</span>' +
+        '<span class="si-photo-count">'+ (index+1) +' / '+ PETS.length +'</span>' +
+        '<div class="si-stamp like">LIKE</div>' +
+        '<div class="si-stamp nope">NOPE</div>' +
+        '<div class="si-stamp super">SUPER</div>' +
+      '</div>' +
+      '<div class="si-info">' +
+        '<div class="label">'+ pet.breed +'</div>' +
+        '<h2>'+ pet.name +' <span class="age">'+ pet.ageShort +'</span></h2>' +
+        '<div class="meta">📍 '+ pet.distance +' · '+ pet.ageLine +' · '+ pet.fee +'</div>' +
+      '</div>' +
+      '<div class="si-tags">'+ tagsHtml +'</div>' +
+
+      // Info overlay (hidden by default, toggled by i button)
+      '<div class="si-overlay" data-overlay>' +
+        '<button class="close" data-overlay-close>✕</button>' +
+        '<h3>About '+ pet.name +'</h3>' +
+        '<p class="bio">'+ pet.bio +'</p>' +
+        '<div class="grid">' +
+          '<div><div class="k">Breed</div><div class="v">'+ pet.breed +'</div></div>' +
+          '<div><div class="k">Age</div><div class="v">'+ pet.ageLine +'</div></div>' +
+          '<div><div class="k">Distance</div><div class="v">'+ pet.distance +'</div></div>' +
+          '<div><div class="k">Fee</div><div class="v">'+ pet.fee +'</div></div>' +
+        '</div>' +
+        '<div class="shelter">' +
+          '<div class="av">'+ pet.shelterInit +'</div>' +
+          '<div>' +
+            '<div class="n">'+ pet.shelter + (pet.verified ? ' · Verified' : '') +'</div>' +
+            '<div class="s">Adoption fee '+ pet.fee +'</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+
+    return el;
+  }
+
+  // Render the deck — only top 3 visible
+  function render(){
+    // Clear existing cards but preserve match flash + empty state
+    var cards = deckEl.querySelectorAll('.si-card');
+    cards.forEach(function(c){ c.remove(); });
+
+    if(deck.length === 0){
+      emptyEl.classList.add('show');
+      return;
+    } else {
+      emptyEl.classList.remove('show');
+    }
+
+    // Render top 3, bottom-to-top order in DOM so top card is last (higher z-index naturally)
+    var visible = Math.min(3, deck.length);
+    for(var i = visible - 1; i >= 0; i--){
+      var pet = deck[i];
+      var el = buildCardEl(pet, i);
+      applyStackTransform(el, i);
+      if(i === 0){
+        el.classList.add('top');
+        attachDragHandlers(el);
+      }
+      deckEl.appendChild(el);
+    }
+  }
+
+  function applyStackTransform(el, index){
+    // index 0 = top, 1 = middle, 2 = back
+    var scales = [1, 0.94, 0.88];
+    var translates = [0, 8, 16];
+    var s = scales[index] || 0.85;
+    var t = translates[index] || 24;
+    el.style.transform = 'translateY('+t+'px) scale('+s+')';
+    el.style.opacity = index < 3 ? '1' : '0';
+    el.style.zIndex = (30 - index);
+  }
+
+  // Update stamps based on drag offsets
+  function updateStamps(cardEl, dx, dy){
+    var like = cardEl.querySelector('.si-stamp.like');
+    var nope = cardEl.querySelector('.si-stamp.nope');
+    var sup  = cardEl.querySelector('.si-stamp.super');
+    var absX = Math.abs(dx);
+
+    // Super stamp when dragging up strongly
+    if(dy < -30 && Math.abs(dy) > absX){
+      sup.style.opacity = Math.min(1, (-dy - 30) / 80);
+      like.style.opacity = 0;
+      nope.style.opacity = 0;
+    } else {
+      sup.style.opacity = 0;
+      if(dx > 20){
+        like.style.opacity = Math.min(1, (dx - 20) / 80);
+        nope.style.opacity = 0;
+      } else if(dx < -20){
+        nope.style.opacity = Math.min(1, (-dx - 20) / 80);
+        like.style.opacity = 0;
+      } else {
+        like.style.opacity = 0;
+        nope.style.opacity = 0;
+      }
+    }
+  }
+
+  // Drag handlers
+  function attachDragHandlers(cardEl){
+    var startX = 0, startY = 0;
+    var dx = 0, dy = 0;
+    var dragging = false;
+
+    function onDown(e){
+      if(interactionLocked) return;
+      // Don't start drag if clicking on overlay or its controls
+      if(e.target.closest('[data-overlay]') || e.target.closest('[data-overlay-close]')) return;
+      dragging = true;
+      cardEl.classList.add('dragging');
+      cardEl.classList.remove('snap');
+      var p = pointOf(e);
+      startX = p.x; startY = p.y;
+      dx = 0; dy = 0;
+      if(e.pointerId !== undefined){
+        try { cardEl.setPointerCapture(e.pointerId); } catch(err){}
+      }
+      e.preventDefault();
+    }
+    function onMove(e){
+      if(!dragging) return;
+      var p = pointOf(e);
+      dx = p.x - startX;
+      dy = p.y - startY;
+      var rot = dx * 0.06;
+      cardEl.style.transform = 'translate('+dx+'px,'+dy+'px) rotate('+rot+'deg)';
+      updateStamps(cardEl, dx, dy);
+      e.preventDefault();
+    }
+    function onUp(e){
+      if(!dragging) return;
+      dragging = false;
+      cardEl.classList.remove('dragging');
+
+      // threshold check
+      var THX = 100, THY = 80;
+      if(dx >= THX){
+        flyAway(cardEl, 'right');
+      } else if(dx <= -THX){
+        flyAway(cardEl, 'left');
+      } else if(dy <= -THY){
+        flyAway(cardEl, 'up');
+      } else {
+        // snap back
+        cardEl.classList.add('snap');
+        cardEl.style.transform = 'translateY(0) scale(1)';
+        // fade stamps out
+        cardEl.querySelectorAll('.si-stamp').forEach(function(s){ s.style.opacity = 0; });
+        setTimeout(function(){ cardEl.classList.remove('snap'); }, 320);
+      }
+    }
+
+    cardEl.addEventListener('pointerdown', onDown);
+    cardEl.addEventListener('pointermove', onMove);
+    cardEl.addEventListener('pointerup', onUp);
+    cardEl.addEventListener('pointercancel', onUp);
+    // Fallback for mouse (older browsers)
+    cardEl.addEventListener('mousedown', onDown);
+    window.addEventListener('mousemove', function(e){ if(dragging) onMove(e); });
+    window.addEventListener('mouseup',   function(e){ if(dragging) onUp(e); });
+  }
+
+  function pointOf(e){
+    if(e.touches && e.touches[0]) return { x:e.touches[0].clientX, y:e.touches[0].clientY };
+    return { x:e.clientX, y:e.clientY };
+  }
+
+  // Programmatic fly away for a given direction ('left'|'right'|'up')
+  function flyAway(cardEl, dir){
+    if(interactionLocked) return;
+    interactionLocked = true;
+    cardEl.classList.add('flying');
+
+    var w = root.offsetWidth || 390;
+    var x = 0, y = 0, rot = 0;
+    if(dir === 'right'){ x =  w * 1.5; rot =  25; }
+    if(dir === 'left') { x = -w * 1.5; rot = -25; }
+    if(dir === 'up')   { y = -900;     rot =   0; }
+
+    cardEl.style.transform = 'translate('+x+'px,'+y+'px) rotate('+rot+'deg)';
+    cardEl.style.opacity = '0';
+
+    // Show stamp
+    var stampSel = dir === 'right' ? '.si-stamp.like' : (dir === 'left' ? '.si-stamp.nope' : '.si-stamp.super');
+    var stamp = cardEl.querySelector(stampSel);
+    if(stamp) stamp.style.opacity = 1;
+
+    // If LIKE, flash MATCH overlay briefly
+    if(dir === 'right'){
+      matchFlashEl.classList.add('show');
+      setTimeout(function(){ matchFlashEl.classList.remove('show'); }, 600);
+    }
+
+    setTimeout(function(){
+      var removed = deck.shift();
+      if(removed) history.push({ pet:removed, direction:dir });
+      interactionLocked = false;
+      render();
+    }, 430);
+  }
+
+  // Trigger fly-away programmatically on current top card
+  function triggerAction(dir){
+    if(interactionLocked) return;
+    var top = deckEl.querySelector('.si-card.top');
+    if(!top) return;
+    flyAway(top, dir);
+  }
+
+  // Rewind: put last dismissed card back at top
+  function rewind(){
+    if(interactionLocked) return;
+    if(history.length === 0) return;
+    var last = history.pop();
+    deck.unshift(last.pet);
+    render();
+  }
+
+  // Toggle info overlay on top card
+  function toggleInfo(){
+    var top = deckEl.querySelector('.si-card.top');
+    if(!top) return;
+    var overlay = top.querySelector('[data-overlay]');
+    if(!overlay) return;
+    overlay.classList.toggle('show');
+  }
+
+  // Wire up action buttons
+  root.querySelectorAll('[data-action]').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      var act = btn.dataset.action;
+      if(act === 'pass')   triggerAction('left');
+      else if(act === 'like')   triggerAction('right');
+      else if(act === 'super')  triggerAction('up');
+      else if(act === 'rewind') rewind();
+      else if(act === 'info')   toggleInfo();
+    });
+  });
+
+  // Delegated overlay close
+  deckEl.addEventListener('click', function(e){
+    if(e.target.closest('[data-overlay-close]')){
+      var overlay = e.target.closest('[data-overlay]');
+      if(overlay) overlay.classList.remove('show');
+    }
+  });
+
+  // Initial render
+  render();
+})();
+</script>
+
+</body>
+</html>

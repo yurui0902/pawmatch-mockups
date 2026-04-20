@@ -1,0 +1,2355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PawMatch Vet — Mobile Mockups</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#111;
+    --ink2:#666;
+    --ink3:#999;
+    --line:#e0e0e0;
+    --line-2:#d4d4d4;
+    --surface:#f5f5f5;
+    --surf:#f5f5f5;
+    --page:#fafafa;
+    --white:#fff;
+    --sans:'Inter','Helvetica','Arial',sans-serif;
+    --mono:'JetBrains Mono','Menlo','Consolas',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#d9d9d9;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;font-size:13px;line-height:1.4}
+  body{padding:48px 24px 120px}
+
+  .page-label{font-size:11px;font-weight:600;letter-spacing:0.6px;text-transform:uppercase;color:var(--ink2);margin:0 0 10px 4px}
+  .stack{display:flex;gap:40px;flex-wrap:wrap;justify-content:center;align-items:flex-start}
+
+  .frame{background:var(--page);border:1px solid var(--ink3);overflow:hidden;margin:0 auto 40px}
+  .frame-desktop{width:1440px;height:900px}
+  .frame-mobile{width:390px;height:844px}
+
+  /* ============ TYPOGRAPHY ============ */
+  h1,h2,h3,h4,h5{font-weight:600;color:var(--ink);letter-spacing:-0.2px}
+  .mono{font-family:var(--mono)}
+  .upper{text-transform:uppercase;letter-spacing:0.6px;font-size:10px;font-weight:600;color:var(--ink2)}
+  .muted{color:var(--ink2)}
+  .tertiary{color:var(--ink3)}
+
+  /* ============ BUTTONS ============ */
+  .btn{font-family:var(--sans);font-weight:500;font-size:13px;border:1px solid var(--ink);border-radius:4px;padding:7px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;line-height:1.2;text-decoration:none;background:var(--white);color:var(--ink)}
+  .btn-primary{background:var(--ink);color:var(--white);border-color:var(--ink)}
+  .btn-ghost{border-color:var(--line);color:var(--ink2);background:var(--white)}
+  .btn-sm{padding:5px 10px;font-size:12px}
+  .btn-lg{padding:12px 22px;font-size:14px;border-radius:4px}
+  .btn-block{width:100%;justify-content:center}
+
+  /* ============ BADGES ============ */
+  .badge{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--ink);background:var(--white);color:var(--ink);font-family:var(--mono);font-size:10px;font-weight:500;padding:2px 7px;text-transform:uppercase;letter-spacing:0.4px}
+  .badge.fill{background:var(--ink);color:var(--white)}
+  .badge.ghost{border-color:var(--line);color:var(--ink2)}
+
+  /* ============ FIELDS ============ */
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+  .field label{font-size:11px;font-weight:600;color:var(--ink);text-transform:uppercase;letter-spacing:0.5px}
+  .input{font-family:var(--sans);font-size:13px;color:var(--ink);background:var(--white);border:1px solid var(--line);border-radius:4px;padding:10px 12px;outline:none;width:100%}
+  .input-placeholder{color:var(--ink3)}
+
+  /* ============ SIDEBAR NAV ============ */
+  .app{display:grid;grid-template-columns:280px 1fr;height:100%;background:var(--page)}
+  .sidebar{border-right:1px solid var(--line);padding:20px 16px;display:flex;flex-direction:column;gap:4px;background:var(--white)}
+  .brand{border:1px solid var(--line);border-radius:4px;padding:10px 12px;background:var(--white);margin-bottom:14px;font-size:13px;font-weight:600;letter-spacing:-0.2px;display:flex;align-items:center;gap:8px}
+  .brand .tag{font-size:10px;font-weight:500;color:var(--ink2);text-transform:uppercase;letter-spacing:0.5px;border:none;border-left:1px solid var(--line);padding:0 0 0 8px;margin-left:2px;background:transparent;border-radius:0;display:inline}
+  .nav-label{font-size:10px;font-weight:600;color:var(--ink2);padding:14px 10px 6px;text-transform:uppercase;letter-spacing:0.6px}
+  .nav-item{padding:8px 10px;font-size:13px;color:var(--ink);display:flex;align-items:center;gap:8px;cursor:pointer;border-radius:4px;font-weight:500}
+  .nav-item:hover{background:var(--surface)}
+  .nav-item.active{background:var(--ink);color:var(--white)}
+  .nav-item .count{margin-left:auto;border:1px solid var(--ink);padding:0 5px;font-family:var(--mono);font-size:10px;font-weight:500;min-width:18px;text-align:center;background:var(--white);color:var(--ink);border-radius:2px}
+  .nav-item.active .count{background:var(--white);color:var(--ink);border-color:var(--white)}
+  .profile-box{margin-top:auto;border:1px solid var(--line);border-radius:4px;background:var(--white);padding:10px;display:flex;gap:10px;align-items:center}
+  .avatar-sq{width:32px;height:32px;border:1px solid var(--line);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--ink3);flex:none;border-radius:4px}
+  .avatar-sq.lg{width:80px;height:80px;font-size:11px}
+  .avatar-sq.xl{width:120px;height:120px;font-size:12px}
+  .profile-box .n{font-size:12px;font-weight:600}
+  .profile-box .s{font-size:11px;color:var(--ink2);margin-top:1px}
+
+  /* ============ MAIN ============ */
+  .main{display:flex;flex-direction:column;overflow:hidden;background:var(--page)}
+  .topbar{padding:18px 28px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px;background:var(--white)}
+  .topbar h1{font-size:20px;font-weight:600;letter-spacing:-0.3px}
+  .topbar .sub{font-size:12px;color:var(--ink2);margin-top:2px}
+  .topbar-actions{display:flex;gap:8px;align-items:center}
+  .icon-btn{width:34px;height:34px;border:1px solid var(--line);border-radius:4px;background:var(--white);display:inline-flex;align-items:center;justify-content:center;color:var(--ink2);cursor:pointer;font-size:12px}
+  .search-bar{border:1px solid var(--line);border-radius:4px;padding:7px 12px;font-size:12px;color:var(--ink3);background:var(--white);min-width:220px;display:inline-flex;align-items:center;gap:8px}
+
+  .content{flex:1;overflow-y:auto;padding:24px 28px;display:flex;flex-direction:column;gap:20px}
+
+  /* ============ KPI ============ */
+  .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .kpi{border:1px solid var(--line);border-radius:4px;padding:18px 20px;background:var(--white)}
+  .kpi .l{font-size:10px;font-weight:600;color:var(--ink2);text-transform:uppercase;letter-spacing:0.6px}
+  .kpi .v{font-size:48px;font-weight:500;margin:6px 0 4px;font-family:var(--mono);letter-spacing:-1px;line-height:1}
+  .kpi .d{font-size:11px;color:var(--ink2)}
+
+  /* ============ CARD ============ */
+  .card{border:1px solid var(--line);border-radius:4px;background:var(--white);overflow:hidden}
+  .card-head{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+  .card-head h2{font-size:14px;font-weight:600;letter-spacing:-0.2px}
+  .card-head .sub{font-size:11px;color:var(--ink2);margin-top:2px}
+  .card-head .link{font-size:12px;color:var(--ink);text-decoration:underline;font-family:var(--mono)}
+
+  .grid-2{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
+
+  /* ============ APPT ROWS ============ */
+  .appt-row{display:grid;grid-template-columns:68px 42px 1fr auto;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line);align-items:center}
+  .appt-row:last-child{border-bottom:none}
+  .appt-row.now{background:var(--surface)}
+  .appt-time{font-family:var(--mono);font-size:13px;font-weight:500}
+  .appt-time .dur{display:block;font-size:10px;color:var(--ink2);margin-top:2px;font-weight:400}
+  .appt-thumb{width:36px;height:36px;border:1px solid var(--line);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--ink3);border-radius:4px}
+  .appt-info .n{font-size:13px;font-weight:600}
+  .appt-info .meta{font-size:12px;color:var(--ink2);margin-top:2px}
+  .appt-right{display:flex;gap:8px;align-items:center}
+
+  /* ============ TABS ============ */
+  .tab-bar{display:flex;gap:0;border-bottom:1px solid var(--line)}
+  .tab-bar button{background:transparent;border:none;padding:10px 14px;font-family:var(--sans);font-weight:500;font-size:13px;color:var(--ink2);cursor:pointer;margin-bottom:-1px;border-bottom:2px solid transparent}
+  .tab-bar button.on{color:var(--ink);font-weight:600;border-bottom-color:var(--ink)}
+
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+  .seg button{background:var(--white);border:none;padding:6px 12px;font-family:var(--sans);font-size:12px;color:var(--ink);cursor:pointer;border-right:1px solid var(--line)}
+  .seg button:last-child{border-right:none}
+  .seg button.on{background:var(--ink);color:var(--white)}
+
+  /* ============ ACTIVITY ============ */
+  .act-item{padding:12px 18px;border-bottom:1px solid var(--line);font-size:12px;display:flex;gap:10px;align-items:flex-start}
+  .act-item:last-child{border-bottom:none}
+  .act-item strong{font-weight:600}
+  .act-item .t{display:block;font-size:10px;color:var(--ink3);margin-top:3px;font-family:var(--mono)}
+  .act-bullet{width:7px;height:7px;border:1px solid var(--ink);background:var(--ink);margin-top:6px;flex:none;border-radius:50%}
+  .act-bullet.hollow{background:var(--white)}
+
+  .stat-row{padding:16px 18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-end;background:var(--page)}
+  .stat-row .l{font-size:10px;color:var(--ink2);text-transform:uppercase;letter-spacing:0.6px;font-weight:600}
+  .stat-row .v{font-size:32px;font-weight:500;font-family:var(--mono);letter-spacing:-0.6px;line-height:1}
+
+  /* ============ TIMELINE (APPTS) ============ */
+  .tl-row{display:grid;grid-template-columns:72px 1fr;border-bottom:1px solid var(--line);min-height:48px}
+  .tl-row:last-child{border-bottom:none}
+  .tl-time{padding:10px 12px;border-right:1px solid var(--line);font-family:var(--mono);font-size:11px;color:var(--ink2);text-align:right;background:var(--page)}
+  .tl-slot{padding:8px 12px;display:flex;align-items:center;gap:10px}
+  .tl-slot.empty{color:var(--ink3);font-size:11px;font-style:italic}
+  .tl-slot.now{background:var(--surface);position:relative}
+  .tl-slot.now::before{content:"NOW →";font-family:var(--mono);font-size:10px;font-weight:700;margin-right:6px;color:var(--ink)}
+  .tl-card{flex:1;display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;padding:6px 10px;border:1px solid var(--line);background:var(--white);border-radius:4px}
+  .tl-card.now{border-width:2px;border-color:var(--ink)}
+  .tl-card .thumb{width:36px;height:36px;border:1px solid var(--line);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--ink3);border-radius:4px}
+  .tl-card .n{font-size:13px;font-weight:600}
+  .tl-card .meta{font-size:11px;color:var(--ink2);margin-top:2px;font-family:var(--mono)}
+
+  /* ============ TABLE ============ */
+  .tbl{width:100%;border-collapse:collapse;background:var(--white);font-size:13px}
+  .tbl th{text-align:left;padding:10px 14px;font-size:10px;font-weight:600;color:var(--ink2);text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--line);background:var(--page)}
+  .tbl td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
+  .tbl tr:last-child td{border-bottom:none}
+  .tbl .pet-cell{display:flex;align-items:center;gap:10px}
+  .tbl .pet-cell .thumb{width:32px;height:32px;border:1px solid var(--line);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--ink3);border-radius:4px;flex:none}
+  .tbl .pet-cell .n{font-weight:600;font-size:13px}
+  .tbl .pet-cell .s{font-size:11px;color:var(--ink2)}
+  .tbl a.row-act{font-size:12px;color:var(--ink);text-decoration:underline;font-family:var(--mono)}
+
+  /* ============ AUTH ============ */
+  .auth{display:grid;grid-template-columns:1fr 1fr;height:100%}
+  .auth-left{background:var(--ink);color:var(--white);padding:64px 56px;display:flex;flex-direction:column;justify-content:space-between}
+  .auth-left h1{font-size:44px;font-weight:600;letter-spacing:-1px;line-height:1;margin-bottom:16px;color:var(--white)}
+  .auth-left p{color:#ccc;font-size:15px;line-height:1.5;max-width:440px}
+  .auth-left ul{list-style:none;margin-top:28px;display:flex;flex-direction:column;gap:14px}
+  .auth-left ul li{display:flex;gap:12px;align-items:flex-start;color:#ddd;font-size:14px;line-height:1.4}
+  .auth-left ul li::before{content:"▸";color:var(--white);font-family:var(--mono);font-size:13px;margin-top:1px}
+  .auth-left .foot{font-size:11px;color:#999;font-family:var(--mono);text-transform:uppercase;letter-spacing:0.4px}
+  .auth-right{padding:64px 72px;display:flex;flex-direction:column;justify-content:center;background:var(--white)}
+  .auth-form{max-width:420px;width:100%;margin:0 auto}
+  .auth-form h2{font-size:28px;font-weight:600;letter-spacing:-0.5px;margin-bottom:6px}
+  .auth-form .sub{font-size:13px;color:var(--ink2);margin-bottom:24px}
+  .divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:var(--ink3);font-size:11px;text-transform:uppercase;letter-spacing:0.6px}
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+  .radio-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+  .radio-card{border:1px solid var(--line);border-radius:4px;padding:12px 14px;background:var(--white);cursor:pointer;display:flex;gap:10px;align-items:flex-start}
+  .radio-card.sel{border-color:var(--ink);border-width:2px;padding:11px 13px}
+  .radio-card .dot{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--line);flex:none;margin-top:1px}
+  .radio-card.sel .dot{border-color:var(--ink);background:radial-gradient(circle, var(--ink) 0 4px, var(--white) 5px)}
+  .radio-card .t{font-size:13px;font-weight:600;line-height:1.2}
+  .radio-card .s{font-size:11px;color:var(--ink2);margin-top:3px}
+  .sso-btn{border:1px solid var(--line);border-radius:4px;padding:10px 14px;background:var(--white);color:var(--ink);font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-bottom:8px}
+
+  /* ============ BREADCRUMB / HEADER ============ */
+  .breadcrumb{font-size:11px;color:var(--ink2);font-family:var(--mono);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.4px}
+  .breadcrumb a{color:var(--ink2);text-decoration:none}
+  .title-row{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+  .title-row h1{font-size:24px;font-weight:600;letter-spacing:-0.4px}
+
+  /* ============ PATIENT DETAIL ============ */
+  .pd-grid{display:grid;grid-template-columns:320px 1fr;gap:18px}
+  .pd-card{border:1px solid var(--line);border-radius:4px;background:var(--white);padding:0;overflow:hidden}
+  .pd-card-head{padding:14px 16px;border-bottom:1px solid var(--line);font-size:12px;font-weight:600}
+  .pd-card-body{padding:14px 16px}
+  .kv-list{display:flex;flex-direction:column;gap:0}
+  .kv-list > div{display:grid;grid-template-columns:90px 1fr;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:12px}
+  .kv-list > div:last-child{border-bottom:none}
+  .kv-list .k{color:var(--ink2);text-transform:uppercase;font-size:10px;font-weight:600;letter-spacing:0.5px;align-self:center}
+  .kv-list .v{color:var(--ink);font-weight:500}
+
+  .timeline-block{padding:0}
+  .tb-item{padding:14px 16px;border-bottom:1px solid var(--line)}
+  .tb-item:last-child{border-bottom:none}
+  .tb-meta{font-family:var(--mono);font-size:10px;color:var(--ink2);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:4px}
+  .tb-title{font-size:13px;font-weight:600}
+  .tb-body{font-size:12px;color:var(--ink2);margin-top:4px;line-height:1.5}
+
+  .pill{display:inline-flex;align-items:center;padding:3px 9px;border:1px solid var(--line);border-radius:20px;font-size:11px;color:var(--ink);background:var(--white);font-weight:500}
+  .pill.dark{background:var(--ink);color:var(--white);border-color:var(--ink)}
+
+  /* ============ SOAP / NOTES ============ */
+  .soap-block{border:1px solid var(--line);border-radius:4px;background:var(--white);padding:18px 20px;margin-bottom:12px}
+  .soap-block h3{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--ink);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .soap-block h3 .tag{font-size:10px;font-weight:500;color:var(--ink2);font-family:var(--mono);text-transform:none;letter-spacing:0;border:none;background:transparent;padding:0;border-radius:0;display:inline}
+  .soap-block p,.soap-block ul{font-size:13px;line-height:1.6;color:var(--ink)}
+  .soap-block ul{list-style:none;padding-left:0}
+  .soap-block ul li{padding-left:18px;position:relative;margin-bottom:6px}
+  .soap-block ul li::before{content:"—";position:absolute;left:0;color:var(--ink2)}
+  .soap-kv{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+  .soap-kv > div{padding:10px 14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .soap-kv > div:nth-child(3n){border-right:none}
+  .soap-kv > div:nth-last-child(-n+3){border-bottom:none}
+  .soap-kv .k{font-size:10px;font-weight:600;color:var(--ink2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px}
+  .soap-kv .v{font-size:12px;color:var(--ink);font-weight:500;font-family:var(--mono)}
+  .flag-box{border:2px solid var(--ink);background:var(--surface);padding:12px 14px;margin-top:10px;font-size:12px;line-height:1.5}
+  .flag-box strong{font-weight:700}
+
+  /* ============ CLAIM ============ */
+  .legend-bar{border:1px solid var(--line);border-radius:4px;padding:12px 16px;background:var(--white);display:flex;gap:24px;flex-wrap:wrap;font-size:12px;margin-bottom:14px}
+  .legend-bar span{color:var(--ink2)}
+  .legend-bar span .sym{font-family:var(--mono);color:var(--ink);font-weight:700;margin-right:6px}
+  .src{font-family:var(--mono);font-size:11px;color:var(--ink2);margin-left:6px;font-weight:500}
+  .form-row{display:grid;grid-template-columns:180px 1fr;gap:14px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:12px;align-items:flex-start}
+  .form-row:last-child{border-bottom:none}
+  .form-row .k{color:var(--ink2);font-weight:600;text-transform:uppercase;font-size:10px;letter-spacing:0.5px;padding-top:3px}
+  .form-row .v{color:var(--ink);font-weight:500;line-height:1.5}
+
+  /* ============ DOCS ============ */
+  .doc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .doc-card{border:1px solid var(--line);border-radius:4px;background:var(--white);padding:16px;display:flex;flex-direction:column;gap:10px;min-height:140px}
+  .doc-icon{width:40px;height:48px;border:1px solid var(--line);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:14px;border-radius:2px}
+  .doc-card .name{font-size:12px;font-weight:600;word-break:break-word;line-height:1.4}
+  .doc-card .meta{font-size:10px;color:var(--ink2);font-family:var(--mono);margin-top:auto}
+  .doc-card.upload{border-style:dashed;align-items:center;justify-content:center;color:var(--ink2);font-size:12px;text-align:center}
+
+  /* ============ RECORDING ============ */
+  .record-main{display:grid;grid-template-columns:1fr 340px;gap:18px;height:100%}
+  .record-box{border:1px solid var(--line);border-radius:4px;background:var(--white);padding:28px 32px;display:flex;flex-direction:column;gap:20px;align-items:center}
+  .big-timer{font-family:var(--mono);font-size:84px;font-weight:500;letter-spacing:-2px;color:var(--ink);line-height:1}
+  .rec-dot{width:14px;height:14px;border-radius:50%;background:var(--ink);display:inline-block;margin-right:8px;vertical-align:middle}
+  .waveform{width:100%;height:80px;display:flex;gap:3px;align-items:center;justify-content:center;padding:0 20px}
+  .waveform .bar{flex:1;background:var(--ink);opacity:0.85;border-radius:1px;min-width:2px}
+
+  /* ============ MOBILE ============ */
+  .m{display:flex;flex-direction:column;height:100%;background:var(--page);position:relative;overflow:hidden}
+  .m-top{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);background:var(--white);flex:none}
+  .m-top .brand{border:none;padding:0;margin:0;font-size:13px}
+  .m-top .greet h1{font-size:18px;font-weight:600;letter-spacing:-0.3px}
+  .m-top .greet .sub{font-size:11px;color:var(--ink2);margin-top:1px}
+  .m-content{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:14px}
+  .m-kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .m-kpi{border:1px solid var(--line);border-radius:4px;background:var(--white);padding:14px}
+  .m-kpi .l{font-size:9px;font-weight:600;color:var(--ink2);text-transform:uppercase;letter-spacing:0.5px}
+  .m-kpi .v{font-size:30px;font-family:var(--mono);font-weight:500;margin:4px 0 2px;letter-spacing:-0.5px;line-height:1}
+  .m-kpi .d{font-size:10px;color:var(--ink2)}
+  .m-tab-bar{display:flex;border-top:1px solid var(--line);background:var(--white);flex:none;padding-bottom:18px}
+  .m-tab-bar .t{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 4px;font-size:10px;font-weight:500;color:var(--ink2)}
+  .m-tab-bar .t.active{color:var(--ink);font-weight:600}
+  .m-tab-bar .t .ic{font-size:16px;font-family:var(--mono)}
+
+  .m-card{border:1px solid var(--line);border-radius:4px;background:var(--white);overflow:hidden}
+  .m-card-head{padding:12px 14px;border-bottom:1px solid var(--line);font-size:12px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+  .m-appt{padding:12px 14px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:48px 34px 1fr auto;gap:10px;align-items:center}
+  .m-appt:last-child{border-bottom:none}
+  .m-appt .time{font-family:var(--mono);font-size:11px;font-weight:500}
+  .m-appt .thumb{width:30px;height:30px;border:1px solid var(--line);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:8px;color:var(--ink3);border-radius:4px}
+  .m-appt .n{font-size:12px;font-weight:600}
+  .m-appt .s{font-size:10px;color:var(--ink2)}
+
+  .m-back{border:1px solid var(--line);border-radius:4px;padding:6px 10px;font-size:11px;font-family:var(--mono);color:var(--ink2);background:var(--white);display:inline-flex;align-items:center;gap:6px}
+
+  .m-section{border-top:1px solid var(--line);padding:16px;display:flex;justify-content:space-between;align-items:center;background:var(--white);font-size:13px;font-weight:500;cursor:pointer}
+  .m-section .ch{color:var(--ink3);font-family:var(--mono)}
+
+  .m-sticky-cta{padding:14px 16px;border-top:1px solid var(--line);background:var(--white);flex:none}
+
+  /* Utility */
+  .row{display:flex;gap:10px;align-items:center}
+  .row.wrap{flex-wrap:wrap}
+  .row.end{justify-content:flex-end}
+  .row.between{justify-content:space-between}
+  .col{display:flex;flex-direction:column;gap:12px}
+  .gap-sm{gap:8px}
+  .gap-lg{gap:18px}
+  .mt-sm{margin-top:8px}
+  .mt-md{margin-top:14px}
+  .mt-lg{margin-top:20px}
+
+  .chips{display:flex;gap:6px;flex-wrap:wrap}
+
+  .status-banner{border:1px solid var(--ink);background:var(--surface);padding:14px 18px;border-radius:4px;font-size:12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+  .status-banner strong{font-family:var(--mono);font-weight:700;text-transform:uppercase;letter-spacing:0.4px}
+
+  .timeline-v{display:flex;flex-direction:column;gap:0;padding:4px 0}
+  .timeline-v .ti{display:flex;gap:12px;align-items:flex-start;padding:10px 0;position:relative}
+  .timeline-v .ti .dot{width:10px;height:10px;border:1.5px solid var(--ink);background:var(--white);border-radius:50%;margin-top:3px;flex:none;position:relative;z-index:1}
+  .timeline-v .ti.done .dot{background:var(--ink)}
+  .timeline-v .ti.current .dot{background:var(--ink);box-shadow:0 0 0 3px var(--surface)}
+  .timeline-v .ti .body{font-size:12px}
+  .timeline-v .ti .body .n{font-weight:600}
+  .timeline-v .ti .body .s{color:var(--ink2);font-size:11px;font-family:var(--mono);margin-top:2px}
+
+  /* ============================================================
+     APPOINTMENTS V2 — expanded appointment screens
+     ============================================================ */
+
+  /* Btn variants used by v2 appointment frames */
+  .btn-outline{background:var(--white);color:var(--ink);border-color:var(--ink)}
+
+  /* Page head (appointment-frame heading row) */
+  .page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:20px}
+  .page-head h1{font-size:28px;font-weight:700;letter-spacing:-0.6px;margin:0 0 6px;line-height:1}
+  .page-head .sub{font-size:13px;color:var(--ink2);font-weight:500}
+  .page-head .actions{display:flex;gap:8px;align-items:center}
+
+  /* Filter bar (appointments) */
+  .filter-bar{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);margin-bottom:0}
+  .filter-bar .right{margin-left:auto;display:flex;gap:8px;align-items:center}
+  .date-nav{display:flex;align-items:center;gap:4px;font-family:var(--mono);font-size:13px;color:var(--ink)}
+  .date-nav .arrow{width:28px;height:28px;border:1px solid var(--line-2);background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:3px}
+  .date-nav .today{padding:0 12px;height:28px;border:1px solid var(--line-2);border-radius:3px;background:#fff;font-size:12px;font-weight:600;color:var(--ink);cursor:pointer;display:flex;align-items:center}
+  .fpill{border:1px solid var(--line-2);padding:5px 10px;border-radius:3px;font-size:11px;font-weight:600;color:var(--ink);background:#fff;cursor:pointer;letter-spacing:0.2px;display:inline-flex;align-items:center}
+  .fpill.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .select{border:1px solid var(--line-2);background:#fff;padding:6px 10px;font-family:var(--sans);font-size:12px;font-weight:600;color:var(--ink);border-radius:3px;cursor:pointer}
+
+  /* Appointments app layout: calendar list + side panel */
+  .app-layout{display:grid;grid-template-columns:1fr 340px;gap:24px;padding-top:20px}
+
+  /* Calendar list */
+  .cal{border:1px solid var(--line);background:#fff;border-radius:4px;overflow:hidden}
+  .cal-head{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:#fafafa}
+  .cal-head .title{font-weight:700;font-size:14px;letter-spacing:-0.2px}
+  .cal-head .summary{font-size:11px;color:var(--ink2);font-family:var(--mono);font-weight:600}
+  .cal-head .summary strong{color:var(--ink)}
+
+  .slot{display:grid;grid-template-columns:80px 4px 1fr;border-top:1px solid var(--line)}
+  .slot:first-of-type{border-top:none}
+  .slot .time{padding:14px 16px;font-family:var(--mono);font-size:12px;color:var(--ink2);font-weight:600;letter-spacing:-0.2px;display:flex;flex-direction:column;gap:2px;border-right:1px solid var(--line);background:#fafafa}
+  .slot .time .hhmm{color:var(--ink);font-size:13px}
+  .slot .time .dur{font-size:10px;color:var(--ink3)}
+  .slot .rail{background:transparent}
+  .slot.now .rail{background:var(--ink)}
+  .slot .body{padding:12px 16px}
+  .slot.empty .body{padding:10px 16px;color:var(--ink3);font-size:11px;letter-spacing:0.3px;text-transform:uppercase}
+  .slot.lunch .body{padding:10px 16px;color:var(--ink2);font-style:italic;font-size:12px;background:repeating-linear-gradient(45deg,#fafafa,#fafafa 8px,#f0f0f0 8px,#f0f0f0 16px)}
+  .slot.now{background:#fafafa}
+  .slot.now .time .hhmm{color:var(--ink);font-weight:700}
+  .slot.now .time .now-label{font-size:9px;letter-spacing:0.6px;text-transform:uppercase;color:var(--ink);font-weight:700}
+
+  .appt{display:flex;gap:14px;align-items:center}
+  .appt .thumb{width:48px;height:48px;background:repeating-linear-gradient(45deg,#f5f5f5,#f5f5f5 6px,#ececec 6px,#ececec 12px);border:1px solid var(--line);flex:none;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--ink3);font-weight:600;letter-spacing:0.3px}
+  .appt .meta{flex:1;min-width:0}
+  .appt .name{font-weight:700;font-size:14px;letter-spacing:-0.2px;margin:0 0 2px;display:flex;align-items:center;gap:8px}
+  .appt .reason{font-size:12px;color:var(--ink2);font-weight:500}
+  .appt .owner{font-size:11px;color:var(--ink3);font-weight:500;margin-top:2px}
+  .appt .tags{display:flex;gap:6px;margin-left:auto;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+  .appt .cta{display:flex;gap:6px;margin-left:8px}
+
+  /* Root tag used by appointment frames (different from .brand .tag) */
+  .tag{font-size:10px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;padding:3px 7px;border:1px solid var(--line-2);color:var(--ink);background:#fff;border-radius:2px;display:inline-block}
+  .tag.fill{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .tag.visit-n{font-family:var(--mono);letter-spacing:0}
+
+  /* Side panel cards for appointments */
+  .side{display:flex;flex-direction:column;gap:14px}
+  .apt-card{border:1px solid var(--line);background:#fff;border-radius:4px;padding:16px}
+  .apt-card h3{font-size:12px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:var(--ink2);margin:0 0 10px}
+  .apt-card .stat{font-family:var(--mono);font-size:32px;font-weight:700;color:var(--ink);line-height:1;letter-spacing:-1px}
+  .apt-card .stat-sub{font-size:11px;color:var(--ink2);font-weight:500;margin-top:6px}
+  .mini-row{display:flex;justify-content:space-between;font-size:12px;color:var(--ink);padding:7px 0;border-bottom:1px solid var(--line)}
+  .mini-row:last-child{border-bottom:none}
+  .mini-row .k{color:var(--ink2);font-weight:500}
+  .mini-row .v{font-weight:700;font-family:var(--mono)}
+  .next-up{display:flex;gap:10px;padding:10px 0;border-top:1px solid var(--line);align-items:center}
+  .next-up:first-of-type{border-top:none;padding-top:0}
+  .next-up .t{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--ink);width:44px;flex:none}
+  .next-up .n{font-size:12px;font-weight:600;flex:1;line-height:1.3}
+  .next-up .n small{display:block;font-weight:500;color:var(--ink2);font-size:11px;margin-top:1px}
+
+  /* Week-view grid */
+  .week-grid{border:1px solid var(--line);background:#fff;border-radius:4px;overflow:hidden;margin-top:20px}
+  .week-head{display:grid;grid-template-columns:60px repeat(7,1fr);border-bottom:1px solid var(--line);background:#fafafa}
+  .week-head .wh{padding:10px 8px;border-right:1px solid var(--line);text-align:center;font-size:11px;font-weight:700;color:var(--ink2);letter-spacing:0.5px;text-transform:uppercase;font-family:var(--sans)}
+  .week-head .wh:last-child{border-right:none}
+  .week-head .wh .dn{font-family:var(--mono);font-size:14px;color:var(--ink);margin-top:2px;font-weight:700;letter-spacing:0}
+  .week-head .wh.today{background:#fff;border-left:2px solid var(--ink);padding-left:6px}
+  .week-head .wh.today .dn{color:var(--ink)}
+  .week-head .wh.gutter{background:#fafafa;border-right:1px solid var(--line)}
+  .week-body{display:grid;grid-template-columns:60px repeat(7,1fr)}
+  .week-body .gutter-col{border-right:1px solid var(--line);background:#fafafa}
+  .week-body .gutter-col .hr{height:54px;border-bottom:1px solid var(--line);padding:4px 8px;font-family:var(--mono);font-size:10px;color:var(--ink3);font-weight:600;text-align:right}
+  .week-body .day-col{border-right:1px solid var(--line);position:relative}
+  .week-body .day-col:last-child{border-right:none}
+  .week-body .day-col.today{border-left:2px solid var(--ink);margin-left:-1px}
+  .week-body .day-col.closed{background:repeating-linear-gradient(45deg,#fafafa,#fafafa 8px,#f0f0f0 8px,#f0f0f0 16px)}
+  .week-body .day-col .cell{height:54px;border-bottom:1px solid var(--line);padding:3px;position:relative}
+  .week-body .day-col .w-appt{border:1px solid var(--line-2);background:#fff;padding:3px 5px;font-size:9px;font-family:var(--mono);color:var(--ink);border-radius:2px;line-height:1.2;margin-bottom:2px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+  .week-body .day-col .w-appt.fill{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .week-body .day-col .w-appt .pn{font-family:var(--sans);font-weight:600;font-size:10px;display:block}
+
+  /* Month-view grid */
+  .month-grid{border:1px solid var(--line);background:#fff;border-radius:4px;overflow:hidden;margin-top:20px}
+  .month-head{display:grid;grid-template-columns:repeat(7,1fr);border-bottom:1px solid var(--line);background:#fafafa}
+  .month-head .mh{padding:10px;text-align:center;font-size:10px;font-weight:700;color:var(--ink2);letter-spacing:0.6px;text-transform:uppercase;border-right:1px solid var(--line)}
+  .month-head .mh:last-child{border-right:none}
+  .month-body{display:grid;grid-template-columns:repeat(7,1fr);grid-auto-rows:minmax(110px,auto)}
+  .month-body .mcell{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:6px 8px;position:relative;display:flex;flex-direction:column;gap:3px}
+  .month-body .mcell:nth-child(7n){border-right:none}
+  .month-body .mcell.off{background:#fafafa;color:var(--ink3)}
+  .month-body .mcell.closed{background:repeating-linear-gradient(45deg,#fafafa,#fafafa 8px,#f0f0f0 8px,#f0f0f0 16px)}
+  .month-body .mcell.today{border:2px solid var(--ink);padding:4px 6px}
+  .month-body .mcell .dn{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink);margin-bottom:2px}
+  .month-body .mcell.off .dn{color:var(--ink3);font-weight:500}
+  .month-body .mcell .m-appt{border:1px solid var(--line-2);background:#fff;padding:2px 4px;font-size:9px;font-family:var(--mono);color:var(--ink);border-radius:2px;line-height:1.3;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:block}
+  .month-body .mcell .m-appt.fill{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .month-body .mcell .more{font-size:9px;color:var(--ink2);font-weight:600;font-family:var(--mono)}
+
+  /* Detail / form */
+  .detail-tags{display:flex;gap:6px;align-items:center;margin-top:8px;flex-wrap:wrap}
+  .two-col{display:grid;grid-template-columns:1fr 340px;gap:24px;margin-top:20px}
+  .two-col .stack-cards{display:flex;flex-direction:column;gap:14px}
+  .field-row{display:grid;grid-template-columns:140px 1fr;padding:9px 0;border-bottom:1px solid var(--line);font-size:12px;gap:10px}
+  .field-row:last-child{border-bottom:none}
+  .field-row .fk{color:var(--ink2);font-weight:500}
+  .field-row .fv{color:var(--ink);font-weight:600}
+  .field-row .fv.mono{font-family:var(--mono);font-weight:600}
+  .tl-item{display:grid;grid-template-columns:18px 1fr;gap:10px;padding:8px 0;font-size:12px;position:relative}
+  .tl-item .dot{width:8px;height:8px;border-radius:50%;background:var(--ink);margin-top:5px;position:relative;z-index:1}
+  .tl-item .dot.hollow{background:#fff;border:1.5px solid var(--ink)}
+  .tl-item .tline{position:absolute;left:3.5px;top:14px;bottom:-8px;width:1px;background:var(--line)}
+  .tl-item:last-child .tline{display:none}
+  .tl-item .tl-body{font-size:12px;color:var(--ink)}
+  .tl-item .tl-body .tl-date{font-family:var(--mono);font-size:10px;color:var(--ink3);margin-top:1px}
+
+  /* Breadcrumb separator (appointments) */
+  .breadcrumb .sep{color:var(--ink3);margin:0 6px}
+
+  /* Stepper */
+  .stepper{display:flex;align-items:center;gap:0;padding:18px 0 22px;border-bottom:1px solid var(--line);margin-bottom:20px}
+  .step{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+  .step .num{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line-2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--ink3);font-family:var(--mono);background:#fff}
+  .step.active .num{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .step.done .num{border-color:var(--ink);color:var(--ink);background:#fff}
+  .step .lbl{font-size:12px;font-weight:600;color:var(--ink3);letter-spacing:0.1px}
+  .step.active .lbl{color:var(--ink)}
+  .step.done .lbl{color:var(--ink)}
+  .step-line{flex:1;height:1px;background:var(--line-2);margin:0 14px;min-width:40px}
+  .step.done + .step-line{background:var(--ink)}
+
+  /* Tabs (appointment pages) */
+  .tabs{display:flex;gap:0;border-bottom:1px solid var(--line);margin-bottom:16px}
+  .tabs .tab{padding:10px 16px;font-size:13px;font-weight:600;color:var(--ink2);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+  .tabs .tab.active{color:var(--ink);border-bottom-color:var(--ink)}
+
+  /* Search input */
+  .search-input{width:100%;height:38px;border:1px solid var(--line-2);border-radius:3px;padding:0 14px;font-size:13px;font-family:var(--mono);color:var(--ink);background:#fff}
+  .search-input::placeholder{color:var(--ink3)}
+
+  /* Patient table */
+  .pt{width:100%;border-collapse:collapse;font-size:12px;margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+  .pt th{text-align:left;padding:10px 12px;font-size:10px;font-weight:700;color:var(--ink2);letter-spacing:0.5px;text-transform:uppercase;background:#fafafa;border-bottom:1px solid var(--line)}
+  .pt td{padding:12px;border-top:1px solid var(--line);font-size:12px;color:var(--ink);font-weight:500;vertical-align:middle}
+  .pt tr:first-child td{border-top:none}
+  .pt td.name{font-weight:700}
+  .pt td.mono{font-family:var(--mono)}
+  .pt tr.sel td{background:#fafafa}
+  .pt .rb{width:16px;height:16px;border:1.5px solid var(--ink);border-radius:50%;display:inline-block;position:relative}
+  .pt .rb.on::after{content:'';position:absolute;inset:3px;background:var(--ink);border-radius:50%}
+
+  /* Hint box */
+  .hint-box{border:1px dashed var(--line-2);background:#fafafa;padding:14px 16px;border-radius:4px;font-size:12px;color:var(--ink2);margin-top:18px;line-height:1.5}
+  .hint-box strong{color:var(--ink);font-weight:700}
+
+  /* Form footer */
+  .form-footer{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:18px 0 4px;margin-top:20px;border-top:1px solid var(--line)}
+  .form-footer .left{display:flex;gap:8px}
+  .form-footer .right{display:flex;gap:8px}
+
+  /* Mini calendar */
+  .mini-cal{border:1px solid var(--line);background:#fff;border-radius:4px;padding:12px;width:320px}
+  .mini-cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+  .mini-cal-head .mt{font-size:13px;font-weight:700;font-family:var(--sans)}
+  .mini-cal-head .na{display:flex;gap:4px}
+  .mini-cal-head .na .a{width:22px;height:22px;border:1px solid var(--line-2);background:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;cursor:pointer;border-radius:3px}
+  .mini-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px}
+  .mini-cal-grid .mdh{font-size:9px;color:var(--ink3);text-align:center;padding:4px 0;font-weight:700;letter-spacing:0.4px;text-transform:uppercase}
+  .mini-cal-grid .md{font-family:var(--mono);font-size:11px;text-align:center;padding:7px 0;color:var(--ink);cursor:pointer;border-radius:2px;font-weight:500}
+  .mini-cal-grid .md.off{color:var(--ink3)}
+  .mini-cal-grid .md.today{border:1px solid var(--line-2)}
+  .mini-cal-grid .md.selected{background:var(--ink);color:#fff;font-weight:700}
+  .mini-cal-grid .md.current{background:#fafafa;border:1px solid var(--line-2);font-weight:700}
+  .mini-cal-grid .md.closed{background:repeating-linear-gradient(45deg,#fafafa,#fafafa 5px,#f0f0f0 5px,#f0f0f0 10px);color:var(--ink3)}
+
+  /* Time slot list */
+  .ts-list{display:flex;flex-direction:column;gap:6px;margin-top:12px}
+  .ts{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border:1px solid var(--line-2);border-radius:3px;background:#fff;cursor:pointer;font-size:12px}
+  .ts .t{font-family:var(--mono);font-weight:700;color:var(--ink)}
+  .ts .dur{font-size:11px;color:var(--ink2);font-family:var(--mono);margin-left:8px}
+  .ts .stat{font-size:10px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;color:var(--ink2)}
+  .ts.booked{background:#fafafa;color:var(--ink3)}
+  .ts.booked .t,.ts.booked .dur{text-decoration:line-through;color:var(--ink3)}
+  .ts.booked .stat{color:var(--ink3)}
+  .ts.selected{border:2px solid var(--ink);padding:9px 13px}
+
+  /* Form fields (appointment forms) */
+  .form-label{font-size:11px;font-weight:700;color:var(--ink2);letter-spacing:0.4px;text-transform:uppercase;display:block;margin-bottom:6px;margin-top:14px}
+  .form-label:first-child{margin-top:0}
+  .fi{width:100%;border:1px solid var(--line-2);background:#fff;padding:9px 12px;font-family:var(--sans);font-size:13px;color:var(--ink);border-radius:3px}
+  textarea.fi{resize:vertical;min-height:80px;font-family:var(--sans)}
+  .cb-row{display:flex;gap:14px;align-items:center;margin-top:4px;flex-wrap:wrap}
+  .cb-row label{font-size:12px;color:var(--ink);font-weight:500;display:flex;align-items:center;gap:6px;cursor:pointer}
+  .cb{width:14px;height:14px;border:1.5px solid var(--ink);background:#fff;display:inline-block;border-radius:2px;position:relative}
+  .cb.on{background:var(--ink)}
+  .cb.on::after{content:'✓';position:absolute;top:-3px;left:1px;color:#fff;font-size:11px;font-weight:700}
+
+  /* Review summary sticky */
+  .review-card{position:sticky;top:0}
+
+  /* Greyed current-slot card */
+  .apt-card.greyed{background:#fafafa;border:1px dashed var(--line-2)}
+  .apt-card.greyed h3{color:var(--ink3)}
+  .apt-card.greyed .field-row .fv{color:var(--ink2)}
+
+  /* Main wrapper overrides for appointment pages (v2 .main uses padded single column) */
+  .main.apt-main{padding:28px 32px;overflow-y:auto}
+
+  /* ============================================================
+     MOBILE APPOINTMENT EXTRAS
+     ============================================================ */
+  .m-subhead{padding:14px 18px 12px;border-bottom:1px solid var(--line)}
+  .m-subhead h1{margin:0;font-size:22px;font-weight:700;letter-spacing:-0.4px;line-height:1}
+  .m-subhead .date{font-size:11px;color:var(--ink2);font-weight:500;margin-top:4px;font-family:var(--mono)}
+  .m-filters{display:flex;gap:6px;padding:10px 16px;border-bottom:1px solid var(--line);overflow-x:auto}
+  .m-filters::-webkit-scrollbar{display:none}
+  .m-filters .fpill{flex:none}
+  .m-list{flex:1;overflow-y:auto;padding:0}
+  .m-slot{display:grid;grid-template-columns:64px 1fr;border-bottom:1px solid var(--line);min-height:76px}
+  .m-slot .time{padding:12px 10px;font-family:var(--mono);font-size:11px;color:var(--ink2);font-weight:600;background:#fafafa;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:2px}
+  .m-slot .time .hhmm{color:var(--ink);font-size:12px}
+  .m-slot .time .dur{font-size:9px;color:var(--ink3)}
+  .m-slot.now{background:#fafafa}
+  .m-slot.now .time .now-label{font-size:8px;letter-spacing:0.6px;text-transform:uppercase;color:var(--ink);font-weight:700}
+  .m-slot .body{padding:12px 14px;display:flex;align-items:center;gap:10px}
+  .m-slot .thumb{width:36px;height:36px;background:repeating-linear-gradient(45deg,#f5f5f5,#f5f5f5 6px,#ececec 6px,#ececec 12px);border:1px solid var(--line);flex:none}
+  .m-slot .meta{flex:1;min-width:0}
+  .m-slot .name{font-size:13px;font-weight:700;margin:0;line-height:1.2}
+  .m-slot .reason{font-size:11px;color:var(--ink2);margin-top:2px;font-weight:500}
+  .m-slot.empty .body{color:var(--ink3);font-size:10px;letter-spacing:0.4px;text-transform:uppercase;padding:10px 14px}
+  .m-slot.lunch .body{background:repeating-linear-gradient(45deg,#fafafa,#fafafa 8px,#f0f0f0 8px,#f0f0f0 16px);color:var(--ink2);font-size:11px;font-style:italic}
+  .m-tag{font-size:9px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;padding:2px 5px;border:1px solid var(--line-2);color:var(--ink);background:#fff;border-radius:2px}
+  .m-tag.fill{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  /* Mobile detail/form sections (v2 namespaced as .m-sec to avoid clash with vets .m-section) */
+  .m-scroll{flex:1;overflow-y:auto}
+  .m-hero{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:center}
+  .m-hero .thumb{width:56px;height:56px;background:repeating-linear-gradient(45deg,#f5f5f5,#f5f5f5 6px,#ececec 6px,#ececec 12px);border:1px solid var(--line);flex:none;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--ink3)}
+  .m-hero .info{flex:1;min-width:0}
+  .m-hero .info .n{font-size:15px;font-weight:700;margin:0 0 3px;line-height:1.2}
+  .m-hero .info .meta{font-size:11px;color:var(--ink2);font-family:var(--mono);margin-top:3px}
+  .m-sec{padding:14px 18px;border-bottom:1px solid var(--line);background:var(--white)}
+  .m-sec h3{font-size:10px;font-weight:700;color:var(--ink2);letter-spacing:0.5px;text-transform:uppercase;margin:0 0 10px}
+  .m-sec .field-row{grid-template-columns:110px 1fr;padding:7px 0;font-size:12px}
+  .m-sec .tl-item{padding:6px 0;font-size:11px}
+  .m-big-btn{display:block;width:calc(100% - 36px);margin:14px 18px;padding:12px;background:var(--ink);color:#fff;border:1px solid var(--ink);border-radius:3px;font-weight:700;font-size:13px;text-align:center;font-family:var(--sans);text-decoration:none}
+  .m-actions{padding:14px 18px;display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--line);background:#fafafa}
+  .m-actions .btn{justify-content:center;width:100%}
+
+  .m-stripe{display:flex;gap:6px;padding:12px 14px;border-bottom:1px solid var(--line);overflow-x:auto}
+  .m-stripe::-webkit-scrollbar{display:none}
+  .m-stripe .day{flex:1;min-width:46px;border:1px solid var(--line-2);padding:8px 6px;text-align:center;border-radius:3px;background:#fff;cursor:pointer}
+  .m-stripe .day.today{border:2px solid var(--ink);padding:7px 5px}
+  .m-stripe .day.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .m-stripe .day .dl{font-size:9px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;color:var(--ink2)}
+  .m-stripe .day.on .dl{color:#fff}
+  .m-stripe .day .dd{font-family:var(--mono);font-size:14px;font-weight:700;margin:2px 0}
+  .m-stripe .day .cnt{font-family:var(--mono);font-size:10px;color:var(--ink2);font-weight:600}
+  .m-stripe .day.on .cnt{color:#fff}
+  .m-stripe .day.closed{background:repeating-linear-gradient(45deg,#fafafa,#fafafa 5px,#f0f0f0 5px,#f0f0f0 10px);color:var(--ink3)}
+
+  /* Mobile stepper dots */
+  .m-steps{display:flex;align-items:center;justify-content:center;gap:8px;padding:10px;background:#fafafa;border-bottom:1px solid var(--line)}
+  .m-steps .ms{display:flex;align-items:center;gap:8px}
+  .m-steps .dot{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--line-2);background:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--ink3);font-family:var(--mono)}
+  .m-steps .ms.active .dot{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .m-steps .ms.done .dot{border-color:var(--ink);color:var(--ink)}
+  .m-steps .ln{width:24px;height:1px;background:var(--line-2)}
+  .m-steps .ms.done + .ln{background:var(--ink)}
+
+  /* Mobile form sections */
+  .m-form-sec{padding:16px 18px;border-bottom:1px solid var(--line);background:var(--white)}
+  .m-form-sec h2{font-size:12px;font-weight:700;margin:0 0 10px;letter-spacing:0.3px}
+  .m-form-sec .fi{font-size:13px}
+
+  /* Mobile sticky confirm button */
+  .m-sticky-btn{padding:14px 18px 22px;background:#fff;border-top:1px solid var(--line)}
+  .m-sticky-btn .btn{width:100%;justify-content:center;padding:12px}
+
+  /* Mobile top back/title (in appointment frames) */
+  .m-top .back{font-family:var(--sans);font-size:13px;color:var(--ink);font-weight:600;cursor:pointer}
+  .m-top .title{font-size:14px;font-weight:700;letter-spacing:-0.2px}
+  .m-top .icons{display:flex;gap:8px}
+  .m-top .icons .i{width:30px;height:30px;border:1px solid var(--line-2);background:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;border-radius:3px}
+
+  /* Mobile mini-cal compact */
+  .m-mini-cal{padding:12px 18px;border-bottom:1px solid var(--line);background:var(--white)}
+  .m-mini-cal .mini-cal{width:100%;border:none;padding:0}
+
+  .m-slot-list{padding:0 18px 14px}
+  .m-slot-list .ts{margin-bottom:6px}
+
+</style>
+</head>
+<body>
+<div class="stack">
+
+<!-- M-NEW 1. Mobile · Register -->
+<div>
+  <p class="page-label">Mobile · Register</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+
+      <div class="m-top" style="justify-content:center">
+        <div class="brand" style="border:none;padding:0;font-size:14px">[LOGO] PawMatch Vet</div>
+      </div>
+
+      <div class="m-scroll" style="padding:24px 20px">
+
+        <h2 style="font-size:22px;font-weight:600;letter-spacing:-0.4px;margin-bottom:6px">Create your clinic account</h2>
+        <div style="font-size:12px;color:var(--ink2);margin-bottom:20px;line-height:1.5">Get started in under 2 minutes. Add locations, vets, and licenses later.</div>
+
+        <div class="upper" style="margin-bottom:10px">Account type</div>
+        <div class="radio-row" style="grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px">
+          <div class="radio-card sel" style="padding:10px 12px">
+            <div class="dot"></div>
+            <div>
+              <div class="t" style="font-size:12px">Clinic admin</div>
+              <div class="s" style="font-size:10px">Invite vets</div>
+            </div>
+          </div>
+          <div class="radio-card" style="padding:10px 12px">
+            <div class="dot"></div>
+            <div>
+              <div class="t" style="font-size:12px">Individual vet</div>
+              <div class="s" style="font-size:10px">Solo / mobile</div>
+            </div>
+          </div>
+        </div>
+
+        <button class="sso-btn">[ ] Continue with Google</button>
+        <button class="sso-btn">[ ] Continue with Apple</button>
+
+        <div class="divider">or</div>
+
+        <div class="field">
+          <label>Work email</label>
+          <input class="input" placeholder="name@clinic.com" />
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input class="input" type="password" placeholder="At least 10 characters" />
+        </div>
+
+        <p style="font-size:11px;color:var(--ink2);margin:10px 0 16px;line-height:1.5">You can add clinic locations, vet sub-accounts, and license info after.</p>
+
+        <button class="btn btn-primary btn-lg btn-block">Create account</button>
+
+        <p style="font-size:12px;color:var(--ink2);margin-top:22px;text-align:center">Already have one? <a href="#" style="color:var(--ink);text-decoration:underline">Sign in</a></p>
+
+        <div style="text-align:center;font-size:9px;color:var(--ink3);font-family:var(--mono);margin-top:32px;text-transform:uppercase;letter-spacing:0.4px">PawMatch Vet · v0.4 preview</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- M-NEW 2. Mobile · Login -->
+<div>
+  <p class="page-label">Mobile · Login</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+
+      <div class="m-top" style="justify-content:center">
+        <div class="brand" style="border:none;padding:0;font-size:14px">[LOGO] PawMatch Vet</div>
+      </div>
+
+      <div class="m-scroll" style="padding:40px 20px 20px">
+
+        <h2 style="font-size:26px;font-weight:600;letter-spacing:-0.5px;margin-bottom:6px">Sign in</h2>
+        <div style="font-size:12px;color:var(--ink2);margin-bottom:28px;line-height:1.5">Your drafts, claims, and today's schedule are waiting.</div>
+
+        <div class="field">
+          <label>Email or username</label>
+          <input class="input" placeholder="ari.patel@forestparkvet.com" />
+        </div>
+        <div class="field">
+          <label style="display:flex;justify-content:space-between;align-items:center">
+            <span>Password</span>
+            <a href="#" style="font-size:10px;color:var(--ink2);text-decoration:underline;text-transform:none;letter-spacing:0">Forgot?</a>
+          </label>
+          <input class="input" type="password" placeholder="••••••••••" />
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" style="margin-top:8px">Sign in</button>
+
+        <div class="divider">or</div>
+
+        <button class="sso-btn">[ ] Continue with Google</button>
+        <button class="sso-btn">[ ] Continue with Apple</button>
+
+        <p style="font-size:12px;color:var(--ink2);margin-top:32px;text-align:center">New clinic? <a href="#" style="color:var(--ink);text-decoration:underline">Create account</a></p>
+
+        <div style="text-align:center;font-size:9px;color:var(--ink3);font-family:var(--mono);margin-top:40px;text-transform:uppercase;letter-spacing:0.4px">PawMatch Vet · v0.4 preview</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- M1. Mobile · Dashboard -->
+<div>
+  <p class="page-label">Mobile · Dashboard</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+      <div class="m-top">
+        <div class="brand" style="border:none;padding:0">[LOGO] PawMatch Vet</div>
+        <button class="icon-btn">[🔔]</button>
+      </div>
+      <div style="padding:14px 16px 10px;background:var(--white);border-bottom:1px solid var(--line)">
+        <div class="greet">
+          <h1 style="font-size:20px;font-weight:600;letter-spacing:-0.3px">Good morning, Dr. Patel</h1>
+          <div style="font-size:11px;color:var(--ink2);margin-top:3px">Wed · Apr 16 · 8 appts today</div>
+        </div>
+      </div>
+
+      <div class="m-content">
+        <div class="m-kpi-grid">
+          <div class="m-kpi"><div class="l">Today's appts</div><div class="v">8</div><div class="d">+2 vs yest · 3 new</div></div>
+          <div class="m-kpi"><div class="l">Notes to finalize</div><div class="v">3</div><div class="d">2 in review · 1 ready</div></div>
+          <div class="m-kpi"><div class="l">Pending claims</div><div class="v">2</div><div class="d">$485 total</div></div>
+          <div class="m-kpi"><div class="l">Active patients</div><div class="v">412</div><div class="d">+7 this month</div></div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head"><span>Up next</span><a href="#" class="link mono" style="font-size:11px">View all →</a></div>
+          <div class="m-appt" style="background:var(--surface)">
+            <div class="time">09:30</div>
+            <div class="thumb">[ph]</div>
+            <div>
+              <div class="n">Biscuit · Golden, 2y</div>
+              <div class="s">New-pt wellness · Sarah Chen</div>
+            </div>
+            <span class="badge fill">NEW</span>
+          </div>
+          <div class="m-appt">
+            <div class="time">10:30</div>
+            <div class="thumb">[ph]</div>
+            <div>
+              <div class="n">Miso · DSH, 4y</div>
+              <div class="s">Annual checkup · Daniel P.</div>
+            </div>
+            <span class="badge">RTN</span>
+          </div>
+          <div class="m-appt">
+            <div class="time">11:15</div>
+            <div class="thumb">[ph]</div>
+            <div>
+              <div class="n">Olive · Beagle mix, 1y</div>
+              <div class="s">DHPP booster · Alvarez</div>
+            </div>
+            <span class="badge">RTN</span>
+          </div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head"><span>Notes to finalize</span><a href="#" class="link mono" style="font-size:11px">All</a></div>
+          <div class="act-item">
+            <div class="act-bullet"></div>
+            <div><strong>Miso</strong> · AI note ready<span class="t">Categorized · 2m ago</span></div>
+          </div>
+          <div class="act-item">
+            <div class="act-bullet"></div>
+            <div><strong>Luna</strong> · AI note ready<span class="t">Brief summary · 1h ago</span></div>
+          </div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head"><span>Pending claims</span><a href="#" class="link mono" style="font-size:11px">All</a></div>
+          <div class="act-item">
+            <div class="act-bullet hollow"></div>
+            <div><strong>Max — $285</strong> · Lemonade<span class="t">Auto-filed 3h ago</span></div>
+          </div>
+          <div class="act-item">
+            <div class="act-bullet hollow"></div>
+            <div><strong>Miso — $200</strong> · Trupanion<span class="t">Needs your signature</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-tab-bar">
+        <div class="t active"><div class="ic">⌂</div>Home</div>
+        <div class="t"><div class="ic">▤</div>Calendar</div>
+        <div class="t"><div class="ic">●</div>Record</div>
+        <div class="t"><div class="ic">$</div>Claims</div>
+        <div class="t"><div class="ic">◔</div>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- M2. Mobile · Appointments · Day -->
+<div>
+  <p class="page-label">Mobile · Appointments · Day</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+
+      <div class="m-top">
+        <div class="brand">[LOGO] PawMatch Vet</div>
+        <div class="icons">
+          <div class="i">[🔍]</div>
+          <div class="i">[🔔]</div>
+        </div>
+      </div>
+
+      <div class="m-subhead">
+        <h1>Appointments</h1>
+        <div class="date">Wed · Apr 16 · 8 on the books</div>
+      </div>
+
+      <div class="m-filters">
+        <button class="fpill on">Day</button>
+        <button class="fpill">Week</button>
+        <button class="fpill">All · 8</button>
+        <button class="fpill">New · 3</button>
+        <button class="fpill">Mine · 5</button>
+      </div>
+
+      <div class="m-list">
+
+        <div class="m-slot empty"><div class="time"><span class="hhmm">09:00</span></div><div class="body">— empty</div></div>
+
+        <div class="m-slot now">
+          <div class="time"><span class="hhmm">09:30</span><span class="dur">45 min</span><span class="now-label">Now</span></div>
+          <div class="body">
+            <div class="thumb"></div>
+            <div class="meta">
+              <p class="name">Biscuit — Golden, 2y</p>
+              <div class="reason">New-patient wellness · Sarah Chen</div>
+              <div style="display:flex;gap:4px;margin-top:6px"><span class="m-tag fill">New</span><span class="m-tag">Dr. Patel</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-slot empty"><div class="time"><span class="hhmm">10:00</span></div><div class="body">— empty</div></div>
+
+        <div class="m-slot">
+          <div class="time"><span class="hhmm">10:30</span><span class="dur">30 min</span></div>
+          <div class="body">
+            <div class="thumb"></div>
+            <div class="meta">
+              <p class="name">Miso — Shorthair, 4y</p>
+              <div class="reason">Annual · Daniel Park</div>
+              <div style="display:flex;gap:4px;margin-top:6px"><span class="m-tag">Returning</span><span class="m-tag">Dr. Patel</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-slot">
+          <div class="time"><span class="hhmm">11:15</span><span class="dur">30 min</span></div>
+          <div class="body">
+            <div class="thumb"></div>
+            <div class="meta">
+              <p class="name">Olive — Beagle mix, 1y</p>
+              <div class="reason">DHPP · Alvarez family</div>
+              <div style="display:flex;gap:4px;margin-top:6px"><span class="m-tag">Returning</span><span class="m-tag">Dr. Patel</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-slot lunch"><div class="time"><span class="hhmm">12:00</span></div><div class="body">Lunch · 60 min</div></div>
+
+        <div class="m-slot">
+          <div class="time"><span class="hhmm">13:00</span><span class="dur">45 min</span></div>
+          <div class="body">
+            <div class="thumb"></div>
+            <div class="meta">
+              <p class="name">Clover — Holland Lop, 6m</p>
+              <div class="reason">New-patient · Priya Shah</div>
+              <div style="display:flex;gap:4px;margin-top:6px"><span class="m-tag fill">New</span><span class="m-tag">Dr. Tran</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-slot">
+          <div class="time"><span class="hhmm">14:00</span><span class="dur">60 min</span></div>
+          <div class="body">
+            <div class="thumb"></div>
+            <div class="meta">
+              <p class="name">Pepper — Mixed, 7y</p>
+              <div class="reason">Dental · Robin L.</div>
+              <div style="display:flex;gap:4px;margin-top:6px"><span class="m-tag">Returning</span><span class="m-tag">Dr. Patel</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-slot">
+          <div class="time"><span class="hhmm">15:00</span><span class="dur">20 min</span></div>
+          <div class="body">
+            <div class="thumb"></div>
+            <div class="meta">
+              <p class="name">Max — Labrador, 3y</p>
+              <div class="reason">Post-surgery · Jamie Rhodes</div>
+              <div style="display:flex;gap:4px;margin-top:6px"><span class="m-tag">Returning</span><span class="m-tag">Dr. Tran</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-slot">
+          <div class="time"><span class="hhmm">15:30</span><span class="dur">30 min</span></div>
+          <div class="body">
+            <div class="thumb"></div>
+            <div class="meta">
+              <p class="name">Luna — Maine Coon, 3y</p>
+              <div class="reason">New-patient · Mike Tran</div>
+              <div style="display:flex;gap:4px;margin-top:6px"><span class="m-tag fill">New</span><span class="m-tag">Dr. Tran</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-slot">
+          <div class="time"><span class="hhmm">16:00</span><span class="dur">30 min</span></div>
+          <div class="body">
+            <div class="thumb"></div>
+            <div class="meta">
+              <p class="name">Juno — Corgi, 5y</p>
+              <div class="reason">Vaccines · Chen family</div>
+              <div style="display:flex;gap:4px;margin-top:6px"><span class="m-tag">Returning</span><span class="m-tag">Dr. Patel</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="m-tab-bar">
+        <div class="t"><div class="ic">⌂</div>Home</div>
+        <div class="t active"><div class="ic">▤</div>Calendar</div>
+        <div class="t"><div class="ic">●</div>Record</div>
+        <div class="t"><div class="ic">$</div>Claims</div>
+        <div class="t"><div class="ic">◔</div>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- M2c. Mobile · Appointments · Week -->
+<div>
+  <p class="page-label">Mobile · Appointments · Week</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+
+      <div class="m-top">
+        <div class="brand">[LOGO] PawMatch Vet</div>
+        <div class="icons">
+          <div class="i">[🔍]</div>
+          <div class="i">[🔔]</div>
+        </div>
+      </div>
+
+      <div class="m-subhead">
+        <h1>Appointments</h1>
+        <div class="date">Apr 13 – 19 · 42 booked</div>
+      </div>
+
+      <div class="m-filters">
+        <button class="fpill">Day</button>
+        <button class="fpill on">Week</button>
+        <button class="fpill">Month</button>
+        <button class="fpill">Mine</button>
+      </div>
+
+      <div class="m-stripe">
+        <div class="day"><div class="dl">Mon</div><div class="dd">13</div><div class="cnt">3</div></div>
+        <div class="day"><div class="dl">Tue</div><div class="dd">14</div><div class="cnt">4</div></div>
+        <div class="day today on"><div class="dl">Wed</div><div class="dd">16</div><div class="cnt">8</div></div>
+        <div class="day"><div class="dl">Thu</div><div class="dd">17</div><div class="cnt">6</div></div>
+        <div class="day"><div class="dl">Fri</div><div class="dd">18</div><div class="cnt">8</div></div>
+        <div class="day"><div class="dl">Sat</div><div class="dd">19</div><div class="cnt">2</div></div>
+        <div class="day closed"><div class="dl">Sun</div><div class="dd">20</div><div class="cnt">—</div></div>
+      </div>
+
+      <div class="m-list">
+        <div class="m-slot now">
+          <div class="time"><span class="hhmm">09:30</span><span class="dur">45 min</span><span class="now-label">Now</span></div>
+          <div class="body">
+            <div class="thumb"></div>
+            <div class="meta">
+              <p class="name">Biscuit</p>
+              <div class="reason">New-patient · Dr. Patel</div>
+            </div>
+          </div>
+        </div>
+        <div class="m-slot">
+          <div class="time"><span class="hhmm">10:30</span><span class="dur">30 min</span></div>
+          <div class="body"><div class="thumb"></div><div class="meta"><p class="name">Miso</p><div class="reason">Annual · Dr. Patel</div></div></div>
+        </div>
+        <div class="m-slot">
+          <div class="time"><span class="hhmm">11:15</span><span class="dur">30 min</span></div>
+          <div class="body"><div class="thumb"></div><div class="meta"><p class="name">Olive</p><div class="reason">DHPP · Dr. Patel</div></div></div>
+        </div>
+        <div class="m-slot lunch"><div class="time"><span class="hhmm">12:00</span></div><div class="body">Lunch · 60 min</div></div>
+        <div class="m-slot">
+          <div class="time"><span class="hhmm">13:00</span><span class="dur">45 min</span></div>
+          <div class="body"><div class="thumb"></div><div class="meta"><p class="name">Clover</p><div class="reason">New-patient · Dr. Tran</div></div></div>
+        </div>
+        <div class="m-slot">
+          <div class="time"><span class="hhmm">14:00</span><span class="dur">60 min</span></div>
+          <div class="body"><div class="thumb"></div><div class="meta"><p class="name">Pepper</p><div class="reason">Dental · Dr. Patel</div></div></div>
+        </div>
+        <div class="m-slot">
+          <div class="time"><span class="hhmm">15:00</span><span class="dur">20 min</span></div>
+          <div class="body"><div class="thumb"></div><div class="meta"><p class="name">Max</p><div class="reason">Post-op · Dr. Tran</div></div></div>
+        </div>
+      </div>
+
+      <div class="m-tab-bar">
+        <div class="t"><div class="ic">⌂</div>Home</div>
+        <div class="t active"><div class="ic">▤</div>Calendar</div>
+        <div class="t"><div class="ic">●</div>Record</div>
+        <div class="t"><div class="ic">$</div>Claims</div>
+        <div class="t"><div class="ic">◔</div>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- M-NEW 6. Mobile · Appointments · Month -->
+<div>
+  <p class="page-label">Mobile · Appointments · Month</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+
+      <div class="m-top">
+        <div class="brand">[LOGO] PawMatch Vet</div>
+        <div class="icons">
+          <div class="i">[🔍]</div>
+          <div class="i">[🔔]</div>
+        </div>
+      </div>
+
+      <div class="m-subhead" style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <h1>April 2026</h1>
+          <div class="date">156 appointments this month</div>
+        </div>
+        <div class="na" style="display:flex;gap:6px">
+          <div style="width:28px;height:28px;border:1px solid var(--line-2);background:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;border-radius:3px;font-family:var(--mono)">◀</div>
+          <div style="width:28px;height:28px;border:1px solid var(--line-2);background:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;border-radius:3px;font-family:var(--mono)">▶</div>
+        </div>
+      </div>
+
+      <div class="m-filters">
+        <button class="fpill">Day</button>
+        <button class="fpill">Week</button>
+        <button class="fpill on">Month</button>
+        <button class="fpill">Mine</button>
+      </div>
+
+      <div style="padding:0 14px 10px">
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#fff">
+          <!-- Weekday header -->
+          <div style="padding:6px 0;text-align:center;font-size:9px;font-weight:700;color:var(--ink2);letter-spacing:0.4px;text-transform:uppercase;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fafafa">S</div>
+          <div style="padding:6px 0;text-align:center;font-size:9px;font-weight:700;color:var(--ink2);letter-spacing:0.4px;text-transform:uppercase;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fafafa">M</div>
+          <div style="padding:6px 0;text-align:center;font-size:9px;font-weight:700;color:var(--ink2);letter-spacing:0.4px;text-transform:uppercase;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fafafa">T</div>
+          <div style="padding:6px 0;text-align:center;font-size:9px;font-weight:700;color:var(--ink2);letter-spacing:0.4px;text-transform:uppercase;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fafafa">W</div>
+          <div style="padding:6px 0;text-align:center;font-size:9px;font-weight:700;color:var(--ink2);letter-spacing:0.4px;text-transform:uppercase;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fafafa">T</div>
+          <div style="padding:6px 0;text-align:center;font-size:9px;font-weight:700;color:var(--ink2);letter-spacing:0.4px;text-transform:uppercase;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fafafa">F</div>
+          <div style="padding:6px 0;text-align:center;font-size:9px;font-weight:700;color:var(--ink2);letter-spacing:0.4px;text-transform:uppercase;border-bottom:1px solid var(--line);background:#fafafa">S</div>
+
+          <!-- Row 1: Mar 29 – Apr 4 -->
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:repeating-linear-gradient(45deg,#fafafa,#fafafa 6px,#f0f0f0 6px,#f0f0f0 12px);color:var(--ink3);font-family:var(--mono);font-size:10px;font-weight:500">29</div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fafafa;color:var(--ink3);font-family:var(--mono);font-size:10px">30</div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fafafa;color:var(--ink3);font-family:var(--mono);font-size:10px">31</div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>1</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">4</span></div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>2</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">6</span></div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>3</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">7</span></div>
+          <div style="min-height:58px;padding:4px 4px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>4</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">3</span></div>
+
+          <!-- Row 2: Apr 5–11 -->
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:repeating-linear-gradient(45deg,#fafafa,#fafafa 6px,#f0f0f0 6px,#f0f0f0 12px);color:var(--ink3);font-family:var(--mono);font-size:10px">5</div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>6</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">5</span></div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>7</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">8</span></div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>8</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">6</span></div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>9</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">7</span></div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>10</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">9</span></div>
+          <div style="min-height:58px;padding:4px 4px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>11</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">4</span></div>
+
+          <!-- Row 3: Apr 12–18 (today = 16) -->
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:repeating-linear-gradient(45deg,#fafafa,#fafafa 6px,#f0f0f0 6px,#f0f0f0 12px);color:var(--ink3);font-family:var(--mono);font-size:10px">12</div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>13</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">3</span></div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>14</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">4</span></div>
+          <div style="min-height:58px;padding:3px 3px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column;border:2px solid var(--ink)"><span style="font-weight:700">15</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">7</span></div>
+          <div style="min-height:58px;padding:3px 3px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column;border:2px solid var(--ink);background:#fafafa"><span style="font-weight:700">16</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">8</span></div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>17</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">6</span></div>
+          <div style="min-height:58px;padding:4px 4px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>18</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">8</span></div>
+
+          <!-- Row 4: Apr 19–25 -->
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:repeating-linear-gradient(45deg,#fafafa,#fafafa 6px,#f0f0f0 6px,#f0f0f0 12px);color:var(--ink3);font-family:var(--mono);font-size:10px">19</div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>20</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">5</span></div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>21</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">6</span></div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>22</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">4</span></div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>23</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">7</span></div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>24</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">5</span></div>
+          <div style="min-height:58px;padding:4px 4px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>25</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">2</span></div>
+
+          <!-- Row 5: Apr 26 – May 2 -->
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);background:repeating-linear-gradient(45deg,#fafafa,#fafafa 6px,#f0f0f0 6px,#f0f0f0 12px);color:var(--ink3);font-family:var(--mono);font-size:10px">26</div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>27</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">6</span></div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>28</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">7</span></div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>29</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">5</span></div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--ink);display:flex;flex-direction:column"><span>30</span><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);margin-top:auto">4</span></div>
+          <div style="min-height:58px;padding:4px 4px;border-right:1px solid var(--line);background:#fafafa;color:var(--ink3);font-family:var(--mono);font-size:10px">1</div>
+          <div style="min-height:58px;padding:4px 4px;background:#fafafa;color:var(--ink3);font-family:var(--mono);font-size:10px">2</div>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--ink2);font-family:var(--mono);margin-top:10px;padding:0 2px">
+          <span>Sun = closed</span>
+          <span>Today Apr 16 · <strong style="color:var(--ink);font-weight:700">8 appts</strong></span>
+        </div>
+      </div>
+
+      <div class="m-tab-bar">
+        <div class="t"><div class="ic">⌂</div>Home</div>
+        <div class="t active"><div class="ic">▤</div>Calendar</div>
+        <div class="t"><div class="ic">●</div>Record</div>
+        <div class="t"><div class="ic">$</div>Claims</div>
+        <div class="t"><div class="ic">◔</div>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- M2b. Mobile · Appointment detail -->
+<div>
+  <p class="page-label">Mobile · Appointment detail · Biscuit</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+
+      <div class="m-top">
+        <div class="back">‹ Today</div>
+        <div class="title">Biscuit</div>
+        <div class="icons"><div class="i">[⋯]</div></div>
+      </div>
+
+      <div class="m-scroll">
+
+        <div class="m-hero">
+          <div class="thumb">[ph]</div>
+          <div class="info">
+            <p class="n">Biscuit — Golden Retriever, 2y</p>
+            <div style="display:flex;gap:4px;margin-top:4px"><span class="m-tag fill">New</span><span class="m-tag">Dr. Patel</span></div>
+            <div class="meta">Wed 9:30am · 45 min</div>
+          </div>
+        </div>
+
+        <a href="#" class="m-big-btn">Open AI note →</a>
+
+        <div class="m-sec">
+          <h3>Visit details</h3>
+          <div class="field-row"><div class="fk">Reason</div><div class="fv">New-patient wellness</div></div>
+          <div class="field-row"><div class="fk">Notes</div><div class="fv">Scratching at right ear</div></div>
+          <div class="field-row"><div class="fk">Duration</div><div class="fv mono">45 min</div></div>
+          <div class="field-row"><div class="fk">Room</div><div class="fv">Exam 2</div></div>
+        </div>
+
+        <div class="m-sec">
+          <h3>Pet</h3>
+          <div class="field-row"><div class="fk">Breed</div><div class="fv">Golden Retriever</div></div>
+          <div class="field-row"><div class="fk">Age / sex</div><div class="fv">2y 3m · M, neutered</div></div>
+          <div class="field-row"><div class="fk">Weight</div><div class="fv mono">28.4 kg</div></div>
+          <div class="field-row"><div class="fk">Owner</div><div class="fv">Sarah Chen</div></div>
+        </div>
+
+        <div class="m-sec">
+          <h3>Insurance</h3>
+          <div class="field-row"><div class="fk">Plan</div><div class="fv">Lemonade Plus</div></div>
+          <div class="field-row"><div class="fk">Copay</div><div class="fv mono">$25</div></div>
+          <div class="field-row"><div class="fk">Network</div><div class="fv">In-network</div></div>
+        </div>
+
+        <div class="m-sec">
+          <h3>History</h3>
+          <div class="tl-item"><div class="dot"></div><div class="tline"></div><div class="tl-body">Reminder sent<div class="tl-date">Apr 15</div></div></div>
+          <div class="tl-item"><div class="dot"></div><div class="tline"></div><div class="tl-body">Confirmed<div class="tl-date">Apr 14</div></div></div>
+          <div class="tl-item"><div class="dot hollow"></div><div class="tl-body">Booked via PawMatch<div class="tl-date">Apr 12</div></div></div>
+        </div>
+
+        <div class="m-actions">
+          <button class="btn btn-outline">Reschedule</button>
+          <button class="btn btn-outline">Cancel appointment</button>
+        </div>
+
+      </div>
+
+      <div class="m-tab-bar">
+        <div class="t"><div class="ic">⌂</div>Home</div>
+        <div class="t active"><div class="ic">▤</div>Calendar</div>
+        <div class="t"><div class="ic">●</div>Record</div>
+        <div class="t"><div class="ic">$</div>Claims</div>
+        <div class="t"><div class="ic">◔</div>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- M2d. Mobile · New appointment -->
+<div>
+  <p class="page-label">Mobile · New appointment</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+
+      <div class="m-top">
+        <div class="back">‹ Cancel</div>
+        <div class="title">New appointment</div>
+        <div class="back">Next →</div>
+      </div>
+
+      <div class="m-steps">
+        <div class="ms done"><div class="dot">✓</div></div>
+        <div class="ln"></div>
+        <div class="ms active"><div class="dot">2</div></div>
+        <div class="ln"></div>
+        <div class="ms"><div class="dot">3</div></div>
+      </div>
+
+      <div class="m-scroll">
+
+        <div class="m-form-sec">
+          <h2>1 · Patient</h2>
+          <input class="fi" value="Biscuit · Sarah Chen" readonly />
+          <div style="font-size:11px;color:var(--ink2);margin-top:6px;font-family:var(--mono)">Golden Retriever, 2y · Selected</div>
+        </div>
+
+        <div class="m-form-sec">
+          <h2>2 · Date &amp; time</h2>
+          <div class="mini-cal" style="width:100%;padding:0;border:none">
+            <div class="mini-cal-head">
+              <div class="mt">April 2026</div>
+              <div class="na"><div class="a">◀</div><div class="a">▶</div></div>
+            </div>
+            <div class="mini-cal-grid">
+              <div class="mdh">S</div><div class="mdh">M</div><div class="mdh">T</div><div class="mdh">W</div><div class="mdh">T</div><div class="mdh">F</div><div class="mdh">S</div>
+              <div class="md off">29</div><div class="md off">30</div><div class="md off">31</div><div class="md">1</div><div class="md">2</div><div class="md">3</div><div class="md">4</div>
+              <div class="md closed">5</div><div class="md">6</div><div class="md">7</div><div class="md">8</div><div class="md">9</div><div class="md">10</div><div class="md">11</div>
+              <div class="md closed">12</div><div class="md">13</div><div class="md">14</div><div class="md selected">16</div><div class="md">17</div><div class="md">18</div><div class="md">19</div>
+              <div class="md closed">19</div><div class="md">20</div><div class="md">21</div><div class="md">22</div><div class="md">23</div><div class="md">24</div><div class="md">25</div>
+            </div>
+          </div>
+          <div class="ts-list" style="margin-top:12px">
+            <div class="ts selected"><div><span class="t">10:00 am</span><span class="dur">30 min</span></div><span class="stat">Selected</span></div>
+            <div class="ts"><div><span class="t">11:45 am</span><span class="dur">30 min</span></div><span class="stat">Available</span></div>
+            <div class="ts"><div><span class="t">1:45 pm</span><span class="dur">30 min</span></div><span class="stat">Available</span></div>
+            <div class="ts"><div><span class="t">4:30 pm</span><span class="dur">30 min</span></div><span class="stat">Available</span></div>
+          </div>
+        </div>
+
+        <div class="m-form-sec">
+          <h2>3 · Reason</h2>
+          <label class="form-label" style="margin-top:0">Visit type</label>
+          <select class="fi"><option>Wellness</option><option>Vaccines</option><option>Injury / illness</option><option>Dental</option></select>
+
+          <label class="form-label">Reason</label>
+          <textarea class="fi">New-patient wellness. Scratching at right ear.</textarea>
+
+          <label class="form-label">Notify owner</label>
+          <div class="cb-row">
+            <label><span class="cb on"></span> Email</label>
+            <label><span class="cb on"></span> SMS</label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="m-sticky-btn">
+        <button class="btn btn-primary">Confirm &amp; book →</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- M2e. Mobile · Appointment · Reschedule -->
+<div>
+  <p class="page-label">Mobile · Appointment · Reschedule</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+
+      <div class="m-top">
+        <div class="back">‹ Back</div>
+        <div class="title">Reschedule Biscuit</div>
+        <div style="width:40px"></div>
+      </div>
+
+      <div class="m-scroll">
+
+        <div class="m-sec">
+          <div class="apt-card greyed" style="padding:12px">
+            <h3 style="margin-bottom:8px">Current slot</h3>
+            <div style="font-size:13px;font-weight:700;color:var(--ink2);font-family:var(--mono)">Wed Apr 16 · 9:30 am</div>
+            <div style="font-size:11px;color:var(--ink2);margin-top:3px">45 min · Dr. Patel · Exam 2</div>
+          </div>
+        </div>
+
+        <div class="m-mini-cal">
+          <div class="mini-cal">
+            <div class="mini-cal-head">
+              <div class="mt">April 2026</div>
+              <div class="na"><div class="a">◀</div><div class="a">▶</div></div>
+            </div>
+            <div class="mini-cal-grid">
+              <div class="mdh">S</div><div class="mdh">M</div><div class="mdh">T</div><div class="mdh">W</div><div class="mdh">T</div><div class="mdh">F</div><div class="mdh">S</div>
+              <div class="md off">29</div><div class="md off">30</div><div class="md off">31</div><div class="md">1</div><div class="md">2</div><div class="md">3</div><div class="md">4</div>
+              <div class="md closed">5</div><div class="md">6</div><div class="md">7</div><div class="md">8</div><div class="md">9</div><div class="md">10</div><div class="md">11</div>
+              <div class="md closed">12</div><div class="md">13</div><div class="md">14</div><div class="md current">16</div><div class="md">17</div><div class="md selected">18</div><div class="md">19</div>
+              <div class="md closed">19</div><div class="md">20</div><div class="md">21</div><div class="md">22</div><div class="md">23</div><div class="md">24</div><div class="md">25</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-sec">
+          <h3>Available · Fri Apr 18</h3>
+          <div class="ts-list">
+            <div class="ts"><div><span class="t">9:00 am</span><span class="dur">30 min</span></div><span class="stat">Available</span></div>
+            <div class="ts"><div><span class="t">10:15 am</span><span class="dur">30 min</span></div><span class="stat">Available</span></div>
+            <div class="ts selected"><div><span class="t">11:00 am</span><span class="dur">45 min</span></div><span class="stat">Selected</span></div>
+            <div class="ts"><div><span class="t">1:30 pm</span><span class="dur">45 min</span></div><span class="stat">Available</span></div>
+            <div class="ts"><div><span class="t">2:15 pm</span><span class="dur">30 min</span></div><span class="stat">Available</span></div>
+            <div class="ts"><div><span class="t">4:00 pm</span><span class="dur">30 min</span></div><span class="stat">Available</span></div>
+          </div>
+        </div>
+
+        <div class="m-sec">
+          <div class="cb-row">
+            <label><span class="cb on"></span> Notify owner (SMS + Email)</label>
+          </div>
+          <div class="hint-box" style="margin-top:10px">
+            <strong>Preview:</strong> Biscuit's appointment has been moved to Fri Apr 18, 11:00am.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="m-sticky-btn">
+        <button class="btn btn-primary">Confirm new slot</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- M-NEW 10. Mobile · AI Notes list -->
+<div>
+  <p class="page-label">Mobile · AI Notes list</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+
+      <div class="m-top">
+        <div class="brand">[LOGO] PawMatch Vet</div>
+        <div class="icons">
+          <div class="i">[🔍]</div>
+          <div class="i">[🔔]</div>
+        </div>
+      </div>
+
+      <div class="m-subhead">
+        <h1>AI Notes</h1>
+        <div class="date">127 total · 3 drafts · 2 ready</div>
+      </div>
+
+      <div style="padding:12px 16px;border-bottom:1px solid var(--line);background:var(--white)">
+        <button class="btn btn-primary btn-block" style="padding:11px;font-size:13px;justify-content:center">+ New recording</button>
+      </div>
+
+      <div class="m-filters">
+        <button class="fpill on">All · 127</button>
+        <button class="fpill">Draft · 3</button>
+        <button class="fpill">Ready · 2</button>
+        <button class="fpill">Signed · 122</button>
+      </div>
+
+      <div class="m-list">
+
+        <div class="m-slot" style="grid-template-columns:1fr">
+          <div class="body" style="padding:14px 16px;display:flex;gap:10px;align-items:flex-start">
+            <div class="thumb" style="width:40px;height:40px"></div>
+            <div class="meta">
+              <p class="name">Miso — Shorthair, 4y</p>
+              <div class="reason">Annual · Dr. Patel · 28 min</div>
+              <div style="font-size:10px;color:var(--ink3);font-family:var(--mono);margin-top:3px">Apr 16 · 10:58am</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+              <span class="m-tag fill">Ready</span>
+              <a href="#" class="mono" style="font-size:10px;color:var(--ink);text-decoration:underline">Open →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-slot" style="grid-template-columns:1fr">
+          <div class="body" style="padding:14px 16px;display:flex;gap:10px;align-items:flex-start">
+            <div class="thumb" style="width:40px;height:40px"></div>
+            <div class="meta">
+              <p class="name">Biscuit — Golden, 2y</p>
+              <div class="reason">New-patient · Dr. Patel · 45 min</div>
+              <div style="font-size:10px;color:var(--ink3);font-family:var(--mono);margin-top:3px">Apr 16 · 10:15am</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+              <span class="m-tag">Draft</span>
+              <a href="#" class="mono" style="font-size:10px;color:var(--ink);text-decoration:underline">Open →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-slot" style="grid-template-columns:1fr">
+          <div class="body" style="padding:14px 16px;display:flex;gap:10px;align-items:flex-start">
+            <div class="thumb" style="width:40px;height:40px"></div>
+            <div class="meta">
+              <p class="name">Luna — Maine Coon, 3y</p>
+              <div class="reason">New-patient · Dr. Tran · 32 min</div>
+              <div style="font-size:10px;color:var(--ink3);font-family:var(--mono);margin-top:3px">Apr 15 · 4:02pm</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+              <span class="m-tag fill">Ready</span>
+              <a href="#" class="mono" style="font-size:10px;color:var(--ink);text-decoration:underline">Open →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-slot" style="grid-template-columns:1fr">
+          <div class="body" style="padding:14px 16px;display:flex;gap:10px;align-items:flex-start">
+            <div class="thumb" style="width:40px;height:40px"></div>
+            <div class="meta">
+              <p class="name">Pepper — Mixed, 7y</p>
+              <div class="reason">Dental · Dr. Patel · 62 min</div>
+              <div style="font-size:10px;color:var(--ink3);font-family:var(--mono);margin-top:3px">Apr 15 · 3:08pm</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+              <span class="m-tag">Draft</span>
+              <a href="#" class="mono" style="font-size:10px;color:var(--ink);text-decoration:underline">Open →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-slot" style="grid-template-columns:1fr">
+          <div class="body" style="padding:14px 16px;display:flex;gap:10px;align-items:flex-start">
+            <div class="thumb" style="width:40px;height:40px"></div>
+            <div class="meta">
+              <p class="name">Max — Labrador, 3y</p>
+              <div class="reason">Post-op check · Dr. Tran · 18 min</div>
+              <div style="font-size:10px;color:var(--ink3);font-family:var(--mono);margin-top:3px">Apr 14 · 3:25pm</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+              <span class="badge">Signed</span>
+              <a href="#" class="mono" style="font-size:10px;color:var(--ink);text-decoration:underline">Open →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-slot" style="grid-template-columns:1fr">
+          <div class="body" style="padding:14px 16px;display:flex;gap:10px;align-items:flex-start">
+            <div class="thumb" style="width:40px;height:40px"></div>
+            <div class="meta">
+              <p class="name">Juno — Corgi, 5y</p>
+              <div class="reason">Vaccines · Dr. Patel · 14 min</div>
+              <div style="font-size:10px;color:var(--ink3);font-family:var(--mono);margin-top:3px">Apr 14 · 1:12pm</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+              <span class="badge">Signed</span>
+              <a href="#" class="mono" style="font-size:10px;color:var(--ink);text-decoration:underline">Open →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="m-tab-bar">
+        <div class="t"><div class="ic">⌂</div>Home</div>
+        <div class="t"><div class="ic">▤</div>Calendar</div>
+        <div class="t active"><div class="ic">●</div>Record</div>
+        <div class="t"><div class="ic">$</div>Claims</div>
+        <div class="t"><div class="ic">◔</div>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- M-NEW 11. Mobile · AI Notetaker · New recording -->
+<div>
+  <p class="page-label">Mobile · AI Notetaker · New recording</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+
+      <div class="m-top">
+        <div class="back">‹ Back</div>
+        <div class="title">New recording</div>
+        <div style="width:40px"></div>
+      </div>
+
+      <div class="m-scroll">
+
+        <div class="m-sec">
+          <h3>Recording for</h3>
+          <div style="border:1px solid var(--ink);border-radius:4px;padding:12px 14px;background:var(--white);display:flex;gap:10px;align-items:center">
+            <div class="avatar-sq">[ph]</div>
+            <div style="flex:1;min-width:0">
+              <div style="font-size:13px;font-weight:700">Biscuit — Golden Retriever, 2y</div>
+              <div style="font-size:10px;color:var(--ink2);font-family:var(--mono);margin-top:3px">Today 9:30am · Sarah Chen</div>
+            </div>
+          </div>
+          <button class="btn btn-outline btn-sm" style="margin-top:8px">Change patient ▼</button>
+          <div class="cb-row" style="margin-top:10px">
+            <label><span class="cb"></span> Ad-hoc (no appointment)</label>
+          </div>
+        </div>
+
+        <div class="m-sec">
+          <h3>Pet quick info</h3>
+          <div class="field-row"><div class="fk">Breed</div><div class="fv">Golden Retriever</div></div>
+          <div class="field-row"><div class="fk">Age / sex</div><div class="fv">2y 3m · M, neutered</div></div>
+          <div class="field-row"><div class="fk">Weight</div><div class="fv mono">32.1 kg</div></div>
+          <div class="field-row"><div class="fk">Microchip</div><div class="fv mono" style="font-size:11px">985112004893221</div></div>
+        </div>
+
+        <div class="m-sec">
+          <h3>Insurance · from PawMatch</h3>
+          <div class="field-row"><div class="fk">Plan</div><div class="fv">Lemonade Plus</div></div>
+          <div class="field-row"><div class="fk">Copay</div><div class="fv mono">$25</div></div>
+          <div class="field-row"><div class="fk">Network</div><div class="fv">In-network</div></div>
+          <div style="font-size:10px;color:var(--ink2);font-family:var(--mono);margin-top:6px;padding-top:8px;border-top:1px solid var(--line)">◆ auto-linked from policyholder</div>
+        </div>
+
+        <div class="m-sec">
+          <h3>Quick capture</h3>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-outline" style="flex:1;justify-content:center;padding:10px">🎤 Voice</button>
+            <button class="btn btn-outline" style="flex:1;justify-content:center;padding:10px">📷 Photo</button>
+            <button class="btn btn-outline" style="flex:1;justify-content:center;padding:10px">📄 X-ray</button>
+          </div>
+        </div>
+
+        <div class="m-sec">
+          <h3>Privacy</h3>
+          <div class="cb-row">
+            <label><span class="cb on"></span> Owner verbally consented</label>
+          </div>
+          <div class="hint-box" style="margin-top:10px">
+            Audio is processed on-device first; transcript is encrypted in transit and at rest.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="m-sticky-btn">
+        <button class="btn btn-primary" style="padding:14px;font-size:14px">● Start recording</button>
+      </div>
+
+      <div class="m-tab-bar">
+        <div class="t"><div class="ic">⌂</div>Home</div>
+        <div class="t"><div class="ic">▤</div>Calendar</div>
+        <div class="t active"><div class="ic">●</div>Record</div>
+        <div class="t"><div class="ic">$</div>Claims</div>
+        <div class="t"><div class="ic">◔</div>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- M3. Mobile · Active recording -->
+<div>
+  <p class="page-label">Mobile · Active recording</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+      <div class="m-top">
+        <div class="m-back">← Back</div>
+        <span class="badge fill">● REC</span>
+      </div>
+
+      <div style="padding:12px 16px;border-bottom:1px solid var(--line);background:var(--white);display:flex;gap:10px;align-items:center">
+        <div class="avatar-sq">[ph]</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:600">Biscuit — Golden, 2y</div>
+          <div style="font-size:11px;color:var(--ink2);font-family:var(--mono)">Wed 9:30am · 45 min · Dr. Patel</div>
+        </div>
+      </div>
+
+      <div class="m-content" style="align-items:center;gap:20px">
+        <div class="upper" style="margin-top:10px"><span class="rec-dot" style="width:10px;height:10px"></span>Recording · Transcribing live…</div>
+        <div class="big-timer" style="font-size:64px">00:12:47</div>
+
+        <div class="waveform" style="width:100%;padding:0">
+          <div class="bar" style="height:30%"></div>
+          <div class="bar" style="height:55%"></div>
+          <div class="bar" style="height:80%"></div>
+          <div class="bar" style="height:40%"></div>
+          <div class="bar" style="height:65%"></div>
+          <div class="bar" style="height:90%"></div>
+          <div class="bar" style="height:50%"></div>
+          <div class="bar" style="height:30%"></div>
+          <div class="bar" style="height:70%"></div>
+          <div class="bar" style="height:55%"></div>
+          <div class="bar" style="height:45%"></div>
+          <div class="bar" style="height:85%"></div>
+          <div class="bar" style="height:35%"></div>
+          <div class="bar" style="height:60%"></div>
+          <div class="bar" style="height:75%"></div>
+          <div class="bar" style="height:40%"></div>
+          <div class="bar" style="height:50%"></div>
+          <div class="bar" style="height:30%"></div>
+          <div class="bar" style="height:65%"></div>
+          <div class="bar" style="height:55%"></div>
+          <div class="bar" style="height:80%"></div>
+          <div class="bar" style="height:45%"></div>
+          <div class="bar" style="height:35%"></div>
+          <div class="bar" style="height:70%"></div>
+        </div>
+
+        <div class="row gap-sm" style="width:100%;justify-content:center">
+          <button class="btn btn-lg" style="flex:1;justify-content:center">⏸ Pause</button>
+          <button class="btn btn-primary btn-lg" style="flex:1;justify-content:center">◼ Stop</button>
+        </div>
+        <div class="row gap-sm" style="width:100%">
+          <button class="btn btn-block" style="justify-content:center">[📷] Photo</button>
+          <button class="btn btn-block" style="justify-content:center">[📄] X-ray</button>
+        </div>
+
+        <div class="m-card" style="width:100%">
+          <div class="m-card-head"><span>Live transcript</span><span class="upper" style="font-size:9px">auto</span></div>
+          <div style="padding:12px 14px;font-size:11px;line-height:1.6;color:var(--ink2);max-height:110px;overflow:hidden">
+            <strong style="color:var(--ink)">Dr:</strong> He's 32.1 kilos, looking healthy. HR 72, temp 38.4, all within normal range. Let me listen to his chest… Lungs clear bilaterally. No murmur. Let me check ears now.
+          </div>
+        </div>
+      </div>
+
+      <div class="m-tab-bar">
+        <div class="t"><div class="ic">⌂</div>Home</div>
+        <div class="t"><div class="ic">▤</div>Calendar</div>
+        <div class="t active"><div class="ic">●</div>Record</div>
+        <div class="t"><div class="ic">$</div>Claims</div>
+        <div class="t"><div class="ic">◔</div>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- M4. Mobile · Note review -->
+<div>
+  <p class="page-label">Mobile · Note review · Biscuit</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+      <div class="m-top">
+        <div class="m-back">← Biscuit</div>
+        <span class="badge">DRAFT</span>
+      </div>
+
+      <div style="padding:12px 16px;border-bottom:1px solid var(--line);background:var(--white);display:flex;gap:10px;align-items:center">
+        <div class="avatar-sq">[ph]</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:600">Biscuit — Golden, 2y</div>
+          <div style="font-size:11px;color:var(--ink2);font-family:var(--mono)">Visit ended 10:15am · 45 min</div>
+        </div>
+      </div>
+
+      <div class="tab-bar" style="padding:0 16px;background:var(--white);border-top:1px solid var(--line)">
+        <button>Summary</button>
+        <button class="on">Notes</button>
+        <button>Transcript</button>
+      </div>
+
+      <div class="m-content">
+        <!-- Accordion-style soap blocks -->
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)">
+            <span>Chief Complaint <span class="mono" style="font-size:9px;color:var(--ink2);margin-left:4px">S</span></span>
+            <span class="ch mono">▾</span>
+          </div>
+          <div style="padding:12px 14px;font-size:12px;line-height:1.6">New-patient wellness exam following adoption from Willow Creek Rescue. Owner reports no concerns; pet is eating, drinking, normal elimination. Energy level high and age-appropriate.</div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)">
+            <span>Physical Exam <span class="mono" style="font-size:9px;color:var(--ink2);margin-left:4px">O</span></span>
+            <span class="ch mono">▾</span>
+          </div>
+          <div style="padding:12px 14px;font-size:12px;line-height:1.6">
+            <div class="soap-kv" style="grid-template-columns:1fr 1fr;margin-bottom:10px">
+              <div><div class="k">Weight</div><div class="v">32.1 kg</div></div>
+              <div><div class="k">Temp</div><div class="v">38.4 °C</div></div>
+              <div><div class="k">HR</div><div class="v">72</div></div>
+              <div><div class="k">RR</div><div class="v">24</div></div>
+            </div>
+            Mild left ear erythema, no debris. Grade 1 dental tartar. Otherwise unremarkable.
+          </div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)">
+            <span>Diagnosis</span>
+            <span class="ch mono">▾</span>
+          </div>
+          <div style="padding:12px 14px;font-size:12px;line-height:1.6">Healthy 2yo M/N Golden. Mild L otitis externa (early). Grade 1 dental tartar.</div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)">
+            <span>Treatment Plan <span class="mono" style="font-size:9px;color:var(--ink2);margin-left:4px">P</span></span>
+            <span class="ch mono">▾</span>
+          </div>
+          <div style="padding:12px 14px;font-size:12px;line-height:1.6">
+            ▸ Epi-Otic Advanced 5mL ea ear × 7d<br>
+            ▸ Heartgard Plus (51–100 lb)<br>
+            ▸ NexGard (24–60 lb)<br>
+            ▸ Dental prophy w/in 6 mo
+          </div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)">
+            <span>Insurance-Ready</span>
+            <span class="ch mono">▸</span>
+          </div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)">
+            <span>Sign-off</span>
+            <span class="ch mono">▾</span>
+          </div>
+          <div style="padding:12px 14px;font-size:12px;line-height:1.6;color:var(--ink2)">Status: Draft · Not yet signed.</div>
+        </div>
+      </div>
+
+      <div class="m-sticky-cta">
+        <button class="btn btn-primary btn-lg btn-block">Approve & sign</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- M-NEW 14. Mobile · Post-visit review · SOAP (full) -->
+<div>
+  <p class="page-label">Mobile · Post-visit review · SOAP (full)</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+
+      <div class="m-top">
+        <div class="back">‹ Back</div>
+        <div class="title">Review · Biscuit</div>
+        <span class="badge">DRAFT</span>
+      </div>
+
+      <div class="tab-bar" style="padding:0 16px;background:var(--white);border-bottom:1px solid var(--line)">
+        <button style="padding:10px 10px;font-size:12px">Summary</button>
+        <button class="on" style="padding:10px 10px;font-size:12px">Categorized</button>
+        <button style="padding:10px 10px;font-size:12px">Transcript</button>
+      </div>
+
+      <div class="m-content" style="padding:14px 14px 100px">
+
+        <!-- Visit metadata -->
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)">
+            <span>Visit</span>
+            <span class="ch mono">▾</span>
+          </div>
+          <div style="padding:10px 14px;font-size:11px;line-height:1.7">
+            <div class="row between"><span style="color:var(--ink2)">Date</span><span class="mono">Apr 16 · 9:30am</span></div>
+            <div class="row between"><span style="color:var(--ink2)">Clinician</span><span>Dr. Ari Patel</span></div>
+            <div class="row between"><span style="color:var(--ink2)">Duration</span><span class="mono">45 min</span></div>
+          </div>
+        </div>
+
+        <!-- Chief complaint -->
+        <div class="m-card" style="margin-top:10px">
+          <div class="m-card-head" style="background:var(--page)">
+            <span>Chief Complaint <span class="mono" style="font-size:9px;color:var(--ink2);margin-left:4px">S</span></span>
+            <span class="ch mono">▾</span>
+          </div>
+          <div style="padding:12px 14px;font-size:12px;line-height:1.6">New-patient wellness exam following adoption from Willow Creek Rescue. Owner reports no concerns; pet is eating, drinking, normal elimination. Energy level high and age-appropriate.</div>
+        </div>
+
+        <!-- History & Context -->
+        <div class="m-card" style="margin-top:10px">
+          <div class="m-card-head" style="background:var(--page)">
+            <span>History &amp; Context</span>
+            <span class="ch mono">▾</span>
+          </div>
+          <div style="padding:12px 14px;font-size:12px;line-height:1.7">
+            <ul style="list-style:none;padding:0">
+              <li style="padding-left:14px;position:relative;margin-bottom:4px"><span style="position:absolute;left:0;color:var(--ink2)">—</span>DHPP up to date (last Feb 2026)</li>
+              <li style="padding-left:14px;position:relative;margin-bottom:4px"><span style="position:absolute;left:0;color:var(--ink2)">—</span>Rabies up to date (Jan 2026)</li>
+              <li style="padding-left:14px;position:relative;margin-bottom:4px"><span style="position:absolute;left:0;color:var(--ink2)">—</span>Bordetella up to date (Feb 2026)</li>
+              <li style="padding-left:14px;position:relative;margin-bottom:4px"><span style="position:absolute;left:0;color:var(--ink2)">—</span>No known allergies</li>
+              <li style="padding-left:14px;position:relative"><span style="position:absolute;left:0;color:var(--ink2)">—</span>1 resident dog in household</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Physical exam -->
+        <div class="m-card" style="margin-top:10px">
+          <div class="m-card-head" style="background:var(--page)">
+            <span>Physical Exam <span class="mono" style="font-size:9px;color:var(--ink2);margin-left:4px">O</span></span>
+            <span class="ch mono">▾</span>
+          </div>
+          <div style="padding:12px 14px">
+            <div class="soap-kv" style="grid-template-columns:1fr 1fr">
+              <div><div class="k">Weight</div><div class="v">32.1 kg</div></div>
+              <div><div class="k">Temp</div><div class="v">38.4 °C</div></div>
+              <div><div class="k">HR</div><div class="v">72</div></div>
+              <div><div class="k">RR</div><div class="v">24</div></div>
+              <div><div class="k">BCS</div><div class="v">5/9</div></div>
+              <div><div class="k">CRT</div><div class="v">&lt;2s</div></div>
+            </div>
+            <div style="font-size:12px;line-height:1.6;margin-top:10px">Mild L ear erythema, no debris. Grade 1 dental tartar. Lungs clear. No murmur. Otherwise unremarkable.</div>
+          </div>
+        </div>
+
+        <!-- Diagnostic results -->
+        <div class="m-card" style="margin-top:10px">
+          <div class="m-card-head" style="background:var(--page)">
+            <span>Diagnostic Results</span>
+            <span class="ch mono">▾</span>
+          </div>
+          <div style="padding:12px 14px;font-size:12px;line-height:1.6;color:var(--ink2);font-style:italic">None this visit.</div>
+        </div>
+
+        <!-- Diagnosis -->
+        <div class="m-card" style="margin-top:10px">
+          <div class="m-card-head" style="background:var(--page)">
+            <span>Diagnosis / Assessment <span class="mono" style="font-size:9px;color:var(--ink2);margin-left:4px">A</span></span>
+            <span class="ch mono">▾</span>
+          </div>
+          <div style="padding:12px 14px;font-size:12px;line-height:1.6">
+            Healthy adult.<br>
+            Mild L otitis externa <span class="mono" style="color:var(--ink2)">(L01.10)</span>.<br>
+            Grade 1 dental tartar.
+          </div>
+        </div>
+
+        <!-- Treatment plan -->
+        <div class="m-card" style="margin-top:10px">
+          <div class="m-card-head" style="background:var(--page)">
+            <span>Treatment Plan <span class="mono" style="font-size:9px;color:var(--ink2);margin-left:4px">P</span></span>
+            <span class="ch mono">▾</span>
+          </div>
+          <div style="padding:12px 14px;font-size:12px;line-height:1.7">
+            <ul style="list-style:none;padding:0">
+              <li style="padding-left:14px;position:relative;margin-bottom:4px"><span style="position:absolute;left:0;color:var(--ink2)">—</span>Epi-Otic cleaner 5mL ea ear daily × 7d</li>
+              <li style="padding-left:14px;position:relative;margin-bottom:4px"><span style="position:absolute;left:0;color:var(--ink2)">—</span>Dental prophylaxis in 6 months</li>
+              <li style="padding-left:14px;position:relative;margin-bottom:4px"><span style="position:absolute;left:0;color:var(--ink2)">—</span>Heartgard Plus monthly</li>
+              <li style="padding-left:14px;position:relative"><span style="position:absolute;left:0;color:var(--ink2)">—</span>NexGard monthly</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Insurance-ready -->
+        <div class="m-card" style="margin-top:10px">
+          <div class="m-card-head" style="background:var(--page)">
+            <span>Insurance-Ready Fields</span>
+            <span class="ch mono">▾</span>
+          </div>
+          <div style="padding:12px 14px">
+            <div style="font-size:11px;line-height:1.8">
+              <div class="row between"><span>Exam <span class="mono" style="color:var(--ink2);font-size:10px">99213</span></span><span class="mono">$95</span></div>
+              <div class="row between"><span>Epi-Otic <span class="mono" style="color:var(--ink2);font-size:10px">J1990</span></span><span class="mono">$28</span></div>
+              <div class="row between"><span>Heartgard 6mo</span><span class="mono">$72</span></div>
+              <div class="row between"><span>NexGard 6mo</span><span class="mono">$115</span></div>
+              <div class="row between" style="font-weight:700;border-top:1px solid var(--line);padding-top:6px;margin-top:6px"><span>Total</span><span class="mono">$310.00</span></div>
+            </div>
+            <div style="border-left:3px solid var(--ink);background:#fafafa;padding:10px 12px;margin-top:12px;font-size:11px;line-height:1.5">
+              <strong style="font-family:var(--mono);letter-spacing:0.3px">⚠ PRE-EXISTING FLAGGED</strong><br>
+              <span style="color:var(--ink2)">Otitis externa noted in shelter intake Feb 2026. May be excluded by Lemonade.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sign-off -->
+        <div class="m-card" style="margin-top:10px">
+          <div class="m-card-head" style="background:var(--page)">
+            <span>Vet Sign-Off</span>
+            <span class="ch mono">▾</span>
+          </div>
+          <div style="padding:12px 14px;font-size:12px;line-height:1.6">
+            <div class="row between" style="margin-bottom:10px">
+              <span style="color:var(--ink2)">Status</span>
+              <span class="badge">DRAFT</span>
+            </div>
+            <button class="btn btn-primary btn-block" style="justify-content:center;padding:9px">Approve &amp; sign</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="m-sticky-cta">
+        <button class="btn btn-primary btn-lg btn-block">Approve &amp; sign →</button>
+      </div>
+
+      <div class="m-tab-bar">
+        <div class="t"><div class="ic">⌂</div>Home</div>
+        <div class="t"><div class="ic">▤</div>Calendar</div>
+        <div class="t active"><div class="ic">●</div>Record</div>
+        <div class="t"><div class="ic">$</div>Claims</div>
+        <div class="t"><div class="ic">◔</div>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- M-NEW 15. Mobile · Claims list -->
+<div>
+  <p class="page-label">Mobile · Claims list</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+
+      <div class="m-top">
+        <div class="brand">[LOGO] PawMatch Vet</div>
+        <div class="icons">
+          <div class="i">[🔍]</div>
+          <div class="i">[🔔]</div>
+        </div>
+      </div>
+
+      <div class="m-subhead">
+        <h1>Claims</h1>
+        <div class="date">32 claims · $7,215 ytd</div>
+      </div>
+
+      <div class="m-filters">
+        <button class="fpill">Draft · 1</button>
+        <button class="fpill on">Pending · 2</button>
+        <button class="fpill">Approved · 28</button>
+        <button class="fpill">Denied · 1</button>
+      </div>
+
+      <div class="m-list">
+
+        <div class="m-slot" style="grid-template-columns:1fr">
+          <div class="body" style="padding:14px 16px;display:flex;gap:10px;align-items:flex-start">
+            <div class="thumb" style="width:40px;height:40px"></div>
+            <div class="meta">
+              <p class="name">Biscuit · Sarah Chen</p>
+              <div class="reason">Lemonade · <span class="mono" style="font-weight:700;color:var(--ink)">$310.00</span></div>
+              <div style="font-size:10px;color:var(--ink3);font-family:var(--mono);margin-top:3px">Apr 16</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+              <span class="m-tag">Draft</span>
+              <a href="#" class="mono" style="font-size:10px;color:var(--ink);text-decoration:underline">Open →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-slot" style="grid-template-columns:1fr">
+          <div class="body" style="padding:14px 16px;display:flex;gap:10px;align-items:flex-start">
+            <div class="thumb" style="width:40px;height:40px"></div>
+            <div class="meta">
+              <p class="name">Max · Sarah Chen</p>
+              <div class="reason">Lemonade · <span class="mono" style="font-weight:700;color:var(--ink)">$285.00</span></div>
+              <div style="font-size:10px;color:var(--ink3);font-family:var(--mono);margin-top:3px">Apr 14</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+              <span class="m-tag fill">Pending</span>
+              <a href="#" class="mono" style="font-size:10px;color:var(--ink);text-decoration:underline">Open →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-slot" style="grid-template-columns:1fr">
+          <div class="body" style="padding:14px 16px;display:flex;gap:10px;align-items:flex-start">
+            <div class="thumb" style="width:40px;height:40px"></div>
+            <div class="meta">
+              <p class="name">Miso · Daniel Park</p>
+              <div class="reason">Trupanion · <span class="mono" style="font-weight:700;color:var(--ink)">$200.00</span></div>
+              <div style="font-size:10px;color:var(--ink3);font-family:var(--mono);margin-top:3px">Apr 14</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+              <span class="m-tag fill">Pending</span>
+              <a href="#" class="mono" style="font-size:10px;color:var(--ink);text-decoration:underline">Open →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-slot" style="grid-template-columns:1fr">
+          <div class="body" style="padding:14px 16px;display:flex;gap:10px;align-items:flex-start">
+            <div class="thumb" style="width:40px;height:40px"></div>
+            <div class="meta">
+              <p class="name">Luna · Mike Tran</p>
+              <div class="reason">Healthy Paws · <span class="mono" style="font-weight:700;color:var(--ink)">$445.00</span></div>
+              <div style="font-size:10px;color:var(--ink3);font-family:var(--mono);margin-top:3px">Apr 12</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+              <span class="badge">Approved</span>
+              <a href="#" class="mono" style="font-size:10px;color:var(--ink);text-decoration:underline">Open →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-slot" style="grid-template-columns:1fr">
+          <div class="body" style="padding:14px 16px;display:flex;gap:10px;align-items:flex-start">
+            <div class="thumb" style="width:40px;height:40px"></div>
+            <div class="meta">
+              <p class="name">Juno · Chen family</p>
+              <div class="reason">Lemonade · <span class="mono" style="font-weight:700;color:var(--ink)">$165.00</span></div>
+              <div style="font-size:10px;color:var(--ink3);font-family:var(--mono);margin-top:3px">Apr 10</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+              <span class="badge">Approved</span>
+              <a href="#" class="mono" style="font-size:10px;color:var(--ink);text-decoration:underline">Open →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-slot" style="grid-template-columns:1fr">
+          <div class="body" style="padding:14px 16px;display:flex;gap:10px;align-items:flex-start">
+            <div class="thumb" style="width:40px;height:40px"></div>
+            <div class="meta">
+              <p class="name">Clover · Priya Shah</p>
+              <div class="reason">Trupanion · <span class="mono" style="font-weight:700;color:var(--ink)">$92.00</span></div>
+              <div style="font-size:10px;color:var(--ink3);font-family:var(--mono);margin-top:3px">Apr 6</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+              <span class="m-tag" style="border-color:var(--ink);background:var(--surface)">Denied</span>
+              <a href="#" class="mono" style="font-size:10px;color:var(--ink);text-decoration:underline">Open →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="m-tab-bar">
+        <div class="t"><div class="ic">⌂</div>Home</div>
+        <div class="t"><div class="ic">▤</div>Calendar</div>
+        <div class="t"><div class="ic">●</div>Record</div>
+        <div class="t active"><div class="ic">$</div>Claims</div>
+        <div class="t"><div class="ic">◔</div>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- M5. Mobile · Claim preview -->
+<div>
+  <p class="page-label">Mobile · Claim preview · Biscuit</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+      <div class="m-top">
+        <div class="m-back">← Claims</div>
+        <span class="badge">DRAFT</span>
+      </div>
+
+      <div style="padding:12px 16px;border-bottom:1px solid var(--line);background:var(--white)">
+        <div style="font-size:14px;font-weight:600">Claim — Biscuit</div>
+        <div style="font-size:10px;color:var(--ink2);font-family:var(--mono);margin-top:3px">LEM-2026-04-16-001 · $310.00</div>
+      </div>
+
+      <div style="padding:10px 14px;border-bottom:1px solid var(--line);background:var(--page);font-size:10px;color:var(--ink2);display:flex;flex-wrap:wrap;gap:10px">
+        <span><span class="mono" style="color:var(--ink);font-weight:700">◆</span> Auto</span>
+        <span><span class="mono" style="color:var(--ink);font-weight:700">◉</span> Clinic</span>
+        <span><span class="mono" style="color:var(--ink);font-weight:700">▲</span> AI</span>
+        <span><span class="mono" style="color:var(--ink);font-weight:700">✎</span> Manual</span>
+      </div>
+
+      <div class="m-content">
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)"><span>Policyholder</span><span class="ch mono">▾</span></div>
+          <div style="padding:10px 14px;font-size:11px;line-height:1.7">
+            <div><strong>Sarah Chen</strong> <span class="src">◆</span></div>
+            <div style="color:var(--ink2)">LEM-8892341</div>
+            <div style="color:var(--ink2)">1408 NW Raleigh St, Portland OR 97209</div>
+          </div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)"><span>Pet</span><span class="ch mono">▾</span></div>
+          <div style="padding:10px 14px;font-size:11px;line-height:1.7">
+            <div><strong>Biscuit</strong> · Golden Retriever <span class="src">◆</span></div>
+            <div style="color:var(--ink2)">M/Neutered · DOB Mar 3, 2024</div>
+            <div style="color:var(--ink2);font-family:var(--mono)">985112004893221</div>
+          </div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)"><span>Visit & Treatment</span><span class="ch mono">▾</span></div>
+          <div style="padding:10px 14px;font-size:11px;line-height:1.7">
+            <div><strong>New-patient wellness</strong> <span class="src">▲</span></div>
+            <div style="color:var(--ink2);margin-top:4px">Dx: Mild L otitis externa · Grade 1 tartar</div>
+            <div style="color:var(--ink2)">Rx: Epi-Otic, Heartgard, NexGard</div>
+          </div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)"><span>Financial</span><span class="ch mono">▾</span></div>
+          <div style="padding:10px 14px;font-size:11px;line-height:1.7">
+            <div class="row between"><span>Exam</span><span class="mono">$95</span></div>
+            <div class="row between"><span>Epi-Otic</span><span class="mono">$28</span></div>
+            <div class="row between"><span>Heartgard 6mo</span><span class="mono">$72</span></div>
+            <div class="row between"><span>NexGard 6mo</span><span class="mono">$115</span></div>
+            <div class="row between" style="font-weight:600;border-top:1px solid var(--line);padding-top:6px;margin-top:6px"><span>Total</span><span class="mono">$310.00</span></div>
+          </div>
+        </div>
+
+        <div class="flag-box">
+          <strong>⚠ Possible pre-existing</strong><br>
+          <span style="font-size:11px">Otitis externa noted in shelter intake Feb 2026. May be excluded by Lemonade.</span>
+          <button class="btn btn-sm" style="margin-top:8px">Mark as new occurrence</button>
+        </div>
+
+        <div class="m-card">
+          <div class="m-card-head" style="background:var(--page)"><span>Signatures</span><span class="ch mono">▾</span></div>
+          <div style="padding:10px 14px;font-size:11px;line-height:1.7">
+            <div>Policyholder: <em style="color:var(--ink2)">prompt Sarah in app</em></div>
+            <div>Vet: <em style="color:var(--ink2)">not yet signed</em></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-sticky-cta">
+        <button class="btn btn-primary btn-lg btn-block">Sign & submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- M-NEW 17. Mobile · Claim detail · Pending -->
+<div>
+  <p class="page-label">Mobile · Claim detail · Pending</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+
+      <div class="m-top">
+        <div class="back">‹ Claims</div>
+        <div class="title">Claim · Max</div>
+        <div class="icons"><div class="i">[⋯]</div></div>
+      </div>
+
+      <div class="m-scroll">
+
+        <div style="padding:14px 18px;background:var(--surface);border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase">Pending</div>
+            <div style="font-size:11px;color:var(--ink2);margin-top:2px">Submitted to Lemonade Apr 14</div>
+          </div>
+          <div style="font-family:var(--mono);font-size:20px;font-weight:700">$285</div>
+        </div>
+
+        <div class="m-sec">
+          <h3>Policy</h3>
+          <div class="field-row"><div class="fk">Policy #</div><div class="fv mono" style="font-size:11px">LEM-8892341</div></div>
+          <div class="field-row"><div class="fk">Policyholder</div><div class="fv">Sarah Chen</div></div>
+          <div class="field-row"><div class="fk">Plan</div><div class="fv">Lemonade Plus</div></div>
+          <div class="field-row"><div class="fk">Copay</div><div class="fv mono">$25</div></div>
+        </div>
+
+        <div class="m-sec">
+          <h3>Pet</h3>
+          <div class="field-row"><div class="fk">Name</div><div class="fv">Max</div></div>
+          <div class="field-row"><div class="fk">Breed</div><div class="fv">Labrador</div></div>
+          <div class="field-row"><div class="fk">Age / sex</div><div class="fv">3y · M, neutered</div></div>
+        </div>
+
+        <div class="m-sec">
+          <h3>Visit</h3>
+          <div class="field-row"><div class="fk">Date</div><div class="fv mono">Apr 14, 2026</div></div>
+          <div class="field-row"><div class="fk">Clinician</div><div class="fv">Dr. Tran</div></div>
+          <div class="field-row"><div class="fk">Reason</div><div class="fv">Post-op check · suture removal</div></div>
+          <div class="field-row"><div class="fk">Dx codes</div><div class="fv mono" style="font-size:11px">Z48.0 · S81.801A</div></div>
+          <div class="field-row"><div class="fk">Total</div><div class="fv mono">$285.00</div></div>
+        </div>
+
+        <div class="m-sec">
+          <h3>Status timeline</h3>
+          <div class="tl-item"><div class="dot"></div><div class="tline"></div><div class="tl-body"><strong>Submitted</strong><div class="tl-date">Apr 14 · 3:42pm</div></div></div>
+          <div class="tl-item"><div class="dot" style="background:var(--ink);box-shadow:0 0 0 3px var(--surface)"></div><div class="tline"></div><div class="tl-body"><strong>Under review</strong> · current<div class="tl-date">Est. 2–3 business days</div></div></div>
+          <div class="tl-item"><div class="dot hollow"></div><div class="tline"></div><div class="tl-body" style="color:var(--ink2)">Approved<div class="tl-date">Pending</div></div></div>
+          <div class="tl-item"><div class="dot hollow"></div><div class="tl-body" style="color:var(--ink2)">Payout<div class="tl-date">Pending</div></div></div>
+        </div>
+
+        <div class="m-actions">
+          <button class="btn btn-outline">Download PDF</button>
+          <button class="btn btn-outline">Message Lemonade agent</button>
+        </div>
+
+      </div>
+
+      <div class="m-tab-bar">
+        <div class="t"><div class="ic">⌂</div>Home</div>
+        <div class="t"><div class="ic">▤</div>Calendar</div>
+        <div class="t"><div class="ic">●</div>Record</div>
+        <div class="t active"><div class="ic">$</div>Claims</div>
+        <div class="t"><div class="ic">◔</div>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- M-NEW 18. Mobile · Documents -->
+<div>
+  <p class="page-label">Mobile · Documents</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+
+      <div class="m-top">
+        <div class="back">‹ Me</div>
+        <div class="title">Documents</div>
+        <div class="icons"><div class="i">[🔍]</div></div>
+      </div>
+
+      <div class="m-subhead">
+        <h1>Documents</h1>
+        <div class="date">48 files · 312 MB used</div>
+      </div>
+
+      <div class="m-filters">
+        <button class="fpill on">All · 48</button>
+        <button class="fpill">X-rays · 9</button>
+        <button class="fpill">Lab · 14</button>
+        <button class="fpill">Images · 11</button>
+        <button class="fpill">PDFs · 10</button>
+        <button class="fpill">Consent · 4</button>
+      </div>
+
+      <div class="m-scroll" style="padding:14px 14px 20px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+
+          <div class="doc-card" style="padding:10px;min-height:auto">
+            <div style="width:100%;height:96px;background:radial-gradient(circle at 50% 45%, #6a6a6a 0%, #2b2b2b 55%, #111 100%);border:1px solid var(--ink);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#ddd;font-family:var(--mono)">X-RAY</div>
+            <div class="name" style="font-size:11px">Biscuit_left_ear.dcm</div>
+            <div class="meta" style="font-size:9px">2.4 MB · Apr 16</div>
+            <span class="m-tag" style="align-self:flex-start">X-ray</span>
+          </div>
+
+          <div class="doc-card" style="padding:10px;min-height:auto">
+            <div style="width:100%;height:96px;background:repeating-linear-gradient(45deg,#f5f5f5,#f5f5f5 8px,#ececec 8px,#ececec 16px);border:1px solid var(--line);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--ink3);font-family:var(--mono)">PDF</div>
+            <div class="name" style="font-size:11px">Biscuit_bloodwork.pdf</div>
+            <div class="meta" style="font-size:9px">312 KB · Apr 16</div>
+            <span class="m-tag" style="align-self:flex-start">Lab</span>
+          </div>
+
+          <div class="doc-card" style="padding:10px;min-height:auto">
+            <div style="width:100%;height:96px;background:repeating-linear-gradient(45deg,#f0f0f0,#f0f0f0 10px,#e0e0e0 10px,#e0e0e0 20px);border:1px solid var(--line);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--ink3);font-family:var(--mono)">IMG</div>
+            <div class="name" style="font-size:11px">Miso_dental.jpg</div>
+            <div class="meta" style="font-size:9px">1.1 MB · Apr 15</div>
+            <span class="m-tag" style="align-self:flex-start">Image</span>
+          </div>
+
+          <div class="doc-card" style="padding:10px;min-height:auto">
+            <div style="width:100%;height:96px;background:radial-gradient(circle at 40% 40%, #777 0%, #333 60%, #0e0e0e 100%);border:1px solid var(--ink);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#ddd;font-family:var(--mono)">X-RAY</div>
+            <div class="name" style="font-size:11px">Max_hip_R.dcm</div>
+            <div class="meta" style="font-size:9px">3.0 MB · Apr 14</div>
+            <span class="m-tag" style="align-self:flex-start">X-ray</span>
+          </div>
+
+          <div class="doc-card" style="padding:10px;min-height:auto">
+            <div style="width:100%;height:96px;background:repeating-linear-gradient(45deg,#f5f5f5,#f5f5f5 8px,#ececec 8px,#ececec 16px);border:1px solid var(--line);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--ink3);font-family:var(--mono)">PDF</div>
+            <div class="name" style="font-size:11px">Consent_surgery.pdf</div>
+            <div class="meta" style="font-size:9px">180 KB · Apr 12</div>
+            <span class="m-tag" style="align-self:flex-start">Consent</span>
+          </div>
+
+          <div class="doc-card" style="padding:10px;min-height:auto">
+            <div style="width:100%;height:96px;background:repeating-linear-gradient(45deg,#f0f0f0,#f0f0f0 10px,#e0e0e0 10px,#e0e0e0 20px);border:1px solid var(--line);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--ink3);font-family:var(--mono)">IMG</div>
+            <div class="name" style="font-size:11px">Luna_ear_R.jpg</div>
+            <div class="meta" style="font-size:9px">860 KB · Apr 10</div>
+            <span class="m-tag" style="align-self:flex-start">Image</span>
+          </div>
+
+          <div class="doc-card upload" style="min-height:120px;grid-column:span 2">
+            [+] Upload document
+            <div style="font-size:10px;color:var(--ink3);font-family:var(--mono);margin-top:4px">JPG, PNG, PDF, DCM · up to 25 MB</div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="m-tab-bar">
+        <div class="t"><div class="ic">⌂</div>Home</div>
+        <div class="t"><div class="ic">▤</div>Calendar</div>
+        <div class="t"><div class="ic">●</div>Record</div>
+        <div class="t"><div class="ic">$</div>Claims</div>
+        <div class="t active"><div class="ic">◔</div>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- M6. Mobile · My Account -->
+<div>
+  <p class="page-label">Mobile · My Account</p>
+  <div class="frame frame-mobile">
+    <div class="m">
+      <div class="m-top">
+        <div class="m-back">← Back</div>
+        <div style="font-size:14px;font-weight:600">Me</div>
+        <div style="width:60px"></div>
+      </div>
+
+      <div class="m-content">
+        <div class="pd-card" style="padding:20px 18px;display:flex;gap:14px;align-items:center">
+          <div class="avatar-sq lg">[ph]</div>
+          <div style="flex:1">
+            <div style="font-size:16px;font-weight:600;letter-spacing:-0.2px">Dr. Ari Patel</div>
+            <div style="font-size:12px;color:var(--ink2);margin-top:2px">Lead vet · Admin</div>
+            <div style="font-size:11px;color:var(--ink2);font-family:var(--mono);margin-top:2px">Forest Park Vet · OR #VET-2014-5612</div>
+          </div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-section"><span>Clinic profile</span><span class="ch">›</span></div>
+          <div class="m-section"><span>Team & sub-accounts <span class="badge" style="margin-left:6px;font-size:9px">3</span></span><span class="ch">›</span></div>
+          <div class="m-section"><span>Licenses & credentials</span><span class="ch">›</span></div>
+          <div class="m-section"><span>Insurance partners <span class="badge" style="margin-left:6px;font-size:9px">4</span></span><span class="ch">›</span></div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-section"><span>Billing</span><span class="ch">›</span></div>
+          <div class="m-section"><span>Payouts & ACH</span><span class="ch">›</span></div>
+          <div class="m-section"><span>Security</span><span class="ch">›</span></div>
+          <div class="m-section"><span>Notifications</span><span class="ch">›</span></div>
+        </div>
+
+        <div class="m-card">
+          <div class="m-section"><span>Help & support</span><span class="ch">›</span></div>
+          <div class="m-section"><span>What's new</span><span class="ch">›</span></div>
+          <div class="m-section"><span>About PawMatch Vet</span><span class="ch">›</span></div>
+        </div>
+
+        <button class="btn btn-block" style="justify-content:center;border-color:var(--line);color:var(--ink2);margin-top:8px">Sign out</button>
+
+        <div style="text-align:center;font-size:10px;color:var(--ink3);font-family:var(--mono);margin-top:14px">PawMatch Vet · v0.4.1</div>
+      </div>
+
+      <div class="m-tab-bar">
+        <div class="t"><div class="ic">⌂</div>Home</div>
+        <div class="t"><div class="ic">▤</div>Calendar</div>
+        <div class="t"><div class="ic">●</div>Record</div>
+        <div class="t"><div class="ic">$</div>Claims</div>
+        <div class="t active"><div class="ic">◔</div>Me</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
