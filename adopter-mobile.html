@@ -889,11 +889,11 @@ svg [stroke="#c96442"], svg [stroke="#141413"], svg [stroke="#201515"], svg [str
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px;overflow-y:auto;flex:1">
         <div style="border:1px solid var(--sand);border-radius:8px;overflow:hidden;background:var(--cream)">
-          <div class="search-card-photo"><img src="biscuit.jpg" alt="Poppy"/><div class="heart">♡</div></div>
+          <div class="search-card-photo stripes">🐕<div class="heart bare">♡</div></div>
           <div style="padding:8px 10px"><div style="font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:-0.2px">Poppy · 2y</div><div style="font-size:11px;color:var(--charcoal);font-weight:500">Mixed · 2.4 mi</div><div style="font-size:11px;color:var(--gray);font-weight:600">$350</div></div>
         </div>
         <div style="border:1px solid var(--sand);border-radius:8px;overflow:hidden;background:var(--cream)">
-          <div class="search-card-photo"><img src="miso.jpg" alt="Miso"/><div class="heart">♡</div></div>
+          <div class="search-card-photo stripes">🐈<div class="heart bare">♡</div></div>
           <div style="padding:8px 10px"><div style="font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:-0.2px">Miso · 4y</div><div style="font-size:11px;color:var(--charcoal);font-weight:500">Longhair · 1.9 mi</div><div style="font-size:11px;color:var(--gray);font-weight:600">$180</div></div>
         </div>
         <div style="border:1px solid var(--sand);border-radius:8px;overflow:hidden;background:var(--cream)">
@@ -901,7 +901,7 @@ svg [stroke="#c96442"], svg [stroke="#141413"], svg [stroke="#201515"], svg [str
           <div style="padding:8px 10px"><div style="font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:-0.2px">Olive · 1y</div><div style="font-size:11px;color:var(--charcoal);font-weight:500">Beagle · 3.1 mi</div><div style="font-size:11px;color:var(--gray);font-weight:600">$250</div></div>
         </div>
         <div style="border:1px solid var(--sand);border-radius:8px;overflow:hidden;background:var(--cream)">
-          <div class="search-card-photo"><img src="luna.jpg" alt="Luna"/><div class="heart">♡</div></div>
+          <div class="search-card-photo stripes">🐈<div class="heart bare">♡</div></div>
           <div style="padding:8px 10px"><div style="font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:-0.2px">Luna · 3y</div><div style="font-size:11px;color:var(--charcoal);font-weight:500">Maine Coon · 5.2 mi</div><div style="font-size:11px;color:var(--gray);font-weight:600">$200</div></div>
         </div>
         <div style="border:1px solid var(--sand);border-radius:8px;overflow:hidden;background:var(--cream)">
@@ -936,18 +936,15 @@ svg [stroke="#c96442"], svg [stroke="#141413"], svg [stroke="#201515"], svg [str
         <div></div>
       </div>
       <div class="mp-body">
-        <div class="match-hero" style="position:relative;height:240px;border-radius:8px;overflow:hidden;background:#eee">
-          <img src="biscuit.jpg" alt="Poppy" class="match-hero-img"/>
-          <div style="position:absolute;left:14px;top:14px;font-size:10px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;background:rgba(0,0,0,0.55);color:#fff;padding:5px 10px;border-radius:10px">♥ You liked</div>
+        <div style="position:relative;height:180px;border-radius:8px;overflow:hidden;background:repeating-linear-gradient(45deg,#eee,#eee 8px,#e0e0e0 8px,#e0e0e0 16px);display:flex;align-items:center;justify-content:center;font-size:60px">
+          🐕
+          <div style="position:absolute;left:14px;top:14px;font-size:10px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;background:#111;color:#fff;padding:5px 10px;border-radius:10px">♥ You liked</div>
         </div>
         <div style="margin-top:-4px">
           <div style="font-family:var(--display);font-weight:700;font-size:26px;letter-spacing:-0.6px;line-height:1;color:var(--black)">Poppy</div>
           <div style="font-size:12px;font-weight:600;color:var(--olive);margin-top:2px">Willow Creek Rescue · 2y · Mixed (Dalmatian × Setter)</div>
         </div>
-<style>
-  .match-hero{ background:#eee !important; }
-  .match-hero-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; filter:none !important; -webkit-filter:none !important; }
-</style>
+
 
         <div>
           <h1 class="mp-h1" style="font-size:26px">You're mostly a match.</h1>
@@ -1774,7 +1771,7 @@ svg [stroke="#c96442"], svg [stroke="#141413"], svg [stroke="#201515"], svg [str
       shelterInit:'W',
       verified:true,
       fee:'$350',
-      photo:{kind:'img', src:'biscuit.jpg'},
+      photo:{kind:'placeholder'},
       emoji:'🐕'
     },
     {
@@ -1790,7 +1787,7 @@ svg [stroke="#c96442"], svg [stroke="#141413"], svg [stroke="#201515"], svg [str
       shelterInit:'R',
       verified:false,
       fee:'$180',
-      photo:{kind:'img', src:'miso.jpg'},
+      photo:{kind:'placeholder'},
       emoji:'🐈'
     },
     {
@@ -1854,7 +1851,7 @@ svg [stroke="#c96442"], svg [stroke="#141413"], svg [stroke="#201515"], svg [str
       shelterInit:'P',
       verified:true,
       fee:'$220',
-      photo:{kind:'img', src:'luna.jpg'},
+      photo:{kind:'placeholder'},
       emoji:'🐈'
     }
   ];
